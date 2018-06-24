@@ -1,0 +1,14 @@
+<RCC>
+  <qresource>
+    <file>icons/application-exit.svg</file>
+    <file>icons/archive-extract.svg</file>
+    <file>icons/archive-insert-directory.svg</file>
+    <file>icons/archive-insert.svg</file>
+    <file>icons/archive-remove.svg</file>
+    <file>icons/dialog-error.svg</file>
+    <file>icons/dialog-ok.svg</file>
+    <file>icons/document-new.svg</file>
+    <file>icons/document-open.svg</file>
+    <file>icons/edit-select-all.svg</file>
+  </qresource>
+</RCC>
