@@ -57,20 +57,19 @@ Backend::~Backend() {
 void Backend::loadFile(const QString& path) {
   /* check if the file extraction directory can be made
      but don't create it until a file is viewed */
+  const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
   if (!arqiverDir_.isEmpty())
     QDir(arqiverDir_).removeRecursively();
   QString cache = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
   if (!cache.isEmpty()) {
     QDir cacheDir(cache);
     if (cacheDir.exists()) {
-      arqiverDir_ = cache + "/"
-                  + "arqiver-"
-                  + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+      arqiverDir_ = cache + "/" + "arqiver-" + curTime;
     }
   }
 
   filepath_ = path;
-  tmpfilepath_ = filepath_.section("/", 0, -2) + "/" + ".tmp_larchiver_" + filepath_.section("/", -1);
+  tmpfilepath_ = filepath_.section("/", 0, -2) + "/" + ".tmp_arqiver-" + curTime + filepath_.section("/", -1);
   flags_.clear();
   flags_ << "-f" << filepath_; // add the actual archive path
   if(QFile::exists(path))
@@ -84,12 +83,12 @@ void Backend::loadFile(const QString& path) {
 
 bool Backend::canModify(){
   static QStringList validEXT;
-  if( validEXT.isEmpty() ){
-    validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" \
-      << ".tar.lzma" << ".tlz" << ".cpio" << ".pax" << ".ar" << ".shar" << ".7z";
+  if (validEXT.isEmpty()) {
+    validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << ".pax" << ".ar" << ".shar" << ".7z";
   }
-  for(int i=0; i<validEXT.length(); i++){
-    if(filepath_.endsWith(validEXT[i])){ return true; }
+  for (int i = 0; i < validEXT.length(); i++){
+    if (filepath_.endsWith(validEXT[i]))
+      return true;
   }
   return false;
 }
@@ -103,71 +102,78 @@ bool Backend::isWorking(){
 }
 
 //Listing routines
-QStringList Backend::heirarchy(){
+QStringList Backend::heirarchy() {
   return contents_.keys();
 }
 
-double Backend::size(QString file){
+double Backend::size(QString file) {
   if (!contents_.contains(file))
     return -1;
   return contents_.value(file)[1].toDouble();
 }
 
-double Backend::csize(QString file){
+double Backend::csize(QString file) {
   if (!contents_.contains(file))
     return -1;
   return contents_.value(file)[1].toDouble();
 }
 
-bool Backend::isDir(QString file){
+bool Backend::isDir(QString file) {
   if (!contents_.contains(file))
     return false;
   return contents_.value(file)[0].startsWith("d");
 }
 
-bool Backend::isLink(QString file){
+bool Backend::isLink(QString file) {
   if (!contents_.contains(file))
     return false;
   return contents_.value(file)[0].startsWith("l");
 }
 
-QString Backend::linkTo(QString file){
+QString Backend::linkTo(QString file) {
   if (!contents_.contains(file))
     return "";
   return contents_.value(file)[2];
 }
 
-//Modification routines
-void Backend::startAdd(QStringList paths,  bool absolutePaths){
-  //if(paths.isEmpty() && !insertQueue_.isEmpty()){ paths = insertQueue_; } //load the queue
-  if(paths.contains(filepath_)){ paths.removeAll(filepath_); }
-  if(paths.isEmpty()){ return; }
-  //NOTE: All the "paths" have to have the same parent directory
-  //Go through and find all the files that contain the same parent dir, and put the rest into the insertQueue_
-  QString parent = paths[0].section("/",0,-2);
+void Backend::startAdd(QStringList paths,  bool absolutePaths) {
+  if (paths.contains(filepath_))
+    paths.removeAll(filepath_); // exclude the archive itself
+  if(paths.isEmpty())
+    return;
+  /* NOTE: All paths should have the same parent directory.
+           Check that and put the wrong paths into insertQueue_. */
+  QString parent = paths[0].section("/", 0, -2);
   insertQueue_.clear();
   for (int i = 1; i < paths.length(); i++) {
-    if (paths[i].section("/",0,-2)!=parent) {
-      insertQueue_ << paths.takeAt(i); i--; //push this back a bit for later
+    if (paths[i].section("/", 0, -2) != parent) {
+      insertQueue_ << paths.takeAt(i);
+      i--;
     }
   }
   QStringList args;
   args << "-c" << "-a";
   args << flags_;
   //Now setup the parent dir
-  if(!absolutePaths) {
-    for(int i=0; i<paths.length(); i++){
-      paths[i] = paths[i].section(parent,1,-1);
-      if(paths[i].startsWith("/")){ paths[i].remove(0,1); }
+  if (!absolutePaths) {
+    for (int i = 0; i < paths.length(); i++) {
+      paths[i] = paths[i].section(parent, 1, -1);
+      if (paths[i].startsWith("/"))
+        paths[i].remove(0, 1);
     }
     args << "-C" << parent;
-  }else{
-    args << "-C" << "/";
   }
+  else
+    args << "-C" << "/";
   args << paths;
-  if(QFile::exists(filepath_)){ //append to existing
+  if (QFile::exists(filepath_)) { // append to the existing archive
+    int i = 0;
+    while (QFile::exists(tmpfilepath_)) { // practically impossible
+      tmpfilepath_ += QString::number(i);
+      ++i;
+    }
     args.replaceInStrings(filepath_, tmpfilepath_);
-    args<< "@"+filepath_;
+    args << "@" + filepath_;
   }
   PROC.start(TAR_CMD, args);
 }
@@ -180,6 +186,11 @@ void Backend::startRemove(QStringList paths) {
   QStringList args;
   args << "-c" << "-a";
   args << flags_;
+  int i = 0;
+  while (QFile::exists(tmpfilepath_)) { // practically impossible
+      tmpfilepath_ += QString::number(i);
+      ++i;
+  }
   args.replaceInStrings(filepath_, tmpfilepath_);
   //Add the include rules for all the files we want to keep (no exclude option in "tar")
   for (int i = 0; i < paths.length(); i++) {
@@ -190,14 +201,13 @@ void Backend::startRemove(QStringList paths) {
 }
 
 void Backend::startExtract(QString path, bool overwrite, QString file) {
-  startExtract(path, overwrite, QStringList() << file); //overload for multi-file function
-
+  startExtract(path, overwrite, QStringList() << file);
 }
 
 void Backend::startExtract(QString path, bool overwrite, QStringList files) {
   QStringList args;
   args << "-x" << "--no-same-owner";
-  if(!overwrite)
+  if(!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
     args << "-k";
   args << flags_;
   for (int i = 0; i < files.length(); i++) {
@@ -207,7 +217,7 @@ void Backend::startExtract(QString path, bool overwrite, QStringList files) {
   }
   QString xPath = path;
   if (!archiveParentDir_.isEmpty() && archiveParentDir_.startsWith("."))
-    archiveParentDir_.remove(0, 1); // no hidden extraction folder
+    archiveParentDir_.remove(0, 1); // no hidden extraction folder (with rpm)
   if (!archiveParentDir_.isEmpty()) {
     if(QFile::exists(xPath + "/" + archiveParentDir_)) {
       QDir dir (xPath);
@@ -434,7 +444,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     }
     else if (args.contains("-c")) {
       result = tr("Modification Finished");
-      if(insertQueue_.isEmpty())
+      if (insertQueue_.isEmpty())
         emit ArchivalSuccessful();
       else {
         needupdate = false;
@@ -450,7 +460,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   }
 }
 
-void Backend::processData(){
+void Backend::processData() {
   static QString data;
   QString read = data + PROC.readAllStandardOutput();
   if (read.endsWith("\n"))

@@ -72,7 +72,9 @@ signals:
   void ArchivalSuccessful();
 
 private slots:
-  void startInsertFromQueue(){ startAdd(insertQueue_); }
+  void startInsertFromQueue() {
+    startAdd(insertQueue_);
+  }
   void startList();
   void procFinished(int retcode, QProcess::ExitStatus);
   void processData();
