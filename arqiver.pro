@@ -27,7 +27,7 @@ unix {
 
   target.path = $${BINDIR}
 
-  desktop.files = arqiver.desktop
+  desktop.files = ./data/arqiver.desktop
   desktop.path = $${DATADIR}/applications
 
   INSTALLS += target desktop

@@ -70,10 +70,8 @@ private slots:
   void selectionChanged();
 
 private:
-
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
   bool cleanTree(QStringList list); // returns true if anything gets cleaned
-
   QString CreateFileTypes();
   QString OpenFileTypes();
   void dragEnterEvent(QDragEnterEvent *event);

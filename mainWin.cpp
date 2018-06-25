@@ -157,7 +157,7 @@ void mainWin::LoadArguments(QStringList args) {
 }
 
 QTreeWidgetItem* mainWin::findItem(QString path, QTreeWidgetItem *start) {
-  if (start == 0) {
+  if (start == nullptr) {
     for (int i = 0; i < ui->tree_contents->topLevelItemCount(); i++) {
       if (ui->tree_contents->topLevelItem(i)->whatsThis(0) == path)
         return ui->tree_contents->topLevelItem(i);

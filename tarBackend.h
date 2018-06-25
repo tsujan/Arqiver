@@ -92,6 +92,6 @@ private:
   QString archiveParentDir_;
 };
 
-#endif
-
 }
+
+#endif

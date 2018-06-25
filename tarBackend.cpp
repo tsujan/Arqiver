@@ -40,7 +40,7 @@
 
 namespace Arqiver {
 
-Backend::Backend(QObject *parent) : QObject(parent){
+Backend::Backend(QObject *parent) : QObject(parent) {
   PROC.setProcessChannelMode(QProcess::MergedChannels);
   PROC.setProgram(TAR_CMD);
   connect(&PROC, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
@@ -49,7 +49,7 @@ Backend::Backend(QObject *parent) : QObject(parent){
   LIST = false;
 }
 
-Backend::~Backend(){
+Backend::~Backend() {
   if(!arqiverDir_.isEmpty())
     QDir(arqiverDir_).removeRecursively();
 }
@@ -253,13 +253,13 @@ void Backend::startViewFile(QString path) {
     QDir dir(arqiverDir_);
     if (path.contains("/")) {
       parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
-      dir.mkpath(parentDir); // also creates "dir "if needed
+      dir.mkpath(parentDir); // also creates "dir" if needed
     }
     else if (!dir.exists())
       dir.mkpath(arqiverDir_);
   }
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
-                                          : parentDir + "/")
+                                            : parentDir + "/")
                      + path.section("/",-1);
   if (!QFile::exists(fileName)) {
     QStringList args;

@@ -1,10 +1,10 @@
 [Desktop Entry]
+Name=Arqiver
+Comment=A Qt front-end for libarchive
 Exec=arqiver %f
 Icon=utilities-file-archiver
 Terminal=false
 Type=Application
-StartupNotify=true
 Categories=Utility;
 MimeType=application/x-xz-compressed-tar;application/x-lzma-compressed-tar;application/x-bzip-compressed-tar;application/x-tar;application/x-compressed-tar;application/zip;application/gzip;application/bzip;application/x-7z-compressed;application/vnd.debian.binary-package;application/x-rpm;application/x-source-rpm
-Name=Arqiver
-Comment=A Qt front-end for libarchive
+X-KDE-StartupNotify=false
