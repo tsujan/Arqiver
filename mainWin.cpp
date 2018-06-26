@@ -30,8 +30,6 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
-#include <QMimeDatabase>
-#include <QMimeData>
 #include <QTimer>
 
 #include <unistd.h> // getuid
@@ -251,6 +249,7 @@ QString mainWin::OpenFileTypes() {
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     types << l;
+    types << tr("Show All Files (*)");
     fileTypes = types.join(";;");
   }
   return fileTypes;
@@ -329,19 +328,13 @@ void mainWin::OpenArchive() {
   BACKEND->loadFile(file);
 }
 
-static inline QString getMimeType(const QString &fname) {
-  QMimeDatabase mimeDatabase;
-  QMimeType mimeType = mimeDatabase.mimeTypeForFile(QFileInfo(fname));
-  return mimeType.name();
-}
-
 void mainWin::dragEnterEvent(QDragEnterEvent *event) {
   if (event->mimeData()->hasUrls()) {
     const QList<QUrl> urlList = event->mimeData()->urls();
     if (!urlList.isEmpty()) {
       QString file = urlList.at(0).toLocalFile();
       if (!file.isEmpty()) {
-        QString mime = getMimeType(file.section("/",-1));
+        QString mime = BACKEND->getMimeType(file);
         if (!supportedMimeTypes().contains(mime)) {
           event->ignore();
           return;
@@ -492,7 +485,7 @@ void mainWin::UpdateTree() {
       continue; // already in the tree widget
     QString mime;
     if (!BACKEND->isDir(files[i]))
-      mime = getMimeType(files[i].section("/",-1));
+      mime = BACKEND->getMimeType(files[i].section("/",-1));
     QTreeWidgetItem *it = new QTreeWidgetItem();
     it->setText(0, files[i].section("/",-1) );
     if (!mime.isEmpty()) {

@@ -31,6 +31,8 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <QStandardPaths>
+#include <QMimeDatabase>
+#include <QMimeData>
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
@@ -55,6 +57,12 @@ Backend::~Backend() {
     QDir(arqiverDir_).removeRecursively();
 }
 
+QString Backend::getMimeType(const QString &fname) {
+  QMimeDatabase mimeDatabase;
+  QMimeType mimeType = mimeDatabase.mimeTypeForFile(QFileInfo(fname));
+  return mimeType.name();
+}
+
 void Backend::loadFile(const QString& path) {
   /* check if the file extraction directory can be made
      but don't create it until a file is viewed */
@@ -70,7 +78,7 @@ void Backend::loadFile(const QString& path) {
   }
 
   filepath_ = path;
-  if (filepath_.endsWith(".gz") && !filepath_.endsWith("tar.gz"))
+  if (getMimeType(path) == "application/gzip")
     isGzip_ = true;
   tmpfilepath_ = filepath_.section("/", 0, -2) + "/" + ".tmp_arqiver-" + curTime + filepath_.section("/", -1);
   flags_.clear();
@@ -139,6 +147,16 @@ QString Backend::linkTo(QString file) {
   return contents_.value(file)[2];
 }
 
+static inline void skipExistingFiles (QString& file) {
+  QString suffix;
+  int i = 0;
+  while (QFile::exists(file + suffix)) {
+    suffix = "-" + QString::number(i);
+    i++;
+  }
+  file += suffix;
+}
+
 void Backend::startAdd(QStringList paths,  bool absolutePaths) {
   if (paths.contains(filepath_))
     paths.removeAll(filepath_); // exclude the archive itself
@@ -180,11 +198,7 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
     args << "-C" << "/";
   args << paths;
   if (QFile::exists(filepath_)) { // append to the existing archive
-    int i = 0;
-    while (QFile::exists(tmpfilepath_)) { // practically impossible
-      tmpfilepath_ += QString::number(i);
-      ++i;
-    }
+    skipExistingFiles(tmpfilepath_); // practically not required
     args.replaceInStrings(filepath_, tmpfilepath_);
     args << "@" + filepath_;
   }
@@ -199,11 +213,7 @@ void Backend::startRemove(QStringList paths) {
   QStringList args;
   args << "-c" << "-a";
   args << flags_;
-  int i = 0;
-  while (QFile::exists(tmpfilepath_)) { // practically impossible
-      tmpfilepath_ += QString::number(i);
-      ++i;
-  }
+  skipExistingFiles(tmpfilepath_); // practically not required
   args.replaceInStrings(filepath_, tmpfilepath_);
   //Add the include rules for all the files we want to keep (no exclude option in "tar")
   for (int i = 0; i < paths.length(); i++) {
@@ -219,7 +229,26 @@ void Backend::startExtract(QString path, bool overwrite, QString file) {
 
 void Backend::startExtract(QString path, bool overwrite, QStringList files) {
   if (isGzip_) {
-    PROC.start("gzip", QStringList() << "-d" << "-k" << filepath_);
+    /* if the extraction takes place in the same directory, we could do it
+       in the usual way but the standard output method works in all cases */
+    /*if (0 && path == filepath_.section("/", 0, -2)) {
+      PROC.start("gzip", QStringList() << "-d" << "-k" << filepath_);
+      return;
+    }*/
+    QProcess tmpProc;
+    QString extName = filepath_.section("/", -1);
+    if(extName.contains(".")) {
+    extName = extName.section(".", 0, -2);
+    if (extName.isEmpty())
+        extName = "arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+    }
+    extName = path + "/" + extName;
+    skipExistingFiles(extName);
+    tmpProc.setStandardOutputFile(extName);
+    tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_);
+    while (!tmpProc.waitForFinished(500))
+      QCoreApplication::processEvents();
+    emit ExtractSuccessful();
     return;
   }
   QStringList args;

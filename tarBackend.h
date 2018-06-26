@@ -39,6 +39,7 @@ public:
   Backend(QObject *parent = 0);
   ~Backend();
 
+  QString getMimeType(const QString &fname);
   void loadFile(const QString& path);
   bool canModify(); //run on the current file
 
