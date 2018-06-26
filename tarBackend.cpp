@@ -47,6 +47,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   connect(&PROC, &QProcess::readyReadStandardOutput, this, &Backend::processData);
   connect(&PROC, &QProcess::started, this, &Backend::ProcessStarting);
   LIST = false;
+  isGzip_ = false;
 }
 
 Backend::~Backend() {
@@ -69,6 +70,8 @@ void Backend::loadFile(const QString& path) {
   }
 
   filepath_ = path;
+  if (filepath_.endsWith(".gz") && !filepath_.endsWith("tar.gz"))
+    isGzip_ = true;
   tmpfilepath_ = filepath_.section("/", 0, -2) + "/" + ".tmp_arqiver-" + curTime + filepath_.section("/", -1);
   flags_.clear();
   flags_ << "-f" << filepath_; // add the actual archive path
@@ -84,7 +87,7 @@ void Backend::loadFile(const QString& path) {
 bool Backend::canModify(){
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
-    validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << ".pax" << ".ar" << ".shar" << ".7z";
+    validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << ".pax" << ".ar" << ".shar" << ".gz" << ".7z";
   }
   for (int i = 0; i < validEXT.length(); i++){
     if (filepath_.endsWith(validEXT[i]))
@@ -141,6 +144,16 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
     paths.removeAll(filepath_); // exclude the archive itself
   if(paths.isEmpty())
     return;
+  if (isGzip_) {
+    if (QFile::exists(filepath_)) return;
+    QProcess tmpProc;
+    tmpProc.setStandardOutputFile(filepath_);
+    tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]);
+    while (!tmpProc.waitForFinished(500))
+      QCoreApplication::processEvents();
+    loadFile(filepath_);
+    return;
+  }
   /* NOTE: All paths should have the same parent directory.
            Check that and put the wrong paths into insertQueue_. */
   QString parent = paths[0].section("/", 0, -2);
@@ -205,6 +218,10 @@ void Backend::startExtract(QString path, bool overwrite, QString file) {
 }
 
 void Backend::startExtract(QString path, bool overwrite, QStringList files) {
+  if (isGzip_) {
+    PROC.start("gzip", QStringList() << "-d" << "-k" << filepath_);
+    return;
+  }
   QStringList args;
   args << "-x" << "--no-same-owner";
   if(!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
@@ -272,12 +289,20 @@ void Backend::startViewFile(QString path) {
                                             : parentDir + "/")
                      + path.section("/",-1);
   if (!QFile::exists(fileName)) {
+    QString cmnd;
     QStringList args;
-    args << "-x" << flags_ << "--include" << path <<"--to-stdout";
+    if (isGzip_) {
+      cmnd = "gzip";
+      args << "-d" << "--to-stdout" << filepath_;
+    }
+    else {
+      cmnd = TAR_CMD;
+      args << "-x" << flags_ << "--include" << path <<"--to-stdout";
+    }
     emit ProcessStarting();
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
-    tmpProc.start(TAR_CMD,args);
+    tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     emit ProcessFinished(tmpProc.exitCode() == 0, "");
@@ -301,12 +326,20 @@ QString Backend::extractFile(QString path) {
                                           : parentDir + "/")
                      + path.section("/",-1);
   if (!QFile::exists(fileName)) {
+    QString cmnd;
     QStringList args;
-    args << "-x" << flags_ << "--include" << path <<"--to-stdout";
+    if (isGzip_) {
+      cmnd = "gzip";
+      args << "-d" << "--to-stdout" << filepath_;
+    }
+    else {
+      cmnd = TAR_CMD;
+      args << "-x" << flags_ << "--include" << path <<"--to-stdout";
+    }
     emit ProcessStarting();
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
-    tmpProc.start(TAR_CMD,args);
+    tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     emit ProcessFinished(tmpProc.exitCode() == 0, "");
@@ -324,7 +357,7 @@ void Backend::parseLines (QStringList lines) {
     QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
     //Format: [perms, ?, user, group, size, month, day, time, file]
     if (info.startsWith("x ") && filepath_.endsWith(".zip")) {
-      //ZIP archives do not have all the extra information - just filenames
+      // ZIP archives do not have all the extra information - just filenames
       while (info.length() > 2)
         info[1] = info[1] + " " + info[2];
       QString file = info[1];
@@ -344,9 +377,18 @@ void Backend::parseLines (QStringList lines) {
           archiveParentDir_ = QString();
         }
       }
-      contents_.insert (file, QStringList() << perms << "-1" <<""); //Save the [perms, size, linkto ]
+      contents_.insert (file, QStringList() << perms << "-1" << ""); // [perms, size, linkto ]
     }
-    else if (info.length() < 9) continue; //invalid line
+    else if (info.length() < 9) {
+      if (!isGzip_)
+        continue; // invalid line
+      if (contents_.isEmpty() && info.size() == 4) {
+        // gzip info is {"compressed_size", "uncompressed_size", "-100.0%", "/x/y/z"}
+        contents_.insert(info.last().section('/', -1),
+                         QStringList() << "-rw-r--r--" << info.at(1) << ""); // [perms, size, linkto]
+      }
+      return;
+    }
     //TAR Archive parsing
     while (info.length() > 9) {
       info[8] = info[8] + " " + info[9];
@@ -380,11 +422,17 @@ void Backend::parseLines (QStringList lines) {
           archiveParentDir_ = QString();
       }
     }
-    contents_.insert(file, QStringList() << info[0] << info[4] << linkto); //Save the [perms, size, linkto ]
+    contents_.insert(file, QStringList() << info[0] << info[4] << linkto); // [perms, size, linkto ]
   }
 }
 
 void Backend::startList() {
+  if (isGzip_) {
+    contents_.clear();
+    LIST = true;
+    PROC.start("gzip", QStringList() << "-l" << filepath_);
+    return;
+  }
   contents_.clear();
   QStringList args;
   args << "-tv";
@@ -396,14 +444,16 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   static QString result;
   processData();
   LIST = false;
-  if (PROC.arguments().contains("-tv")) {
-    if (retcode != 0) {  //could not read archive
+  if (PROC.arguments().contains("-tv") || PROC.arguments().contains("-l")) {
+    if (retcode != 0) { // could not read archive
       contents_.clear();
       result = tr("Could not read archive");
     }
     else if (result.isEmpty()) {
       result = tr("Archive Loaded");
       emit FileLoaded();
+      if (isGzip_)
+        emit ArchivalSuccessful(); // because the created archive is just loaded (-> Backend::startAdd)
     }
     emit ProcessFinished((retcode == 0), result);
     result.clear();
@@ -438,7 +488,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       else
         QFile::remove(tmpfilepath_);
     }
-    if (args.contains("-x")) {
+    if (args.contains("-x") || args.contains("-d")) {
       result = tr("Extraction Finished");
       emit ExtractSuccessful();
     }
@@ -469,7 +519,14 @@ void Backend::processData() {
     data = read.section("\n", -1);
     read = read.section("\n", 0, -2);
   }
-  QStringList lines = read.split("\n",QString::SkipEmptyParts);
+  QStringList lines = read.split("\n", QString::SkipEmptyParts);
+
+  if (isGzip_ && lines.size() == 2) {
+    QString last = lines.at(1);
+    lines.clear();
+    lines << last;
+  }
+
   QString info;
   if (LIST)
     parseLines(lines);

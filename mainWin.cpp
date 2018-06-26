@@ -146,7 +146,6 @@ void mainWin::LoadArguments(QStringList args) {
     connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
   }
   else if (action == 2 && files.length() == 2) {
-    sxFile_ = files[0];
     sxPath_ = files[1];
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleExtractFiles);
     connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
@@ -198,46 +197,60 @@ QString mainWin::CreateFileTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << QString(tr("All Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z)");
+    types << QString(tr("All Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z *.gz)");
     types << tr("Uncompressed Archive (*.tar)");
     types << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
-    types << tr("BZip Compressed Archive (*.tar.bz *.tbz)");
-    types << tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2)");
+    //types << tr("BZip Compressed Archive (*.tar.bz *.tbz)");
+    types << tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)");
     types << tr("LMZA Compressed Archive (*.tar.lzma *.tlz)");
     types << tr("XZ Compressed Archive (*.tar.xz *.txz)");
     types << tr("CPIO Archive (*.cpio)");
-    types << tr("PAX Archive (*.pax)");
+    //types << tr("PAX Archive (*.pax)");
     types << tr("AR Archive (*.ar)");
     types << tr("SHAR Archive (*.shar)");
     types << tr("Zip Archive (*.zip)");
+    types << tr("Gzip archive (*.gz)");
     types << tr("7-Zip Archive (*.7z)");
     fileTypes = types.join(";;");
   }
   return fileTypes;
 }
 
-QString mainWin::OpenFileTypes(){
+QMap<QString, QString> mainWin::supportedMimeTypes() {
+  static QMap<QString, QString> supported;
+  if (supported.isEmpty()) {
+    supported.insert ("x-compressed-tar", tr("Uncompressed Archive (*.tar)"));
+    supported.insert ("application/x-compressed-tar", tr("GZip Compressed Archive (*.tar.gz *.tgz)"));
+    //supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive (*.tar.bz *.tbz)"));
+    supported.insert ("application/x-bzip-compressed-tar", tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)"));
+    supported.insert ("application/x-bzip", tr("BZip2 Archive (*.bz2)"));
+    supported.insert ("application/x-xz-compressed-tar", tr("XZ Compressed Archive (*.tar.xz *.txz)"));
+    supported.insert ("application/x-lzma-compressed-tar", tr("LMZA Compressed Archive (*.tar.lzma *.tlz)"));
+    supported.insert ("application/x-cpio", tr("CPIO Archive (*.cpio)"));
+    //supported.insert ("?", tr("PAX Archive (*.pax)"));
+    supported.insert ("application/x-archive", tr("AR Archive (*.ar)"));
+    supported.insert ("application/x-shar", tr("SHAR Archive (*.shar)"));
+    supported.insert ("application/zip", tr("Zip Archive (*.zip)"));
+    supported.insert ("application/x-7z-compressed", tr("7-Zip Archive (*.7z)"));
+    supported.insert ("application/gzip", tr("Gzip archive (*.gz)"));
+    supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
+    supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
+    supported.insert ("application/x-xar", tr("READ-ONLY: XAR archive (*.xar)"));
+    supported.insert ("application/x-java-archive", tr("READ-ONLY: Java archive (*.jar)"));
+    supported.insert ("application/x-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
+    supported.insert ("application/x-source-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
+  }
+  return supported;
+}
+
+QString mainWin::OpenFileTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << QString(tr("All Known Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z *.iso *.img *.xar *.jar *.rpm)");
-    types << tr("Uncompressed Archive (*.tar)");
-    types << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
-    types << tr("BZip Compressed Archive (*.tar.bz *.tbz)");
-    types << tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2)");
-    types << tr("XZ Compressed Archive (*.tar.xz *.txz)");
-    types << tr("LMZA Compressed Archive (*.tar.lzma *.tlz)");
-    types << tr("CPIO Archive (*.cpio)");
-    types << tr("PAX Archive (*.pax)");
-    types << tr("AR Archive (*.ar)");
-    types << tr("SHAR Archive (*.shar)");
-    types << tr("Zip Archive (*.zip)");
-    types << tr("7-Zip Archive (*.7z)");
-    types << tr("READ-ONLY: ISO image (*.iso *.img)");
-    types << tr("READ-ONLY: XAR archive (*.xar)");
-    types << tr("READ-ONLY: Java archive (*.jar)");
-    types << tr("READ-ONLY: RedHat Package (*.rpm)");
-    types << tr("Show All Files (*)");
+    types << QString(tr("All Known Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z *.gz *.iso *.img *.xar *.jar *.rpm)");
+    QStringList l = supportedMimeTypes().values();
+    l.removeDuplicates();
+    types << l;
     fileTypes = types.join(";;");
   }
   return fileTypes;
@@ -248,20 +261,19 @@ void mainWin::NewArchive() {
 
   bool retry(true);
   QString path = lastPath_;
-  QString nameFilter;
   while (retry) {
     QFileDialog dlg(this, tr("Create Archive"), path, CreateFileTypes());
     dlg.setAcceptMode(QFileDialog::AcceptSave);
     dlg.setFileMode(QFileDialog::AnyFile);
-    dlg.selectNameFilter(nameFilter);
+    dlg.selectNameFilter(lastFilter_);
     if (dlg.exec()) {
-      nameFilter = dlg.selectedNameFilter();
+      lastFilter_ = dlg.selectedNameFilter();
       file = dlg.selectedFiles().at(0);
     }
     else return;
     if (file.isEmpty()) return;
     if (file.indexOf('.') == -1) {
-      QString filter = nameFilter;
+      QString filter = lastFilter_;
       auto left = filter.indexOf('(');
       if (left != -1) {
         ++left;
@@ -301,7 +313,15 @@ void mainWin::NewArchive() {
 }
 
 void mainWin::OpenArchive() {
-  QString file = QFileDialog::getOpenFileName(this, tr("Open Archive"), lastPath_, OpenFileTypes());
+  QString file;
+  QFileDialog dlg(this, tr("Open Archive"), lastPath_, OpenFileTypes());
+  dlg.setAcceptMode(QFileDialog::AcceptOpen);
+  dlg.setFileMode(QFileDialog::ExistingFile);
+  dlg.selectNameFilter(lastFilter_);
+  if (dlg.exec()) {
+    lastFilter_ = dlg.selectedNameFilter();
+    file = dlg.selectedFiles().at(0);
+  }
   if (file.isEmpty()) return;
   lastPath_ = file.section("/", 0, -2);
   ui->label_progress->setText(tr("Opening Archive..."));
@@ -321,25 +341,8 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
     if (!urlList.isEmpty()) {
       QString file = urlList.at(0).toLocalFile();
       if (!file.isEmpty()) {
-        static const QStringList supportedArcives = {"application/x-compressed-tar",
-                                                     "application/x-bzip",
-                                                     "application/x-bzip-compressed-tar",
-                                                     "application/x-xz-compressed-tar",
-                                                     "application/x-lzma-compressed-tar",
-                                                     "application/x-cpio",
-                                                     "application/x-tar",
-                                                     "application/x-archive",
-                                                     "application/x-shar",
-                                                     "application/zip",
-                                                     "application/x-7z-compressed",
-                                                     "application/x-cd-image",
-                                                     "application/x-raw-disk-image",
-                                                     "application/x-xar",
-                                                     "application/x-java-archive",
-                                                     "application/x-source-rpm",
-                                                     "application/x-rpm"};
         QString mime = getMimeType(file.section("/",-1));
-        if (!supportedArcives.contains(mime)) {
+        if (!supportedMimeTypes().contains(mime)) {
           event->ignore();
           return;
         }
@@ -369,7 +372,19 @@ void mainWin::dropEvent(QDropEvent *event) {
 }
 
 void mainWin::addFiles() {
-  QStringList files = QFileDialog::getOpenFileNames(this, tr("Add to Archive"), lastPath_);
+  QStringList files;
+  if(BACKEND->isGzip()) { // accepts only one file
+    QFileDialog dialog(this);
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setWindowTitle(tr("Add to Archive"));
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setDirectory(lastPath_);
+    if(dialog.exec()) {
+      files = dialog.selectedFiles();
+    }
+  }
+  else
+    files = QFileDialog::getOpenFileNames(this, tr("Add to Archive"), lastPath_);
   if (files.isEmpty()) return;
   if (!files.at(0).isEmpty())
     lastPath_ = files.at(0).section("/", 0, -2);
@@ -428,7 +443,7 @@ void mainWin::simpleExtractFiles() {
 void mainWin::autoArchiveFiles() { // no protection against overwriting
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
   ui->label_progress->setText(tr("Adding Items..."));
-  BACKEND->startAdd(aaFileList_, true);
+  BACKEND->startAdd(aaFileList_);
 }
 
 void mainWin::extractSelection(){
@@ -565,12 +580,12 @@ void mainWin::ProcFinished(bool success, QString msg) {
   bool canmodify = info.isWritable();
   if (!info.exists())
     canmodify = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
-  canmodify = canmodify && BACKEND->canModify(); //also include the file type limitations
-  ui->actionAdd_File->setEnabled(canmodify);
-  ui->actionRemove_File->setEnabled(canmodify && info.exists());
+  canmodify = canmodify && BACKEND->canModify(); // also include the file type limitations
+  ui->actionAdd_File->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
+  ui->actionRemove_File->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
   ui->actionExtract_All->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
   ui->actionExtract_Sel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
-  ui->actionAdd_Dirs->setEnabled(canmodify);
+  ui->actionAdd_Dirs->setEnabled(canmodify && !BACKEND->isGzip());
 
   if (close_)
     QTimer::singleShot (500, this, SLOT (close()));

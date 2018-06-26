@@ -73,6 +73,7 @@ private:
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
   bool cleanTree(QStringList list); // returns true if anything gets cleaned
   QString CreateFileTypes();
+  QMap<QString, QString> supportedMimeTypes();
   QString OpenFileTypes();
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
@@ -80,8 +81,8 @@ private:
   Ui::mainWin *ui;
   Backend *BACKEND;
   QStringList aaFileList_;
-  QString sxPath_, sxFile_;
-  QString lastPath_;
+  QString sxPath_;
+  QString lastPath_, lastFilter_;
   bool expandAll_;
   bool close_;
 };

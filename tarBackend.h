@@ -63,6 +63,10 @@ public:
   void startViewFile(QString path);
   QString extractFile(QString path);
 
+  bool isGzip() const {
+    return isGzip_;
+  }
+
 signals:
   void FileLoaded();
   void ExtractSuccessful();
@@ -91,6 +95,7 @@ private:
   QStringList insertQueue_;
 
   bool LIST;
+  bool isGzip_;
   QString archiveParentDir_;
 };
 
