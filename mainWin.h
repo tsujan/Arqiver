@@ -57,6 +57,7 @@ private slots:
   void extractFiles();
   void autoextractFiles();
   void autoArchiveFiles();
+  void simpleArchivetFiles();
   void simpleExtractFiles();
   void extractSelection();
   void ViewFile(QTreeWidgetItem *it);
@@ -80,8 +81,7 @@ private:
 
   Ui::mainWin *ui;
   Backend *BACKEND;
-  QStringList aaFileList_;
-  QString sxPath_;
+  QStringList aaFileList_, saFileList_;
   QString lastPath_, lastFilter_;
   bool expandAll_;
   bool close_;

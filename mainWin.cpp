@@ -109,7 +109,13 @@ mainWin::~mainWin() {
 }
 
 void mainWin::LoadArguments(QStringList args) {
-  int action = -1; // 0: autoExtract, 1: autoArchive, 2: simple extract
+  int action = -1;
+  /*
+     0: autoExtract      arqiver --ax Archive
+     1: autoArchive      arqiver --aa Archive Files
+     2: simple extract   arqiver --sx Archive
+     3: simple archive   arqiver --sa Files
+  */
   QStringList files;
   for (int i = 0; i < args.length(); i++) {
     if (args[i].startsWith("--")) {
@@ -122,6 +128,9 @@ void mainWin::LoadArguments(QStringList args) {
       }
       else if (args[i]=="--sx") {
         action = 2; continue;
+      }
+      else if (args[i]=="--sa") {
+        action = 3; continue;
       }
     }
     else {
@@ -137,21 +146,32 @@ void mainWin::LoadArguments(QStringList args) {
   if (action == 0) {
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoextractFiles);
     connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
+    BACKEND->loadFile(files[0]);
   }
   else if (action == 1) {
     aaFileList_ = files;
     aaFileList_.removeFirst();
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
     connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
+    BACKEND->loadFile(files[0]);
   }
-  else if (action == 2 && files.length() == 2) {
-    sxPath_ = files[1];
+  else if (action == 2) {
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleExtractFiles);
     connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
+    BACKEND->loadFile(files[0]);
   }
-  else
+  else if (action == 3) {
+    saFileList_ = files;
+    connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
+    connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
+    //QTimer::singleShot (0, this, [this]() {
+      NewArchive();
+    //});
+  }
+  else {
     expandAll_ = true;
-  BACKEND->loadFile(files[0]);
+    BACKEND->loadFile(files[0]);
+  }
 }
 
 QTreeWidgetItem* mainWin::findItem(QString path, QTreeWidgetItem *start) {
@@ -264,7 +284,11 @@ void mainWin::NewArchive() {
   QString file;
 
   bool retry(true);
-  QString path = lastPath_;
+  QString path = saFileList_.isEmpty() ? lastPath_
+                                       /* use the file name with simple archiving */
+                                       : QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
+                                           ? saFileList_.at(0) + ".tar.gz"
+                                           : saFileList_.at(0);
   while (retry) {
     QFileDialog dlg(this, tr("Create Archive"), path, CreateFileTypes());
     dlg.setAcceptMode(QFileDialog::AcceptSave);
@@ -353,7 +377,7 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void mainWin::dropEvent(QDropEvent *event) {
-  if (event->mimeData()->hasFormat ("application/limina-item"))
+  if (event->mimeData()->hasFormat ("application/arqiver-item"))
     event->ignore(); // don't drop from inside the view (not needed)
   else {
     const QList<QUrl> urlList = event->mimeData()->urls();
@@ -434,15 +458,19 @@ void mainWin::autoextractFiles() {
 
 void mainWin::simpleExtractFiles() {
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleExtractFiles);
-  QString dir = sxPath_;
-  ui->label_progress->setText(tr("Extracting..."));
-  BACKEND->startExtract(dir, true);
+  extractFiles();
 }
 
 void mainWin::autoArchiveFiles() { // no protection against overwriting
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
   ui->label_progress->setText(tr("Adding Items..."));
   BACKEND->startAdd(aaFileList_);
+}
+
+void mainWin::simpleArchivetFiles() {
+  disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
+  ui->label_progress->setText(tr("Adding Items..."));
+  BACKEND->startAdd(saFileList_);
 }
 
 void mainWin::extractSelection(){

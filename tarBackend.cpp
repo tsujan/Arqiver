@@ -92,19 +92,19 @@ void Backend::loadFile(const QString& path) {
   }
 }
 
-bool Backend::canModify(){
+bool Backend::canModify() {
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
     validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << ".pax" << ".ar" << ".shar" << ".gz" << ".7z";
   }
-  for (int i = 0; i < validEXT.length(); i++){
+  for (int i = 0; i < validEXT.length(); i++) {
     if (filepath_.endsWith(validEXT[i]))
       return true;
   }
   return false;
 }
 
-QString Backend::currentFile(){
+QString Backend::currentFile() {
   return filepath_;
 }
 
@@ -166,7 +166,7 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
     if (QFile::exists(filepath_)) return;
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(filepath_);
-    tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]);
+    tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]); // "gzip -c file > archive.gz"
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     loadFile(filepath_);
@@ -245,7 +245,7 @@ void Backend::startExtract(QString path, bool overwrite, QStringList files) {
     extName = path + "/" + extName;
     skipExistingFiles(extName);
     tmpProc.setStandardOutputFile(extName);
-    tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_);
+    tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     emit ExtractSuccessful();
@@ -383,6 +383,18 @@ void Backend::parseLines (QStringList lines) {
     archiveParentDir_ = QString();
   }
   for (int i = 0; i < lines.length(); i++) {
+    if (isGzip_) {
+      // lines[i] is:                 <compressed_size>                   <uncompressed_size> -33.3% /x/y/z}
+       QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
+      if (contents_.isEmpty() && info.size() >= 4) {
+        int indx = lines[i].indexOf("% ");
+        if (indx > -1) {
+          contents_.insert(lines[i].mid(indx + 2).section('/', -1),
+                           QStringList() << "-rw-r--r--" << info.at(1) << ""); // [perms, size, linkto]
+        }
+      }
+      return;
+    }
     QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
     //Format: [perms, ?, user, group, size, month, day, time, file]
     if (info.startsWith("x ") && filepath_.endsWith(".zip")) {
@@ -408,16 +420,7 @@ void Backend::parseLines (QStringList lines) {
       }
       contents_.insert (file, QStringList() << perms << "-1" << ""); // [perms, size, linkto ]
     }
-    else if (info.length() < 9) {
-      if (!isGzip_)
-        continue; // invalid line
-      if (contents_.isEmpty() && info.size() == 4) {
-        // gzip info is {"compressed_size", "uncompressed_size", "-100.0%", "/x/y/z"}
-        contents_.insert(info.last().section('/', -1),
-                         QStringList() << "-rw-r--r--" << info.at(1) << ""); // [perms, size, linkto]
-      }
-      return;
-    }
+    else if (info.length() < 9) continue; // invalid line
     //TAR Archive parsing
     while (info.length() > 9) {
       info[8] = info[8] + " " + info[9];
