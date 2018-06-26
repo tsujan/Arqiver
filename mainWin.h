@@ -73,7 +73,7 @@ private:
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
   bool cleanTree(QStringList list); // returns true if anything gets cleaned
   QString CreateFileTypes();
-  QMap<QString, QString> supportedMimeTypes();
+  QHash<QString, QString> supportedMimeTypes();
   QString OpenFileTypes();
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);

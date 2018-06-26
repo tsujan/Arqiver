@@ -31,6 +31,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QTimer>
+#include <QRegularExpression>
 
 #include <unistd.h> // getuid
 
@@ -196,28 +197,31 @@ QString mainWin::CreateFileTypes() {
   if (fileTypes.isEmpty()) {
     QStringList types;
     types << QString(tr("All Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z *.gz)");
-    types << tr("Uncompressed Archive (*.tar)");
-    types << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
-    //types << tr("BZip Compressed Archive (*.tar.bz *.tbz)");
-    types << tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)");
-    types << tr("LMZA Compressed Archive (*.tar.lzma *.tlz)");
-    types << tr("XZ Compressed Archive (*.tar.xz *.txz)");
-    types << tr("CPIO Archive (*.cpio)");
+    QStringList tmp;
+    tmp << tr("Uncompressed Archive (*.tar)");
+    tmp << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
+    //tmp << tr("BZip Compressed Archive (*.tar.bz *.tbz)");
+    tmp << tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)");
+    tmp << tr("LMZA Compressed Archive (*.tar.lzma *.tlz)");
+    tmp << tr("XZ Compressed Archive (*.tar.xz *.txz)");
+    tmp << tr("CPIO Archive (*.cpio)");
     //types << tr("PAX Archive (*.pax)");
-    types << tr("AR Archive (*.ar)");
-    types << tr("SHAR Archive (*.shar)");
-    types << tr("Zip Archive (*.zip)");
-    types << tr("Gzip archive (*.gz)");
-    types << tr("7-Zip Archive (*.7z)");
+    tmp << tr("AR Archive (*.ar)");
+    tmp << tr("SHAR Archive (*.shar)");
+    tmp << tr("Zip Archive (*.zip)");
+    tmp << tr("Gzip Archive (*.gz)");
+    tmp << tr("7-Zip Archive (*.7z)");
+    tmp.sort();
+    types << tmp;
     fileTypes = types.join(";;");
   }
   return fileTypes;
 }
 
-QMap<QString, QString> mainWin::supportedMimeTypes() {
-  static QMap<QString, QString> supported;
+QHash<QString, QString> mainWin::supportedMimeTypes() {
+  static QHash<QString, QString> supported;
   if (supported.isEmpty()) {
-    supported.insert ("x-compressed-tar", tr("Uncompressed Archive (*.tar)"));
+    supported.insert ("application/x-tar", tr("Uncompressed Archive (*.tar)"));
     supported.insert ("application/x-compressed-tar", tr("GZip Compressed Archive (*.tar.gz *.tgz)"));
     //supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive (*.tar.bz *.tbz)"));
     supported.insert ("application/x-bzip-compressed-tar", tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)"));
@@ -230,7 +234,7 @@ QMap<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-shar", tr("SHAR Archive (*.shar)"));
     supported.insert ("application/zip", tr("Zip Archive (*.zip)"));
     supported.insert ("application/x-7z-compressed", tr("7-Zip Archive (*.7z)"));
-    supported.insert ("application/gzip", tr("Gzip archive (*.gz)"));
+    supported.insert ("application/gzip", tr("Gzip Archive (*.gz)"));
     supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
     supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
     supported.insert ("application/x-xar", tr("READ-ONLY: XAR archive (*.xar)"));
@@ -248,6 +252,7 @@ QString mainWin::OpenFileTypes() {
     types << QString(tr("All Known Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.pax *.ar *.shar *.7z *.gz *.iso *.img *.xar *.jar *.rpm)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
+    l.sort();
     types << l;
     types << tr("Show All Files (*)");
     fileTypes = types.join(";;");
@@ -271,7 +276,8 @@ void mainWin::NewArchive() {
     }
     else return;
     if (file.isEmpty()) return;
-    if (file.indexOf('.') == -1) {
+    static const QRegularExpression extensions("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar|zip|tgz|txz|tbz|tbz2|tlz|cpio|pax|ar|shar|7z|gz)$");
+    if (file.indexOf(extensions) == -1) {
       QString filter = lastFilter_;
       auto left = filter.indexOf('(');
       if (left != -1) {
