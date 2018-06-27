@@ -44,12 +44,12 @@ namespace Arqiver {
 
 Backend::Backend(QObject *parent) : QObject(parent) {
   PROC.setProcessChannelMode(QProcess::MergedChannels);
-  PROC.setProgram(TAR_CMD);
   connect(&PROC, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&PROC, &QProcess::readyReadStandardOutput, this, &Backend::processData);
   connect(&PROC, &QProcess::started, this, &Backend::ProcessStarting);
   LIST = false;
-  isGzip_ = false;
+  isGzip_ = is7z_ = false;
+  starting7z_ = encryptionQueried_ = encrypted_ = false;
 }
 
 Backend::~Backend() {
@@ -77,15 +77,39 @@ void Backend::loadFile(const QString& path) {
     }
   }
 
+  /*
+     NOTE: So far, bsdtar, gzip and 7z are supported.
+           Also, password protected 7z archives can be
+           extracted.
+  */
+
   filepath_ = path;
-  if (getMimeType(path) == "application/gzip")
-    isGzip_ = true;
+  QString mt = getMimeType(path);
+  pswrd_.clear();
+  starting7z_ = encryptionQueried_ = encrypted_ = false;
+  if (mt == "application/gzip"){
+    isGzip_ = true; is7z_ = false;
+  }
+  else if (mt == "application/x-7z-compressed") {
+    is7z_ = true; isGzip_ = false;
+  }
+  else {
+    isGzip_ = is7z_ = false;
+  }
   tmpfilepath_ = filepath_.section("/", 0, -2) + "/" + ".tmp_arqiver-" + curTime + filepath_.section("/", -1);
   flags_.clear();
-  flags_ << "-f" << filepath_; // add the actual archive path
+  if (is7z_) {
+    /*if (path.section("/",-1).section(".",1,-1).split(".").contains("tar"))
+      flags_ << "-ttar";*/
+    flags_ << filepath_;
+  }
+  else
+    flags_ << "-f" << filepath_; // add the actual archive path
   if(QFile::exists(path))
     startList();
   else {
+    if (is7z_)
+      encryptionQueried_ = true; // an empty archive doesn't have encryption (yet)
     contents_.clear();
     emit FileLoaded();
     emit ProcessFinished(true, "");
@@ -126,12 +150,16 @@ double Backend::size(QString file) {
 double Backend::csize(QString file) {
   if (!contents_.contains(file))
     return -1;
+  if (is7z_)
+    return contents_.value(file)[2].toDouble();
   return contents_.value(file)[1].toDouble();
 }
 
 bool Backend::isDir(QString file) {
   if (!contents_.contains(file))
     return false;
+  if (is7z_)
+    return contents_.value(file)[0].startsWith("D");
   return contents_.value(file)[0].startsWith("d");
 }
 
@@ -158,10 +186,22 @@ static inline void skipExistingFiles (QString& file) {
 }
 
 void Backend::startAdd(QStringList paths,  bool absolutePaths) {
+  /* exclude the archive itself */
   if (paths.contains(filepath_))
-    paths.removeAll(filepath_); // exclude the archive itself
-  if(paths.isEmpty())
-    return;
+    paths.removeAll(filepath_);
+  /* no path should be a parent folder of the archive */
+  QString parentDir = filepath_.section("/", 0, -2);
+  for (int i = 0; !paths.isEmpty() && i < paths.length(); i++) {
+    if (parentDir.startsWith (paths[i])) {
+      paths.removeAt(i);
+      i--;
+    }
+  }
+
+  if(paths.isEmpty()) return;
+  /* no path should be repeated */
+  paths.removeDuplicates();
+
   if (isGzip_) {
     if (QFile::exists(filepath_)) return;
     QProcess tmpProc;
@@ -170,6 +210,15 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     loadFile(filepath_);
+    return;
+  }
+  if (is7z_) {
+    QStringList args;
+    if (!pswrd_.isEmpty())
+      args << "-p" + pswrd_; // always add files with encryption if any
+    args << "a" << flags_ << paths;
+    starting7z_ = true;
+    PROC.start ("7z", args);
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -206,11 +255,19 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
 }
 
 void Backend::startRemove(QStringList paths) {
+  if (isGzip_) return;
   if (paths.contains(filepath_))
     paths.removeAll(filepath_);
   if (contents_.isEmpty() || paths.isEmpty() || !QFile::exists(filepath_))
     return; //invalid
+  paths.removeDuplicates();
   QStringList args;
+  if (is7z_) {
+    args << "d" << flags_ << paths;
+    starting7z_ = true;
+    PROC.start("7z", args);
+    return;
+  }
   args << "-c" << "-a";
   args << flags_;
   skipExistingFiles(tmpfilepath_); // practically not required
@@ -223,11 +280,11 @@ void Backend::startRemove(QStringList paths) {
   PROC.start(TAR_CMD, args);
 }
 
-void Backend::startExtract(QString path, bool overwrite, QString file) {
-  startExtract(path, overwrite, QStringList() << file);
+void Backend::startExtract(QString path, QString file, bool overwrite, bool preservePaths) {
+  startExtract(path, QStringList() << file, overwrite, preservePaths);
 }
 
-void Backend::startExtract(QString path, bool overwrite, QStringList files) {
+void Backend::startExtract(QString path, QStringList files, bool overwrite, bool preservePaths) {
   if (isGzip_) {
     /* if the extraction takes place in the same directory, we could do it
        in the usual way but the standard output method works in all cases */
@@ -252,14 +309,22 @@ void Backend::startExtract(QString path, bool overwrite, QStringList files) {
     return;
   }
   QStringList args;
-  args << "-x" << "--no-same-owner";
-  if(!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
-    args << "-k";
-  args << flags_;
-  for (int i = 0; i < files.length(); i++) {
-    if (files[i].simplified().isEmpty())
-      continue;
-    args << "--include" << files[i] << "--strip-components" << QString::number(files[i].count("/"));
+  if(is7z_) {
+    if (encrypted_)
+      args << "-p" + pswrd_;
+    args << (preservePaths ? "x" : "e") << flags_;
+    starting7z_ = true;
+  }
+  else {
+    args << "-x" << "--no-same-owner";
+    if(!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
+      args << "-k";
+    args << flags_;
+    for (int i = 0; i < files.length(); i++) {
+      if (files[i].simplified().isEmpty())
+        continue;
+      args << "--include" << files[i] << "--strip-components" << QString::number(files[i].count("/"));
+    }
   }
   QString xPath = path;
   if (!archiveParentDir_.isEmpty() && archiveParentDir_.startsWith("."))
@@ -299,13 +364,19 @@ void Backend::startExtract(QString path, bool overwrite, QStringList files) {
 
     dir.mkdir(subdirName);
   }
-  args << "-C" << xPath;
-  PROC.start(TAR_CMD, args); // doesn't create xPath if not existing
+  if(is7z_) {
+    args << "-o" + xPath;
+    PROC.start("7z", args);
+  }
+  else {
+    args << "-C" << xPath;
+    PROC.start(TAR_CMD, args); // doesn't create xPath if not existing
+  }
 }
 
 void Backend::startViewFile(QString path) {
   QString parentDir = arqiverDir_;
-  if(!arqiverDir_.isEmpty()){
+  if(!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
     if (path.contains("/")) {
       parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
@@ -323,6 +394,22 @@ void Backend::startViewFile(QString path) {
     if (isGzip_) {
       cmnd = "gzip";
       args << "-d" << "--to-stdout" << filepath_;
+    }
+    else if (is7z_) {
+      QStringList args;
+      if (encrypted_)
+        args << "-p" + pswrd_;
+      args << "x" << flags_ << "-o" + arqiverDir_;
+      QProcess tmpProc;
+      tmpProc.start ("7z", args);
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+      if (tmpProc.exitCode() != 0)
+        pswrd_ = QString();
+      emit ProcessFinished(tmpProc.exitCode() == 0, "");
+      if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+        QProcess::startDetached("xdg-open", QStringList() << fileName);
+      return;
     }
     else {
       cmnd = TAR_CMD;
@@ -361,6 +448,20 @@ QString Backend::extractFile(QString path) {
       cmnd = "gzip";
       args << "-d" << "--to-stdout" << filepath_;
     }
+    else if (is7z_) {
+      QStringList args;
+      if (encrypted_ )
+        args << "-p" + pswrd_;
+      args << "x" << flags_ << "-o" + arqiverDir_;
+      QProcess tmpProc;
+      tmpProc.start ("7z", args);
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+      if (tmpProc.exitCode() != 0)
+        pswrd_ = QString();
+      emit ProcessFinished(tmpProc.exitCode() == 0, "");
+      return fileName;
+    }
     else {
       cmnd = TAR_CMD;
       args << "-x" << flags_ << "--include" << path <<"--to-stdout";
@@ -381,6 +482,56 @@ void Backend::parseLines (QStringList lines) {
   if (contents_.isEmpty()) {
     hasParentDir = true;
     archiveParentDir_ = QString();
+  }
+  if (is7z_) {
+    static int Name = 0;
+    if (starting7z_) {
+      //Ignore all the p7zip header info
+      while (starting7z_ && !lines.isEmpty()) {
+        if (lines[0] == "--")
+          starting7z_ = false; //found the end of the headers
+        lines.removeAt(0);
+      }
+    }
+    for (int i = 0; i < lines.length(); i++) {
+      if (lines[i].simplified().isEmpty() || lines[i].startsWith("----") || lines[i].startsWith(" = "))
+        continue;
+      if (LIST) {
+        QString file;
+        QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
+        if(info.size() < 5) continue; // invalid line
+        if (lines[i].contains("  Attr  ")) { // header
+          Name = lines[i].indexOf(info.at(5));
+          continue;
+        }
+        if (!info.at(2).contains(".")) continue; // bottom line
+        // Format: [date, time, attr, size, compressed size, name]
+        if(info.size() == 5) {
+          file = lines[i].right(lines[i].size() - Name).trimmed();
+          contents_.insert(file, QStringList() << info[2] << info[3] << QString::number(0));
+        }
+        else { // info.size() == 6
+          if (lines[i].at(Name - 3) == ' ')
+            info[4] = QString::number(0);
+          file = lines[i].right(lines[i].size() - Name).trimmed();
+          contents_.insert(file, QStringList() << info[2] << info[3] << info[4]); //Save the
+        }
+        if (!file.isEmpty()) {
+          if (hasParentDir) {
+            if(archiveParentDir_.isEmpty()) {
+              archiveParentDir_ = file.section('/', 0, 0);
+              if(archiveParentDir_.isEmpty())
+                hasParentDir = false;
+            }
+            else if (archiveParentDir_ != file.section('/', 0, 0)) {
+              hasParentDir = false;
+              archiveParentDir_ = QString();
+            }
+          }
+        }
+      }
+    }
+    return;
   }
   for (int i = 0; i < lines.length(); i++) {
     if (isGzip_) {
@@ -413,7 +564,7 @@ void Backend::parseLines (QStringList lines) {
           if(archiveParentDir_.isEmpty())
             hasParentDir = false;
         }
-        else if (archiveParentDir_ != file.section('/', 0, 0)){
+        else if (archiveParentDir_ != file.section('/', 0, 0)) {
           hasParentDir = false;
           archiveParentDir_ = QString();
         }
@@ -449,7 +600,7 @@ void Backend::parseLines (QStringList lines) {
           if(archiveParentDir_.isEmpty())
           hasParentDir = false;
       }
-      else if (archiveParentDir_ != file.section('/', 0, 0)){
+      else if (archiveParentDir_ != file.section('/', 0, 0)) {
           hasParentDir = false;
           archiveParentDir_ = QString();
       }
@@ -459,24 +610,75 @@ void Backend::parseLines (QStringList lines) {
 }
 
 void Backend::startList() {
-  if (isGzip_) {
-    contents_.clear();
-    LIST = true;
-    PROC.start("gzip", QStringList() << "-l" << filepath_);
-    return;
-  }
   contents_.clear();
-  QStringList args;
-  args << "-tv";
   LIST = true;
-  PROC.start(TAR_CMD, QStringList() << args << flags_);
+  if (isGzip_) {
+    PROC.start("gzip", QStringList() << "-l" << filepath_);
+  }
+  else if (is7z_) {
+    QStringList args;
+    if (!encryptionQueried_)
+      args << "-slt"; // query encryption instead of listing
+    args << "l";
+    starting7z_ = true;
+    PROC.start("7z", QStringList() << args << flags_);
+  }
+  else {
+    QStringList args;
+    args << "-tv";
+    PROC.start(TAR_CMD, QStringList() << args << flags_);
+  }
 }
 
 void Backend::procFinished(int retcode, QProcess::ExitStatus) {
+  QStringList args = PROC.arguments();
+  if (is7z_ && !encryptionQueried_ && args.contains("l")) {
+    encryptionQueried_ = true;
+    /* now, really start listing */
+    QStringList args;
+    args << "l";
+    starting7z_ = true;
+    PROC.start("7z", QStringList() << args << flags_);
+    return;
+  }
   static QString result;
   processData();
   LIST = false;
-  if (PROC.arguments().contains("-tv") || PROC.arguments().contains("-l")) {
+  if (is7z_) {
+    starting7z_ = false;
+    if (args.contains("l")) { // listing
+      if (retcode != 0) {
+        contents_.clear();
+        result = tr("Could not read archive");
+      }
+      else if (result.isEmpty()) {
+        result = tr("Archive Loaded");
+        emit FileLoaded();
+      }
+      emit ProcessFinished((retcode == 0), result);
+    }
+    else if (args.contains("a") || args.contains("d")) { // addition/removal
+      result = tr("Modification Finished");
+      emit ArchivalSuccessful();
+      startList();
+      emit ProcessFinished(retcode == 0, result);
+      result.clear();
+    }
+    else { // extraction
+      /*if (retcode == 0) {
+        QStringList args = PROC.arguments();
+        for (int i = 0; i < args.length(); i++) {
+          if(args[i].startsWith("-o")) //just extracted to a dir - open it now
+            QProcess::startDetached("xdg-open \"" + args[i].section("-o", 1, -1) + "\"");
+        }
+      }*/
+      if (retcode == 0)
+        emit ExtractSuccessful();
+      startList();
+    }
+    return;
+  }
+  if (args.contains("-tv") || args.contains("-l")) { // listing
     if (retcode != 0) { // could not read archive
       contents_.clear();
       result = tr("Could not read archive");
@@ -485,7 +687,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       result = tr("Archive Loaded");
       emit FileLoaded();
       if (isGzip_)
-        emit ArchivalSuccessful(); // because the created archive is just loaded (-> Backend::startAdd)
+        emit ArchivalSuccessful(); // because the created archive is just loaded (-> startAdd)
     }
     emit ProcessFinished((retcode == 0), result);
     result.clear();
@@ -493,9 +695,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   else
   {
     bool needupdate = true;
-    QStringList args = PROC.arguments();
-    if (args.contains("-x") && retcode == 0) {
-      needupdate=false;
+    if (args.contains("-x") && retcode == 0) { // extraction
+      needupdate = false;
       /*if (args.count("--include") == 1) {
         //Need to find the full path to the (single) extracted file
         QString path = args.last() +"/"+ args[ args.indexOf("--include") + 1].section("/", -1);
@@ -520,11 +721,11 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       else
         QFile::remove(tmpfilepath_);
     }
-    if (args.contains("-x") || args.contains("-d")) {
+    if (args.contains("-x") || args.contains("-d")) {  // extraction
       result = tr("Extraction Finished");
       emit ExtractSuccessful();
     }
-    else if (args.contains("-c")) {
+    else if (args.contains("-c")) { // addition/removal
       result = tr("Modification Finished");
       if (insertQueue_.isEmpty())
         emit ArchivalSuccessful();
@@ -543,6 +744,11 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 }
 
 void Backend::processData() {
+  if (is7z_ && !encryptionQueried_) {
+    if (!encrypted_ && PROC.readAllStandardOutput().contains ("Encrypted = +"))
+      encrypted_ = true;
+    return; // no listing here
+  }
   static QString data;
   QString read = data + PROC.readAllStandardOutput();
   if (read.endsWith("\n"))
@@ -559,12 +765,20 @@ void Backend::processData() {
     lines << last;
   }
 
-  QString info;
   if (LIST)
     parseLines(lines);
-  if (!lines.isEmpty())
-    info = lines.last();
-  emit ProgressUpdate(-1, info);
+  if (is7z_){
+    if (read.startsWith("ERROR")) { // ERROR: Data Error in encrypted file. Wrong password? :
+      pswrd_ = QString();
+    }
+    emit ProgressUpdate(-1, "");
+  }
+  else {
+    QString info;
+    if (!lines.isEmpty())
+      info = lines.last();
+    emit ProgressUpdate(-1, info);
+  }
 }
 
 }

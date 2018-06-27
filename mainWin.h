@@ -78,6 +78,7 @@ private:
   QString OpenFileTypes();
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
+  bool pswrdPrompt();
 
   Ui::mainWin *ui;
   Backend *BACKEND;

@@ -58,14 +58,26 @@ public:
   //Modification routines
   void startAdd(QStringList paths, bool absolutePaths = false);
   void startRemove(QStringList paths);
-  void startExtract(QString path, bool overwrite, QString file="");
-  void startExtract(QString path, bool overwrite, QStringList files);
+  void startExtract(QString path, QString file="", bool overwrite = true, bool preservePaths = true);
+  void startExtract(QString path, QStringList files, bool overwrite = true, bool preservePaths = true);
 
   void startViewFile(QString path);
   QString extractFile(QString path);
 
   bool isGzip() const {
     return isGzip_;
+  }
+  bool is7z() const {
+    return is7z_;
+  }
+  bool isEncrypted() const {
+    return is7z_ && encryptionQueried_ && encrypted_;
+  }
+  QString getPswrd() const {
+    return pswrd_;
+  }
+  void setPswrd(const QString& pswrd) {
+    pswrd_ = pswrd;
   }
 
 signals:
@@ -96,7 +108,10 @@ private:
   QStringList insertQueue_;
 
   bool LIST;
-  bool isGzip_;
+  bool starting7z_; // for 7z
+  bool encryptionQueried_, encrypted_; // for 7z
+  bool isGzip_, is7z_;
+  QString pswrd_; // for 7z
   QString archiveParentDir_;
 };
 

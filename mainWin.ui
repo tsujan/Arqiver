@@ -91,7 +91,7 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
+      <item alignment="Qt::AlignLeft">
        <widget class="QLabel" name="label_progress_icon">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -101,14 +101,14 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>32</width>
-          <height>32</height>
+          <width>16</width>
+          <height>16</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>32</width>
-          <height>32</height>
+          <width>16</width>
+          <height>16</height>
          </size>
         </property>
         <property name="text">
@@ -118,8 +118,8 @@
       </item>
       <item>
        <widget class="QProgressBar" name="progressBar">
-        <property name="value">
-         <number>24</number>
+        <property name="textVisible">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

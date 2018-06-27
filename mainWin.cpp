@@ -30,6 +30,8 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QLineEdit>
+#include <QPushButton>
 #include <QTimer>
 #include <QRegularExpression>
 
@@ -395,6 +397,9 @@ void mainWin::dropEvent(QDropEvent *event) {
 }
 
 void mainWin::addFiles() {
+ if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (!pswrdPrompt()) return;
+  }
   QStringList files;
   if(BACKEND->isGzip()) { // accepts only one file
     QFileDialog dialog(this);
@@ -436,24 +441,82 @@ void mainWin::remFiles() {
 
 void mainWin::extractFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (!pswrdPrompt()) return;
+  }
   ui->label_progress->setText(tr("Extracting..."));
   it->setData(0, Qt::UserRole, BACKEND->extractFile(it->whatsThis(0)));
 }
 
+bool mainWin::pswrdPrompt() {
+  QDialog *dialog = new QDialog (this);
+  dialog->setWindowTitle (tr ("Enter Password"));
+  QGridLayout *grid = new QGridLayout;
+  grid->setSpacing (5);
+  grid->setContentsMargins (5, 5, 5, 5);
+
+  QLineEdit *lineEdit = new QLineEdit();
+  lineEdit->setMinimumWidth (200);
+  lineEdit->setEchoMode (QLineEdit::Password);
+  lineEdit->setPlaceholderText ("Enter password");
+  connect (lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
+  QLabel *label = new QLabel();
+  QSpacerItem *spacer = new QSpacerItem (1, 5);
+  QPushButton *cancelButton = new QPushButton (symbolicIcon::icon (":icons/dialog-error.svg"), tr ("Cancel"));
+  QPushButton *okButton = new QPushButton (symbolicIcon::icon (":icons/dialog-ok.svg"), tr ("OK"));
+  okButton->setDefault(true);
+  connect (cancelButton, &QAbstractButton::clicked, dialog, &QDialog::reject);
+  connect (okButton, &QAbstractButton::clicked, dialog, &QDialog::accept);
+
+  grid->addWidget (lineEdit, 0, 0, 1, 3);
+  grid->addWidget (label, 1, 0, 1, 3);
+  grid->addItem (spacer, 2, 0);
+  grid->addWidget (cancelButton, 3, 0, 1, 2, Qt::AlignRight);
+  grid->addWidget (okButton, 3, 2, Qt::AlignCenter);
+  grid->setColumnStretch (1, 1);
+  grid->setRowStretch (2, 1);
+  label->setVisible (false);
+
+  dialog->setLayout (grid);
+
+  bool res = true;
+  switch (dialog->exec()) {
+  case QDialog::Accepted:
+    if (lineEdit->text().isEmpty())
+      res = false;
+    else
+      BACKEND->setPswrd(lineEdit->text());
+    delete dialog;
+    break;
+  case QDialog::Rejected:
+  default:
+    delete dialog;
+    res = false;
+    break;
+  }
+  return res;
+}
+
 void mainWin::extractFiles() {
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (!pswrdPrompt()) return;
+  }
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
   lastPath_ = dir;
   ui->label_progress->setText(tr("Extracting..."));
-  BACKEND->startExtract(dir, true);
+  BACKEND->startExtract(dir);
 }
 
 void mainWin::autoextractFiles() {
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoextractFiles);
   QString dir = BACKEND->currentFile().section("/",0,-2);
   if (dir.isEmpty()) return;
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (!pswrdPrompt()) return;
+  }
   ui->label_progress->setText(tr("Extracting..."));
-  BACKEND->startExtract(dir, true);
+  BACKEND->startExtract(dir);
 }
 
 void mainWin::simpleExtractFiles() {
@@ -488,11 +551,14 @@ void mainWin::extractSelection(){
   if (dir.isEmpty()) return;
   lastPath_ = dir;
   ui->label_progress->setText(tr("Extracting..."));
-  BACKEND->startExtract(dir, true, selList);
+  BACKEND->startExtract(dir, selList);
 }
 
 void mainWin::ViewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (!pswrdPrompt()) return;
+  }
   ui->label_progress->setText(tr("Extracting..."));
   BACKEND->startViewFile(it->whatsThis(0));
 }
@@ -579,7 +645,7 @@ void mainWin::ProcStarting() {
   ui->progressBar->setValue(0);
   ui->progressBar->setVisible(true);
   ui->label_progress->setVisible(!ui->label_progress->text().isEmpty());
-  ui->label_progress_icon->setVisible(false);
+  //ui->label_progress_icon->setVisible(false);
   ui->tree_contents->setEnabled(false);
 
   ui->label->setVisible(true);
@@ -598,9 +664,17 @@ void mainWin::ProcFinished(bool success, QString msg) {
   ui->progressBar->setVisible(false);
   ui->label_progress->setText(msg);
   ui->label_progress->setVisible(!msg.isEmpty());
-  ui->label_progress_icon->setVisible(!msg.isEmpty());
-  if (success)
-    ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/dialog-ok.svg").pixmap(16, 16));
+  ui->label_progress_icon->setVisible(true);
+  if (success) {
+    if (BACKEND->isEncrypted()) {
+      if (BACKEND->getPswrd().isEmpty())
+        ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/locked.svg").pixmap(16, 16));
+      else
+        ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/unlocked.svg").pixmap(16, 16));
+    }
+    else
+      ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/dialog-ok.svg").pixmap(16, 16));
+  }
   else
     ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
   QFileInfo info(BACKEND->currentFile());
