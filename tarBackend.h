@@ -103,7 +103,11 @@ private:
   QProcess PROC;
 
   QString filepath_, tmpfilepath_, arqiverDir_;
-  QStringList flags_;
+  QStringList fileArgs_;
+  /* "keyArgs_" is used, instead of QProcess::arguments(), to exlude file/item names
+     and to know which signal(s) should be emitted when the process is finished. The
+     reason is that file names can be the same as arguments. */
+  QStringList keyArgs_;
   QHash<QString, QStringList> contents_; // {filepath, (attributes, size, compressed size)}
 
   QStringList insertQueue_;

@@ -74,6 +74,7 @@ private slots:
   bool pswrdPrompt();
 
 private:
+  void closeEvent(QCloseEvent *event);
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
   bool cleanTree(QStringList list); // returns true if anything gets cleaned
   QString CreateFileTypes();
@@ -88,6 +89,7 @@ private:
   QString lastPath_, lastFilter_;
   bool expandAll_;
   bool close_;
+  bool processIsRunning_;
 };
 
 #endif

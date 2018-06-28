@@ -45,6 +45,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   lastPath_ = QDir::homePath();
   expandAll_ = false;
   close_ = false;
+  processIsRunning_ = false;
 
   if (getuid() == 0)
     setWindowTitle("Arqiver (" + tr("Root") + ")");
@@ -100,10 +101,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   /* the labels and column sizes of the header */
   ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size"));
   ui->tree_contents->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-  QTimer::singleShot (0, this, [this]() {
+  QTimer::singleShot(0, this, [this]() {
     ui->tree_contents->resizeColumnToContents(2);
   });
-  QTimer::singleShot (0, this, [this]() {
+  QTimer::singleShot(0, this, [this]() {
     ui->tree_contents->resizeColumnToContents(1);
   });
 
@@ -112,6 +113,13 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 }
 
 mainWin::~mainWin() {
+}
+
+void mainWin::closeEvent(QCloseEvent *event) {
+  if(processIsRunning_)
+    event->ignore();
+  else
+    event->accept();
 }
 
 void mainWin::LoadArguments(QStringList args) {
@@ -170,7 +178,7 @@ void mainWin::LoadArguments(QStringList args) {
     saFileList_ = files;
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
     connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
-    //QTimer::singleShot (0, this, [this]() {
+    //QTimer::singleShot(0, this, [this]() {
       NewArchive();
     //});
   }
@@ -626,10 +634,10 @@ void mainWin::UpdateTree() {
   }
 
   if (changed) {
-    QTimer::singleShot (0, this, [this]() {
+    QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->resizeColumnToContents(2);
     });
-    QTimer::singleShot (0, this, [this]() {
+    QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->resizeColumnToContents(1);
     });
   }
@@ -645,6 +653,8 @@ void mainWin::UpdateTree() {
 }
 
 void mainWin::ProcStarting() {
+  processIsRunning_ = true;
+
   ui->progressBar->setRange(0,0);
   ui->progressBar->setValue(0);
   ui->progressBar->setVisible(true);
@@ -658,6 +668,8 @@ void mainWin::ProcStarting() {
 }
 
 void mainWin::ProcFinished(bool success, QString msg) {
+  processIsRunning_ = false;
+
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile());
