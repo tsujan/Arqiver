@@ -89,13 +89,13 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   filepath_ = path;
 
   starting7z_ = false;
-  if (!withPassword){
+  if (!withPassword) {
     pswrd_.clear();
     encrypted_ = encryptedList_ = encryptionQueried_ = false;
   }
 
   QString mt = getMimeType(path);
-  if (mt == "application/gzip"){
+  if (mt == "application/gzip") {
     isGzip_ = true; is7z_ = false;
   }
   else if (mt == "application/x-7z-compressed") {
@@ -346,8 +346,8 @@ void Backend::startExtract(QString path, QStringList files, bool overwrite, bool
       if (files[i].simplified().isEmpty())
         continue;
       args << "--include" << files[i] << "--strip-components" << QString::number(files[i].count("/"));
-      keyArgs_ << "-x" << "--no-same-owner" << "--include" << "--strip-components";
     }
+    keyArgs_ << "-x";
   }
   QString xPath = path;
   if (!archiveParentDir_.isEmpty() && archiveParentDir_.startsWith("."))
