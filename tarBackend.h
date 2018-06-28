@@ -40,7 +40,7 @@ public:
   ~Backend();
 
   QString getMimeType(const QString &fname);
-  void loadFile(const QString& path);
+  void loadFile(const QString& path, bool withPassword = false);
   bool canModify(); //run on the current file
 
   //Listing routines
@@ -84,15 +84,16 @@ signals:
   void FileLoaded();
   void ExtractSuccessful();
   void ProcessStarting();
-  void ProgressUpdate(int, QString); //percentage, text
-  void ProcessFinished(bool, QString); //success, text
+  void ProgressUpdate(int, QString);
+  void ProcessFinished(bool, QString);
   void ArchivalSuccessful();
+  void encryptedList(const QString& path);
 
 private slots:
   void startInsertFromQueue() {
     startAdd(insertQueue_);
   }
-  void startList();
+  void startList(bool withPassword = false);
   void procFinished(int retcode, QProcess::ExitStatus);
   void processData();
 
@@ -103,13 +104,13 @@ private:
 
   QString filepath_, tmpfilepath_, arqiverDir_;
   QStringList flags_;
-  QHash<QString, QStringList> contents_; //<filepath, [attributes, size, compressed size]
+  QHash<QString, QStringList> contents_; // {filepath, (attributes, size, compressed size)}
 
   QStringList insertQueue_;
 
   bool LIST;
   bool starting7z_; // for 7z
-  bool encryptionQueried_, encrypted_; // for 7z
+  bool encryptionQueried_, encrypted_, encryptedList_; // for 7z
   bool isGzip_, is7z_;
   QString pswrd_; // for 7z
   QString archiveParentDir_;

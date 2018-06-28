@@ -59,6 +59,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionRemove_File->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
   ui->actionExtract_All->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
   ui->actionExtract_Sel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
+  ui->action_Password->setIcon(symbolicIcon::icon(":icons/locked.svg"));
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -71,11 +72,13 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionExtract_All->setEnabled(false);
   ui->actionAdd_Dirs->setEnabled(false);
   ui->actionExtract_Sel->setEnabled(false);
+  ui->action_Password->setEnabled(false);
 
   BACKEND = new Backend(this);
   connect(BACKEND, &Backend::ProcessStarting, this, &mainWin::ProcStarting);
   connect(BACKEND, &Backend::ProcessFinished, this, &mainWin::ProcFinished);
   connect(BACKEND, &Backend::ProgressUpdate, this, &mainWin::ProcUpdate);
+  connect(BACKEND, &Backend::encryptedList, this, &mainWin::openEncryptedList);
 
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -89,6 +92,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExtract_All, &QAction::triggered, this, &mainWin::extractFiles);
   connect(ui->actionExtract_Sel, &QAction::triggered, this, &mainWin::extractSelection);
   connect(ui->actionAdd_Dirs, &QAction::triggered, this, &mainWin::addDirs);
+  connect(ui->action_Password, &QAction::triggered, this, &mainWin::pswrdPrompt);
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::ViewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractFile);
@@ -397,7 +401,7 @@ void mainWin::dropEvent(QDropEvent *event) {
 }
 
 void mainWin::addFiles() {
- if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     if (!pswrdPrompt()) return;
   }
   QStringList files;
@@ -687,6 +691,7 @@ void mainWin::ProcFinished(bool success, QString msg) {
   ui->actionExtract_All->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
   ui->actionExtract_Sel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
   ui->actionAdd_Dirs->setEnabled(canmodify && !BACKEND->isGzip());
+  ui->action_Password->setEnabled(BACKEND->is7z() && BACKEND->heirarchy().isEmpty());
 
   if (close_)
     QTimer::singleShot (500, this, SLOT (close()));
@@ -697,6 +702,11 @@ void mainWin::ProcUpdate(int percent, QString txt) {
   ui->progressBar->setValue(percent);
   if (!txt.isEmpty())
     ui->label_progress->setText(txt);
+}
+
+void mainWin::openEncryptedList(const QString& path) {
+  if (!pswrdPrompt()) return;
+  BACKEND->loadFile(path, true);
 }
 
 void mainWin::selectionChanged() {

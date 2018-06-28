@@ -67,8 +67,11 @@ private slots:
   void ProcStarting();
   void ProcFinished(bool, QString);
   void ProcUpdate(int percent, QString txt);
+  void openEncryptedList(const QString& path);
 
   void selectionChanged();
+
+  bool pswrdPrompt();
 
 private:
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
@@ -78,7 +81,6 @@ private:
   QString OpenFileTypes();
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
-  bool pswrdPrompt();
 
   Ui::mainWin *ui;
   Backend *BACKEND;

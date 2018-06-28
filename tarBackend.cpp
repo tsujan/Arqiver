@@ -49,7 +49,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   connect(&PROC, &QProcess::started, this, &Backend::ProcessStarting);
   LIST = false;
   isGzip_ = is7z_ = false;
-  starting7z_ = encryptionQueried_ = encrypted_ = false;
+  starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
 }
 
 Backend::~Backend() {
@@ -63,7 +63,7 @@ QString Backend::getMimeType(const QString &fname) {
   return mimeType.name();
 }
 
-void Backend::loadFile(const QString& path) {
+void Backend::loadFile(const QString& path, bool withPassword) {
   /* check if the file extraction directory can be made
      but don't create it until a file is viewed */
   const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
@@ -80,13 +80,17 @@ void Backend::loadFile(const QString& path) {
   /*
      NOTE: So far, bsdtar, gzip and 7z are supported.
            Also, password protected 7z archives can be
-           extracted.
+           extracted and created.
+
+           7z has two kinds of prompts that we avoid:
+           password and overwrite prompts.
   */
 
   filepath_ = path;
   QString mt = getMimeType(path);
-  pswrd_.clear();
-  starting7z_ = encryptionQueried_ = encrypted_ = false;
+  if (!withPassword)
+    pswrd_.clear();
+  starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
   if (mt == "application/gzip"){
     isGzip_ = true; is7z_ = false;
   }
@@ -106,7 +110,7 @@ void Backend::loadFile(const QString& path) {
   else
     flags_ << "-f" << filepath_; // add the actual archive path
   if(QFile::exists(path))
-    startList();
+    startList(withPassword);
   else {
     if (is7z_)
       encryptionQueried_ = true; // an empty archive doesn't have encryption (yet)
@@ -405,7 +409,7 @@ void Backend::startViewFile(QString path) {
       while (!tmpProc.waitForFinished(500))
         QCoreApplication::processEvents();
       if (tmpProc.exitCode() != 0)
-        pswrd_ = QString();
+        pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit ProcessFinished(tmpProc.exitCode() == 0, "");
       if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
         QProcess::startDetached("xdg-open", QStringList() << fileName);
@@ -609,7 +613,7 @@ void Backend::parseLines (QStringList lines) {
   }
 }
 
-void Backend::startList() {
+void Backend::startList(bool withPassword) {
   contents_.clear();
   LIST = true;
   if (isGzip_) {
@@ -617,6 +621,7 @@ void Backend::startList() {
   }
   else if (is7z_) {
     QStringList args;
+    args << "-p" + (withPassword ? pswrd_ : QString()); // needed for encrypted lists
     if (!encryptionQueried_)
       args << "-slt"; // query encryption instead of listing
     args << "l";
@@ -634,11 +639,17 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   QStringList args = PROC.arguments();
   if (is7z_ && !encryptionQueried_ && args.contains("l")) {
     encryptionQueried_ = true;
-    /* now, really start listing */
-    QStringList args;
-    args << "l";
-    starting7z_ = true;
-    PROC.start("7z", QStringList() << args << flags_);
+    if (encryptedList_)
+      emit encryptedList(filepath_);
+    else {
+      /* now, really start listing */
+      QStringList args;
+      if (!pswrd_.isEmpty()) // happens only when the list is encrypted
+        args << "-p" + pswrd_;
+      args << "l";
+      starting7z_ = true;
+      PROC.start("7z", QStringList() << args << flags_);
+    }
     return;
   }
   static QString result;
@@ -745,8 +756,14 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 
 void Backend::processData() {
   if (is7z_ && !encryptionQueried_) {
-    if (!encrypted_ && PROC.readAllStandardOutput().contains ("Encrypted = +"))
-      encrypted_ = true;
+    if (!encrypted_) {
+      QString read = PROC.readAllStandardOutput();
+      if (read.contains ("Encrypted = +"))
+        encrypted_ = true;
+      else if (read.contains ("ERROR")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
+        encryptedList_ = encrypted_ = true;
+      }
+    }
     return; // no listing here
   }
   static QString data;

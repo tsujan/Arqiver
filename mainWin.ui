@@ -165,6 +165,8 @@
     <addaction name="separator"/>
     <addaction name="actionExtract_All"/>
     <addaction name="actionExtract_Sel"/>
+    <addaction name="separator"/>
+    <addaction name="action_Password"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -263,6 +265,11 @@
    </property>
    <property name="statusTip">
     <string>Extract Selected Items</string>
+   </property>
+  </action>
+  <action name="action_Password">
+   <property name="text">
+    <string>Set Password</string>
    </property>
   </action>
  </widget>
