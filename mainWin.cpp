@@ -717,7 +717,10 @@ void mainWin::ProcUpdate(int percent, QString txt) {
 }
 
 void mainWin::openEncryptedList(const QString& path) {
-  if (!pswrdPrompt()) return;
+  if (!pswrdPrompt()) {
+    processIsRunning_ = false; // it's safe to exit
+    return;
+  }
   BACKEND->loadFile(path, true);
 }
 

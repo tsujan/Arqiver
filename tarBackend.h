@@ -41,21 +41,18 @@ public:
 
   QString getMimeType(const QString &fname);
   void loadFile(const QString& path, bool withPassword = false);
-  bool canModify(); //run on the current file
+  bool canModify();
 
-  //Listing routines
   QString currentFile();
-  bool isWorking(); //is this currently still making changes?
+  bool isWorking();
 
-  //Contents listing
-  QStringList heirarchy(); //returns all the file paths within the archive
+  QStringList heirarchy();
   double size(QString file);
   double csize(QString file);
   bool isDir(QString file);
   bool isLink(QString file);
   QString linkTo(QString file);
 
-  //Modification routines
   void startAdd(QStringList paths, bool absolutePaths = false);
   void startRemove(QStringList paths);
   void startExtract(QString path, QString file="", bool overwrite = true, bool preservePaths = true);

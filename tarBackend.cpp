@@ -87,10 +87,14 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   */
 
   filepath_ = path;
-  QString mt = getMimeType(path);
-  if (!withPassword)
+
+  starting7z_ = false;
+  if (!withPassword){
     pswrd_.clear();
-  starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
+    encrypted_ = encryptedList_ = encryptionQueried_ = false;
+  }
+
+  QString mt = getMimeType(path);
   if (mt == "application/gzip"){
     isGzip_ = true; is7z_ = false;
   }
@@ -273,6 +277,8 @@ void Backend::startRemove(QStringList paths) {
   paths.removeDuplicates();
   QStringList args;
   if (is7z_) {
+    if (encryptedList_)
+      args << "-p" + pswrd_; // we had the password to open the archive
     args << "d" << fileArgs_ << paths;
     starting7z_ = true;
     keyArgs_ << "d";
@@ -691,7 +697,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
       result = tr("Modification Finished");
       emit ArchivalSuccessful();
-      startList();
+      startList(encryptedList_);
       emit ProcessFinished(retcode == 0, result);
       result.clear();
     }
@@ -705,7 +711,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       }*/
       if (retcode == 0)
         emit ExtractSuccessful();
-      startList();
+      startList(encryptedList_);
     }
     return;
   }
@@ -804,7 +810,7 @@ void Backend::processData() {
 
   if (LIST)
     parseLines(lines);
-  if (is7z_){
+  if (is7z_) {
     if (read.startsWith("ERROR")) { // ERROR: Data Error in encrypted file. Wrong password? :
       pswrd_ = QString();
     }
