@@ -24,8 +24,8 @@
  * @license GPL-3.0+ <https://spdx.org/licenses/GPL-3.0+.html>
  */
 
-#ifndef ARQIVER_TAR_BACKEND_H
-#define ARQIVER_TAR_BACKEND_H
+#ifndef BACKENDS_H
+#define BACKENDS_H
 
 #include <QProcess>
 #include <QString>
@@ -75,6 +75,10 @@ public:
   }
   void setPswrd(const QString& pswrd) {
     pswrd_ = pswrd;
+  }
+
+  void encryptFileList() {
+    encryptedList_ = true;
   }
 
 signals:

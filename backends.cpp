@@ -24,7 +24,7 @@
  * @license GPL-3.0+ <https://spdx.org/licenses/GPL-3.0+.html>
  */
 
-#include "tarBackend.h"
+#include "backends.h"
 #include <QFile>
 #include <QDir>
 #include <QDateTime>
@@ -225,6 +225,8 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
   }
   if (is7z_) {
     QStringList args;
+    if (encryptedList_)
+      args << "-mhe=on";
     if (!pswrd_.isEmpty())
       args << "-p" + pswrd_; // always add files with encryption if any
     args << "a" << fileArgs_ << paths;
@@ -339,7 +341,7 @@ void Backend::startExtract(QString path, QStringList files, bool overwrite, bool
   }
   else {
     args << "-x" << "--no-same-owner";
-    if(!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
+    if (!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
       args << "-k";
     args << fileArgs_;
     for (int i = 0; i < files.length(); i++) {

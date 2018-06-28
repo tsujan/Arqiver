@@ -4,14 +4,14 @@ TEMPLATE = app
 TARGET = arqiver
 
 HEADERS	+= mainWin.h \
-           tarBackend.h \
+           backends.h \
            label.h \
            treeWidget.h \
            svgicons.h
 
 SOURCES	+= main.cpp \
            mainWin.cpp \
-           tarBackend.cpp \
+           backends.cpp \
            svgicons.cpp
 
 FORMS += mainWin.ui

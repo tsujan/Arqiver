@@ -32,7 +32,7 @@
 #include <QTreeWidgetItem>
 #include <QDropEvent>
 
-#include "tarBackend.h"
+#include "backends.h"
 
 namespace Arqiver {
 
@@ -71,17 +71,18 @@ private slots:
 
   void selectionChanged();
 
-  bool pswrdPrompt();
+
 
 private:
   void closeEvent(QCloseEvent *event);
+  void dragEnterEvent(QDragEnterEvent *event);
+  void dropEvent(QDropEvent *event);
   QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
   bool cleanTree(QStringList list); // returns true if anything gets cleaned
   QString CreateFileTypes();
   QHash<QString, QString> supportedMimeTypes();
   QString OpenFileTypes();
-  void dragEnterEvent(QDragEnterEvent *event);
-  void dropEvent(QDropEvent *event);
+  bool pswrdDialog(bool listEncryption = false);
 
   Ui::mainWin *ui;
   Backend *BACKEND;

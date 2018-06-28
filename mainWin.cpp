@@ -32,6 +32,7 @@
 #include <QFileDialog>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QCheckBox>
 #include <QTimer>
 #include <QRegularExpression>
 
@@ -93,7 +94,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExtract_All, &QAction::triggered, this, &mainWin::extractFiles);
   connect(ui->actionExtract_Sel, &QAction::triggered, this, &mainWin::extractSelection);
   connect(ui->actionAdd_Dirs, &QAction::triggered, this, &mainWin::addDirs);
-  connect(ui->action_Password, &QAction::triggered, this, &mainWin::pswrdPrompt);
+  connect(ui->action_Password, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::ViewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractFile);
@@ -410,7 +411,7 @@ void mainWin::dropEvent(QDropEvent *event) {
 
 void mainWin::addFiles() {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdPrompt()) return;
+    if (!pswrdDialog()) return;
   }
   QStringList files;
   if(BACKEND->isGzip()) { // accepts only one file
@@ -454,50 +455,55 @@ void mainWin::remFiles() {
 void mainWin::extractFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdPrompt()) return;
+    if (!pswrdDialog()) return;
   }
   ui->label_progress->setText(tr("Extracting..."));
   it->setData(0, Qt::UserRole, BACKEND->extractFile(it->whatsThis(0)));
 }
 
-bool mainWin::pswrdPrompt() {
-  QDialog *dialog = new QDialog (this);
-  dialog->setWindowTitle (tr ("Enter Password"));
+bool mainWin::pswrdDialog(bool listEncryption) {
+  QDialog *dialog = new QDialog(this);
+  dialog->setWindowTitle(tr("Enter Password"));
   QGridLayout *grid = new QGridLayout;
   grid->setSpacing (5);
   grid->setContentsMargins (5, 5, 5, 5);
 
   QLineEdit *lineEdit = new QLineEdit();
-  lineEdit->setMinimumWidth (200);
-  lineEdit->setEchoMode (QLineEdit::Password);
-  lineEdit->setPlaceholderText ("Enter password");
-  connect (lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
-  QLabel *label = new QLabel();
-  QSpacerItem *spacer = new QSpacerItem (1, 5);
-  QPushButton *cancelButton = new QPushButton (symbolicIcon::icon (":icons/dialog-error.svg"), tr ("Cancel"));
-  QPushButton *okButton = new QPushButton (symbolicIcon::icon (":icons/dialog-ok.svg"), tr ("OK"));
+  lineEdit->setMinimumWidth(200);
+  lineEdit->setEchoMode(QLineEdit::Password);
+  lineEdit->setPlaceholderText(tr("Enter password"));
+  connect(lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
+  QSpacerItem *spacer = new QSpacerItem(1, 5);
+  QPushButton *cancelButton = new QPushButton (symbolicIcon::icon(":icons/dialog-error.svg"), tr("Cancel"));
+  QPushButton *okButton = new QPushButton (symbolicIcon::icon(":icons/dialog-ok.svg"), tr("OK"));
   okButton->setDefault(true);
-  connect (cancelButton, &QAbstractButton::clicked, dialog, &QDialog::reject);
-  connect (okButton, &QAbstractButton::clicked, dialog, &QDialog::accept);
+  connect(cancelButton, &QAbstractButton::clicked, dialog, &QDialog::reject);
+  connect(okButton, &QAbstractButton::clicked, dialog, &QDialog::accept);
+  QCheckBox *box = new QCheckBox(tr("Encrypt the file list"));
 
-  grid->addWidget (lineEdit, 0, 0, 1, 3);
-  grid->addWidget (label, 1, 0, 1, 3);
-  grid->addItem (spacer, 2, 0);
-  grid->addWidget (cancelButton, 3, 0, 1, 2, Qt::AlignRight);
-  grid->addWidget (okButton, 3, 2, Qt::AlignCenter);
-  grid->setColumnStretch (1, 1);
-  grid->setRowStretch (2, 1);
-  label->setVisible (false);
+  grid->addWidget(lineEdit, 0, 0, 1, 3);
+  grid->addWidget(box, 1, 0, 1, 3);
+  grid->addItem(spacer, 2, 0);
+  grid->addWidget(cancelButton, 3, 0, 1, 2, Qt::AlignRight);
+  grid->addWidget(okButton, 3, 2, Qt::AlignCenter);
+  grid->setColumnStretch(1, 1);
+  grid->setRowStretch(2, 1);
 
-  dialog->setLayout (grid);
+  if(!listEncryption)
+    box->setVisible(false);
+
+  dialog->setLayout(grid);
 
   bool res = true;
   switch (dialog->exec()) {
   case QDialog::Accepted:
     if (lineEdit->text().isEmpty())
       res = false;
-    else
+    else {
       BACKEND->setPswrd(lineEdit->text());
+      if (box->isChecked())
+        BACKEND->encryptFileList();
+    }
     delete dialog;
     break;
   case QDialog::Rejected:
@@ -511,7 +517,7 @@ bool mainWin::pswrdPrompt() {
 
 void mainWin::extractFiles() {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdPrompt()) return;
+    if (!pswrdDialog()) return;
   }
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
@@ -525,7 +531,7 @@ void mainWin::autoextractFiles() {
   QString dir = BACKEND->currentFile().section("/",0,-2);
   if (dir.isEmpty()) return;
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdPrompt()) return;
+    if (!pswrdDialog()) return;
   }
   ui->label_progress->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
@@ -569,7 +575,7 @@ void mainWin::extractSelection(){
 void mainWin::ViewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdPrompt()) return;
+    if (!pswrdDialog()) return;
   }
   ui->label_progress->setText(tr("Extracting..."));
   BACKEND->startViewFile(it->whatsThis(0));
@@ -717,7 +723,7 @@ void mainWin::ProcUpdate(int percent, QString txt) {
 }
 
 void mainWin::openEncryptedList(const QString& path) {
-  if (!pswrdPrompt()) {
+  if (!pswrdDialog()) {
     processIsRunning_ = false; // it's safe to exit
     return;
   }
