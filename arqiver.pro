@@ -14,21 +14,36 @@ SOURCES	+= main.cpp \
            backends.cpp \
            svgicons.cpp
 
-FORMS += mainWin.ui
+FORMS += mainWin.ui about.ui
 
 RESOURCES += data/arq.qrc
 
 unix {
+  #TRANSLATIONS
+  exists($$[QT_INSTALL_BINS]/lrelease) {
+    TRANSLATIONS = $$system("find data/translations/ -name 'arqiver_*.ts'")
+    updateqm.input = TRANSLATIONS
+    updateqm.output = data/translations/translations/${QMAKE_FILE_BASE}.qm
+    updateqm.commands = $$[QT_INSTALL_BINS]/lrelease ${QMAKE_FILE_IN} -qm data/translations/translations/${QMAKE_FILE_BASE}.qm
+    updateqm.CONFIG += no_link target_predeps
+    QMAKE_EXTRA_COMPILERS += updateqm
+  }
+
   isEmpty(PREFIX) {
     PREFIX = /usr
   }
   BINDIR = $$PREFIX/bin
   DATADIR = $$PREFIX/share
 
+  DEFINES += DATADIR=\\\"$$DATADIR\\\"
+
   target.path = $${BINDIR}
 
   desktop.files = ./data/arqiver.desktop
   desktop.path = $${DATADIR}/applications
 
-  INSTALLS += target desktop
+  trans.path = $${DATADIR}/arqiver
+  trans.files += data/translations/translations
+
+  INSTALLS += target desktop trans
 }

@@ -71,6 +71,8 @@ private slots:
 
   void selectionChanged();
 
+  void aboutDialog();
+
 
 
 private:

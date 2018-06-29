@@ -26,6 +26,7 @@
 
 #include "mainWin.h"
 #include "ui_mainWin.h"
+#include "ui_about.h"
 #include "svgicons.h"
 
 #include <QMessageBox>
@@ -53,15 +54,18 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* icons */
   setWindowIcon(QIcon::fromTheme("utilities-file-archiver"));
-  ui->action_New->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
-  ui->action_Open->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
-  ui->action_Quit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
-  ui->actionAdd_File->setIcon(symbolicIcon::icon(":icons/archive-insert.svg"));
-  ui->actionAdd_Dirs->setIcon(symbolicIcon::icon(":icons/archive-insert-directory.svg"));
-  ui->actionRemove_File->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
-  ui->actionExtract_All->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
-  ui->actionExtract_Sel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
-  ui->action_Password->setIcon(symbolicIcon::icon(":icons/locked.svg"));
+  ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
+  ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
+  ui->actionQuit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
+  ui->actionAddFile->setIcon(symbolicIcon::icon(":icons/archive-insert.svg"));
+  ui->actionAddDir->setIcon(symbolicIcon::icon(":icons/archive-insert-directory.svg"));
+  ui->actionRemoveFile->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
+  ui->actionExtractAll->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
+  ui->actionExtractSel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
+  ui->actionPassword->setIcon(symbolicIcon::icon(":icons/locked.svg"));
+  ui->actionExpand->setIcon(symbolicIcon::icon(":icons/expand.svg"));
+  ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
+  ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -69,12 +73,12 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->label_progress->setVisible(false);
   ui->label_progress_icon->setVisible(false);
 
-  ui->actionAdd_File->setEnabled(false);
-  ui->actionRemove_File->setEnabled(false);
-  ui->actionExtract_All->setEnabled(false);
-  ui->actionAdd_Dirs->setEnabled(false);
-  ui->actionExtract_Sel->setEnabled(false);
-  ui->action_Password->setEnabled(false);
+  ui->actionAddFile->setEnabled(false);
+  ui->actionRemoveFile->setEnabled(false);
+  ui->actionExtractAll->setEnabled(false);
+  ui->actionAddDir->setEnabled(false);
+  ui->actionExtractSel->setEnabled(false);
+  ui->actionPassword->setEnabled(false);
 
   BACKEND = new Backend(this);
   connect(BACKEND, &Backend::ProcessStarting, this, &mainWin::ProcStarting);
@@ -84,20 +88,25 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  ui->toolBar->insertWidget(ui->actionAdd_File, spacer);
+  ui->toolBar->insertWidget(ui->actionAddFile, spacer);
 
-  connect(ui->action_New, &QAction::triggered, this, &mainWin::NewArchive);
-  connect(ui->action_Open, &QAction::triggered, this, &mainWin::OpenArchive);
-  connect(ui->action_Quit, &QAction::triggered, this, &mainWin::close);
-  connect(ui->actionAdd_File, &QAction::triggered, this, &mainWin::addFiles);
-  connect(ui->actionRemove_File, &QAction::triggered, this, &mainWin::remFiles);
-  connect(ui->actionExtract_All, &QAction::triggered, this, &mainWin::extractFiles);
-  connect(ui->actionExtract_Sel, &QAction::triggered, this, &mainWin::extractSelection);
-  connect(ui->actionAdd_Dirs, &QAction::triggered, this, &mainWin::addDirs);
-  connect(ui->action_Password, &QAction::triggered, [this] {pswrdDialog(true);});
+  connect(ui->actionNew, &QAction::triggered, this, &mainWin::NewArchive);
+  connect(ui->actionOpen, &QAction::triggered, this, &mainWin::OpenArchive);
+  connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
+  connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
+  connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::remFiles);
+  connect(ui->actionExtractAll, &QAction::triggered, this, &mainWin::extractFiles);
+  connect(ui->actionExtractSel, &QAction::triggered, this, &mainWin::extractSelection);
+  connect(ui->actionAddDir, &QAction::triggered, this, &mainWin::addDirs);
+  connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::ViewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractFile);
+
+  connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
+  connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
+
+  connect (ui->actionAbout, &QAction::triggered, this, &mainWin::aboutDialog);
 
   /* the labels and column sizes of the header */
   ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size"));
@@ -471,7 +480,7 @@ bool mainWin::pswrdDialog(bool listEncryption) {
   QLineEdit *lineEdit = new QLineEdit();
   lineEdit->setMinimumWidth(200);
   lineEdit->setEchoMode(QLineEdit::Password);
-  lineEdit->setPlaceholderText(tr("Enter password"));
+  lineEdit->setPlaceholderText(tr("Enter Password"));
   connect(lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
   QSpacerItem *spacer = new QSpacerItem(1, 5);
   QPushButton *cancelButton = new QPushButton (symbolicIcon::icon(":icons/dialog-error.svg"), tr("Cancel"));
@@ -704,12 +713,12 @@ void mainWin::ProcFinished(bool success, QString msg) {
   if (!info.exists())
     canmodify = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
   canmodify = canmodify && BACKEND->canModify(); // also include the file type limitations
-  ui->actionAdd_File->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
-  ui->actionRemove_File->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
-  ui->actionExtract_All->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
-  ui->actionExtract_Sel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
-  ui->actionAdd_Dirs->setEnabled(canmodify && !BACKEND->isGzip());
-  ui->action_Password->setEnabled(BACKEND->is7z() && BACKEND->heirarchy().isEmpty());
+  ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
+  ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
+  ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
+  ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
+  ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
+  ui->actionPassword->setEnabled(BACKEND->is7z() && BACKEND->heirarchy().isEmpty());
 
   if (close_)
     QTimer::singleShot (500, this, SLOT (close()));
@@ -731,7 +740,44 @@ void mainWin::openEncryptedList(const QString& path) {
 }
 
 void mainWin::selectionChanged() {
-  ui->actionExtract_Sel->setEnabled(!ui->tree_contents->selectedItems().isEmpty());
+  ui->actionExtractSel->setEnabled(!ui->tree_contents->selectedItems().isEmpty());
+}
+
+void mainWin::aboutDialog() {
+  class AboutDialog : public QDialog {
+  public:
+    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = 0) : QDialog(parent, f) {
+      aboutUi.setupUi(this);
+      aboutUi.textLabel->setOpenExternalLinks(true);
+    }
+    void setTabTexts(const QString& first, const QString& sec) {
+      aboutUi.tabWidget->setTabText(0, first);
+      aboutUi.tabWidget->setTabText(1, sec);
+    }
+    void setMainIcon(const QIcon& icn) {
+      aboutUi.iconLabel->setPixmap(icn.pixmap (64, 64));
+    }
+    void settMainTitle(const QString& title) {
+      aboutUi.titleLabel->setText(title);
+    }
+    void setMainText(const QString& txt) {
+      aboutUi.textLabel->setText(txt);
+    }
+  private:
+    Ui::AboutDialog aboutUi;
+  };
+
+  AboutDialog dialog (this);
+  dialog.setMainIcon(QIcon::fromTheme("utilities-file-archiver"));
+  dialog.settMainTitle (QString("<center><b><big>%1 %2</big></b></center><br>").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
+  dialog.setMainText("<center> " + tr("A simple Qt archive manager") + " </center>\n<center> "
+                     + tr("based on libarchive, gzip and 7z") + " </center><br><center> "
+                     + tr("Author")+": <a href='mailto:tsujan2000@gmail.com?Subject=My%20Subject'>Pedram Pourang ("
+                     + tr("aka.") + " Tsu Jan)</a> </center><p></p>");
+  dialog.setTabTexts(tr("About Arqiver"), tr("Translators"));
+  dialog.setWindowTitle(tr("About Arqiver"));
+  dialog.setWindowModality(Qt::WindowModal);
+  dialog.exec();
 }
 
 }

@@ -150,26 +150,41 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_New"/>
-    <addaction name="action_Open"/>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
     <addaction name="separator"/>
-    <addaction name="action_Quit"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="actionAdd_File"/>
-    <addaction name="actionAdd_Dirs"/>
-    <addaction name="actionRemove_File"/>
+    <addaction name="actionAddFile"/>
+    <addaction name="actionAddDir"/>
+    <addaction name="actionRemoveFile"/>
     <addaction name="separator"/>
-    <addaction name="actionExtract_All"/>
-    <addaction name="actionExtract_Sel"/>
+    <addaction name="actionExtractAll"/>
+    <addaction name="actionExtractSel"/>
     <addaction name="separator"/>
-    <addaction name="action_Password"/>
+    <addaction name="actionPassword"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionExpand"/>
+    <addaction name="actionCollapse"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -185,16 +200,16 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_New"/>
-   <addaction name="action_Open"/>
-   <addaction name="actionAdd_File"/>
-   <addaction name="actionAdd_Dirs"/>
-   <addaction name="actionRemove_File"/>
+   <addaction name="actionNew"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionAddFile"/>
+   <addaction name="actionAddDir"/>
+   <addaction name="actionRemoveFile"/>
    <addaction name="separator"/>
-   <addaction name="actionExtract_All"/>
-   <addaction name="actionExtract_Sel"/>
+   <addaction name="actionExtractAll"/>
+   <addaction name="actionExtractSel"/>
   </widget>
-  <action name="action_Open">
+  <action name="actionOpen">
    <property name="text">
     <string>&amp;Open Archive</string>
    </property>
@@ -205,7 +220,7 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="action_New">
+  <action name="actionNew">
    <property name="text">
     <string>&amp;New Archive</string>
    </property>
@@ -216,7 +231,7 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_Quit">
+  <action name="actionQuit">
    <property name="text">
     <string>&amp;Quit</string>
    </property>
@@ -224,7 +239,7 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionAdd_File">
+  <action name="actionAddFile">
    <property name="text">
     <string>Add File(s)</string>
    </property>
@@ -232,7 +247,7 @@
     <string>Add files to archive</string>
    </property>
   </action>
-  <action name="actionRemove_File">
+  <action name="actionRemoveFile">
    <property name="text">
     <string>Remove File(s)</string>
    </property>
@@ -240,7 +255,7 @@
     <string>Remove selection from archive</string>
    </property>
   </action>
-  <action name="actionExtract_All">
+  <action name="actionExtractAll">
    <property name="text">
     <string>Extract All</string>
    </property>
@@ -251,7 +266,7 @@
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionAdd_Dirs">
+  <action name="actionAddDir">
    <property name="text">
     <string>Add Directory</string>
    </property>
@@ -259,7 +274,7 @@
     <string>Add directory to archive</string>
    </property>
   </action>
-  <action name="actionExtract_Sel">
+  <action name="actionExtractSel">
    <property name="text">
     <string>Extract Selection</string>
    </property>
@@ -267,9 +282,30 @@
     <string>Extract Selected Items</string>
    </property>
   </action>
-  <action name="action_Password">
+  <action name="actionPassword">
    <property name="text">
     <string>Set Password</string>
+   </property>
+  </action>
+  <action name="actionExpand">
+   <property name="text">
+    <string>E&amp;xpand</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Down</string>
+   </property>
+  </action>
+  <action name="actionCollapse">
+   <property name="text">
+    <string>Collap&amp;se</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Up</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>

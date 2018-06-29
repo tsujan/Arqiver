@@ -24,14 +24,73 @@
  * @license GPL-3.0+ <https://spdx.org/licenses/GPL-3.0+.html>
  */
 
+#include <signal.h>
 #include <QApplication>
+#include <QLibraryInfo>
+#include <QTranslator>
+#include <QTextStream>
 #include <QFileInfo>
 
 #include "mainWin.h"
 
-int  main(int argc, char *argv[]) {
+void handleQuitSignals(const std::vector<int>& quitSignals) {
+  auto handler = [](int sig) ->void {
+    Q_UNUSED(sig);
+    QCoreApplication::quit();
+  };
+
+  for(int sig : quitSignals)
+    signal(sig, handler);
+}
+
+int  main(int argc, char **argv) {
+  const QString name = "Arqiver";
+  const QString version = "0.1.0";
+  const QString option = QString::fromUtf8(argv[1]);
+  if (option == "--help" || option == "-h") {
+    QTextStream out (stdout);
+    out << "Arqiver - Simple Qt5 archive manager\n"\
+           "          based on libarchive, gzip and 7z\n\n"\
+            "Usage:\n	arqiver [option] [ARCHIVE] [FILES]\n\n"\
+            "Options:\n\n"\
+            "--help or -h     Show this help and exit.\n"\
+            "--version or -v  Show version information and exit.\n"\
+            "--sx             Extract an archive, like: arqiver --sx ARCHIVE\n"\
+            "--sa             Archive file(s), like: arqiver --sa FILES\n"\
+            "--ax             Auto-extract an archive, like: arqiver --ax ARCHIVE\n"\
+            "--aa             Auto-archive file(s), like: arqiver --aa ARCHIVE FILES" << endl;
+    return 0;
+  }
+  else if (option == "--version" || option == "-v") {
+    QTextStream out (stdout);
+    out << name << " " << version <<  endl;
+    return 0;
+  }
+
   QApplication a(argc, argv);
+  a.setApplicationName(name);
+  a.setApplicationVersion(version);
+  handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
+
   a.setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+  QStringList langs(QLocale::system().uiLanguages());
+  QString lang;
+  if (!langs.isEmpty())
+    lang = langs.first().replace('-', '_');
+
+  QTranslator qtTranslator;
+  if (!qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+    if (!langs.isEmpty()) {
+      lang = langs.first().split (QLatin1Char ('-')).first();
+      qtTranslator.load ("qt_" + lang, QLibraryInfo::location (QLibraryInfo::TranslationsPath));
+    }
+  }
+  a.installTranslator(&qtTranslator);
+
+  QTranslator ArqTranslator;
+  ArqTranslator.load("arqiver_" + lang, DATADIR "/arqiver/translations");
+  a.installTranslator (&ArqTranslator);
 
   QStringList args;
   for (int i = 1; i < argc; i++) {
