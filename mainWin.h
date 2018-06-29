@@ -64,7 +64,7 @@ private slots:
   void simpleExtractFiles();
   void extractSelection();
   void ViewFile(QTreeWidgetItem *it);
-  void extractFile(QTreeWidgetItem *it);
+  void extractSingleFile(QTreeWidgetItem *it);
   void UpdateTree();
 
   void ProcStarting();

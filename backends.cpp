@@ -401,6 +401,10 @@ void Backend::startExtract(QString path, QStringList files, bool overwrite, bool
   }
 }
 
+bool Backend::is7zSingleExtracted(const QString archivePath) const {
+  return (!arqiverDir_.isEmpty() && QFile::exists(arqiverDir_ + "/" + archivePath));
+}
+
 void Backend::startViewFile(QString path) {
   QString parentDir = arqiverDir_;
   if(!arqiverDir_.isEmpty()) {
@@ -427,6 +431,7 @@ void Backend::startViewFile(QString path) {
       if (encrypted_)
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_;
+      args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
       emit ProcessStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
@@ -455,7 +460,7 @@ void Backend::startViewFile(QString path) {
     QProcess::startDetached("xdg-open", QStringList() << fileName);
 }
 
-QString Backend::extractFile(QString path) {
+QString Backend::extractSingleFile(QString path) {
   QString parentDir = arqiverDir_;
   if(!arqiverDir_.isEmpty()){
     QDir dir(arqiverDir_);
@@ -480,7 +485,7 @@ QString Backend::extractFile(QString path) {
       QStringList args;
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_;
+      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y";
       emit ProcessStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
@@ -787,9 +792,9 @@ void Backend::processData() {
   if (is7z_ && !encryptionQueried_) {
     if (!encrypted_) {
       QString read = PROC.readAllStandardOutput();
-      if (read.contains ("Encrypted = +"))
+      if (read.contains("\nEncrypted = +")) // the archive has an encrypted file but its header isn't encrypted
         encrypted_ = true;
-      else if (read.contains ("ERROR")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
+      else if (read.contains("\nERROR: ")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
         encryptedList_ = encrypted_ = true;
       }
     }
@@ -814,7 +819,8 @@ void Backend::processData() {
   if (LIST)
     parseLines(lines);
   if (is7z_) {
-    if (read.startsWith("ERROR")) { // ERROR: Data Error in encrypted file. Wrong password? :
+    if (read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password? :
+      /* while extracting the archive, another file in it had another password */
       pswrd_ = QString();
     }
     emit ProgressUpdate(-1, "");

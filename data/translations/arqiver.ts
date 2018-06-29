@@ -12,30 +12,30 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="692"/>
-        <location filename="../../backends.cpp" line="724"/>
+        <location filename="../../backends.cpp" line="698"/>
+        <location filename="../../backends.cpp" line="730"/>
         <source>Could not read archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="695"/>
-        <location filename="../../backends.cpp" line="727"/>
+        <location filename="../../backends.cpp" line="701"/>
+        <location filename="../../backends.cpp" line="733"/>
         <source>Archive Loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="701"/>
-        <location filename="../../backends.cpp" line="769"/>
+        <location filename="../../backends.cpp" line="707"/>
+        <location filename="../../backends.cpp" line="775"/>
         <source>Modification Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="765"/>
+        <location filename="../../backends.cpp" line="771"/>
         <source>Extraction Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="832"/>
+        <location filename="../../backends.cpp" line="839"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation type="unfinished"></translation>
@@ -328,8 +328,8 @@ Please install it for this kind of archive!</source>
     <message>
         <location filename="../../mainWin.cpp" line="458"/>
         <location filename="../../mainWin.cpp" line="466"/>
-        <location filename="../../mainWin.cpp" line="573"/>
-        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="574"/>
+        <location filename="../../mainWin.cpp" line="580"/>
         <source>Adding Items...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -339,74 +339,74 @@ Please install it for this kind of archive!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="486"/>
-        <location filename="../../mainWin.cpp" line="551"/>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <location filename="../../mainWin.cpp" line="597"/>
-        <location filename="../../mainWin.cpp" line="606"/>
+        <location filename="../../mainWin.cpp" line="487"/>
+        <location filename="../../mainWin.cpp" line="552"/>
+        <location filename="../../mainWin.cpp" line="563"/>
+        <location filename="../../mainWin.cpp" line="598"/>
+        <location filename="../../mainWin.cpp" line="608"/>
         <source>Extracting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="492"/>
-        <location filename="../../mainWin.cpp" line="500"/>
+        <location filename="../../mainWin.cpp" line="493"/>
+        <location filename="../../mainWin.cpp" line="501"/>
         <source>Enter Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="503"/>
+        <location filename="../../mainWin.cpp" line="504"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="504"/>
+        <location filename="../../mainWin.cpp" line="505"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="508"/>
+        <location filename="../../mainWin.cpp" line="509"/>
         <source>Encrypt the file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="548"/>
-        <location filename="../../mainWin.cpp" line="594"/>
+        <location filename="../../mainWin.cpp" line="549"/>
+        <location filename="../../mainWin.cpp" line="595"/>
         <source>Extract Into Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="641"/>
+        <location filename="../../mainWin.cpp" line="643"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="790"/>
+        <location filename="../../mainWin.cpp" line="792"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="791"/>
+        <location filename="../../mainWin.cpp" line="793"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="792"/>
+        <location filename="../../mainWin.cpp" line="794"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="793"/>
+        <location filename="../../mainWin.cpp" line="795"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="794"/>
-        <location filename="../../mainWin.cpp" line="795"/>
+        <location filename="../../mainWin.cpp" line="796"/>
+        <location filename="../../mainWin.cpp" line="797"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="794"/>
+        <location filename="../../mainWin.cpp" line="796"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>

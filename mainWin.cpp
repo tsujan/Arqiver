@@ -118,7 +118,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::ViewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
-  connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractFile);
+  connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
 
   connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
@@ -478,13 +478,14 @@ void mainWin::remFiles() {
   BACKEND->startRemove(items);
 }
 
-void mainWin::extractFile(QTreeWidgetItem *it) {
+void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
+      && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
   textLabel_->setText(tr("Extracting..."));
-  it->setData(0, Qt::UserRole, BACKEND->extractFile(it->whatsThis(0)));
+  it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
 
 bool mainWin::pswrdDialog(bool listEncryption) {
@@ -600,7 +601,8 @@ void mainWin::extractSelection(){
 
 void mainWin::ViewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
+      && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
   textLabel_->setText(tr("Extracting..."));

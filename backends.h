@@ -59,7 +59,7 @@ public:
   void startExtract(QString path, QStringList files, bool overwrite = true, bool preservePaths = true);
 
   void startViewFile(QString path);
-  QString extractFile(QString path);
+  QString extractSingleFile(QString path);
 
   bool isGzip() const {
     return isGzip_;
@@ -80,6 +80,8 @@ public:
   void encryptFileList() {
     encryptedList_ = true;
   }
+
+  bool is7zSingleExtracted(const QString archivePath) const;
 
 signals:
   void FileLoaded();
