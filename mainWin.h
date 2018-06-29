@@ -31,8 +31,11 @@
 #include <QString>
 #include <QTreeWidgetItem>
 #include <QDropEvent>
+#include <QLabel>
+#include <QProgressBar>
 
 #include "backends.h"
+#include "label.h"
 
 namespace Arqiver {
 
@@ -85,6 +88,10 @@ private:
   QHash<QString, QString> supportedMimeTypes();
   QString OpenFileTypes();
   bool pswrdDialog(bool listEncryption = false);
+
+  QLabel *iconLabel_;
+  Label *textLabel_;
+  QProgressBar *statusProgress_;
 
   Ui::mainWin *ui;
   Backend *BACKEND;

@@ -89,52 +89,6 @@
       </column>
      </widget>
     </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item alignment="Qt::AlignLeft">
-       <widget class="QLabel" name="label_progress_icon">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>16</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="text">
-         <string notr="true"/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QProgressBar" name="progressBar">
-        <property name="textVisible">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Arqiver::Label" name="label_progress">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -145,6 +99,9 @@
      <width>403</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::PreventContextMenu</enum>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -188,10 +145,10 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
-   <property name="movable">
-    <bool>false</bool>
+   <property name="contextMenuPolicy">
+    <enum>Qt::PreventContextMenu</enum>
    </property>
-   <property name="floatable">
+   <property name="movable">
     <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
@@ -213,9 +170,6 @@
    <property name="text">
     <string>&amp;Open Archive</string>
    </property>
-   <property name="statusTip">
-    <string>Open archive</string>
-   </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
@@ -223,9 +177,6 @@
   <action name="actionNew">
    <property name="text">
     <string>&amp;New Archive</string>
-   </property>
-   <property name="statusTip">
-    <string>New archive</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -243,24 +194,15 @@
    <property name="text">
     <string>Add File(s)</string>
    </property>
-   <property name="statusTip">
-    <string>Add files to archive</string>
-   </property>
   </action>
   <action name="actionRemoveFile">
    <property name="text">
     <string>Remove File(s)</string>
    </property>
-   <property name="statusTip">
-    <string>Remove selection from archive</string>
-   </property>
   </action>
   <action name="actionExtractAll">
    <property name="text">
     <string>Extract All</string>
-   </property>
-   <property name="statusTip">
-    <string>Extract archive into a directory</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -270,16 +212,10 @@
    <property name="text">
     <string>Add Directory</string>
    </property>
-   <property name="statusTip">
-    <string>Add directory to archive</string>
-   </property>
   </action>
   <action name="actionExtractSel">
    <property name="text">
     <string>Extract Selection</string>
-   </property>
-   <property name="statusTip">
-    <string>Extract Selected Items</string>
    </property>
   </action>
   <action name="actionPassword">

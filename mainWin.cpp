@@ -52,6 +52,23 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   if (getuid() == 0)
     setWindowTitle("Arqiver (" + tr("Root") + ")");
 
+  /* status bar */
+  iconLabel_ = new QLabel();
+  iconLabel_->setFixedSize(16, 16);
+  iconLabel_->setFocusPolicy(Qt::NoFocus);
+  textLabel_ = new Label();
+  textLabel_->setFocusPolicy(Qt::NoFocus);
+  statusProgress_ = new QProgressBar();
+  statusProgress_->setTextVisible(false);
+  statusProgress_->setMaximumHeight(qMax(QFontMetrics(font()).height(), 16));
+  statusProgress_->setFocusPolicy(Qt::NoFocus);
+  ui->statusbar->addWidget(iconLabel_);
+  ui->statusbar->addWidget(statusProgress_);
+  ui->statusbar->addPermanentWidget(textLabel_);
+  textLabel_->setVisible(false);
+  iconLabel_->setVisible(false);
+  statusProgress_->setVisible(false);
+
   /* icons */
   setWindowIcon(QIcon::fromTheme("utilities-file-archiver"));
   ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
@@ -69,9 +86,6 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
-  ui->progressBar->setVisible(false);
-  ui->label_progress->setVisible(false);
-  ui->label_progress_icon->setVisible(false);
 
   ui->actionAddFile->setEnabled(false);
   ui->actionRemoveFile->setEnabled(false);
@@ -169,7 +183,7 @@ void mainWin::LoadArguments(QStringList args) {
   if (!files.at(0).isEmpty())
     lastPath_ = files.at(0).section("/", 0, -2);
 
-  ui->label_progress->setText(tr("Opening Archive..."));
+  textLabel_->setText(tr("Opening Archive..."));
   if (action == 0) {
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoextractFiles);
     connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
@@ -364,7 +378,7 @@ void mainWin::NewArchive() {
 
   lastPath_ = file.section("/", 0, -2);
 
-  ui->label_progress->setText(""); //just clear it (this action is instant)
+  textLabel_->setText(""); //just clear it (this action is instant)
   BACKEND->loadFile(file);
 }
 
@@ -380,7 +394,7 @@ void mainWin::OpenArchive() {
   }
   if (file.isEmpty()) return;
   lastPath_ = file.section("/", 0, -2);
-  ui->label_progress->setText(tr("Opening Archive..."));
+  textLabel_->setText(tr("Opening Archive..."));
   expandAll_ = true;
   BACKEND->loadFile(file);
 }
@@ -412,7 +426,7 @@ void mainWin::dropEvent(QDropEvent *event) {
       QString file = urlList.at(0).toLocalFile();
       if (!file.isEmpty()) {
         lastPath_ = file.section("/", 0, -2);
-        ui->label_progress->setText(tr("Opening Archive..."));
+        textLabel_->setText(tr("Opening Archive..."));
         expandAll_ = true;
         BACKEND->loadFile(file);
       }
@@ -441,7 +455,7 @@ void mainWin::addFiles() {
   if (files.isEmpty()) return;
   if (!files.at(0).isEmpty())
     lastPath_ = files.at(0).section("/", 0, -2);
-  ui->label_progress->setText(tr("Adding Items..."));
+  textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(files);
 }
 
@@ -449,7 +463,7 @@ void mainWin::addDirs() {
   QString dirs = QFileDialog::getExistingDirectory(this, tr("Add to Archive"), lastPath_ );
   if (dirs.isEmpty()) return;
   lastPath_ = dirs;
-  ui->label_progress->setText(tr("Adding Items..."));
+  textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(QStringList() << dirs);
 }
 
@@ -460,7 +474,7 @@ void mainWin::remFiles() {
     items << sel[i]->whatsThis(0);
   }
   items.removeDuplicates();
-  ui->label_progress->setText(tr("Removing Items..."));
+  textLabel_->setText(tr("Removing Items..."));
   BACKEND->startRemove(items);
 }
 
@@ -469,7 +483,7 @@ void mainWin::extractFile(QTreeWidgetItem *it) {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     if (!pswrdDialog()) return;
   }
-  ui->label_progress->setText(tr("Extracting..."));
+  textLabel_->setText(tr("Extracting..."));
   it->setData(0, Qt::UserRole, BACKEND->extractFile(it->whatsThis(0)));
 }
 
@@ -534,7 +548,7 @@ void mainWin::extractFiles() {
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
   lastPath_ = dir;
-  ui->label_progress->setText(tr("Extracting..."));
+  textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
 
@@ -545,7 +559,7 @@ void mainWin::autoextractFiles() {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     if (!pswrdDialog()) return;
   }
-  ui->label_progress->setText(tr("Extracting..."));
+  textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
 
@@ -556,13 +570,13 @@ void mainWin::simpleExtractFiles() {
 
 void mainWin::autoArchiveFiles() { // no protection against overwriting
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
-  ui->label_progress->setText(tr("Adding Items..."));
+  textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(aaFileList_);
 }
 
 void mainWin::simpleArchivetFiles() {
   disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
-  ui->label_progress->setText(tr("Adding Items..."));
+  textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(saFileList_);
 }
 
@@ -580,7 +594,7 @@ void mainWin::extractSelection(){
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
   lastPath_ = dir;
-  ui->label_progress->setText(tr("Extracting..."));
+  textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir, selList);
 }
 
@@ -589,7 +603,7 @@ void mainWin::ViewFile(QTreeWidgetItem *it) {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     if (!pswrdDialog()) return;
   }
-  ui->label_progress->setText(tr("Extracting..."));
+  textLabel_->setText(tr("Extracting..."));
   BACKEND->startViewFile(it->whatsThis(0));
 }
 
@@ -673,11 +687,11 @@ void mainWin::UpdateTree() {
 void mainWin::ProcStarting() {
   processIsRunning_ = true;
 
-  ui->progressBar->setRange(0,0);
-  ui->progressBar->setValue(0);
-  ui->progressBar->setVisible(true);
-  ui->label_progress->setVisible(!ui->label_progress->text().isEmpty());
-  //ui->label_progress_icon->setVisible(false);
+  statusProgress_->setRange(0,0);
+  statusProgress_->setValue(0);
+  statusProgress_->setVisible(true);
+  textLabel_->setVisible(!textLabel_->text().isEmpty());
+  iconLabel_->setVisible(false);
   ui->tree_contents->setEnabled(false);
 
   ui->label->setVisible(true);
@@ -693,24 +707,24 @@ void mainWin::ProcFinished(bool success, QString msg) {
   ui->label_archive->setText(BACKEND->currentFile());
 
   UpdateTree();
-  ui->progressBar->setRange(0, 0);
-  ui->progressBar->setValue(0);
-  ui->progressBar->setVisible(false);
-  ui->label_progress->setText(msg);
-  ui->label_progress->setVisible(!msg.isEmpty());
-  ui->label_progress_icon->setVisible(true);
+  statusProgress_->setRange(0, 0);
+  statusProgress_->setValue(0);
+  statusProgress_->setVisible(false);
+  textLabel_->setText(msg);
+  textLabel_->setVisible(!msg.isEmpty());
+  iconLabel_->setVisible(true);
   if (success) {
     if (BACKEND->isEncrypted()) {
       if (BACKEND->getPswrd().isEmpty())
-        ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/locked.svg").pixmap(16, 16));
+        iconLabel_->setPixmap(symbolicIcon::icon(":icons/locked.svg").pixmap(16, 16));
       else
-        ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/unlocked.svg").pixmap(16, 16));
+        iconLabel_->setPixmap(symbolicIcon::icon(":icons/unlocked.svg").pixmap(16, 16));
     }
     else
-      ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/dialog-ok.svg").pixmap(16, 16));
+      iconLabel_->setPixmap(symbolicIcon::icon(":icons/dialog-ok.svg").pixmap(16, 16));
   }
   else
-    ui->label_progress_icon->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
+    iconLabel_->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
   QFileInfo info(BACKEND->currentFile());
   bool canmodify = info.isWritable();
   if (!info.exists())
@@ -728,10 +742,10 @@ void mainWin::ProcFinished(bool success, QString msg) {
 }
 
 void mainWin::ProcUpdate(int percent, QString txt) {
-  ui->progressBar->setMaximum(percent < 0 ? 0 : 100);
-  ui->progressBar->setValue(percent);
+  statusProgress_->setMaximum(percent < 0 ? 0 : 100);
+  statusProgress_->setValue(percent);
   if (!txt.isEmpty())
-    ui->label_progress->setText(txt);
+    textLabel_->setText(txt);
 }
 
 void mainWin::openEncryptedList(const QString& path) {

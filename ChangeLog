@@ -2,3 +2,4 @@ V0.1.0
 ---------
  * Arqiver is forked from lumina-archiver with lots of fixes, improvements and additions. It supports libarchive (bsdtar), gzip and 7z. With 7z, it also supports encryption (apssword protection).
  * Warn the user if a back-end in not installed.
+ * Save the vertical space by making real use of the status bar.
