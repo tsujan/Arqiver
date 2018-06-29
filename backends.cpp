@@ -47,6 +47,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   connect(&PROC, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&PROC, &QProcess::readyReadStandardOutput, this, &Backend::processData);
   connect(&PROC, &QProcess::started, this, &Backend::ProcessStarting);
+  connect(&PROC, &QProcess::errorOccurred, this, &Backend::onError);
   LIST = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
@@ -824,6 +825,12 @@ void Backend::processData() {
       info = lines.last();
     emit ProgressUpdate(-1, info);
   }
+}
+
+void Backend::onError(QProcess::ProcessError error) {
+  if (error == QProcess::FailedToStart)
+    emit errorMsg(tr("%1 is missing from your system.\nPlease install it for this kind of archive!")
+                  .arg(PROC.program()));
 }
 
 }

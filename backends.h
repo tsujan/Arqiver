@@ -89,6 +89,7 @@ signals:
   void ProcessFinished(bool, QString);
   void ArchivalSuccessful();
   void encryptedList(const QString& path);
+  void errorMsg(const QString& msg);
 
 private slots:
   void startInsertFromQueue() {
@@ -97,6 +98,7 @@ private slots:
   void startList(bool withPassword = false);
   void procFinished(int retcode, QProcess::ExitStatus);
   void processData();
+  void onError(QProcess::ProcessError error);
 
 private:
   void parseLines(QStringList lines);

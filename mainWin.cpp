@@ -85,6 +85,9 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(BACKEND, &Backend::ProcessFinished, this, &mainWin::ProcFinished);
   connect(BACKEND, &Backend::ProgressUpdate, this, &mainWin::ProcUpdate);
   connect(BACKEND, &Backend::encryptedList, this, &mainWin::openEncryptedList);
+  connect(BACKEND, &Backend::errorMsg, this, [this](const QString& msg) {
+    QMessageBox::critical(this, tr("Error"), msg);
+  });
 
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -240,7 +243,7 @@ QString mainWin::CreateFileTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << QString(tr("All Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)");
+    types << tr("All Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)");
     QStringList tmp;
     tmp << tr("Uncompressed Archive (*.tar)");
     tmp << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
@@ -293,7 +296,7 @@ QString mainWin::OpenFileTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << QString(tr("All Known Types %1")).arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.iso *.img *.xar *.jar *.rpm)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.iso *.img *.xar *.jar *.rpm)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
@@ -621,7 +624,7 @@ void mainWin::UpdateTree() {
         it->setText(2, displaySize( BACKEND->size(files[i])) );
       }
       else
-        it->setText(1, QString(tr("Link To: %1")).arg(BACKEND->linkTo(files[i]) ) );
+        it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(files[i]) ) );
     }
     it->setWhatsThis(0, files[i]);
     if (mime.isEmpty()) {

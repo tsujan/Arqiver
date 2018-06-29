@@ -1,0 +1,52 @@
+************************************
+*   Compilation And Installation   *
+************************************
+
+First install build dependencies. In Debian-based systems, they are:
+
+ * g++ >= 5
+ * qtbase5-dev
+ * libqt5svg5-dev (for hard-coded SVG icons)
+ * qttools5-dev-tools (for localization -- optional)
+
+In Arch-based systems, the required package are:
+
+ * gcc (or gcc-multilib for multilib systems)
+ * qt5-base and qt5-x11extras (for Qt5)
+ * qt5-svg (for hard-coded SVG icons)
+ * qt5-tools (for localization -- optional)
+
+In Red Hat based systems like Fedora:
+
+ * gcc-c++
+ * qt5-qtbase-devel
+ * qt5-qtsvg-devel
+ * qt5-qttools-devel
+
+And, finally, in OpenSUSE:
+
+ * gcc-c++
+ * libqt5-qtbase-devel
+ * libqt5-qtsvg-devel
+ * libqt5-qttools-devel
+
+In additon, you need to have libarchive (basdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
+
+Then, open a terminal inside this folder and issue the following commands:
+
+	qmake && make
+	sudo make install
+
+If your default Qt installation is not Qt5, put the full path of Qt5 qmake in the first command but before that, put the full path of Qt5's "lrelease" binary into 'arqiver.pro' (only one place).
+
+Afterward, you could use this command to clean the source directory:
+
+	make distclean
+
+**********************************
+*   Translation (Localization)   *
+**********************************
+
+The file 'data/translations/arqiver.ts' can serve as the basis for translation. The translated file should be saved in the same directory as "arqiver_LN.ts", where "LN" is the abbreviation for the target language, like "de", "fr", etc.
+
+If you have translated Arqiver's GUI into your language, please make a "Pull Request" (PR) at https://github.com/tsujan/Arqiver for your work to be merged into Arqiver!
