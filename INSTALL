@@ -30,7 +30,7 @@ And, finally, in OpenSUSE:
  * libqt5-qtsvg-devel
  * libqt5-qttools-devel
 
-In additon, you need to have libarchive (basdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
+In additon, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
 
 Then, open a terminal inside this folder and issue the following commands:
 
