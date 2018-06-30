@@ -92,6 +92,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   starting7z_ = false;
   if (!withPassword) {
     pswrd_.clear();
+    encryptedPaths_.clear();
     encrypted_ = encryptedList_ = encryptionQueried_ = false;
   }
 
@@ -121,7 +122,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
       encryptionQueried_ = true; // an empty archive doesn't have encryption (yet)
     contents_.clear();
     emit FileLoaded();
-    emit ProcessFinished(true, "");
+    emit ProcessFinished(true, QString());
   }
 }
 
@@ -146,17 +147,17 @@ bool Backend::isWorking(){
 }
 
 //Listing routines
-QStringList Backend::heirarchy() {
+QStringList Backend::hierarchy() {
   return contents_.keys();
 }
 
-double Backend::size(QString file) {
+double Backend::size(const QString& file) {
   if (!contents_.contains(file))
     return -1;
   return contents_.value(file)[1].toDouble();
 }
 
-double Backend::csize(QString file) {
+double Backend::csize(const QString& file) {
   if (!contents_.contains(file))
     return -1;
   if (is7z_)
@@ -164,7 +165,7 @@ double Backend::csize(QString file) {
   return contents_.value(file)[1].toDouble();
 }
 
-bool Backend::isDir(QString file) {
+bool Backend::isDir(const QString& file) {
   if (!contents_.contains(file))
     return false;
   if (is7z_)
@@ -172,19 +173,19 @@ bool Backend::isDir(QString file) {
   return contents_.value(file)[0].startsWith("d");
 }
 
-bool Backend::isLink(QString file) {
+bool Backend::isLink(const QString& file) {
   if (!contents_.contains(file))
     return false;
   return contents_.value(file)[0].startsWith("l");
 }
 
-QString Backend::linkTo(QString file) {
+QString Backend::linkTo(const QString& file) {
   if (!contents_.contains(file))
     return "";
   return contents_.value(file)[2];
 }
 
-static inline void skipExistingFiles (QString& file) {
+static inline void skipExistingFiles(QString& file) {
   QString suffix;
   int i = 0;
   while (QFile::exists(file + suffix)) {
@@ -194,7 +195,7 @@ static inline void skipExistingFiles (QString& file) {
   file += suffix;
 }
 
-void Backend::startAdd(QStringList paths,  bool absolutePaths) {
+void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   keyArgs_.clear();
   /* exclude the archive itself */
   if (paths.contains(filepath_))
@@ -226,10 +227,18 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
   }
   if (is7z_) {
     QStringList args;
-    if (encryptedList_)
-      args << "-mhe=on";
-    if (!pswrd_.isEmpty())
-      args << "-p" + pswrd_; // always add files with encryption if any
+    if (encryptedList_) {
+      /* with an encrypted header, password should be given
+         (but the operation will fail silently if it's incorrect) */
+      if (pswrd_.isEmpty())
+        return;
+      args << "-mhe=on" << "-p" + pswrd_;
+    }
+    else if (!pswrd_.isEmpty()) {
+      /* always add files with encryption if any */
+      args << "-p" + pswrd_;
+      encrypted_ = true;
+    }
     args << "a" << fileArgs_ << paths;
     starting7z_ = true;
     keyArgs_ << "a";
@@ -270,7 +279,7 @@ void Backend::startAdd(QStringList paths,  bool absolutePaths) {
   PROC.start(TAR_CMD, args);
 }
 
-void Backend::startRemove(QStringList paths) {
+void Backend::startRemove(QStringList& paths) {
   keyArgs_.clear();
   if (isGzip_) return;
   if (paths.contains(filepath_))
@@ -301,11 +310,11 @@ void Backend::startRemove(QStringList paths) {
   PROC.start(TAR_CMD, args);
 }
 
-void Backend::startExtract(QString path, QString file, bool overwrite, bool preservePaths) {
+void Backend::startExtract(const QString& path, const QString& file, bool overwrite, bool preservePaths) {
   startExtract(path, QStringList() << file, overwrite, preservePaths);
 }
 
-void Backend::startExtract(QString path, QStringList files, bool overwrite, bool preservePaths) {
+void Backend::startExtract(const QString& path, const QStringList& files, bool overwrite, bool preservePaths) {
   keyArgs_.clear();
   if (isGzip_) {
     /* if the extraction takes place in the same directory, we could do it
@@ -401,11 +410,16 @@ void Backend::startExtract(QString path, QStringList files, bool overwrite, bool
   }
 }
 
-bool Backend::is7zSingleExtracted(const QString archivePath) const {
+bool Backend::isEncryptedPath(const QString& path) const {
+  if (!is7z_) return false;
+  return (encryptedList_ || encryptedPaths_.contains(path));
+}
+
+bool Backend::is7zSingleExtracted(const QString& archivePath) const {
   return (!arqiverDir_.isEmpty() && QFile::exists(arqiverDir_ + "/" + archivePath));
 }
 
-void Backend::startViewFile(QString path) {
+void Backend::startViewFile(const QString& path) {
   QString parentDir = arqiverDir_;
   if(!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
@@ -460,7 +474,7 @@ void Backend::startViewFile(QString path) {
     QProcess::startDetached("xdg-open", QStringList() << fileName);
 }
 
-QString Backend::extractSingleFile(QString path) {
+QString Backend::extractSingleFile(const QString& path) {
   QString parentDir = arqiverDir_;
   if(!arqiverDir_.isEmpty()){
     QDir dir(arqiverDir_);
@@ -511,7 +525,7 @@ QString Backend::extractSingleFile(QString path) {
   return fileName;
 }
 
-void Backend::parseLines (QStringList lines) {
+void Backend::parseLines (QStringList& lines) {
   static bool hasParentDir = false;
   if (contents_.isEmpty()) {
     hasParentDir = true;
@@ -705,6 +719,11 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
       result = tr("Modification Finished");
       emit ArchivalSuccessful();
+      if (!encryptedList_) {
+        /* We want to know which files are encrypted after an addition.
+           After a deletion, it makes no difference. */
+        encryptionQueried_ = false;
+      }
       startList(encryptedList_);
       emit ProcessFinished(retcode == 0, result);
       result.clear();
@@ -790,12 +809,29 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 
 void Backend::processData() {
   if (is7z_ && !encryptionQueried_) {
-    if (!encrypted_) {
+    if (!encryptedList_) {
       QString read = PROC.readAllStandardOutput();
-      if (read.contains("\nEncrypted = +")) // the archive has an encrypted file but its header isn't encrypted
-        encrypted_ = true;
-      else if (read.contains("\nERROR: ")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
+      if (read.contains("\nERROR: ")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
         encryptedList_ = encrypted_ = true;
+      }
+      else {
+        const QStringList& items = read.split("\n\n", QString::SkipEmptyParts);
+        for (const QString& thisItem : items) {
+          if (thisItem.contains("\nEncrypted = +")) {
+            /* the archive has an encrypted file but its header isn't encrypted */
+            QStringList lines = thisItem.split("\n", QString::SkipEmptyParts);
+            if (!lines.isEmpty()) {
+              QString pathLine;
+              if (lines.at(0).startsWith("Path = "))
+                pathLine = lines.at(0);
+              else if (lines.at(1).startsWith("Path = ")) // the first line consists of dashes
+                pathLine = lines.at(1);
+              if (!pathLine.isEmpty())
+                encryptedPaths_ << pathLine.remove(0, 7);
+            }
+            encrypted_ = true;
+          }
+        }
       }
     }
     return; // no listing here

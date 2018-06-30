@@ -111,7 +111,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionOpen, &QAction::triggered, this, &mainWin::OpenArchive);
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
-  connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::remFiles);
+  connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
   connect(ui->actionExtractAll, &QAction::triggered, this, &mainWin::extractFiles);
   connect(ui->actionExtractSel, &QAction::triggered, this, &mainWin::extractSelection);
   connect(ui->actionAddDir, &QAction::triggered, this, &mainWin::addDirs);
@@ -149,7 +149,7 @@ void mainWin::closeEvent(QCloseEvent *event) {
     event->accept();
 }
 
-void mainWin::LoadArguments(QStringList args) {
+void mainWin::LoadArguments(const QStringList& args) {
   int action = -1;
   /*
      0: auto extracting   -> arqiver --ax Archive
@@ -215,7 +215,7 @@ void mainWin::LoadArguments(QStringList args) {
   }
 }
 
-QTreeWidgetItem* mainWin::findItem(QString path, QTreeWidgetItem *start) {
+QTreeWidgetItem* mainWin::findItem(const QString& path, QTreeWidgetItem *start) {
   if (start == nullptr) {
     for (int i = 0; i < ui->tree_contents->topLevelItemCount(); i++) {
       if (ui->tree_contents->topLevelItem(i)->whatsThis(0) == path)
@@ -235,7 +235,7 @@ QTreeWidgetItem* mainWin::findItem(QString path, QTreeWidgetItem *start) {
   return nullptr;
 }
 
-bool mainWin::cleanTree(QStringList list) {
+bool mainWin::cleanTree(const QStringList& list) {
   if (list.isEmpty() && ui->tree_contents->topLevelItemCount() > 0) {
     ui->tree_contents->clear();
     return true;
@@ -393,6 +393,7 @@ void mainWin::OpenArchive() {
     file = dlg.selectedFiles().at(0);
   }
   if (file.isEmpty()) return;
+  lastPswrd_.clear();
   lastPath_ = file.section("/", 0, -2);
   textLabel_->setText(tr("Opening Archive..."));
   expandAll_ = true;
@@ -425,6 +426,7 @@ void mainWin::dropEvent(QDropEvent *event) {
     if (!urlList.isEmpty()) {
       QString file = urlList.at(0).toLocalFile();
       if (!file.isEmpty()) {
+        lastPswrd_.clear();
         lastPath_ = file.section("/", 0, -2);
         textLabel_->setText(tr("Opening Archive..."));
         expandAll_ = true;
@@ -436,8 +438,15 @@ void mainWin::dropEvent(QDropEvent *event) {
 }
 
 void mainWin::addFiles() {
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdDialog()) return;
+  /* NOTE: If the archive has list encryption, its
+           password will be needed for adding files.
+           Otherwise, the password will be optional.*/
+  if (lastPswrd_.isEmpty()) {
+    if (BACKEND->hasEncryptedList()) {
+      if (!pswrdDialog(true, true)) return;
+    }
+    else
+      BACKEND->setPswrd(QString());
   }
   QStringList files;
   if(BACKEND->isGzip()) { // accepts only one file
@@ -460,6 +469,13 @@ void mainWin::addFiles() {
 }
 
 void mainWin::addDirs() {
+  if (lastPswrd_.isEmpty()) { // as in addFiles()
+    if (BACKEND->hasEncryptedList()) {
+      if (!pswrdDialog(true, true)) return;
+    }
+    else
+      BACKEND->setPswrd(QString());
+  }
   QString dirs = QFileDialog::getExistingDirectory(this, tr("Add to Archive"), lastPath_ );
   if (dirs.isEmpty()) return;
   lastPath_ = dirs;
@@ -467,7 +483,7 @@ void mainWin::addDirs() {
   BACKEND->startAdd(QStringList() << dirs);
 }
 
-void mainWin::remFiles() {
+void mainWin::removeFiles() {
   QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   QStringList items;
   for (int i = 0; i < sel.length(); i++){
@@ -481,6 +497,7 @@ void mainWin::remFiles() {
 void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
+      && BACKEND->isEncryptedPath(it->whatsThis(0))
       && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
@@ -488,7 +505,7 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
 
-bool mainWin::pswrdDialog(bool listEncryption) {
+bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
   QDialog *dialog = new QDialog(this);
   dialog->setWindowTitle(tr("Enter Password"));
   QGridLayout *grid = new QGridLayout;
@@ -500,6 +517,7 @@ bool mainWin::pswrdDialog(bool listEncryption) {
   lineEdit->setEchoMode(QLineEdit::Password);
   lineEdit->setPlaceholderText(tr("Enter Password"));
   connect(lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
+  QSpacerItem *spacer0 = new QSpacerItem(1, 5);
   QSpacerItem *spacer = new QSpacerItem(1, 5);
   QPushButton *cancelButton = new QPushButton (symbolicIcon::icon(":icons/dialog-error.svg"), tr("Cancel"));
   QPushButton *okButton = new QPushButton (symbolicIcon::icon(":icons/dialog-ok.svg"), tr("OK"));
@@ -507,19 +525,30 @@ bool mainWin::pswrdDialog(bool listEncryption) {
   connect(cancelButton, &QAbstractButton::clicked, dialog, &QDialog::reject);
   connect(okButton, &QAbstractButton::clicked, dialog, &QDialog::accept);
   QCheckBox *box = new QCheckBox(tr("Encrypt the file list"));
+  QLabel *label = new QLabel("<center><i>" + tr("This will take effect after files/folders are added.") + "</i></center>" );
+  label->setWordWrap(true);
 
   grid->addWidget(lineEdit, 0, 0, 1, 3);
   grid->addWidget(box, 1, 0, 1, 3);
-  grid->addItem(spacer, 2, 0);
-  grid->addWidget(cancelButton, 3, 0, 1, 2, Qt::AlignRight);
-  grid->addWidget(okButton, 3, 2, Qt::AlignCenter);
+  grid->addItem(spacer0, 2, 0);
+  grid->addWidget(label, 3, 0, 1, 3);
+  grid->addItem(spacer, 4, 0);
+  grid->addWidget(cancelButton, 5, 0, 1, 2, Qt::AlignRight);
+  grid->addWidget(okButton, 5, 2, Qt::AlignCenter);
   grid->setColumnStretch(1, 1);
-  grid->setRowStretch(2, 1);
+  grid->setRowStretch(4, 1);
 
-  if(!listEncryption)
+  if(!listEncryptionBox) {
     box->setVisible(false);
+    label->setVisible(false);
+  }
+  else if (forceListEncryption) {
+    box->setChecked(true);
+    box->setEnabled(false);
+  }
 
   dialog->setLayout(grid);
+  dialog->setMinimumSize(dialog->sizeHint());
 
   bool res = true;
   switch (dialog->exec()) {
@@ -530,6 +559,8 @@ bool mainWin::pswrdDialog(bool listEncryption) {
       BACKEND->setPswrd(lineEdit->text());
       if (box->isChecked())
         BACKEND->encryptFileList();
+      if (listEncryptionBox)
+        lastPswrd_ = lineEdit->text();
     }
     delete dialog;
     break;
@@ -602,6 +633,7 @@ void mainWin::extractSelection(){
 void mainWin::ViewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
+      && BACKEND->isEncryptedPath(it->whatsThis(0))
       && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
@@ -622,7 +654,7 @@ static inline QString displaySize(const qint64 size) {
 
 void mainWin::UpdateTree() {
   setEnabled(false);
-  QStringList files = BACKEND->heirarchy();
+  QStringList files = BACKEND->hierarchy();
   files.sort();
   //Remove any entries for file no longer in the archive
   bool changed = cleanTree(files);
@@ -649,8 +681,22 @@ void mainWin::UpdateTree() {
     }
     else if (BACKEND->isLink(files[i]))
       it->setIcon(0, QIcon::fromTheme("emblem-symbolic-link") );
-    else
-      it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
+    else {
+      QSize icnSize = ui->tree_contents->iconSize();
+      if (icnSize.width() > 16 && BACKEND->isEncryptedPath(it->whatsThis(0))) {
+        QPixmap icn = QIcon::fromTheme(mime.replace('/', '-')).pixmap(icnSize);
+        QPixmap emblem = symbolicIcon::icon(":icons/emblem-lock.svg").pixmap(16, 16);
+        QPixmap pix(24, 24);
+        pix.fill(Qt::transparent);
+        QPainter painter(&pix);
+        painter.drawPixmap(0, 0, icn);
+        int offset = icnSize.width() - 16;
+        painter.drawPixmap(offset, offset, emblem);
+        it->setIcon(0, QIcon(pix));
+      }
+      else
+        it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
+    }
     //Now find which item to add this too
     if (files[i].contains("/")) {
       QTreeWidgetItem *parent = findItem(files[i].section("/",0,-2));
@@ -689,7 +735,7 @@ void mainWin::UpdateTree() {
 void mainWin::ProcStarting() {
   processIsRunning_ = true;
 
-  statusProgress_->setRange(0,0);
+  statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
   statusProgress_->setVisible(true);
   textLabel_->setVisible(!textLabel_->text().isEmpty());
@@ -701,7 +747,7 @@ void mainWin::ProcStarting() {
   ui->label_archive->setText(BACKEND->currentFile());
 }
 
-void mainWin::ProcFinished(bool success, QString msg) {
+void mainWin::ProcFinished(bool success, const QString& msg) {
   processIsRunning_ = false;
 
   ui->label->setVisible(true);
@@ -737,13 +783,13 @@ void mainWin::ProcFinished(bool success, QString msg) {
   ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
   ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
   ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
-  ui->actionPassword->setEnabled(BACKEND->is7z() && BACKEND->heirarchy().isEmpty());
+  ui->actionPassword->setEnabled(BACKEND->is7z());
 
   if (close_)
     QTimer::singleShot (500, this, SLOT (close()));
 }
 
-void mainWin::ProcUpdate(int percent, QString txt) {
+void mainWin::ProcUpdate(int percent, const QString& txt) {
   statusProgress_->setMaximum(percent < 0 ? 0 : 100);
   statusProgress_->setValue(percent);
   if (!txt.isEmpty())

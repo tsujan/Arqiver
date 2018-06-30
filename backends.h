@@ -46,20 +46,20 @@ public:
   QString currentFile();
   bool isWorking();
 
-  QStringList heirarchy();
-  double size(QString file);
-  double csize(QString file);
-  bool isDir(QString file);
-  bool isLink(QString file);
-  QString linkTo(QString file);
+  QStringList hierarchy();
+  double size(const QString& file);
+  double csize(const QString& file);
+  bool isDir(const QString& file);
+  bool isLink(const QString& file);
+  QString linkTo(const QString& file);
 
-  void startAdd(QStringList paths, bool absolutePaths = false);
-  void startRemove(QStringList paths);
-  void startExtract(QString path, QString file="", bool overwrite = true, bool preservePaths = true);
-  void startExtract(QString path, QStringList files, bool overwrite = true, bool preservePaths = true);
+  void startAdd(QStringList& paths, bool absolutePaths = false);
+  void startRemove(QStringList& paths);
+  void startExtract(const QString& path, const QString& file="", bool overwrite = true, bool preservePaths = true);
+  void startExtract(const QString& path, const QStringList& files, bool overwrite = true, bool preservePaths = true);
 
-  void startViewFile(QString path);
-  QString extractSingleFile(QString path);
+  void startViewFile(const QString& path);
+  QString extractSingleFile(const QString& path);
 
   bool isGzip() const {
     return isGzip_;
@@ -77,18 +77,22 @@ public:
     pswrd_ = pswrd;
   }
 
+  bool hasEncryptedList() const {
+    return encryptedList_;
+  }
   void encryptFileList() {
     encryptedList_ = true;
   }
 
-  bool is7zSingleExtracted(const QString archivePath) const;
+  bool isEncryptedPath(const QString& path) const;
+  bool is7zSingleExtracted(const QString& archivePath) const;
 
 signals:
   void FileLoaded();
   void ExtractSuccessful();
   void ProcessStarting();
-  void ProgressUpdate(int, QString);
-  void ProcessFinished(bool, QString);
+  void ProgressUpdate(int, const QString&);
+  void ProcessFinished(bool, const QString&);
   void ArchivalSuccessful();
   void encryptedList(const QString& path);
   void errorMsg(const QString& msg);
@@ -103,7 +107,7 @@ private slots:
   void onError(QProcess::ProcessError error);
 
 private:
-  void parseLines(QStringList lines);
+  void parseLines(QStringList& lines);
 
   QProcess PROC;
 
@@ -120,6 +124,7 @@ private:
   bool LIST;
   bool starting7z_; // for 7z
   bool encryptionQueried_, encrypted_, encryptedList_; // for 7z
+  QStringList encryptedPaths_; // for 7z
   bool isGzip_, is7z_;
   QString pswrd_; // for 7z
   QString archiveParentDir_;

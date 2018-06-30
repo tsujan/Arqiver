@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>400</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,14 +70,20 @@
       <property name="dragDropMode">
        <enum>QAbstractItemView::DragOnly</enum>
       </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
       <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
       <property name="iconSize">
        <size>
-        <width>22</width>
-        <height>22</height>
+        <width>24</width>
+        <height>24</height>
        </size>
+      </property>
+      <property name="animated">
+       <bool>true</bool>
       </property>
       <attribute name="headerStretchLastSection">
        <bool>false</bool>

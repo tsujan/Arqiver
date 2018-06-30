@@ -49,14 +49,14 @@ public:
   mainWin();
   ~mainWin();
 
-  void LoadArguments(QStringList);
+  void LoadArguments(const QStringList& args);
 
 private slots:
   void NewArchive();
   void OpenArchive();
   void addFiles();
   void addDirs();
-  void remFiles();
+  void removeFiles();
   void extractFiles();
   void autoextractFiles();
   void autoArchiveFiles();
@@ -68,8 +68,8 @@ private slots:
   void UpdateTree();
 
   void ProcStarting();
-  void ProcFinished(bool, QString);
-  void ProcUpdate(int percent, QString txt);
+  void ProcFinished(bool, const QString& msg);
+  void ProcUpdate(int percent, const QString& txt);
   void openEncryptedList(const QString& path);
 
   void selectionChanged();
@@ -82,12 +82,12 @@ private:
   void closeEvent(QCloseEvent *event);
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
-  QTreeWidgetItem* findItem(QString path, QTreeWidgetItem *start = 0);
-  bool cleanTree(QStringList list); // returns true if anything gets cleaned
+  QTreeWidgetItem* findItem(const QString& path, QTreeWidgetItem *start = 0);
+  bool cleanTree(const QStringList& list); // returns true if anything gets cleaned
   QString CreateFileTypes();
   QHash<QString, QString> supportedMimeTypes();
   QString OpenFileTypes();
-  bool pswrdDialog(bool listEncryption = false);
+  bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
 
   QLabel *iconLabel_;
   Label *textLabel_;
@@ -97,6 +97,7 @@ private:
   Backend *BACKEND;
   QStringList aaFileList_, saFileList_;
   QString lastPath_, lastFilter_;
+  QString lastPswrd_;
   bool expandAll_;
   bool close_;
   bool processIsRunning_;
