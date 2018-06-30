@@ -11,3 +11,9 @@ Arqiver's homepage is <https://github.com/tsujan/Arqiver>.
 ## Credits:
 
 Arqiver is forked from lumina-archiver, belonging to Lumina (<https://github.com/lumina-desktop/lumina>).
+
+## Screenshot
+
+The active Qt widget style determines the look and feel of every Qt application. The following screenshot is taken with a Kvantum theme:
+
+![Arqiver](data/Arqiver.png?raw=true "Arqiver")
