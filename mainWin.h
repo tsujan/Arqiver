@@ -1,10 +1,3 @@
-/* Adapted from:
- * Lumina Archiver belonging to Lumina Desktop
- * Copyright (c) 2012-2017, Ken Moore (moorekou@gmail.com)
- * License: 3-clause BSD license
- * Homepage: https://github.com/lumina-desktop/lumina
- */
-
 /*
  * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
  *
@@ -36,6 +29,7 @@
 
 #include "backends.h"
 #include "label.h"
+#include "config.h"
 
 namespace Arqiver {
 
@@ -49,11 +43,11 @@ public:
   mainWin();
   ~mainWin();
 
-  void LoadArguments(const QStringList& args);
+  void loadArguments(const QStringList& args);
 
 private slots:
-  void NewArchive();
-  void OpenArchive();
+  void newArchive();
+  void openArchive();
   void addFiles();
   void addDirs();
   void removeFiles();
@@ -63,13 +57,13 @@ private slots:
   void simpleArchivetFiles();
   void simpleExtractFiles();
   void extractSelection();
-  void ViewFile(QTreeWidgetItem *it);
+  void viewFile(QTreeWidgetItem *it);
   void extractSingleFile(QTreeWidgetItem *it);
-  void UpdateTree();
+  void updateTree();
 
-  void ProcStarting();
-  void ProcFinished(bool, const QString& msg);
-  void ProcUpdate(int percent, const QString& txt);
+  void procStarting();
+  void procFinished(bool, const QString& msg);
+  void procUpdate(int percent, const QString& txt);
   void openEncryptedList(const QString& path);
 
   void selectionChanged();
@@ -82,11 +76,14 @@ private:
   void closeEvent(QCloseEvent *event);
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
+  void changeEvent(QEvent *event);
   QTreeWidgetItem* findItem(const QString& path, QTreeWidgetItem *start = 0);
   bool cleanTree(const QStringList& list); // returns true if anything gets cleaned
-  QString CreateFileTypes();
+  QString allArchivingTypes();
+  QString archivingTypes();
   QHash<QString, QString> supportedMimeTypes();
-  QString OpenFileTypes();
+  QString openingTypes();
+  QString filterToExtension(const QString& filter);
   bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
 
   QLabel *iconLabel_;
@@ -101,6 +98,8 @@ private:
   bool expandAll_;
   bool close_;
   bool processIsRunning_;
+
+  Config config_;
 };
 
 #endif

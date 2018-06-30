@@ -1,10 +1,3 @@
-/* Adapted from:
- * Lumina Archiver belonging to Lumina Desktop
- * Copyright (c) 2012-2017, Ken Moore (moorekou@gmail.com)
- * License: 3-clause BSD license
- * Homepage: https://github.com/lumina-desktop/lumina
- */
-
 /*
  * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
  *
@@ -36,10 +29,13 @@
 #include <QCheckBox>
 #include <QTimer>
 #include <QRegularExpression>
+#include <QDesktopWidget>
 
 #include <unistd.h> // getuid
 
 namespace Arqiver {
+
+static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar|zip|tgz|txz|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
 
 mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
@@ -95,9 +91,9 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionPassword->setEnabled(false);
 
   BACKEND = new Backend(this);
-  connect(BACKEND, &Backend::ProcessStarting, this, &mainWin::ProcStarting);
-  connect(BACKEND, &Backend::ProcessFinished, this, &mainWin::ProcFinished);
-  connect(BACKEND, &Backend::ProgressUpdate, this, &mainWin::ProcUpdate);
+  connect(BACKEND, &Backend::ProcessStarting, this, &mainWin::procStarting);
+  connect(BACKEND, &Backend::ProcessFinished, this, &mainWin::procFinished);
+  connect(BACKEND, &Backend::ProgressUpdate, this, &mainWin::procUpdate);
   connect(BACKEND, &Backend::encryptedList, this, &mainWin::openEncryptedList);
   connect(BACKEND, &Backend::errorMsg, this, [this](const QString& msg) {
     QMessageBox::critical(this, tr("Error"), msg);
@@ -107,8 +103,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   ui->toolBar->insertWidget(ui->actionAddFile, spacer);
 
-  connect(ui->actionNew, &QAction::triggered, this, &mainWin::NewArchive);
-  connect(ui->actionOpen, &QAction::triggered, this, &mainWin::OpenArchive);
+  connect(ui->actionNew, &QAction::triggered, this, &mainWin::newArchive);
+  connect(ui->actionOpen, &QAction::triggered, this, &mainWin::openArchive);
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
   connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
@@ -116,7 +112,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExtractSel, &QAction::triggered, this, &mainWin::extractSelection);
   connect(ui->actionAddDir, &QAction::triggered, this, &mainWin::addDirs);
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
-  connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::ViewFile);
+  connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
 
@@ -137,19 +133,60 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* support file dropping into the window */
   setAcceptDrops(true);
+
+  /* apply the configuration */
+  config_.readConfig();
+  if (config_.getRemSize()) {
+    resize(config_.getWinSize());
+    if (config_.getIsMaxed())
+      setWindowState(Qt::WindowMaximized);
+  }
+  else {
+    QSize startSize = config_.getStartSize();
+    QSize ag = QApplication::desktop()->availableGeometry().size();
+    if (startSize.width() > ag.width() || startSize.height() > ag.height()) {
+      startSize = startSize.boundedTo(ag);
+      config_.setStartSize(startSize);
+    }
+    else if (startSize.isEmpty()) {
+      startSize = QSize(600, 500);
+      config_.setStartSize(startSize);
+    }
+    resize(startSize);
+  }
+  lastFilter_ = config_.getLastFilter();
+  if (filterToExtension(lastFilter_).isEmpty()) // validate the filter
+    lastFilter_.clear();
 }
 
 mainWin::~mainWin() {
+  config_.writeConfig();
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {
   if(processIsRunning_)
     event->ignore();
-  else
+  else {
+    if (config_.getRemSize() && windowState() == Qt::WindowNoState)
+      config_.setWinSize(size());
+    config_.setLastFilter(lastFilter_);
     event->accept();
+  }
 }
 
-void mainWin::LoadArguments(const QStringList& args) {
+void mainWin::changeEvent(QEvent *event) {
+  if (config_.getRemSize() && event->type() == QEvent::WindowStateChange) {
+    if (windowState() == Qt::WindowFullScreen) // impossible
+      config_.setIsMaxed (true);
+    else if (windowState() == (Qt::WindowFullScreen ^ Qt::WindowMaximized))  // impossible
+      config_.setIsMaxed (true);
+    else
+      config_.setIsMaxed (windowState() == Qt::WindowMaximized);
+  }
+  QWidget::changeEvent (event);
+}
+
+void mainWin::loadArguments(const QStringList& args) {
   int action = -1;
   /*
      0: auto extracting   -> arqiver --ax Archive
@@ -206,7 +243,7 @@ void mainWin::LoadArguments(const QStringList& args) {
     connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
     connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
     //QTimer::singleShot(0, this, [this]() {
-      NewArchive();
+      newArchive();
     //});
   }
   else {
@@ -253,11 +290,16 @@ bool mainWin::cleanTree(const QStringList& list) {
   return changed;
 }
 
-QString mainWin::CreateFileTypes() {
+QString mainWin::allArchivingTypes() {
+  static const QString allTypes = tr("All Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)");
+  return allTypes;
+}
+
+QString mainWin::archivingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)");
+    types << allArchivingTypes();
     QStringList tmp;
     tmp << tr("Uncompressed Archive (*.tar)");
     tmp << tr("GZip Compressed Archive (*.tar.gz *.tgz)");
@@ -306,7 +348,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
   return supported;
 }
 
-QString mainWin::OpenFileTypes() {
+QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
@@ -321,59 +363,83 @@ QString mainWin::OpenFileTypes() {
   return fileTypes;
 }
 
-void mainWin::NewArchive() {
+QString mainWin::filterToExtension(const QString& filter) {
+  if (filter.isEmpty()) return QString();
+
+  QString f = filter;
+  auto left = f.indexOf('(');
+  if (left != -1) {
+    ++left;
+    auto right = f.indexOf(')', left);
+    if (right == -1)
+      right = f.length();
+    f = f.mid(left, right - left);
+  }
+  else
+    return QString();
+
+  auto list = f.simplified().split(' ');
+  if (!list.isEmpty()) {
+    f = list.at(0);
+    if (!f.isEmpty()) {
+      f.remove("*");
+    }
+  }
+  else return QString();
+
+  /* validate the extension */
+  if (!f.isEmpty()) {
+    QRegularExpressionMatch match;
+    int indx = f.indexOf(archivingExt, 0, &match);
+    if (indx == 0 && indx + match.capturedLength() == f.length())
+      return f;
+  }
+
+  return QString();
+}
+
+void mainWin::newArchive() {
   QString file;
 
   bool retry(true);
   QString path = saFileList_.isEmpty() ? lastPath_
                                        /* use the file name with simple archiving */
                                        : QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
-                                           ? saFileList_.at(0) + ".tar.gz"
+                                           ? saFileList_.at(0) + (lastFilter_.isEmpty()
+                                                                    ? ".tar.gz"
+                                                                    : filterToExtension(lastFilter_))
                                            : saFileList_.at(0);
   while (retry) {
-    QFileDialog dlg(this, tr("Create Archive"), path, CreateFileTypes());
+    QFileDialog dlg(this, tr("Create Archive"), path, archivingTypes());
     dlg.setAcceptMode(QFileDialog::AcceptSave);
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.selectNameFilter(lastFilter_);
     if (dlg.exec()) {
-      lastFilter_ = dlg.selectedNameFilter();
+      QString f = dlg.selectedNameFilter();
+      if (f != allArchivingTypes())
+        lastFilter_ = f;
       file = dlg.selectedFiles().at(0);
     }
     else return;
     if (file.isEmpty()) return;
-    static const QRegularExpression extensions("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar|zip|tgz|txz|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
-    if (file.indexOf(extensions) == -1) {
-      QString filter = lastFilter_;
-      auto left = filter.indexOf('(');
-      if (left != -1) {
-        ++left;
-        auto right = filter.indexOf(')', left);
-        if (right == -1)
-          right = filter.length();
-        filter = filter.mid(left, right - left);
-      }
-      auto list = filter.simplified().split(' ');
-      if (!list.isEmpty()) {
-        filter = list.at(0);
-        if (!filter.isEmpty()) {
-          filter.remove("*");
-          if (!filter.isEmpty())
-            file += filter;
-        }
-      }
-      if (file.indexOf('.') > -1 && QFile::exists(file)) {
-          QMessageBox::StandardButton btn = QMessageBox::question(this,
-                                                                  tr("Question"),
-                                                                  tr("The following archive already exists:")
-                                                                  + QString("\n\n%1\n\n").arg(file.section('/', -1))
-                                                                  + tr("Do you want to replace it?\n"));
-          if (btn == QMessageBox::No)
-            path = file;
-          else retry = false;
+    QRegularExpressionMatch match;
+    int indx = file.indexOf(archivingExt, 0, &match);
+    if (indx > 0 && indx + match.capturedLength() == file.length())
+      retry = false; // the input had an acceptable extension
+    else {
+      file += (lastFilter_.isEmpty() ? ".tar.gz" : filterToExtension(lastFilter_));
+      if (QFile::exists(file)) {
+        QMessageBox::StandardButton btn = QMessageBox::question(this,
+                                                                tr("Question"),
+                                                                tr("The following archive already exists:")
+                                                                + QString("\n\n%1\n\n").arg(file)
+                                                                + tr("Do you want to replace it?\n"));
+        if (btn == QMessageBox::No)
+          path = file;
+        else retry = false;
       }
       else retry = false;
     }
-    else retry = false; // the input had an extension
   }
 
   lastPath_ = file.section("/", 0, -2);
@@ -382,16 +448,13 @@ void mainWin::NewArchive() {
   BACKEND->loadFile(file);
 }
 
-void mainWin::OpenArchive() {
+void mainWin::openArchive() {
   QString file;
-  QFileDialog dlg(this, tr("Open Archive"), lastPath_, OpenFileTypes());
+  QFileDialog dlg(this, tr("Open Archive"), lastPath_, openingTypes());
   dlg.setAcceptMode(QFileDialog::AcceptOpen);
   dlg.setFileMode(QFileDialog::ExistingFile);
-  dlg.selectNameFilter(lastFilter_);
-  if (dlg.exec()) {
-    lastFilter_ = dlg.selectedNameFilter();
+  if (dlg.exec())
     file = dlg.selectedFiles().at(0);
-  }
   if (file.isEmpty()) return;
   lastPswrd_.clear();
   lastPath_ = file.section("/", 0, -2);
@@ -630,7 +693,7 @@ void mainWin::extractSelection(){
   BACKEND->startExtract(dir, selList);
 }
 
-void mainWin::ViewFile(QTreeWidgetItem *it) {
+void mainWin::viewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
       && BACKEND->isEncryptedPath(it->whatsThis(0))
@@ -652,7 +715,7 @@ static inline QString displaySize(const qint64 size) {
   return (QString::number(qRound(displaySize)) + labels[i]);
 }
 
-void mainWin::UpdateTree() {
+void mainWin::updateTree() {
   setEnabled(false);
   QStringList files = BACKEND->hierarchy();
   files.sort();
@@ -732,7 +795,7 @@ void mainWin::UpdateTree() {
   }
 }
 
-void mainWin::ProcStarting() {
+void mainWin::procStarting() {
   processIsRunning_ = true;
 
   statusProgress_->setRange(0, 0);
@@ -747,14 +810,14 @@ void mainWin::ProcStarting() {
   ui->label_archive->setText(BACKEND->currentFile());
 }
 
-void mainWin::ProcFinished(bool success, const QString& msg) {
+void mainWin::procFinished(bool success, const QString& msg) {
   processIsRunning_ = false;
 
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile());
 
-  UpdateTree();
+  updateTree();
   statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
   statusProgress_->setVisible(false);
@@ -789,7 +852,7 @@ void mainWin::ProcFinished(bool success, const QString& msg) {
     QTimer::singleShot (500, this, SLOT (close()));
 }
 
-void mainWin::ProcUpdate(int percent, const QString& txt) {
+void mainWin::procUpdate(int percent, const QString& txt) {
   statusProgress_->setMaximum(percent < 0 ? 0 : 100);
   statusProgress_->setValue(percent);
   if (!txt.isEmpty())

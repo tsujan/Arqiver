@@ -7,12 +7,14 @@ HEADERS	+= mainWin.h \
            backends.h \
            label.h \
            treeWidget.h \
-           svgicons.h
+           svgicons.h \
+           config.h
 
 SOURCES	+= main.cpp \
            mainWin.cpp \
            backends.cpp \
-           svgicons.cpp
+           svgicons.cpp \
+           config.cpp
 
 FORMS += mainWin.ui about.ui
 

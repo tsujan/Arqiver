@@ -1,10 +1,3 @@
-/* Adapted from:
- * Lumina Archiver belonging to Lumina Desktop
- * Copyright (c) 2012-2017, Ken Moore (moorekou@gmail.com)
- * License: 3-clause BSD license
- * Homepage: https://github.com/lumina-desktop/lumina
- */
-
 /*
  * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
  *

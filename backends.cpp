@@ -1,10 +1,3 @@
-/* Adapted from:
- * Lumina Archiver belonging to Lumina Desktop
- * Copyright (c) 2012-2017, Ken Moore (moorekou@gmail.com)
- * License: 3-clause BSD license
- * Homepage: https://github.com/lumina-desktop/lumina
- */
-
 /*
  * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
  *
@@ -33,6 +26,7 @@
 #include <QStandardPaths>
 #include <QMimeDatabase>
 #include <QMimeData>
+#include <QRegularExpression>
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
@@ -223,7 +217,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
       QCoreApplication::processEvents();
     emit ProcessFinished(tmpProc.exitCode() == 0, "");
     loadFile(filepath_);
-    return;
+    return; // FIXME: Unfortunately, onError() can't be called here
   }
   if (is7z_) {
     QStringList args;
@@ -555,13 +549,13 @@ void Backend::parseLines (QStringList& lines) {
         if (!info.at(2).contains(".")) continue; // bottom line
         // Format: [date, time, attr, size, compressed size, name]
         if(info.size() == 5) {
-          file = lines[i].right(lines[i].size() - Name).trimmed();
+          file = lines[i].right(lines[i].size() - Name);
           contents_.insert(file, QStringList() << info[2] << info[3] << QString::number(0));
         }
         else { // info.size() == 6
           if (lines[i].at(Name - 3) == ' ')
             info[4] = QString::number(0);
-          file = lines[i].right(lines[i].size() - Name).trimmed();
+          file = lines[i].right(lines[i].size() - Name);
           contents_.insert(file, QStringList() << info[2] << info[3] << info[4]); //Save the
         }
         if (!file.isEmpty()) {
@@ -594,13 +588,11 @@ void Backend::parseLines (QStringList& lines) {
       }
       return;
     }
-    QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
-    //Format: [perms, ?, user, group, size, month, day, time, file]
-    if (info.startsWith("x ") && filepath_.endsWith(".zip")) {
-      // ZIP archives do not have all the extra information - just filenames
-      while (info.length() > 2)
-        info[1] = info[1] + " " + info[2];
-      QString file = info[1];
+    QRegularExpressionMatch match;
+    int indx = lines[i].indexOf(QRegularExpression("^\\s*x\\s+"), 0 , &match);
+    if (indx == 0 && getMimeType(filepath_) == "application/zip") {
+      /* ZIP archives may not have all the extra information - just file names */
+      QString file = lines[i].right(lines[i].length() - match.capturedLength());
       QString perms = "";
       if(file.endsWith("/")) {
         perms = "d";
@@ -619,12 +611,13 @@ void Backend::parseLines (QStringList& lines) {
       }
       contents_.insert (file, QStringList() << perms << "-1" << ""); // [perms, size, linkto ]
     }
-    else if (info.length() < 9) continue; // invalid line
-    //TAR Archive parsing
-    while (info.length() > 9) {
-      info[8] = info[8] + " " + info[9];
-      info.removeAt(9); //Filename has spaces in it
-    }
+    // here, lines[i] is like: -rw-r--r--  0 1000   1000        7 Jun 30 23:49 PATH
+    indx = lines[i].indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
+    if (indx != 0 || match.capturedLength() == lines[i].length())
+      continue; // invalid line
+    QStringList info;
+    info << lines[i].left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
+    info << lines[i].right(lines[i].length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
     QString file = info[8];
     if(file.endsWith("/"))

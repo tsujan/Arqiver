@@ -1,10 +1,3 @@
-/* Adapted from:
- * Lumina Archiver belonging to Lumina Desktop
- * Copyright (c) 2012-2017, Ken Moore (moorekou@gmail.com)
- * License: 3-clause BSD license
- * Homepage: https://github.com/lumina-desktop/lumina
- */
-
 /*
  * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
  *
@@ -97,12 +90,20 @@ int  main(int argc, char **argv) {
     if (QString(argv[i]).startsWith("--"))
       args << QString(argv[i]);
     else {
-      args << QFileInfo (QString(argv[i])).absoluteFilePath();
+      QString str = QString::fromUtf8 (argv[i]);
+      if (str.contains ("/")) {
+        if (str.startsWith ("file://"))
+          str = QUrl (str).toLocalFile();
+        /* always an absolute path (works around KDE's double slash bug too) */
+        QFileInfo fInfo (str);
+        str = fInfo.absoluteFilePath();
+      }
+      args << str;
     }
   }
 
   Arqiver::mainWin W;
-  W.LoadArguments(args);
+  W.loadArguments(args);
   W.show();
   return  a.exec();
 }
