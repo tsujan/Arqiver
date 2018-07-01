@@ -7,3 +7,4 @@ V0.1.0
  * Added lock emblems to encrypted item icons.
  * Remember the window size and the last archiving filter.
  * Handle spaces in file names.
+ * Item context menu.

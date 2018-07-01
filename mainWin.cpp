@@ -91,9 +91,9 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionPassword->setEnabled(false);
 
   BACKEND = new Backend(this);
-  connect(BACKEND, &Backend::ProcessStarting, this, &mainWin::procStarting);
-  connect(BACKEND, &Backend::ProcessFinished, this, &mainWin::procFinished);
-  connect(BACKEND, &Backend::ProgressUpdate, this, &mainWin::procUpdate);
+  connect(BACKEND, &Backend::processStarting, this, &mainWin::procStarting);
+  connect(BACKEND, &Backend::processFinished, this, &mainWin::procFinished);
+  connect(BACKEND, &Backend::progressUpdate, this, &mainWin::procUpdate);
   connect(BACKEND, &Backend::encryptedList, this, &mainWin::openEncryptedList);
   connect(BACKEND, &Backend::errorMsg, this, [this](const QString& msg) {
     QMessageBox::critical(this, tr("Error"), msg);
@@ -115,6 +115,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
+  connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
 
   connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
@@ -189,7 +190,7 @@ void mainWin::changeEvent(QEvent *event) {
 void mainWin::loadArguments(const QStringList& args) {
   int action = -1;
   /*
-     0: auto extracting   -> arqiver --ax Archive
+     0: auto extracting   -> arqiver --ax Archive(s)
      1: auto archiving    -> arqiver --aa Archive Files
      2: simple extracting -> arqiver --sx Archive
      3: simple archiving  -> arqiver --sa Files
@@ -217,31 +218,36 @@ void mainWin::loadArguments(const QStringList& args) {
   }
 
   if (files.isEmpty()) return;
+  files.removeDuplicates();
   if (!files.at(0).isEmpty())
     lastPath_ = files.at(0).section("/", 0, -2);
 
   textLabel_->setText(tr("Opening Archive..."));
   if (action == 0) {
-    connect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoextractFiles);
-    connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
-    BACKEND->loadFile(files[0]);
+    axFileList_ = files;
+    /* here, we don't wait for a successful operation because all files
+       should be processed and the window should be closed at the end*/
+    connect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
+    connect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
+    BACKEND->loadFile(axFileList_.first());
+    axFileList_.removeFirst();
   }
   else if (action == 1) {
     aaFileList_ = files;
     aaFileList_.removeFirst();
-    connect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
-    connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
+    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::autoArchiveFiles);
+    connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
     BACKEND->loadFile(files[0]);
   }
   else if (action == 2) {
-    connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleExtractFiles);
-    connect(BACKEND, &Backend::ExtractSuccessful, [this] {close_ = true;});
+    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleExtractFiles);
+    connect(BACKEND, &Backend::extractionSuccessful, [this] {close_ = true;});
     BACKEND->loadFile(files[0]);
   }
   else if (action == 3) {
     saFileList_ = files;
-    connect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
-    connect(BACKEND, &Backend::ArchivalSuccessful, [this] {close_ = true;});
+    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleArchivetFiles);
+    connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
     //QTimer::singleShot(0, this, [this]() {
       newArchive();
     //});
@@ -568,6 +574,20 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
 
+void mainWin::listContextMenu(const QPoint& p) {
+  QModelIndex index = ui->tree_contents->indexAt(p);
+  if (!index.isValid()) return;
+  QTreeWidgetItem *item = ui->tree_contents->getItemFromIndex (index);
+  if (BACKEND->isDir(item->whatsThis(0)))
+    return;
+
+  QMenu menu;
+  menu.addAction(ui->actionExtractSel);
+  QAction *action = menu.addAction(tr("View This Item"));
+  connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
+  menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
+}
+
 bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
   QDialog *dialog = new QDialog(this);
   dialog->setWindowTitle(tr("Enter Password"));
@@ -633,6 +653,13 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
     res = false;
     break;
   }
+
+  if (!res) { // don't proceed with autoextraction
+    disconnect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
+    disconnect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
+    axFileList_.clear();
+  }
+
   return res;
 }
 
@@ -648,7 +675,6 @@ void mainWin::extractFiles() {
 }
 
 void mainWin::autoextractFiles() {
-  disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoextractFiles);
   QString dir = BACKEND->currentFile().section("/",0,-2);
   if (dir.isEmpty()) return;
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
@@ -658,19 +684,30 @@ void mainWin::autoextractFiles() {
   BACKEND->startExtract(dir);
 }
 
+void mainWin::nextAutoExtraction() {
+  if (axFileList_.isEmpty()) {
+    processIsRunning_ = false;
+    QTimer::singleShot (500, this, SLOT (close()));
+  }
+  else {
+    BACKEND->loadFile(axFileList_.first());
+    axFileList_.removeFirst();
+  }
+}
+
 void mainWin::simpleExtractFiles() {
-  disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleExtractFiles);
+  disconnect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleExtractFiles);
   extractFiles();
 }
 
 void mainWin::autoArchiveFiles() { // no protection against overwriting
-  disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::autoArchiveFiles);
+  disconnect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::autoArchiveFiles);
   textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(aaFileList_);
 }
 
 void mainWin::simpleArchivetFiles() {
-  disconnect(BACKEND, &Backend::FileLoaded, this, &mainWin::simpleArchivetFiles);
+  disconnect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleArchivetFiles);
   textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(saFileList_);
 }
@@ -864,6 +901,7 @@ void mainWin::openEncryptedList(const QString& path) {
     processIsRunning_ = false; // it's safe to exit
     return;
   }
+  axFileList_.removeOne(path);
   BACKEND->loadFile(path, true);
 }
 

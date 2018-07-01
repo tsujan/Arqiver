@@ -39,6 +39,11 @@ public:
   TreeWidget(QWidget *parent = nullptr) : QTreeWidget(parent) {
     dragStarted_ = false; // not needed
     setDragDropMode(QAbstractItemView::DragOnly);
+    setContextMenuPolicy (Qt::CustomContextMenu);
+  }
+
+  QTreeWidgetItem *getItemFromIndex(const QModelIndex &index) const {
+    return itemFromIndex(index);
   }
 
 signals:

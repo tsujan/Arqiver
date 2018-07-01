@@ -81,12 +81,14 @@ public:
   bool is7zSingleExtracted(const QString& archivePath) const;
 
 signals:
-  void FileLoaded();
-  void ExtractSuccessful();
-  void ProcessStarting();
-  void ProgressUpdate(int, const QString&);
-  void ProcessFinished(bool, const QString&);
-  void ArchivalSuccessful();
+  void loadingFinished(); // emitted regardless of success
+  void loadingSuccessful();
+  void extractionFinished(); // emitted regardless of success
+  void extractionSuccessful();
+  void processStarting();
+  void progressUpdate(int, const QString&);
+  void processFinished(bool, const QString&);
+  void archivingSuccessful();
   void encryptedList(const QString& path);
   void errorMsg(const QString& msg);
 

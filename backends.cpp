@@ -40,7 +40,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   PROC.setProcessChannelMode(QProcess::MergedChannels);
   connect(&PROC, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&PROC, &QProcess::readyReadStandardOutput, this, &Backend::processData);
-  connect(&PROC, &QProcess::started, this, &Backend::ProcessStarting);
+  connect(&PROC, &QProcess::started, this, &Backend::processStarting);
   connect(&PROC, &QProcess::errorOccurred, this, &Backend::onError);
   LIST = false;
   isGzip_ = is7z_ = false;
@@ -115,8 +115,9 @@ void Backend::loadFile(const QString& path, bool withPassword) {
     if (is7z_)
       encryptionQueried_ = true; // an empty archive doesn't have encryption (yet)
     contents_.clear();
-    emit FileLoaded();
-    emit ProcessFinished(true, QString());
+    emit loadingFinished();
+    emit loadingSuccessful();
+    emit processFinished(true, QString());
   }
 }
 
@@ -209,13 +210,13 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
 
   if (isGzip_) {
     if (QFile::exists(filepath_)) return;
-    emit ProcessStarting();
+    emit processStarting();
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(filepath_);
     tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]); // "gzip -c file > archive.gz"
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit ProcessFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, "");
     loadFile(filepath_);
     return; // FIXME: Unfortunately, onError() can't be called here
   }
@@ -317,7 +318,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       PROC.start("gzip", QStringList() << "-d" << "-k" << filepath_);
       return;
     }*/
-    emit ProcessStarting();
+    emit processStarting();
     QProcess tmpProc;
     QString extName = filepath_.section("/", -1);
     if(extName.contains(".")) {
@@ -331,8 +332,9 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit ProcessFinished(tmpProc.exitCode() == 0, "");
-    emit ExtractSuccessful();
+    emit processFinished(tmpProc.exitCode() == 0, "");
+    emit extractionFinished();
+    emit extractionSuccessful();
     return;
   }
   QStringList args;
@@ -440,14 +442,14 @@ void Backend::startViewFile(const QString& path) {
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_;
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
-      emit ProcessStarting();
+      emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
       while (!tmpProc.waitForFinished(500))
         QCoreApplication::processEvents();
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
-      emit ProcessFinished(tmpProc.exitCode() == 0, "");
+      emit processFinished(tmpProc.exitCode() == 0, "");
       if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
         QProcess::startDetached("xdg-open", QStringList() << fileName);
       return;
@@ -456,13 +458,13 @@ void Backend::startViewFile(const QString& path) {
       cmnd = TAR_CMD;
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
-    emit ProcessStarting();
+    emit processStarting();
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
     tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit ProcessFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, "");
   }
   if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QProcess::startDetached("xdg-open", QStringList() << fileName);
@@ -494,27 +496,27 @@ QString Backend::extractSingleFile(const QString& path) {
       if (encrypted_ )
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y";
-      emit ProcessStarting();
+      emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
       while (!tmpProc.waitForFinished(500))
         QCoreApplication::processEvents();
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString();
-      emit ProcessFinished(tmpProc.exitCode() == 0, "");
+      emit processFinished(tmpProc.exitCode() == 0, "");
       return fileName;
     }
     else {
       cmnd = TAR_CMD;
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
-    emit ProcessStarting();
+    emit processStarting();
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
     tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit ProcessFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, "");
   }
   return fileName;
 }
@@ -699,26 +701,27 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   if (is7z_) {
     starting7z_ = false;
     if (keyArgs_.contains("l")) { // listing
+      emit loadingFinished();
       if (retcode != 0) {
         contents_.clear();
         result = tr("Could not read archive");
       }
       else if (result.isEmpty()) {
         result = tr("Archive Loaded");
-        emit FileLoaded();
+        emit loadingSuccessful();
       }
-      emit ProcessFinished((retcode == 0), result);
+      emit processFinished((retcode == 0), result);
     }
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
       result = tr("Modification Finished");
-      emit ArchivalSuccessful();
+      emit archivingSuccessful();
       if (!encryptedList_) {
         /* We want to know which files are encrypted after an addition.
            After a deletion, it makes no difference. */
         encryptionQueried_ = false;
       }
       startList(encryptedList_);
-      emit ProcessFinished(retcode == 0, result);
+      emit processFinished(retcode == 0, result);
       result.clear();
     }
     else { // extraction
@@ -729,63 +732,69 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
             QProcess::startDetached("xdg-open \"" + args[i].section("-o", 1, -1) + "\"");
         }
       }*/
+      emit extractionFinished();
       if (retcode == 0)
-        emit ExtractSuccessful();
-      startList(encryptedList_);
+        emit extractionSuccessful();
     }
     return;
   }
   if (keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
-    if (retcode != 0) { // could not read archive
+    if (retcode != 0) {
       contents_.clear();
       result = tr("Could not read archive");
     }
     else if (result.isEmpty()) {
-      result = tr("Archive Loaded");
-      emit FileLoaded();
+      emit loadingFinished();
+      if (retcode == 0) {
+        result = tr("Archive Loaded");
+        emit loadingSuccessful();
+      }
       if (isGzip_)
-        emit ArchivalSuccessful(); // because the created archive is just loaded (-> startAdd)
+        emit archivingSuccessful(); // because the created archive is just loaded (-> startAdd)
     }
-    emit ProcessFinished((retcode == 0), result);
+    emit processFinished((retcode == 0), result);
     result.clear();
   }
   else
   {
     bool needupdate = true;
-    if (keyArgs_.contains("-x") && retcode == 0) { // extraction
+    if (keyArgs_.contains("-x")) { // extraction
       needupdate = false;
-      /*if (args.count("--include") == 1) {
-        //Need to find the full path to the (single) extracted file
-        QString path = args.last() +"/"+ args[ args.indexOf("--include") + 1].section("/", -1);
-        QFile::setPermissions(path, QFileDevice::ReadOwner);
-        QProcess::startDetached("xdg-open  \"" + path + "\"");
-      }
-      else {
-        //Multi-file extract - open the dir instead
-        QString dir = args.last();
-        //Check to see if tar extracted into a new subdir it just created
-        if (QFile::exists(dir + "/" + filepath_.section("/", -1).section(".", 0, 0))) {
-          dir = dir + "/" + filepath_.section("/", -1).section(".", 0, 0);
+      emit extractionFinished();
+      if (retcode == 0)
+      {
+        result = tr("Extraction Finished");
+        emit extractionSuccessful();
+        /*if (args.count("--include") == 1) {
+          //Need to find the full path to the (single) extracted file
+          QString path = args.last() +"/"+ args[ args.indexOf("--include") + 1].section("/", -1);
+          QFile::setPermissions(path, QFileDevice::ReadOwner);
+          QProcess::startDetached("xdg-open  \"" + path + "\"");
         }
-        QProcess::startDetached("xdg-open \"" + dir + "\""); //just extracted to a dir - open it now
-      }*/
-    }
-    else if (keyArgs_.contains("-c") && QFile::exists(tmpfilepath_)) {
-      if (retcode == 0) {
-        QFile::remove(filepath_);
-        QFile::rename(tmpfilepath_, filepath_);
+        else {
+          //Multi-file extract - open the dir instead
+          QString dir = args.last();
+          //Check to see if tar extracted into a new subdir it just created
+          if (QFile::exists(dir + "/" + filepath_.section("/", -1).section(".", 0, 0))) {
+            dir = dir + "/" + filepath_.section("/", -1).section(".", 0, 0);
+          }
+          QProcess::startDetached("xdg-open \"" + dir + "\""); //just extracted to a dir - open it now
+        }*/
       }
-      else
-        QFile::remove(tmpfilepath_);
-    }
-    if (keyArgs_.contains("-x") || keyArgs_.contains("-d")) {  // extraction
-      result = tr("Extraction Finished");
-      emit ExtractSuccessful();
     }
     else if (keyArgs_.contains("-c")) { // addition/removal
+      if (QFile::exists(tmpfilepath_)) {
+        if (retcode == 0) {
+          QFile::remove(filepath_);
+          QFile::rename(tmpfilepath_, filepath_);
+        }
+        else
+          QFile::remove(tmpfilepath_);
+      }
+
       result = tr("Modification Finished");
       if (insertQueue_.isEmpty())
-        emit ArchivalSuccessful();
+        emit archivingSuccessful();
       else {
         needupdate = false;
         QTimer::singleShot(0, this, SLOT(startInsertFromQueue()));
@@ -794,7 +803,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     if (needupdate)
       startList();
     else {
-      emit ProcessFinished(retcode == 0, result);
+      emit processFinished(retcode == 0, result);
       result.clear();
     }
   }
@@ -852,13 +861,13 @@ void Backend::processData() {
       /* while extracting the archive, another file in it had another password */
       pswrd_ = QString();
     }
-    emit ProgressUpdate(-1, "");
+    emit progressUpdate(-1, "");
   }
   else {
     QString info;
     if (!lines.isEmpty())
       info = lines.last();
-    emit ProgressUpdate(-1, info);
+    emit progressUpdate(-1, info);
   }
 }
 

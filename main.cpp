@@ -48,10 +48,10 @@ int  main(int argc, char **argv) {
             "Options:\n\n"\
             "--help or -h     Show this help and exit.\n"\
             "--version or -v  Show version information and exit.\n"\
-            "--sx             Extract an archive, like: arqiver --sx ARCHIVE\n"\
-            "--sa             Archive file(s), like: arqiver --sa FILES\n"\
-            "--ax             Auto-extract an archive, like: arqiver --ax ARCHIVE\n"\
-            "--aa             Auto-archive file(s), like: arqiver --aa ARCHIVE FILES" << endl;
+            "--sx             Extract an archive: arqiver --sx ARCHIVE\n"\
+            "--sa             Archive file(s): arqiver --sa FILE(S)\n"\
+            "--ax             Auto-extract archive(s): arqiver --ax ARCHIVE(S)\n"\
+            "--aa             Auto-archive file(s): arqiver --aa ARCHIVE FILE(S)" << endl;
     return 0;
   }
   else if (option == "--version" || option == "-v") {
