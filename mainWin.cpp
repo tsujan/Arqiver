@@ -793,13 +793,14 @@ void mainWin::updateTree() {
     else {
       QSize icnSize = ui->tree_contents->iconSize();
       if (icnSize.width() > 16 && BACKEND->isEncryptedPath(it->whatsThis(0))) {
-        QPixmap icn = QIcon::fromTheme(mime.replace('/', '-')).pixmap(icnSize);
-        QPixmap emblem = symbolicIcon::icon(":icons/emblem-lock.svg").pixmap(16, 16);
-        QPixmap pix(24, 24);
+        int pixelRatio = qApp->devicePixelRatio();
+        QPixmap icn = QIcon::fromTheme(mime.replace('/', '-')).pixmap(icnSize * pixelRatio);
+        QPixmap emblem = symbolicIcon::icon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+        QPixmap pix(icnSize * pixelRatio);
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
         painter.drawPixmap(0, 0, icn);
-        int offset = icnSize.width() - 16;
+        int offset = (icnSize.width() - 16) * pixelRatio;
         painter.drawPixmap(offset, offset, emblem);
         it->setIcon(0, QIcon(pix));
       }

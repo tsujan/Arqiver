@@ -390,33 +390,33 @@ Please install it for this kind of archive!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="950"/>
+        <location filename="../../mainWin.cpp" line="951"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="951"/>
+        <location filename="../../mainWin.cpp" line="952"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="952"/>
+        <location filename="../../mainWin.cpp" line="953"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="953"/>
+        <location filename="../../mainWin.cpp" line="954"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="954"/>
         <location filename="../../mainWin.cpp" line="955"/>
+        <location filename="../../mainWin.cpp" line="956"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="954"/>
+        <location filename="../../mainWin.cpp" line="955"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>
