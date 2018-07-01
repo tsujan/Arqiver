@@ -338,7 +338,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     return;
   }
   QStringList args;
-  if(is7z_) {
+  if(is7z_) { // extract the whole archive; no selective extraction
     if (encrypted_)
       args << "-p" + pswrd_;
     args << (preservePaths ? "x" : "e") << fileArgs_;
@@ -695,6 +695,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     }
     return;
   }
+
   static QString result;
   processData();
   LIST = false;
@@ -710,7 +711,6 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         result = tr("Archive Loaded");
         emit loadingSuccessful();
       }
-      emit processFinished((retcode == 0), result);
     }
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
       result = tr("Modification Finished");
@@ -721,8 +721,6 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         encryptionQueried_ = false;
       }
       startList(encryptedList_);
-      emit processFinished(retcode == 0, result);
-      result.clear();
     }
     else { // extraction
       /*if (retcode == 0) {
@@ -736,6 +734,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       if (retcode == 0)
         emit extractionSuccessful();
     }
+    emit processFinished((retcode == 0), result);
+    result.clear();
     return;
   }
   if (keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing

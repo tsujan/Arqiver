@@ -582,8 +582,9 @@ void mainWin::listContextMenu(const QPoint& p) {
     return;
 
   QMenu menu;
-  menu.addAction(ui->actionExtractSel);
-  QAction *action = menu.addAction(tr("View This Item"));
+  if (!BACKEND->is7z())
+    menu.addAction(ui->actionExtractSel);
+  QAction *action = menu.addAction(tr("View Current Item"));
   connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }
@@ -712,8 +713,14 @@ void mainWin::simpleArchivetFiles() {
   BACKEND->startAdd(saFileList_);
 }
 
-void mainWin::extractSelection(){
+void mainWin::extractSelection() {
   if (ui->tree_contents->currentItem() == 0) return; // nothing selected
+
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    /* not needed because there's no selective extraction for 7z */
+    if (!pswrdDialog()) return;
+  }
+
   QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   if (sel.isEmpty()) {
     sel << ui->tree_contents->currentItem();
@@ -722,9 +729,11 @@ void mainWin::extractSelection(){
   for (int i = 0; i < sel.length(); i++) {
     selList << sel[i]->whatsThis(0);
   }
+
   selList.removeDuplicates();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
+
   lastPath_ = dir;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir, selList);
@@ -881,7 +890,8 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
   ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
   ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
-  ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
+  ui->actionExtractSel->setEnabled(!BACKEND->is7z() // no selective extraction for 7z
+                                   && info.exists() && !ui->tree_contents->selectedItems().isEmpty());
   ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
   ui->actionPassword->setEnabled(BACKEND->is7z());
 
@@ -906,7 +916,8 @@ void mainWin::openEncryptedList(const QString& path) {
 }
 
 void mainWin::selectionChanged() {
-  ui->actionExtractSel->setEnabled(!ui->tree_contents->selectedItems().isEmpty());
+  ui->actionExtractSel->setEnabled(!BACKEND->is7z() // no selective extraction for 7z
+                                   && !ui->tree_contents->selectedItems().isEmpty());
 }
 
 void mainWin::aboutDialog() {
