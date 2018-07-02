@@ -12,30 +12,30 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="714"/>
-        <location filename="../../backends.cpp" line="750"/>
+        <location filename="../../backends.cpp" line="716"/>
+        <location filename="../../backends.cpp" line="752"/>
         <source>Could not read archive</source>
         <translation>La arkivo ne legeblis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="717"/>
-        <location filename="../../backends.cpp" line="755"/>
+        <location filename="../../backends.cpp" line="719"/>
+        <location filename="../../backends.cpp" line="757"/>
         <source>Archive Loaded</source>
         <translation>Arkivo Ŝargita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="722"/>
-        <location filename="../../backends.cpp" line="801"/>
+        <location filename="../../backends.cpp" line="724"/>
+        <location filename="../../backends.cpp" line="803"/>
         <source>Modification Finished</source>
         <translation>Modifado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="772"/>
+        <location filename="../../backends.cpp" line="774"/>
         <source>Extraction Finished</source>
         <translation>Ekstrakto Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="882"/>
+        <location filename="../../backends.cpp" line="884"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 mankas al via sistemo.
@@ -268,8 +268,8 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="348"/>
-        <source>READ-ONLY: Compressed SVG Image (.svgz)</source>
-        <translation>NURLEGA: Kompaktigita SVG-Bildo (.svgz)</translation>
+        <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
+        <translation>NURLEGA: Kompaktigita SVG-Bildo (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="349"/>

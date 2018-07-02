@@ -345,7 +345,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-7z-compressed", tr("7-Zip Archive (*.7z)"));
     supported.insert ("application/gzip", tr("Gzip Archive (*.gz)"));
     supported.insert ("application/x-gzpdf", tr("Gzip Compressed PDF Document (*.pdf.gz)"));
-    supported.insert ("image/svg+xml-compressed", tr("READ-ONLY: Compressed SVG Image (.svgz)"));
+    supported.insert ("image/svg+xml-compressed", tr("READ-ONLY: Compressed SVG Image (*.svgz)"));
     supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO Image (*.iso *.img)"));
     supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO Image (*.iso *.img)"));
     supported.insert ("application/x-xar", tr("READ-ONLY: XAR Archive (*.xar)"));

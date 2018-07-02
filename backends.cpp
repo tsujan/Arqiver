@@ -124,7 +124,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
 bool Backend::canModify() {
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
-    validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << "svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
+    validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << ".svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
   }
   for (int i = 0; i < validEXT.length(); i++) {
     if (filepath_.endsWith(validEXT[i]))
@@ -322,9 +322,11 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     QProcess tmpProc;
     QString extName = filepath_.section("/", -1);
     if(extName.contains(".")) {
-    extName = extName.section(".", 0, -2);
-    if (extName.isEmpty())
+      extName = extName.section(".", 0, -2);
+      if (extName.isEmpty())
         extName = "arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+      else if (filepath_.endsWith(".svgz") && !extName.endsWith(".svg"))
+        extName += ".svg";
     }
     extName = path + "/" + extName;
     skipExistingFiles(extName);
