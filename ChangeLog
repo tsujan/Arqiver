@@ -5,6 +5,7 @@ V0.1.0
  * Save the vertical space by making real use of the status bar.
  * Better support for multi-password 7z archives.
  * Added lock emblems to encrypted item icons.
+ * Added symlink emblem.
  * Remember the window size and the last archiving filter.
  * Handle spaces in file names.
  * Item context menu.

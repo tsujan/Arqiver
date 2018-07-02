@@ -87,6 +87,7 @@ private:
   QString openingTypes();
   QString filterToExtension(const QString& filter);
   bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
+  QPixmap emblemize(const QString icon, const QSize& icnSize, bool lock);
 
   QLabel *iconLabel_;
   Label *textLabel_;

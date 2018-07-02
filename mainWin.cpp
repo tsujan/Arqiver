@@ -122,8 +122,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   connect (ui->actionAbout, &QAction::triggered, this, &mainWin::aboutDialog);
 
-  /* the labels and column sizes of the header */
-  ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size"));
+  /* the labels and column sizes of the header (the 4th hidden column will
+     be used for putting directory items first and will save the lock info) */
+  ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size") << "");
+  ui->tree_contents->header()->setSectionHidden(3, true);
   ui->tree_contents->header()->setSectionResizeMode(0, QHeaderView::Stretch);
   QTimer::singleShot(0, this, [this]() {
     ui->tree_contents->resizeColumnToContents(2);
@@ -226,7 +228,7 @@ void mainWin::loadArguments(const QStringList& args) {
   if (action == 0) {
     axFileList_ = files;
     /* here, we don't wait for a successful operation because all files
-       should be processed and the window should be closed at the end*/
+       should be processed and the window should be closed at the end */
     connect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
     connect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
     BACKEND->loadFile(axFileList_.first());
@@ -259,6 +261,7 @@ void mainWin::loadArguments(const QStringList& args) {
 }
 
 QTreeWidgetItem* mainWin::findItem(const QString& path, QTreeWidgetItem *start) {
+  if (path.isEmpty()) return nullptr;
   if (start == nullptr) {
     for (int i = 0; i < ui->tree_contents->topLevelItemCount(); i++) {
       if (ui->tree_contents->topLevelItem(i)->whatsThis(0) == path)
@@ -279,14 +282,24 @@ QTreeWidgetItem* mainWin::findItem(const QString& path, QTreeWidgetItem *start) 
 }
 
 bool mainWin::cleanTree(const QStringList& list) {
-  if (list.isEmpty() && ui->tree_contents->topLevelItemCount() > 0) {
+  if (ui->tree_contents->topLevelItemCount() == 0)
+    return false;
+  if (list.isEmpty()) {
     ui->tree_contents->clear();
     return true;
   }
   bool changed = false;
   QTreeWidgetItemIterator it(ui->tree_contents);
   while (*it) {
-    if (!list.contains((*it)->whatsThis(0))) {
+    const QString path = (*it)->whatsThis(0);
+    if (!list.contains(path)
+        || (*it)->data(2, Qt::UserRole).toString() != BACKEND->sizeString(path) // size change
+        /* also consider the possibility of lock state change*/
+        || (BACKEND->is7z()
+            && (((*it)->data(3, Qt::UserRole).toString() == "lock" // see updateTree()
+                 && !BACKEND->isEncryptedPath(path))
+                || ((*it)->data(3, Qt::UserRole).toString().isEmpty()
+                    && BACKEND->isEncryptedPath(path))))) {
       qDeleteAll((*it)->takeChildren());
       delete *it;
       changed = true;
@@ -764,65 +777,88 @@ static inline QString displaySize(const qint64 size) {
   return (QString::number(qRound(displaySize)) + labels[i]);
 }
 
+QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lock) {
+  int pixelRatio = qApp->devicePixelRatio();
+  QPixmap icn = QIcon::fromTheme(iconName).pixmap(icnSize * pixelRatio);
+  int offset = 0;
+  QPixmap emblem;
+  if (lock) {
+    emblem = QIcon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+    offset = (icnSize.width() - 16) * pixelRatio;
+  }
+  else
+    emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+  QPixmap pix(icnSize * pixelRatio);
+  pix.fill(Qt::transparent);
+  QPainter painter(&pix);
+  painter.drawPixmap(0, 0, icn);
+  painter.drawPixmap(offset, offset, emblem);
+  return pix;
+}
+
 void mainWin::updateTree() {
   setEnabled(false);
   QStringList files = BACKEND->hierarchy();
   files.sort();
-  //Remove any entries for file no longer in the archive
-  bool changed = cleanTree(files);
-  for (int i = 0; i < files.length(); i++) {
-    if (findItem(files[i]) != nullptr)
+  bool changed = cleanTree(files); // remove items that aren't in the archive
+  for (const QString& thisFile : static_cast<const QStringList&>(files)) {
+    if (findItem(thisFile) != nullptr)
       continue; // already in the tree widget
     QString mime;
-    if (!BACKEND->isDir(files[i]))
-      mime = BACKEND->getMimeType(files[i].section("/",-1));
+    if (!BACKEND->isDir(thisFile))
+      mime = BACKEND->getMimeType(thisFile.section("/",-1));
     QTreeWidgetItem *it = new QTreeWidgetItem();
-    it->setText(0, files[i].section("/",-1) );
+
+    /* set texts */
+    it->setText(0, thisFile.section("/",-1) );
     if (!mime.isEmpty()) {
-      if (!BACKEND->isLink(files[i])) {
+      it->setText(3, "0"); // to put it after directory items
+      if (!BACKEND->isLink(thisFile)) {
         it->setText(1, mime);
-        it->setText(2, displaySize( BACKEND->size(files[i])) );
+        it->setText(2, displaySize(BACKEND->size(thisFile)));
       }
       else
-        it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(files[i]) ) );
+        it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(thisFile) ) );
     }
-    it->setWhatsThis(0, files[i]);
-    if (mime.isEmpty()) {
+    it->setWhatsThis(0, thisFile);
+    it->setData(2, Qt::UserRole, BACKEND->sizeString(thisFile)); // to track the file size quickly
+
+    /* set icon */
+    QSize icnSize = ui->tree_contents->iconSize();
+    if (mime.isEmpty())
       it->setIcon(0, QIcon::fromTheme("folder"));
-      it->setText(1,""); //clear the mimetype
+    else if (BACKEND->isLink(thisFile)) {
+      const QString targetMime = BACKEND->getMimeType(BACKEND->linkTo(thisFile)
+                                                      .section("/",-1))
+                                 .replace('/', '-');
+      if (!targetMime.isEmpty()) {
+        if (icnSize.width() > 16)
+          it->setIcon(0, QIcon(emblemize(targetMime, icnSize, false)));
+        else
+          it->setIcon(0, QIcon::fromTheme(targetMime));
+      }
+      else
+        it->setIcon(0, QIcon(":icons/emblem-symbolic-link.svg"));
     }
-    else if (BACKEND->isLink(files[i]))
-      it->setIcon(0, QIcon::fromTheme("emblem-symbolic-link") );
     else {
-      QSize icnSize = ui->tree_contents->iconSize();
       if (icnSize.width() > 16 && BACKEND->isEncryptedPath(it->whatsThis(0))) {
-        int pixelRatio = qApp->devicePixelRatio();
-        QPixmap icn = QIcon::fromTheme(mime.replace('/', '-')).pixmap(icnSize * pixelRatio);
-        QPixmap emblem = symbolicIcon::icon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
-        QPixmap pix(icnSize * pixelRatio);
-        pix.fill(Qt::transparent);
-        QPainter painter(&pix);
-        painter.drawPixmap(0, 0, icn);
-        int offset = (icnSize.width() - 16) * pixelRatio;
-        painter.drawPixmap(offset, offset, emblem);
-        it->setIcon(0, QIcon(pix));
+        it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()
+        it->setIcon(0, QIcon(emblemize(mime.replace('/', '-'), icnSize, true)));
       }
       else
         it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
     }
-    //Now find which item to add this too
-    if (files[i].contains("/")) {
-      QTreeWidgetItem *parent = findItem(files[i].section("/",0,-2));
-      QList<QTreeWidgetItem*> list = ui->tree_contents->findItems(files[i].section("/",-3,-2), Qt::MatchExactly, 0);
-      if (parent == 0)
+
+    /* add items to the tree appropriately */
+    if (thisFile.contains("/")) {
+      QTreeWidgetItem *parent = findItem(thisFile.section("/", 0, -2));
+      if (parent == nullptr)
         ui->tree_contents->addTopLevelItem(it);
       else
         parent->addChild(it);
     }
-    else {
+    else
       ui->tree_contents->addTopLevelItem(it);
-      QApplication::processEvents();
-    }
     changed = true;
   }
 
@@ -834,8 +870,12 @@ void mainWin::updateTree() {
       ui->tree_contents->resizeColumnToContents(1);
     });
   }
-  ui->tree_contents->sortItems(0, Qt::AscendingOrder); //sort by name
-  ui->tree_contents->sortItems(1, Qt::AscendingOrder); //sort by mimetype (put dirs first - still organized by name)
+
+  /* sort items by their names but put directory items first */
+  QTimer::singleShot(0, this, [this]() {
+    ui->tree_contents->sortItems(0, Qt::AscendingOrder);
+    ui->tree_contents->sortItems(3, Qt::AscendingOrder);
+  });
 
   setEnabled(true);
   ui->tree_contents->setEnabled(true);

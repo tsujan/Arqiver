@@ -40,6 +40,7 @@ public:
   bool isWorking();
 
   QStringList hierarchy();
+  QString sizeString(const QString& file);
   double size(const QString& file);
   double csize(const QString& file);
   bool isDir(const QString& file);

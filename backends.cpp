@@ -146,6 +146,12 @@ QStringList Backend::hierarchy() {
   return contents_.keys();
 }
 
+QString Backend::sizeString(const QString& file) {
+  if (contents_.contains(file))
+    return contents_.value(file)[1];
+  return QString();
+}
+
 double Backend::size(const QString& file) {
   if (!contents_.contains(file))
     return -1;
@@ -560,7 +566,7 @@ void Backend::parseLines (QStringList& lines) {
           if (lines[i].at(Name - 3) == ' ')
             info[4] = QString::number(0);
           file = lines[i].right(lines[i].size() - Name);
-          contents_.insert(file, QStringList() << info[2] << info[3] << info[4]); //Save the
+          contents_.insert(file, QStringList() << info[2] << info[3] << info[4]);
         }
         if (!file.isEmpty()) {
           if (hasParentDir) {
@@ -690,7 +696,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   if (is7z_ && !encryptionQueried_ && keyArgs_.contains("l")) {
     encryptionQueried_ = true;
     if (encryptedList_)
-      emit encryptedList(filepath_);
+      emit encryptedList(filepath_); // its slot should get password and load the file again
     else {
       /* now, really start listing */
       QStringList args;
@@ -704,6 +710,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     return;
   }
 
+  /* NOTE: processFinished() should be emitted once, in the end */
   static QString result;
   processData();
   LIST = false;
@@ -719,6 +726,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         result = tr("Archive Loaded");
         emit loadingSuccessful();
       }
+      emit processFinished((retcode == 0), result);
+      result.clear();
     }
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
       result = tr("Modification Finished");
@@ -727,6 +736,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         /* We want to know which files are encrypted after an addition.
            After a deletion, it makes no difference. */
         encryptionQueried_ = false;
+        encryptedPaths_.clear();
       }
       startList(encryptedList_);
     }
@@ -741,9 +751,9 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       emit extractionFinished();
       if (retcode == 0)
         emit extractionSuccessful();
+      emit processFinished((retcode == 0), result);
+      result.clear();
     }
-    emit processFinished((retcode == 0), result);
-    result.clear();
     return;
   }
   if (keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
@@ -765,9 +775,9 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   }
   else
   {
-    bool needupdate = true;
+    bool updateList = true;
     if (keyArgs_.contains("-x")) { // extraction
-      needupdate = false;
+      updateList = false;
       emit extractionFinished();
       if (retcode == 0)
       {
@@ -804,11 +814,11 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       if (insertQueue_.isEmpty())
         emit archivingSuccessful();
       else {
-        needupdate = false;
+        updateList = false;
         QTimer::singleShot(0, this, SLOT(startInsertFromQueue()));
       }
     }
-    if (needupdate)
+    if (updateList)
       startList();
     else {
       emit processFinished(retcode == 0, result);
