@@ -91,7 +91,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
 
   QString mt = getMimeType(path);
-  if (mt == "application/gzip") {
+  if (mt == "application/gzip" || mt == "application/x-gzpdf" || mt == "image/svg+xml-compressed") {
     isGzip_ = true; is7z_ = false;
   }
   else if (mt == "application/x-7z-compressed") {
@@ -124,7 +124,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
 bool Backend::canModify() {
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
-    validEXT << ".zip" << ".tar.gz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
+    validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << "svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
   }
   for (int i = 0; i < validEXT.length(); i++) {
     if (filepath_.endsWith(validEXT[i]))
@@ -584,7 +584,13 @@ void Backend::parseLines (QStringList& lines) {
       if (contents_.isEmpty() && info.size() >= 4) {
         int indx = lines[i].indexOf("% ");
         if (indx > -1) {
-          contents_.insert(lines[i].mid(indx + 2).section('/', -1),
+          QString file = lines[i].mid(indx + 2).section('/', -1);
+          if (filepath_.endsWith(".svgz") && file.endsWith(".svgz")) {
+            /* WARNING: gzip lists the file as svgz again */
+            file.remove(QRegularExpression("svgz$"));
+            file += "svg";
+          }
+          contents_.insert(file,
                            QStringList() << "-rw-r--r--" << info.at(1) << ""); // [perms, size, linkto]
         }
       }

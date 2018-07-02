@@ -344,10 +344,13 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/zip", tr("Zip Archive (*.zip)"));
     supported.insert ("application/x-7z-compressed", tr("7-Zip Archive (*.7z)"));
     supported.insert ("application/gzip", tr("Gzip Archive (*.gz)"));
-    supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
-    supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO image (*.iso *.img)"));
-    supported.insert ("application/x-xar", tr("READ-ONLY: XAR archive (*.xar)"));
-    supported.insert ("application/x-java-archive", tr("READ-ONLY: Java archive (*.jar)"));
+    supported.insert ("application/x-gzpdf", tr("Gzip Compressed PDF Document (*.pdf.gz)"));
+    supported.insert ("image/svg+xml-compressed", tr("READ-ONLY: Compressed SVG Image (.svgz)"));
+    supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO Image (*.iso *.img)"));
+    supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO Image (*.iso *.img)"));
+    supported.insert ("application/x-xar", tr("READ-ONLY: XAR Archive (*.xar)"));
+    supported.insert ("application/x-java-archive", tr("READ-ONLY: Java Archive (*.jar)"));
+    supported.insert ("application/vnd.debian.binary-package", tr("READ-ONLY: Debian Package (*.deb)"));
     supported.insert ("application/x-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
     supported.insert ("application/x-source-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
   }
@@ -358,7 +361,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.iso *.img *.xar *.jar *.rpm)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar *.zip *.tgz *.txz *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
