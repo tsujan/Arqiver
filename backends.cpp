@@ -388,7 +388,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }
   }
   else {
-    QDir dir (xPath);
+    QDir dir(xPath);
     QString subdirName = filepath_.section("/", -1) + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
     xPath += "/" + subdirName;
 
@@ -654,8 +654,8 @@ void Backend::parseLines (QStringList& lines) {
     if (hasParentDir) {
       if(archiveParentDir_.isEmpty()) {
           archiveParentDir_ = file.section('/', 0, 0);
-          if(archiveParentDir_.isEmpty())
-          hasParentDir = false;
+          if (archiveParentDir_.isEmpty())
+            hasParentDir = false;
       }
       else if (archiveParentDir_ != file.section('/', 0, 0)) {
           hasParentDir = false;

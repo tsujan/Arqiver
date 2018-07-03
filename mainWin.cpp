@@ -813,7 +813,7 @@ void mainWin::updateTree() {
 
     /* set texts and icons */
     QSize icnSize = ui->tree_contents->iconSize();
-    it->setText(0, thisFile.section("/",-1) );
+    it->setText(0, thisFile.section("/",-1));
     if (!mime.isEmpty()) {
       it->setText(3, "0"); // to put it after directory items
       if (!BACKEND->isLink(thisFile)) {
@@ -854,8 +854,35 @@ void mainWin::updateTree() {
       QTreeWidgetItem *parent = dirs.value(thisFile.section("/", 0, -2));
       if (parent)
         parent->addChild(it);
-      else
-        ui->tree_contents->addTopLevelItem(it);
+      else {
+        /* check the parent paths, create their items if not existing,
+           and add children to their parents */
+        QStringList sections = thisFile.split("/", QString::SkipEmptyParts);
+        sections.removeLast();
+        QTreeWidgetItem *parentItem = nullptr;
+        QString theFile;
+        for (const QString& thisSection : static_cast<const QStringList&>(sections)) {
+          theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
+          QTreeWidgetItem *thisParent = dirs.value(theFile);
+          if (!thisParent) {
+            QTreeWidgetItem *thisItem = new QTreeWidgetItem();
+            thisItem->setText(0, thisSection);
+            thisItem->setIcon(0, QIcon::fromTheme("folder"));
+            thisItem->setWhatsThis(0, theFile);
+            thisItem->setData(2, Qt::UserRole, BACKEND->sizeString(theFile));
+
+            dirs.insert(theFile, thisItem);
+            if (parentItem)
+              parentItem->addChild(thisItem);
+            else
+              ui->tree_contents->addTopLevelItem(thisItem);
+            parentItem = thisItem;
+          }
+          else
+            parentItem = thisParent; // already handled
+        }
+        parentItem->addChild(it);
+      }
     }
     else
       ui->tree_contents->addTopLevelItem(it);

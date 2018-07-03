@@ -407,33 +407,33 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1022"/>
+        <location filename="../../mainWin.cpp" line="1049"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1023"/>
+        <location filename="../../mainWin.cpp" line="1050"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1024"/>
+        <location filename="../../mainWin.cpp" line="1051"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1025"/>
+        <location filename="../../mainWin.cpp" line="1052"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1026"/>
-        <location filename="../../mainWin.cpp" line="1027"/>
+        <location filename="../../mainWin.cpp" line="1053"/>
+        <location filename="../../mainWin.cpp" line="1054"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1026"/>
+        <location filename="../../mainWin.cpp" line="1053"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>
