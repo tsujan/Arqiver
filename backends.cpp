@@ -425,7 +425,7 @@ bool Backend::is7zSingleExtracted(const QString& archivePath) const {
 
 void Backend::startViewFile(const QString& path) {
   QString parentDir = arqiverDir_;
-  if(!arqiverDir_.isEmpty()) {
+  if (!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
     if (path.contains("/")) {
       parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
@@ -458,7 +458,7 @@ void Backend::startViewFile(const QString& path) {
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit processFinished(tmpProc.exitCode() == 0, "");
-      if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+      if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
         QProcess::startDetached("xdg-open", QStringList() << fileName);
       return;
     }
@@ -474,7 +474,7 @@ void Backend::startViewFile(const QString& path) {
       QCoreApplication::processEvents();
     emit processFinished(tmpProc.exitCode() == 0, "");
   }
-  if (!QProcess::startDetached ("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+  if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QProcess::startDetached("xdg-open", QStringList() << fileName);
 }
 

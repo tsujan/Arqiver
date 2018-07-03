@@ -79,8 +79,7 @@ private:
   void dragEnterEvent(QDragEnterEvent *event);
   void dropEvent(QDropEvent *event);
   void changeEvent(QEvent *event);
-  QTreeWidgetItem* findItem(const QString& path, QTreeWidgetItem *start = 0);
-  bool cleanTree(const QStringList& list); // returns true if anything gets cleaned
+  QHash<QString, QTreeWidgetItem*> cleanTree(const QStringList& list); // returns the remaining items
   QString allArchivingTypes();
   QString archivingTypes();
   QHash<QString, QString> supportedMimeTypes();

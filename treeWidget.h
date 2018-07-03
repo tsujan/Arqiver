@@ -75,9 +75,9 @@ protected:
         return;
       emit dragStarted(it);
 
-      QPointer<QDrag> drag = new QDrag (this);
+      QPointer<QDrag> drag = new QDrag(this);
       QMimeData *mimeData = new QMimeData;
-      mimeData->setData ("application/arqiver-item", QByteArray());
+      mimeData->setData("application/arqiver-item", QByteArray());
       mimeData->setUrls(QList<QUrl>() << QUrl::fromLocalFile(it->data(0, Qt::UserRole).toString()));
       drag->setMimeData(mimeData);
       QPixmap px = it->icon(0).pixmap (22, 22);

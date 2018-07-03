@@ -260,35 +260,15 @@ void mainWin::loadArguments(const QStringList& args) {
   }
 }
 
-QTreeWidgetItem* mainWin::findItem(const QString& path, QTreeWidgetItem *start) {
-  if (path.isEmpty()) return nullptr;
-  if (start == nullptr) {
-    for (int i = 0; i < ui->tree_contents->topLevelItemCount(); i++) {
-      if (ui->tree_contents->topLevelItem(i)->whatsThis(0) == path)
-        return ui->tree_contents->topLevelItem(i);
-      else if (path.startsWith(ui->tree_contents->topLevelItem(i)->whatsThis(0)+"/"))
-        return findItem(path, ui->tree_contents->topLevelItem(i));
-    }
-  }
-  else {
-    for (int i = 0; i < start->childCount(); i++) {
-      if (start->child(i)->whatsThis(0) == path)
-        return start->child(i);
-      else if (path.startsWith(start->child(i)->whatsThis(0)+"/"))
-        return findItem(path, start->child(i));
-    }
-  }
-  return nullptr;
-}
-
-bool mainWin::cleanTree(const QStringList& list) {
+QHash<QString, QTreeWidgetItem*> mainWin::cleanTree(const QStringList& list) {
+  QHash<QString, QTreeWidgetItem*> items;
   if (ui->tree_contents->topLevelItemCount() == 0)
-    return false;
+    return items;
   if (list.isEmpty()) {
     ui->tree_contents->clear();
-    return true;
+    return items;
   }
-  bool changed = false;
+
   QTreeWidgetItemIterator it(ui->tree_contents);
   while (*it) {
     const QString path = (*it)->whatsThis(0);
@@ -302,11 +282,13 @@ bool mainWin::cleanTree(const QStringList& list) {
                     && BACKEND->isEncryptedPath(path))))) {
       qDeleteAll((*it)->takeChildren());
       delete *it;
-      changed = true;
     }
-    else ++it;
+    else {
+      items.insert(path, *it);
+      ++it;
+    }
   }
-  return changed;
+  return items;
 }
 
 QString mainWin::allArchivingTypes() {
@@ -797,90 +779,104 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
 }
 
 void mainWin::updateTree() {
-  setEnabled(false);
+  setUpdatesEnabled(false);
   QStringList files = BACKEND->hierarchy();
   files.sort();
-  bool changed = cleanTree(files); // remove items that aren't in the archive
+  bool itemAdded = false;
+
+  /* NOTE: With big archives, QHash is much faster than finding items. */
+  /* remove items that aren't in the archive and get the remaining items */
+  QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files);
+  QHash<const QString&, QTreeWidgetItem*> dirs; // keep track of directory items
+
   for (const QString& thisFile : static_cast<const QStringList&>(files)) {
-    if (findItem(thisFile) != nullptr)
-      continue; // already in the tree widget
+    QTreeWidgetItem *item = allPrevItems.value(thisFile);
+    if (item != nullptr) { // already in the tree widget
+      if(BACKEND->isDir(thisFile))
+        dirs.insert(thisFile, item);
+      continue;
+    }
+
     QString mime;
     if (!BACKEND->isDir(thisFile))
       mime = BACKEND->getMimeType(thisFile.section("/",-1));
     QTreeWidgetItem *it = new QTreeWidgetItem();
 
-    /* set texts */
+    /* set texts and icons */
+    QSize icnSize = ui->tree_contents->iconSize();
     it->setText(0, thisFile.section("/",-1) );
     if (!mime.isEmpty()) {
       it->setText(3, "0"); // to put it after directory items
       if (!BACKEND->isLink(thisFile)) {
         it->setText(1, mime);
         it->setText(2, displaySize(BACKEND->size(thisFile)));
+
+        if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile)) {
+          it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()
+          it->setIcon(0, QIcon(emblemize(mime.replace('/', '-'), icnSize, true)));
+        }
+        else
+          it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
       }
-      else
-        it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(thisFile) ) );
+      else {
+        it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(thisFile)));
+
+        const QString targetMime = BACKEND->getMimeType(BACKEND->linkTo(thisFile)
+                                                        .section("/",-1))
+                                  .replace('/', '-');
+        if (!targetMime.isEmpty()) {
+          if (icnSize.width() > 16)
+            it->setIcon(0, QIcon(emblemize(targetMime, icnSize, false)));
+          else
+            it->setIcon(0, QIcon::fromTheme(targetMime));
+        }
+        else
+          it->setIcon(0, QIcon(":icons/emblem-symbolic-link.svg"));
+      }
     }
+    else
+      it->setIcon(0, QIcon::fromTheme("folder"));
+
     it->setWhatsThis(0, thisFile);
     it->setData(2, Qt::UserRole, BACKEND->sizeString(thisFile)); // to track the file size quickly
 
-    /* set icon */
-    QSize icnSize = ui->tree_contents->iconSize();
-    if (mime.isEmpty())
-      it->setIcon(0, QIcon::fromTheme("folder"));
-    else if (BACKEND->isLink(thisFile)) {
-      const QString targetMime = BACKEND->getMimeType(BACKEND->linkTo(thisFile)
-                                                      .section("/",-1))
-                                 .replace('/', '-');
-      if (!targetMime.isEmpty()) {
-        if (icnSize.width() > 16)
-          it->setIcon(0, QIcon(emblemize(targetMime, icnSize, false)));
-        else
-          it->setIcon(0, QIcon::fromTheme(targetMime));
-      }
-      else
-        it->setIcon(0, QIcon(":icons/emblem-symbolic-link.svg"));
-    }
-    else {
-      if (icnSize.width() > 16 && BACKEND->isEncryptedPath(it->whatsThis(0))) {
-        it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()
-        it->setIcon(0, QIcon(emblemize(mime.replace('/', '-'), icnSize, true)));
-      }
-      else
-        it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
-    }
-
     /* add items to the tree appropriately */
     if (thisFile.contains("/")) {
-      QTreeWidgetItem *parent = findItem(thisFile.section("/", 0, -2));
-      if (parent == nullptr)
-        ui->tree_contents->addTopLevelItem(it);
-      else
+      QTreeWidgetItem *parent = dirs.value(thisFile.section("/", 0, -2));
+      if (parent)
         parent->addChild(it);
+      else
+        ui->tree_contents->addTopLevelItem(it);
     }
     else
       ui->tree_contents->addTopLevelItem(it);
-    changed = true;
+
+    if(BACKEND->isDir(thisFile))
+      dirs.insert(thisFile, it);
+
+    itemAdded = true;
   }
 
-  if (changed) {
+  if (itemAdded) {
+    /* adjust column sizes */
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->resizeColumnToContents(2);
     });
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->resizeColumnToContents(1);
     });
+    /* sort items by their names but put directory items first */
+    QTimer::singleShot(0, this, [this]() {
+      ui->tree_contents->sortItems(0, Qt::AscendingOrder);
+      ui->tree_contents->sortItems(3, Qt::AscendingOrder);
+    });
   }
 
-  /* sort items by their names but put directory items first */
-  QTimer::singleShot(0, this, [this]() {
-    ui->tree_contents->sortItems(0, Qt::AscendingOrder);
-    ui->tree_contents->sortItems(3, Qt::AscendingOrder);
-  });
-
-  setEnabled(true);
+  setUpdatesEnabled(true);
   ui->tree_contents->setEnabled(true);
-  if (expandAll_){
-    ui->tree_contents->expandAll();
+  if (expandAll_) {
+    if (itemAdded)
+      ui->tree_contents->expandAll();
     expandAll_ = false;
   }
 }
