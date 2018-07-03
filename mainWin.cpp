@@ -30,6 +30,7 @@
 #include <QTimer>
 #include <QRegularExpression>
 #include <QDesktopWidget>
+#include <QPixmapCache>
 
 #include <unistd.h> // getuid
 
@@ -41,6 +42,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
   lastPath_ = QDir::homePath();
+  updateTree_ = true;
   expandAll_ = false;
   close_ = false;
   processIsRunning_ = false;
@@ -568,6 +570,7 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
       && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
+  updateTree_ = false;
   textLabel_->setText(tr("Extracting..."));
   it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
@@ -744,6 +747,7 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
       && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
     if (!pswrdDialog()) return;
   }
+  updateTree_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startViewFile(it->whatsThis(0));
 }
@@ -760,21 +764,26 @@ static inline QString displaySize(const qint64 size) {
 }
 
 QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lock) {
-  int pixelRatio = qApp->devicePixelRatio();
-  QPixmap icn = QIcon::fromTheme(iconName).pixmap(icnSize * pixelRatio);
-  int offset = 0;
-  QPixmap emblem;
-  if (lock) {
-    emblem = QIcon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
-    offset = (icnSize.width() - 16) * pixelRatio;
+  QString emblemName = lock ? ".lock" : ".link";
+  QPixmap pix;
+  if (!QPixmapCache::find(iconName + emblemName, &pix)) {
+    int pixelRatio = qApp->devicePixelRatio();
+    QPixmap icn = QIcon::fromTheme(iconName).pixmap(icnSize * pixelRatio);
+    int offset = 0;
+    QPixmap emblem;
+    if (lock) {
+      emblem = QIcon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+      offset = (icnSize.width() - 16) * pixelRatio;
+    }
+    else
+      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+    pix = QPixmap(icnSize * pixelRatio);
+    pix.fill(Qt::transparent);
+    QPainter painter(&pix);
+    painter.drawPixmap(0, 0, icn);
+    painter.drawPixmap(offset, offset, emblem);
+    QPixmapCache::insert(iconName + emblemName, pix);
   }
-  else
-    emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(16*pixelRatio, 16*pixelRatio);
-  QPixmap pix(icnSize * pixelRatio);
-  pix.fill(Qt::transparent);
-  QPainter painter(&pix);
-  painter.drawPixmap(0, 0, icn);
-  painter.drawPixmap(offset, offset, emblem);
   return pix;
 }
 
@@ -786,7 +795,7 @@ void mainWin::updateTree() {
 
   /* NOTE: With big archives, QHash is much faster than finding items. */
   /* remove items that aren't in the archive and get the remaining items */
-  QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files);
+  QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files.size() > 10000 ? QStringList() : files);
   QHash<const QString&, QTreeWidgetItem*> dirs; // keep track of directory items
 
   for (const QString& thisFile : static_cast<const QStringList&>(files)) {
@@ -874,6 +883,7 @@ void mainWin::updateTree() {
 
   setUpdatesEnabled(true);
   ui->tree_contents->setEnabled(true);
+  enableActions(true);
   if (expandAll_) {
     if (itemAdded)
       ui->tree_contents->expandAll();
@@ -881,8 +891,24 @@ void mainWin::updateTree() {
   }
 }
 
+void mainWin::enableActions(bool enable) {
+  ui->actionOpen->setEnabled(enable);
+  ui->actionNew->setEnabled(enable);
+  ui->actionQuit->setEnabled(enable);
+  ui->actionAddFile->setEnabled(enable);
+  ui->actionRemoveFile->setEnabled(enable);
+  ui->actionExtractAll->setEnabled(enable);
+  ui->actionAddDir->setEnabled(enable);
+  ui->actionExtractSel->setEnabled(enable);
+  ui->actionPassword->setEnabled(enable);
+  ui->actionExpand->setEnabled(enable);
+  ui->actionCollapse->setEnabled(enable);
+  ui->actionAbout->setEnabled(enable);
+}
+
 void mainWin::procStarting() {
   processIsRunning_ = true;
+  enableActions(false);
 
   statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
@@ -903,7 +929,12 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile());
 
-  updateTree();
+  if (updateTree_)
+    updateTree();
+  else {
+    ui->tree_contents->setEnabled(true);
+    enableActions(true);
+  }
   statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
   statusProgress_->setVisible(false);
@@ -935,6 +966,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
   ui->actionPassword->setEnabled(BACKEND->is7z());
 
+  updateTree_ = true;
   if (close_)
     QTimer::singleShot (500, this, SLOT (close()));
 }

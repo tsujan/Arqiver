@@ -87,6 +87,7 @@ private:
   QString filterToExtension(const QString& filter);
   bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
   QPixmap emblemize(const QString icon, const QSize& icnSize, bool lock);
+  void enableActions(bool enable);
 
   QLabel *iconLabel_;
   Label *textLabel_;
@@ -97,6 +98,7 @@ private:
   QStringList axFileList_, aaFileList_, saFileList_;
   QString lastPath_, lastFilter_;
   QString lastPswrd_;
+  bool updateTree_;
   bool expandAll_;
   bool close_;
   bool processIsRunning_;
