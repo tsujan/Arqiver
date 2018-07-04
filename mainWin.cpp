@@ -31,6 +31,7 @@
 #include <QRegularExpression>
 #include <QDesktopWidget>
 #include <QPixmapCache>
+#include <QClipboard>
 
 #include <unistd.h> // getuid
 
@@ -81,6 +82,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionExpand->setIcon(symbolicIcon::icon(":icons/expand.svg"));
   ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
   ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
+  ui->actionCopy->setIcon(symbolicIcon::icon(":icons/edit-copy.svg"));
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -113,6 +115,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExtractAll, &QAction::triggered, this, &mainWin::extractFiles);
   connect(ui->actionExtractSel, &QAction::triggered, this, &mainWin::extractSelection);
   connect(ui->actionAddDir, &QAction::triggered, this, &mainWin::addDirs);
+  connect(ui->actionCopy, &QAction::triggered, [this] {
+    if (QTreeWidgetItem *cur = ui->tree_contents->currentItem())
+      QApplication::clipboard()->setText(cur->whatsThis(0));
+  });
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
@@ -450,7 +456,7 @@ void mainWin::newArchive() {
 
   lastPath_ = file.section("/", 0, -2);
 
-  textLabel_->setText(""); //just clear it (this action is instant)
+  textLabel_->clear();
   BACKEND->loadFile(file);
 }
 
@@ -587,6 +593,8 @@ void mainWin::listContextMenu(const QPoint& p) {
     menu.addAction(ui->actionExtractSel);
   QAction *action = menu.addAction(tr("View Current Item"));
   connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
+  menu.addSeparator();
+  menu.addAction(ui->actionCopy);
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }
 
@@ -715,7 +723,7 @@ void mainWin::simpleArchivetFiles() {
 }
 
 void mainWin::extractSelection() {
-  if (ui->tree_contents->currentItem() == 0) return; // nothing selected
+  if (ui->tree_contents->currentItem() == nullptr) return; // nothing selected
 
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     /* not needed because there's no selective extraction for 7z */
@@ -965,7 +973,8 @@ void mainWin::procFinished(bool success, const QString& msg) {
   statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
   statusProgress_->setVisible(false);
-  textLabel_->setText(msg);
+  lastMsg_ = msg;
+  textLabel_->setText(lastMsg_);
   textLabel_->setVisible(!msg.isEmpty());
   iconLabel_->setVisible(true);
   if (success) {
@@ -1017,6 +1026,11 @@ void mainWin::openEncryptedList(const QString& path) {
 void mainWin::selectionChanged() {
   ui->actionExtractSel->setEnabled(!BACKEND->is7z() // no selective extraction for 7z
                                    && !ui->tree_contents->selectedItems().isEmpty());
+  QTreeWidgetItem *cur = ui->tree_contents->currentItem();
+  if (cur && ui->tree_contents->selectedItems().contains(cur))
+    textLabel_->setText(cur->whatsThis(0));
+  else
+    textLabel_->setText(lastMsg_);
 }
 
 void mainWin::aboutDialog() {

@@ -250,6 +250,11 @@
     <string>&amp;About</string>
    </property>
   </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>&amp;Copy Current Path</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <customwidgets>

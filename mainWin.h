@@ -98,6 +98,7 @@ private:
   QStringList axFileList_, aaFileList_, saFileList_;
   QString lastPath_, lastFilter_;
   QString lastPswrd_;
+  QString lastMsg_;
   bool updateTree_;
   bool expandAll_;
   bool close_;

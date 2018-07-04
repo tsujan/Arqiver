@@ -160,280 +160,285 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
         <translation>&amp;Pri</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="51"/>
+        <location filename="../../mainWin.ui" line="255"/>
+        <source>&amp;Copy Current Path</source>
+        <translation>&amp;Kopii Ĉi Tiun Padon</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="52"/>
         <source>Root</source>
         <translation>Radiko</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="101"/>
+        <location filename="../../mainWin.cpp" line="103"/>
         <source>Error</source>
         <translation>Eraro</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="129"/>
+        <location filename="../../mainWin.cpp" line="135"/>
         <source>File</source>
         <translation>Dosiero</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="129"/>
+        <location filename="../../mainWin.cpp" line="135"/>
         <source>MimeType</source>
         <translation>Mime-tipo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="129"/>
+        <location filename="../../mainWin.cpp" line="135"/>
         <source>Size</source>
         <translation>Grando</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="229"/>
-        <location filename="../../mainWin.cpp" line="467"/>
-        <location filename="../../mainWin.cpp" line="500"/>
+        <location filename="../../mainWin.cpp" line="235"/>
+        <location filename="../../mainWin.cpp" line="473"/>
+        <location filename="../../mainWin.cpp" line="506"/>
         <source>Opening Archive...</source>
         <translation>Malfermadi Arkivon...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="297"/>
+        <location filename="../../mainWin.cpp" line="303"/>
         <source>All Types %1</source>
         <translation>Ĉiuj Tipoj %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="307"/>
-        <location filename="../../mainWin.cpp" line="330"/>
+        <location filename="../../mainWin.cpp" line="313"/>
+        <location filename="../../mainWin.cpp" line="336"/>
         <source>Uncompressed Archive (*.tar)</source>
         <translation>Nekompaktigita Arkivo (*.tar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="308"/>
-        <location filename="../../mainWin.cpp" line="331"/>
+        <location filename="../../mainWin.cpp" line="314"/>
+        <location filename="../../mainWin.cpp" line="337"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
         <translation>GZip-Kompaktigita Arkivo (*.tar.gz *.tgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="310"/>
-        <location filename="../../mainWin.cpp" line="333"/>
+        <location filename="../../mainWin.cpp" line="316"/>
+        <location filename="../../mainWin.cpp" line="339"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
         <translation>BZip2-Kompaktigita Arkivo (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="311"/>
-        <location filename="../../mainWin.cpp" line="336"/>
+        <location filename="../../mainWin.cpp" line="317"/>
+        <location filename="../../mainWin.cpp" line="342"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
         <translation>LMZA-Kompaktigita Arkivo (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="312"/>
-        <location filename="../../mainWin.cpp" line="335"/>
+        <location filename="../../mainWin.cpp" line="318"/>
+        <location filename="../../mainWin.cpp" line="341"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
         <translation>XZ-Kompaktigita Arkivo Archive (*.tar.xz *.txz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="313"/>
-        <location filename="../../mainWin.cpp" line="337"/>
+        <location filename="../../mainWin.cpp" line="319"/>
+        <location filename="../../mainWin.cpp" line="343"/>
         <source>CPIO Archive (*.cpio)</source>
         <translation>CPIO-Arkivo (*.cpio)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="315"/>
-        <location filename="../../mainWin.cpp" line="339"/>
+        <location filename="../../mainWin.cpp" line="321"/>
+        <location filename="../../mainWin.cpp" line="345"/>
         <source>AR Archive (*.ar)</source>
         <translation>AR-Arkivo (*.ar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="317"/>
-        <location filename="../../mainWin.cpp" line="341"/>
+        <location filename="../../mainWin.cpp" line="323"/>
+        <location filename="../../mainWin.cpp" line="347"/>
         <source>Zip Archive (*.zip)</source>
         <translation>Zip-Arkivo (*.zip)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="318"/>
-        <location filename="../../mainWin.cpp" line="343"/>
+        <location filename="../../mainWin.cpp" line="324"/>
+        <location filename="../../mainWin.cpp" line="349"/>
         <source>Gzip Archive (*.gz)</source>
         <translation>Gzip-Arkivo (*.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="319"/>
-        <location filename="../../mainWin.cpp" line="342"/>
+        <location filename="../../mainWin.cpp" line="325"/>
+        <location filename="../../mainWin.cpp" line="348"/>
         <source>7-Zip Archive (*.7z)</source>
         <translation>7-Zip-Arkivo (*.7z)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="334"/>
+        <location filename="../../mainWin.cpp" line="340"/>
         <source>BZip2 Archive (*.bz2)</source>
         <translation>BZip2-Arkivo (*.bz2)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="344"/>
+        <location filename="../../mainWin.cpp" line="350"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
         <translation>Gzip-Kompaktigita PDF-Dokumento (*.pdf.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="345"/>
+        <location filename="../../mainWin.cpp" line="351"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
         <translation>NURLEGA: Kompaktigita SVG-Bildo (*.svgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="346"/>
-        <location filename="../../mainWin.cpp" line="347"/>
+        <location filename="../../mainWin.cpp" line="352"/>
+        <location filename="../../mainWin.cpp" line="353"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
         <translation>NURLEGA: ISO-Kopio (*.iso *.img)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="348"/>
+        <location filename="../../mainWin.cpp" line="354"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
         <translation>NURLEGA: XAR-Arkivo (*.xar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="349"/>
+        <location filename="../../mainWin.cpp" line="355"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
         <translation>NURLEGA: Java-Arkivo (*.jar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="350"/>
+        <location filename="../../mainWin.cpp" line="356"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
         <translation>NURLEGA: Debian-Pakaĵo (*.deb)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="351"/>
-        <location filename="../../mainWin.cpp" line="352"/>
+        <location filename="../../mainWin.cpp" line="357"/>
+        <location filename="../../mainWin.cpp" line="358"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
         <translation>NURLEGA: RedHat-Pakaĵo (*.rpm)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="361"/>
+        <location filename="../../mainWin.cpp" line="367"/>
         <source>All Known Types %1</source>
         <translation>Ĉiuj Konitaj tipoj %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="366"/>
+        <location filename="../../mainWin.cpp" line="372"/>
         <source>Show All Files (*)</source>
         <translation>Montri Ĉiujn Dosierojn (*)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="419"/>
+        <location filename="../../mainWin.cpp" line="425"/>
         <source>Create Archive</source>
         <translation>Estigi Arkivon</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="439"/>
+        <location filename="../../mainWin.cpp" line="445"/>
         <source>Question</source>
         <translation>Demando</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="440"/>
+        <location filename="../../mainWin.cpp" line="446"/>
         <source>The following archive already exists:</source>
         <translation>La jana arkivo jam ekzistas:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="442"/>
+        <location filename="../../mainWin.cpp" line="448"/>
         <source>Do you want to replace it?
 </source>
         <translation>Ĉu vi volas anstataŭigi ĝin?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="459"/>
+        <location filename="../../mainWin.cpp" line="465"/>
         <source>Open Archive</source>
         <translation>Malfermi Arkivons</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="524"/>
-        <location filename="../../mainWin.cpp" line="532"/>
-        <location filename="../../mainWin.cpp" line="548"/>
+        <location filename="../../mainWin.cpp" line="530"/>
+        <location filename="../../mainWin.cpp" line="538"/>
+        <location filename="../../mainWin.cpp" line="554"/>
         <source>Add to Archive</source>
         <translation>Aldoni al Arkivon</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="536"/>
-        <location filename="../../mainWin.cpp" line="551"/>
-        <location filename="../../mainWin.cpp" line="707"/>
-        <location filename="../../mainWin.cpp" line="713"/>
+        <location filename="../../mainWin.cpp" line="542"/>
+        <location filename="../../mainWin.cpp" line="557"/>
+        <location filename="../../mainWin.cpp" line="715"/>
+        <location filename="../../mainWin.cpp" line="721"/>
         <source>Adding Items...</source>
         <translation>Aldoni Erojn...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
+        <location filename="../../mainWin.cpp" line="568"/>
         <source>Removing Items...</source>
         <translation>Forviŝi Erojn...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="574"/>
-        <location filename="../../mainWin.cpp" line="675"/>
-        <location filename="../../mainWin.cpp" line="685"/>
-        <location filename="../../mainWin.cpp" line="739"/>
-        <location filename="../../mainWin.cpp" line="751"/>
+        <location filename="../../mainWin.cpp" line="580"/>
+        <location filename="../../mainWin.cpp" line="683"/>
+        <location filename="../../mainWin.cpp" line="693"/>
+        <location filename="../../mainWin.cpp" line="747"/>
+        <location filename="../../mainWin.cpp" line="759"/>
         <source>Extracting...</source>
         <translation>Ekstrakti...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="588"/>
+        <location filename="../../mainWin.cpp" line="594"/>
         <source>View Current Item</source>
-        <translation>Vidi Ĉi tiun Eron</translation>
+        <translation>Vidi Ĉi Tiun Eron</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="595"/>
         <location filename="../../mainWin.cpp" line="603"/>
+        <location filename="../../mainWin.cpp" line="611"/>
         <source>Enter Password</source>
         <translation>Enmetu Pasvorton</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="607"/>
+        <location filename="../../mainWin.cpp" line="615"/>
         <source>Cancel</source>
         <translation>Rezigni</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="608"/>
+        <location filename="../../mainWin.cpp" line="616"/>
         <source>OK</source>
         <translation>Bone</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="612"/>
+        <location filename="../../mainWin.cpp" line="620"/>
         <source>Encrypt the file list</source>
         <translation>Ĉifri la dosierliston</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="613"/>
+        <location filename="../../mainWin.cpp" line="621"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Ĉi tio efektiviĝos post dosieroj/dosierujoj estas aldonitaj.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="672"/>
-        <location filename="../../mainWin.cpp" line="735"/>
+        <location filename="../../mainWin.cpp" line="680"/>
+        <location filename="../../mainWin.cpp" line="743"/>
         <source>Extract Into Directory</source>
         <translation>Ekstrakto en Dosierujon</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="831"/>
+        <location filename="../../mainWin.cpp" line="839"/>
         <source>Link To: %1</source>
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1049"/>
+        <location filename="../../mainWin.cpp" line="1063"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1050"/>
+        <location filename="../../mainWin.cpp" line="1064"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1051"/>
+        <location filename="../../mainWin.cpp" line="1065"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1052"/>
+        <location filename="../../mainWin.cpp" line="1066"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1053"/>
-        <location filename="../../mainWin.cpp" line="1054"/>
+        <location filename="../../mainWin.cpp" line="1067"/>
+        <location filename="../../mainWin.cpp" line="1068"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1053"/>
+        <location filename="../../mainWin.cpp" line="1067"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>
