@@ -53,12 +53,10 @@ protected:
     elidedText_ = fontMetrics().elidedText(txt, Qt::ElideMiddle, cr.width());
   }
   /* ... then, draw the (elided) text */
-  if(!elidedText_.isEmpty()) {
-    QPainter painter(this);
-    QStyleOption opt;
-    opt.initFrom(this);
-    style()->drawItemText(&painter, cr, alignment(), opt.palette, isEnabled(), elidedText_, foregroundRole());
-  }
+  QPainter painter(this);
+  QStyleOption opt;
+  opt.initFrom(this);
+  style()->drawItemText(&painter, cr, alignment(), opt.palette, isEnabled(), elidedText_, foregroundRole());
 }
 
 private:

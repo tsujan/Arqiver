@@ -64,7 +64,6 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->statusbar->addWidget(iconLabel_);
   ui->statusbar->addWidget(statusProgress_);
   ui->statusbar->addPermanentWidget(textLabel_);
-  textLabel_->setVisible(false);
   iconLabel_->setVisible(false);
   statusProgress_->setVisible(false);
 
@@ -132,7 +131,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* the labels and column sizes of the header (the 4th hidden column will
      be used for putting directory items first and will save the lock info) */
-  ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size") << "");
+  ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size") << QString());
   ui->tree_contents->header()->setSectionHidden(3, true);
   ui->tree_contents->header()->setSectionResizeMode(0, QHeaderView::Stretch);
   QTimer::singleShot(0, this, [this]() {
@@ -948,7 +947,6 @@ void mainWin::procStarting() {
   statusProgress_->setRange(0, 0);
   statusProgress_->setValue(0);
   statusProgress_->setVisible(true);
-  textLabel_->setVisible(!textLabel_->text().isEmpty());
   iconLabel_->setVisible(false);
   ui->tree_contents->setEnabled(false);
 
@@ -975,7 +973,6 @@ void mainWin::procFinished(bool success, const QString& msg) {
   statusProgress_->setVisible(false);
   lastMsg_ = msg;
   textLabel_->setText(lastMsg_);
-  textLabel_->setVisible(!msg.isEmpty());
   iconLabel_->setVisible(true);
   if (success) {
     if (BACKEND->isEncrypted()) {

@@ -182,7 +182,7 @@ bool Backend::isLink(const QString& file) {
 
 QString Backend::linkTo(const QString& file) {
   if (!contents_.contains(file))
-    return "";
+    return QString();
   return contents_.value(file)[2];
 }
 
@@ -222,7 +222,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
     tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]); // "gzip -c file > archive.gz"
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit processFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, QString());
     loadFile(filepath_);
     return; // FIXME: Unfortunately, onError() can't be called here
   }
@@ -340,7 +340,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit processFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, QString());
     emit extractionFinished();
     emit extractionSuccessful();
     return;
@@ -457,7 +457,7 @@ void Backend::startViewFile(const QString& path) {
         QCoreApplication::processEvents();
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
-      emit processFinished(tmpProc.exitCode() == 0, "");
+      emit processFinished(tmpProc.exitCode() == 0, QString());
       if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
         QProcess::startDetached("xdg-open", QStringList() << fileName);
       return;
@@ -472,7 +472,7 @@ void Backend::startViewFile(const QString& path) {
     tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit processFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, QString());
   }
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QProcess::startDetached("xdg-open", QStringList() << fileName);
@@ -511,7 +511,7 @@ QString Backend::extractSingleFile(const QString& path) {
         QCoreApplication::processEvents();
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString();
-      emit processFinished(tmpProc.exitCode() == 0, "");
+      emit processFinished(tmpProc.exitCode() == 0, QString());
       return fileName;
     }
     else {
@@ -524,7 +524,7 @@ QString Backend::extractSingleFile(const QString& path) {
     tmpProc.start(cmnd, args);
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
-    emit processFinished(tmpProc.exitCode() == 0, "");
+    emit processFinished(tmpProc.exitCode() == 0, QString());
   }
   return fileName;
 }
@@ -599,7 +599,7 @@ void Backend::parseLines (QStringList& lines) {
             file += "svg";
           }
           contents_.insert(file,
-                           QStringList() << "-rw-r--r--" << info.at(1) << ""); // [perms, size, linkto]
+                           QStringList() << "-rw-r--r--" << info.at(1) << QString()); // [perms, size, linkto]
         }
       }
       return;
@@ -609,7 +609,7 @@ void Backend::parseLines (QStringList& lines) {
     if (indx == 0 && getMimeType(filepath_) == "application/zip") {
       /* ZIP archives may not have all the extra information - just file names */
       QString file = lines[i].right(lines[i].length() - match.capturedLength());
-      QString perms = "";
+      QString perms;
       if(file.endsWith("/")) {
         perms = "d";
         file.chop(1);
@@ -625,7 +625,7 @@ void Backend::parseLines (QStringList& lines) {
           archiveParentDir_ = QString();
         }
       }
-      contents_.insert (file, QStringList() << perms << "-1" << ""); // [perms, size, linkto ]
+      contents_.insert (file, QStringList() << perms << "-1" << QString()); // [perms, size, linkto ]
     }
     // here, lines[i] is like: -rw-r--r--  0 1000   1000        7 Jun 30 23:49 PATH
     indx = lines[i].indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
@@ -879,7 +879,7 @@ void Backend::processData() {
       /* while extracting the archive, another file in it had another password */
       pswrd_ = QString();
     }
-    emit progressUpdate(-1, "");
+    emit progressUpdate(-1, QString());
   }
   else {
     QString info;
