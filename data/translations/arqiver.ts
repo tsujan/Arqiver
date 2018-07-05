@@ -339,104 +339,104 @@ Please install it for this kind of archive!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="529"/>
-        <location filename="../../mainWin.cpp" line="537"/>
-        <location filename="../../mainWin.cpp" line="553"/>
+        <location filename="../../mainWin.cpp" line="531"/>
+        <location filename="../../mainWin.cpp" line="539"/>
+        <location filename="../../mainWin.cpp" line="555"/>
         <source>Add to Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="541"/>
-        <location filename="../../mainWin.cpp" line="556"/>
-        <location filename="../../mainWin.cpp" line="714"/>
-        <location filename="../../mainWin.cpp" line="720"/>
+        <location filename="../../mainWin.cpp" line="543"/>
+        <location filename="../../mainWin.cpp" line="558"/>
+        <location filename="../../mainWin.cpp" line="716"/>
+        <location filename="../../mainWin.cpp" line="722"/>
         <source>Adding Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="567"/>
+        <location filename="../../mainWin.cpp" line="569"/>
         <source>Removing Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="579"/>
-        <location filename="../../mainWin.cpp" line="682"/>
-        <location filename="../../mainWin.cpp" line="692"/>
-        <location filename="../../mainWin.cpp" line="746"/>
-        <location filename="../../mainWin.cpp" line="758"/>
+        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="684"/>
+        <location filename="../../mainWin.cpp" line="694"/>
+        <location filename="../../mainWin.cpp" line="748"/>
+        <location filename="../../mainWin.cpp" line="760"/>
         <source>Extracting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="593"/>
+        <location filename="../../mainWin.cpp" line="595"/>
         <source>View Current Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="602"/>
-        <location filename="../../mainWin.cpp" line="610"/>
+        <location filename="../../mainWin.cpp" line="604"/>
+        <location filename="../../mainWin.cpp" line="612"/>
         <source>Enter Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="614"/>
+        <location filename="../../mainWin.cpp" line="616"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="615"/>
+        <location filename="../../mainWin.cpp" line="617"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="619"/>
+        <location filename="../../mainWin.cpp" line="621"/>
         <source>Encrypt the file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="620"/>
+        <location filename="../../mainWin.cpp" line="622"/>
         <source>This will take effect after files/folders are added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="679"/>
-        <location filename="../../mainWin.cpp" line="742"/>
+        <location filename="../../mainWin.cpp" line="681"/>
+        <location filename="../../mainWin.cpp" line="744"/>
         <source>Extract Into Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="838"/>
+        <location filename="../../mainWin.cpp" line="840"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1060"/>
+        <location filename="../../mainWin.cpp" line="1062"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1061"/>
+        <location filename="../../mainWin.cpp" line="1063"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1062"/>
+        <location filename="../../mainWin.cpp" line="1064"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1063"/>
+        <location filename="../../mainWin.cpp" line="1065"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1064"/>
-        <location filename="../../mainWin.cpp" line="1065"/>
+        <location filename="../../mainWin.cpp" line="1066"/>
+        <location filename="../../mainWin.cpp" line="1067"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1064"/>
+        <location filename="../../mainWin.cpp" line="1066"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>

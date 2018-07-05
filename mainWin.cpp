@@ -505,6 +505,8 @@ void mainWin::dropEvent(QDropEvent *event) {
         textLabel_->setText(tr("Opening Archive..."));
         expandAll_ = true;
         BACKEND->loadFile(file);
+        activateWindow();
+        raise();
       }
     }
     event->acceptProposedAction();
