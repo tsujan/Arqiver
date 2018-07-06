@@ -474,6 +474,8 @@ void Backend::startViewFile(const QString& path) {
       QCoreApplication::processEvents();
     emit processFinished(tmpProc.exitCode() == 0, QString());
   }
+  else
+    emit processFinished(true, QString());
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QProcess::startDetached("xdg-open", QStringList() << fileName);
 }
@@ -526,6 +528,8 @@ QString Backend::extractSingleFile(const QString& path) {
       QCoreApplication::processEvents();
     emit processFinished(tmpProc.exitCode() == 0, QString());
   }
+  else
+    emit processFinished(true, QString());
   return fileName;
 }
 
