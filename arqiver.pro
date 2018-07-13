@@ -8,15 +8,17 @@ HEADERS	+= mainWin.h \
            label.h \
            treeWidget.h \
            svgicons.h \
-           config.h
+           config.h \
+           pref.h
 
 SOURCES	+= main.cpp \
            mainWin.cpp \
            backends.cpp \
            svgicons.cpp \
-           config.cpp
+           config.cpp \
+           pref.cpp
 
-FORMS += mainWin.ui about.ui
+FORMS += mainWin.ui about.ui pref.ui
 
 RESOURCES += data/arq.qrc
 

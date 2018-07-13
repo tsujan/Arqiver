@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Arqiver
 Comment=A Qt front-end for libarchive
+Comment[eo]=Qt-bazita fasado por libarchive
 Comment[pl]=Front-end do libarchive oparty o Qt
 Exec=arqiver %f
 Icon=utilities-file-archiver

@@ -38,7 +38,7 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int  main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "0.1.0";
+  const QString version = "0.2.0";
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);

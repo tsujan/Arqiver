@@ -44,6 +44,8 @@ void Config::readConfig() {
   if (!startSize_.isValid() || startSize_.isNull())
     startSize_ = QSize(600, 500);
 
+  iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
+
   settings.endGroup();
 
   settings.beginGroup("archive");
@@ -67,6 +69,8 @@ void Config::writeConfig() {
   }
 
   settings.setValue("startSize", startSize_);
+
+  settings.setValue("iconSize", iconSize_);
 
   settings.endGroup();
 

@@ -21,6 +21,7 @@
 #include "ui_mainWin.h"
 #include "ui_about.h"
 #include "svgicons.h"
+#include "pref.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -82,6 +83,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
   ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
   ui->actionCopy->setIcon(symbolicIcon::icon(":icons/edit-copy.svg"));
+  ui->actionPref->setIcon(symbolicIcon::icon(":icons/preferences-system.svg"));
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -127,6 +129,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
 
+  connect (ui->actionPref, &QAction::triggered, this, &mainWin::prefDialog);
+
   connect (ui->actionAbout, &QAction::triggered, this, &mainWin::aboutDialog);
 
   /* the labels and column sizes of the header (the 4th hidden column will
@@ -164,9 +168,13 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     }
     resize(startSize);
   }
+
   lastFilter_ = config_.getLastFilter();
   if (filterToExtension(lastFilter_).isEmpty()) // validate the filter
     lastFilter_.clear();
+
+  int icnSize = config_.getIconSize();
+  ui->tree_contents->setIconSize(QSize(icnSize, icnSize));
 }
 
 mainWin::~mainWin() {
@@ -774,6 +782,8 @@ static inline QString displaySize(const qint64 size) {
 
 QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lock) {
   QString emblemName = lock ? ".lock" : ".link";
+  int w = icnSize.width();
+  int emblemSize = w <= 32 ? 16 : 24;
   QPixmap pix;
   if (!QPixmapCache::find(iconName + emblemName, &pix)) {
     int pixelRatio = qApp->devicePixelRatio();
@@ -781,11 +791,11 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
     int offset = 0;
     QPixmap emblem;
     if (lock) {
-      emblem = QIcon(":icons/emblem-lock.svg").pixmap(16*pixelRatio, 16*pixelRatio);
-      offset = (icnSize.width() - 16) * pixelRatio;
+      emblem = QIcon(":icons/emblem-lock.svg").pixmap(emblemSize*pixelRatio, emblemSize*pixelRatio);
+      offset = (w - emblemSize) * pixelRatio;
     }
     else
-      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(16*pixelRatio, 16*pixelRatio);
+      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize*pixelRatio, emblemSize*pixelRatio);
     pix = QPixmap(icnSize * pixelRatio);
     pix.fill(Qt::transparent);
     QPainter painter(&pix);
@@ -1030,6 +1040,11 @@ void mainWin::selectionChanged() {
     textLabel_->setText(cur->whatsThis(0));
   else
     textLabel_->setText(lastMsg_);
+}
+
+void mainWin::prefDialog() {
+    PrefDialog dlg(this);
+    dlg.exec();
 }
 
 void mainWin::aboutDialog() {

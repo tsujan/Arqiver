@@ -116,6 +116,8 @@
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
+    <addaction name="actionPref"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -253,6 +255,11 @@
   <action name="actionCopy">
    <property name="text">
     <string>&amp;Copy Current Path</string>
+   </property>
+  </action>
+  <action name="actionPref">
+   <property name="text">
+    <string>&amp;Preferences</string>
    </property>
   </action>
  </widget>

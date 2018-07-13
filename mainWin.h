@@ -45,6 +45,10 @@ public:
 
   void loadArguments(const QStringList& args);
 
+  Config& getConfig() {
+    return config_;
+  }
+
 private slots:
   void newArchive();
   void openArchive();
@@ -70,9 +74,9 @@ private slots:
 
   void selectionChanged();
 
+  void prefDialog();
+
   void aboutDialog();
-
-
 
 private:
   void closeEvent(QCloseEvent *event);

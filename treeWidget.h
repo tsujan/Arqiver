@@ -71,8 +71,10 @@ protected:
       //dragStarted_ = false;
       window()->setAcceptDrops(false);
       QTreeWidgetItem *it = currentItem();
-      if (!it || it->text(1).isEmpty()) // it's a directory item
+      if (!it || it->text(1).isEmpty()) { // it's a directory item
+        event->accept();
         return;
+      }
       emit dragStarted(it);
 
       QPointer<QDrag> drag = new QDrag(this);

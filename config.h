@@ -83,9 +83,17 @@ public:
     lastFilter_ = last;
   }
 
+  int getIconSize() const {
+    return iconSize_;
+  }
+  void setIconSize(int size) {
+    iconSize_ = size;
+  }
+
 private:
   bool remSize_, isMaxed_;
   QSize winSize_, startSize_;
+  int iconSize_;
   QString lastFilter_;
 };
 
