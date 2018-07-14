@@ -165,7 +165,7 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
     <message>
         <location filename="../../mainWin.ui" line="231"/>
         <source>Set Password</source>
-        <translation>Aldoni Pasĝorton</translation>
+        <translation>Aldoni Pasvorton</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="236"/>
