@@ -103,7 +103,10 @@ int  main(int argc, char **argv) {
   }
 
   Arqiver::mainWin W;
-  W.loadArguments(args);
-  W.show();
+  // see mainWin::loadArguments() for an explanation
+  if (args.isEmpty())
+    W.show();
+  else
+    W.loadArguments(args);
   return  a.exec();
 }

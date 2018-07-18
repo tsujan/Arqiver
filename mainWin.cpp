@@ -205,74 +205,82 @@ void mainWin::changeEvent(QEvent *event) {
 }
 
 void mainWin::loadArguments(const QStringList& args) {
-  int action = -1;
-  /*
-     0: auto extracting   -> arqiver --ax Archive(s)
-     1: auto archiving    -> arqiver --aa Archive Files
-     2: simple extracting -> arqiver --sx Archive
-     3: simple archiving  -> arqiver --sa Files
-  */
-  QStringList files;
-  for (int i = 0; i < args.length(); i++) {
-    if (args[i].startsWith("--")) {
-      if (action >= 0) break;
-      else if (args[i]=="--ax") {
-        action = 0; continue;
+  /* KDE needs all events to be processed ; otherwise, if a dialog
+     is shown before the main window, the application won't exit
+     when the main window is closed. This should be a bug in KDE.
+     As a workaround, we show the window only when no dialog is
+     going to be shown before it. */
+  QTimer::singleShot(0, this, [this, args]() {
+    int action = -1;
+    /*
+      0: auto extracting   -> arqiver --ax Archive(s)
+      1: auto archiving    -> arqiver --aa Archive Files
+      2: simple extracting -> arqiver --sx Archive
+      3: simple archiving  -> arqiver --sa Files
+    */
+    QStringList files;
+    for (int i = 0; i < args.length(); i++) {
+      if (args[i].startsWith("--")) {
+        if (action >= 0) break;
+        else if (args[i]=="--ax") {
+          action = 0; continue;
+        }
+        else if (args[i]=="--aa") {
+          action = 1; continue;
+        }
+        else if (args[i]=="--sx") {
+          action = 2; continue;
+        }
+        else if (args[i]=="--sa") {
+          action = 3; continue;
+        }
       }
-      else if (args[i]=="--aa") {
-        action = 1; continue;
+      else {
+        files << args[i];
       }
-      else if (args[i]=="--sx") {
-        action = 2; continue;
-      }
-      else if (args[i]=="--sa") {
-        action = 3; continue;
-      }
+    }
+
+    if (action != 3) // no dialog is shown before the main window
+      show();
+
+    if (files.isEmpty()) return;
+    files.removeDuplicates();
+    if (!files.at(0).isEmpty())
+      lastPath_ = files.at(0).section("/", 0, -2);
+
+    textLabel_->setText(tr("Opening Archive..."));
+    if (action == 0) {
+      axFileList_ = files;
+      /* here, we don't wait for a successful operation because all files
+        should be processed and the window should be closed at the end */
+      connect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
+      connect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
+      BACKEND->loadFile(axFileList_.first());
+      axFileList_.removeFirst();
+    }
+    else if (action == 1) {
+      aaFileList_ = files;
+      aaFileList_.removeFirst();
+      connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::autoArchiveFiles);
+      connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
+      BACKEND->loadFile(files[0]);
+    }
+    else if (action == 2) {
+      connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleExtractFiles);
+      connect(BACKEND, &Backend::extractionSuccessful, [this] {close_ = true;});
+      BACKEND->loadFile(files[0]);
+    }
+    else if (action == 3) {
+      saFileList_ = files;
+      connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleArchivetFiles);
+      connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
+      newArchive();
     }
     else {
-      files << args[i];
+      expandAll_ = true;
+      BACKEND->loadFile(files[0]);
     }
-  }
-
-  if (files.isEmpty()) return;
-  files.removeDuplicates();
-  if (!files.at(0).isEmpty())
-    lastPath_ = files.at(0).section("/", 0, -2);
-
-  textLabel_->setText(tr("Opening Archive..."));
-  if (action == 0) {
-    axFileList_ = files;
-    /* here, we don't wait for a successful operation because all files
-       should be processed and the window should be closed at the end */
-    connect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
-    connect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
-    BACKEND->loadFile(axFileList_.first());
-    axFileList_.removeFirst();
-  }
-  else if (action == 1) {
-    aaFileList_ = files;
-    aaFileList_.removeFirst();
-    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::autoArchiveFiles);
-    connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
-    BACKEND->loadFile(files[0]);
-  }
-  else if (action == 2) {
-    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleExtractFiles);
-    connect(BACKEND, &Backend::extractionSuccessful, [this] {close_ = true;});
-    BACKEND->loadFile(files[0]);
-  }
-  else if (action == 3) {
-    saFileList_ = files;
-    connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleArchivetFiles);
-    connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
-    //QTimer::singleShot(0, this, [this]() {
-      newArchive();
-    //});
-  }
-  else {
-    expandAll_ = true;
-    BACKEND->loadFile(files[0]);
-  }
+  });
 }
 
 QHash<QString, QTreeWidgetItem*> mainWin::cleanTree(const QStringList& list) {
@@ -420,16 +428,22 @@ QString mainWin::filterToExtension(const QString& filter) {
 void mainWin::newArchive() {
   QString file;
 
+  QString path;
+  if (!saFileList_.isEmpty()) {
+    path =  QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
+              ? saFileList_.at(0) + (lastFilter_.isEmpty()
+                                       ? ".tar.gz"
+                                       : filterToExtension(lastFilter_))
+              : saFileList_.at(0);
+  }
   bool retry(true);
-  QString path = saFileList_.isEmpty() ? lastPath_
-                                       /* use the file name with simple archiving */
-                                       : QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
-                                           ? saFileList_.at(0) + (lastFilter_.isEmpty()
-                                                                    ? ".tar.gz"
-                                                                    : filterToExtension(lastFilter_))
-                                           : saFileList_.at(0);
   while (retry) {
-    QFileDialog dlg(this, tr("Create Archive"), path, archivingTypes());
+    QFileDialog dlg(this, tr("Create Archive"),
+                    /* KDE's buggy file dialog needs a directory path here */
+                    path.isEmpty() ? lastPath_ : path.section("/", 0, -2),
+                    archivingTypes());
+    if (!path.isEmpty())
+      dlg.selectFile(path);
     dlg.setAcceptMode(QFileDialog::AcceptSave);
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.selectNameFilter(lastFilter_);
@@ -439,7 +453,7 @@ void mainWin::newArchive() {
         lastFilter_ = f;
       file = dlg.selectedFiles().at(0);
     }
-    else return;
+    else return; // with auto-archiving, the application will exit because its main window isn't shown
     if (file.isEmpty()) return;
     QRegularExpressionMatch match;
     int indx = file.indexOf(archivingExt, 0, &match);
@@ -460,6 +474,10 @@ void mainWin::newArchive() {
       else retry = false;
     }
   }
+
+  /* we don't show the window with auto-archiving (see loadArguments) */
+  if (!isVisible())
+    show();
 
   lastPath_ = file.section("/", 0, -2);
 

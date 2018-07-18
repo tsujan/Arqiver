@@ -3,6 +3,7 @@ V0.2.0
  * Added Preferences dialog.
  * Customizable view icon size.
  * Polish translation by Marcin Mikołajczak (m4sk1n at GitHub).
+ * Workaround for a KDE bug that, under some circumstances, doesn't let the application exit when its main window is closed.
 
 V0.1.0
 ---------
