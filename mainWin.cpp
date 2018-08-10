@@ -122,7 +122,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   });
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
-  connect(ui->tree_contents, &TreeWidget::itemEnetred, this, &mainWin::expandOrView);
+  connect(ui->tree_contents, &TreeWidget::enterPressed, this, &mainWin::expandOrView);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);

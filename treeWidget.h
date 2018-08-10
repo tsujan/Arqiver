@@ -54,7 +54,7 @@ public:
 
 signals:
   void dragStarted(QTreeWidgetItem *it);
-  void itemEnetred(QTreeWidgetItem *it);
+  void enterPressed(QTreeWidgetItem *it);
 
 protected:
   virtual void mousePressEvent(QMouseEvent *event) {
@@ -115,7 +115,7 @@ protected:
         }
         timer_->start(250);
       }
-      emit itemEnetred(currentItem());
+      emit enterPressed(currentItem());
       event->accept();
       return;
     }
