@@ -63,6 +63,7 @@ private slots:
   void simpleExtractFiles();
   void extractSelection();
   void viewFile(QTreeWidgetItem *it);
+  void expandOrView(QTreeWidgetItem *it);
   void extractSingleFile(QTreeWidgetItem *it);
   void listContextMenu(const QPoint& p);
   void updateTree();

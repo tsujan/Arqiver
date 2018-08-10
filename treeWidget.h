@@ -28,6 +28,7 @@
 #include <QMimeData>
 #include <QIcon>
 #include <QApplication>
+#include <QTimer>
 
 namespace Arqiver {
 
@@ -37,6 +38,7 @@ class TreeWidget : public QTreeWidget
 
 public:
   TreeWidget(QWidget *parent = nullptr) : QTreeWidget(parent) {
+    timer_ = nullptr;
     dragStarted_ = false; // not needed
     setDragDropMode(QAbstractItemView::DragOnly);
     setContextMenuPolicy (Qt::CustomContextMenu);
@@ -46,8 +48,13 @@ public:
     return itemFromIndex(index);
   }
 
+  QModelIndex getIndexFromItem(const QTreeWidgetItem *item) const {
+    return indexFromItem(item);
+  }
+
 signals:
   void dragStarted(QTreeWidgetItem *it);
+  void itemEnetred(QTreeWidgetItem *it);
 
 protected:
   virtual void mousePressEvent(QMouseEvent *event) {
@@ -92,9 +99,33 @@ protected:
     }
   }
 
+  virtual void keyReleaseEvent(QKeyEvent *event) {
+    /* NOTE: If Enter is kept pressed, it will be released and then will be
+             pressed again, and so on. As a workaround, a timer is used here. */
+    if (currentItem() && (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)) {
+      if(!timer_) {
+        timer_ = new QTimer (this);
+        timer_->setSingleShot(true);
+        timer_->start(250);
+      }
+      else {
+        if (timer_->isActive()) {
+          event->accept();
+          return;
+        }
+        timer_->start(250);
+      }
+      emit itemEnetred(currentItem());
+      event->accept();
+      return;
+    }
+    QTreeWidget::keyReleaseEvent(event);
+  }
+
 private:
   QPoint dragStartPosition_;
   bool dragStarted_;
+  QTimer *timer_;
 };
 
 }

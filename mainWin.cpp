@@ -122,6 +122,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   });
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
+  connect(ui->tree_contents, &TreeWidget::itemEnetred, this, &mainWin::expandOrView);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
@@ -787,6 +788,16 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
   BACKEND->startViewFile(it->whatsThis(0));
 }
 
+void mainWin::expandOrView(QTreeWidgetItem *it) {
+  if (it->text(1).isEmpty()) { // it's a directory item
+    if (ui->tree_contents->isExpanded(ui->tree_contents->getIndexFromItem(it)))
+      ui->tree_contents->collapseItem(it);
+    else
+      ui->tree_contents->expandItem(it);
+  }
+  else viewFile(it);
+}
+
 static inline QString displaySize(const qint64 size) {
   static const QStringList labels = {"B", "K", "M", "G", "T"};
   int i = 0;
@@ -949,10 +960,19 @@ void mainWin::updateTree() {
   ui->tree_contents->setEnabled(true);
   enableActions(true);
   if (expandAll_) {
-    if (itemAdded)
+    if (itemAdded) {
       ui->tree_contents->expandAll();
+      QTimer::singleShot(0, this, [this]() {
+        if(QAbstractItemModel *model = ui->tree_contents->model()) {
+          QModelIndex firstIndx = model->index(0, 0);
+          if(firstIndx.isValid())
+            ui->tree_contents->selectionModel()->setCurrentIndex(firstIndx, QItemSelectionModel::NoUpdate);
+        }
+      });
+    }
     expandAll_ = false;
   }
+  ui->tree_contents->setFocus();
 }
 
 void mainWin::enableActions(bool enable) {

@@ -213,270 +213,270 @@ Zainstaluj ten pakiet, aby obsługiwać ten rodzaj archiwów!</translation>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="138"/>
+        <location filename="../../mainWin.cpp" line="139"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="138"/>
+        <location filename="../../mainWin.cpp" line="139"/>
         <source>MimeType</source>
         <translation>Typ MIME</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="138"/>
+        <location filename="../../mainWin.cpp" line="139"/>
         <source>Size</source>
         <translation>Rozmiar</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="251"/>
-        <location filename="../../mainWin.cpp" line="498"/>
-        <location filename="../../mainWin.cpp" line="531"/>
+        <location filename="../../mainWin.cpp" line="252"/>
+        <location filename="../../mainWin.cpp" line="499"/>
+        <location filename="../../mainWin.cpp" line="532"/>
         <source>Opening Archive...</source>
         <translation>Otwieranie archiwum…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="318"/>
+        <location filename="../../mainWin.cpp" line="319"/>
         <source>All Types %1</source>
         <translation>Wszystkie rodzaje %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="328"/>
-        <location filename="../../mainWin.cpp" line="351"/>
+        <location filename="../../mainWin.cpp" line="329"/>
+        <location filename="../../mainWin.cpp" line="352"/>
         <source>Uncompressed Archive (*.tar)</source>
         <translation>Nieskompresowane archiwum (*.tar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="329"/>
-        <location filename="../../mainWin.cpp" line="352"/>
+        <location filename="../../mainWin.cpp" line="330"/>
+        <location filename="../../mainWin.cpp" line="353"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
         <translation>Skompresowane archiwum GZip (*.tar.gz *.tgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="331"/>
-        <location filename="../../mainWin.cpp" line="354"/>
+        <location filename="../../mainWin.cpp" line="332"/>
+        <location filename="../../mainWin.cpp" line="355"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
         <translation>Skompresowane archiwum BZip2 (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="332"/>
-        <location filename="../../mainWin.cpp" line="357"/>
+        <location filename="../../mainWin.cpp" line="333"/>
+        <location filename="../../mainWin.cpp" line="358"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
         <translation>Skompresowane archiwum LMZA (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="333"/>
-        <location filename="../../mainWin.cpp" line="356"/>
+        <location filename="../../mainWin.cpp" line="334"/>
+        <location filename="../../mainWin.cpp" line="357"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
         <translation>Skompresowane archiwum XZ (*.tar.xz *.txz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="334"/>
-        <location filename="../../mainWin.cpp" line="358"/>
+        <location filename="../../mainWin.cpp" line="335"/>
+        <location filename="../../mainWin.cpp" line="359"/>
         <source>CPIO Archive (*.cpio)</source>
         <translation>Archiwum CPIO (*.cpio)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="336"/>
-        <location filename="../../mainWin.cpp" line="360"/>
+        <location filename="../../mainWin.cpp" line="337"/>
+        <location filename="../../mainWin.cpp" line="361"/>
         <source>AR Archive (*.ar)</source>
         <translation>Archiwum AR (*.ar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="338"/>
-        <location filename="../../mainWin.cpp" line="362"/>
+        <location filename="../../mainWin.cpp" line="339"/>
+        <location filename="../../mainWin.cpp" line="363"/>
         <source>Zip Archive (*.zip)</source>
         <translation>Archiwum Zip (*.zip)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="339"/>
-        <location filename="../../mainWin.cpp" line="364"/>
+        <location filename="../../mainWin.cpp" line="340"/>
+        <location filename="../../mainWin.cpp" line="365"/>
         <source>Gzip Archive (*.gz)</source>
         <translation>Archiwum Gzip (*.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="340"/>
-        <location filename="../../mainWin.cpp" line="363"/>
+        <location filename="../../mainWin.cpp" line="341"/>
+        <location filename="../../mainWin.cpp" line="364"/>
         <source>7-Zip Archive (*.7z)</source>
         <translation>Archiwum 7-Zip (*.7z)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="355"/>
+        <location filename="../../mainWin.cpp" line="356"/>
         <source>BZip2 Archive (*.bz2)</source>
         <translation>Archiwum BZip2 (*.bz2)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="365"/>
+        <location filename="../../mainWin.cpp" line="366"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
         <translation>Dokument PDF skompresowany przez Gzip (*.pdf.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="366"/>
+        <location filename="../../mainWin.cpp" line="367"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
         <translation>TYLKO DO ODCZYTU: Skompresowany obraz SVG (*.svgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="367"/>
         <location filename="../../mainWin.cpp" line="368"/>
+        <location filename="../../mainWin.cpp" line="369"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
         <translation>TYLKO DO ODCZYTU: Obraz ISO (*.iso *.img)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="369"/>
+        <location filename="../../mainWin.cpp" line="370"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
         <translation>TYLKO DO ODCZYTU: Archiwum XAR (*.xar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="370"/>
+        <location filename="../../mainWin.cpp" line="371"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
         <translation>TYLKO DO ODCZYTU: Archiwum Java (*.jar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="371"/>
+        <location filename="../../mainWin.cpp" line="372"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
         <translation>TYLKO DO ODCZYTU: Pakiet Debiana (*.deb)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="372"/>
         <location filename="../../mainWin.cpp" line="373"/>
+        <location filename="../../mainWin.cpp" line="374"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
         <translation>TYLKO DO ODCZYTU: Pakiet RedHat (*.rpm)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="382"/>
+        <location filename="../../mainWin.cpp" line="383"/>
         <source>All Known Types %1</source>
         <translation>Wszystkie znane rodzaje %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="387"/>
+        <location filename="../../mainWin.cpp" line="388"/>
         <source>Show All Files (*)</source>
         <translation>Pokaż wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="441"/>
+        <location filename="../../mainWin.cpp" line="442"/>
         <source>Create Archive</source>
         <translation>Utwórz archiwum</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="466"/>
+        <location filename="../../mainWin.cpp" line="467"/>
         <source>Question</source>
         <translation>Pytanie</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="467"/>
+        <location filename="../../mainWin.cpp" line="468"/>
         <source>The following archive already exists:</source>
         <translation>Następujące archiwum już istnieje:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="469"/>
+        <location filename="../../mainWin.cpp" line="470"/>
         <source>Do you want to replace it?
 </source>
         <translation>Czy chcesz je zamienić?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="490"/>
+        <location filename="../../mainWin.cpp" line="491"/>
         <source>Open Archive</source>
         <translation>Otwórz archiwum</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="557"/>
-        <location filename="../../mainWin.cpp" line="565"/>
-        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="558"/>
+        <location filename="../../mainWin.cpp" line="566"/>
+        <location filename="../../mainWin.cpp" line="582"/>
         <source>Add to Archive</source>
         <translation>Dodaj do archiwum</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="569"/>
-        <location filename="../../mainWin.cpp" line="584"/>
-        <location filename="../../mainWin.cpp" line="742"/>
-        <location filename="../../mainWin.cpp" line="748"/>
+        <location filename="../../mainWin.cpp" line="570"/>
+        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="743"/>
+        <location filename="../../mainWin.cpp" line="749"/>
         <source>Adding Items...</source>
         <translation>Dodawanie elementów…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="595"/>
+        <location filename="../../mainWin.cpp" line="596"/>
         <source>Removing Items...</source>
         <translation>Usuwanie elementów…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="607"/>
-        <location filename="../../mainWin.cpp" line="710"/>
-        <location filename="../../mainWin.cpp" line="720"/>
-        <location filename="../../mainWin.cpp" line="774"/>
-        <location filename="../../mainWin.cpp" line="786"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <location filename="../../mainWin.cpp" line="711"/>
+        <location filename="../../mainWin.cpp" line="721"/>
+        <location filename="../../mainWin.cpp" line="775"/>
+        <location filename="../../mainWin.cpp" line="787"/>
         <source>Extracting...</source>
         <translation>Rozpakowywanie…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="621"/>
+        <location filename="../../mainWin.cpp" line="622"/>
         <source>View Current Item</source>
         <translation>Pokaż obecny element</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="630"/>
-        <location filename="../../mainWin.cpp" line="638"/>
+        <location filename="../../mainWin.cpp" line="631"/>
+        <location filename="../../mainWin.cpp" line="639"/>
         <source>Enter Password</source>
         <translation>Wprowadź hasło</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="642"/>
+        <location filename="../../mainWin.cpp" line="643"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="643"/>
+        <location filename="../../mainWin.cpp" line="644"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="647"/>
+        <location filename="../../mainWin.cpp" line="648"/>
         <source>Encrypt the file list</source>
         <translation>Szyfruj listę plików</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="648"/>
+        <location filename="../../mainWin.cpp" line="649"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Efekt będzie widoczny po dodaniu nowych plików/katalogów.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="707"/>
-        <location filename="../../mainWin.cpp" line="770"/>
+        <location filename="../../mainWin.cpp" line="708"/>
+        <location filename="../../mainWin.cpp" line="771"/>
         <source>Extract Into Directory</source>
         <translation>Rozpakuj do katalogu</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="868"/>
+        <location filename="../../mainWin.cpp" line="879"/>
         <source>Link To: %1</source>
         <translation>Odnośnik do: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1095"/>
+        <location filename="../../mainWin.cpp" line="1115"/>
         <source>A simple Qt archive manager</source>
         <translation>Prosty menedżer archiwum Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1096"/>
+        <location filename="../../mainWin.cpp" line="1116"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>oparty o libarchive, gzip i 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1097"/>
+        <location filename="../../mainWin.cpp" line="1117"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1098"/>
+        <location filename="../../mainWin.cpp" line="1118"/>
         <source>aka.</source>
         <translation>aka.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1099"/>
-        <location filename="../../mainWin.cpp" line="1100"/>
+        <location filename="../../mainWin.cpp" line="1119"/>
+        <location filename="../../mainWin.cpp" line="1120"/>
         <source>About Arqiver</source>
         <translation>O Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1099"/>
+        <location filename="../../mainWin.cpp" line="1119"/>
         <source>Translators</source>
         <translation>Tłumacze</translation>
     </message>
