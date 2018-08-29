@@ -368,8 +368,10 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   QString xPath = path;
   if (!archiveParentDir_.isEmpty() && archiveParentDir_.startsWith("."))
     archiveParentDir_.remove(0, 1); // no hidden extraction folder (with rpm)
+  bool archiveParenExists(false);
   if (!archiveParentDir_.isEmpty()) {
     if(QFile::exists(xPath + "/" + archiveParentDir_)) {
+      archiveParenExists = true;
       QDir dir (xPath);
       QString subdirName = archiveParentDir_ + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
       xPath += "/" + subdirName;
@@ -409,6 +411,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-C" << xPath;
+    if (archiveParenExists)
+      args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
     PROC.start(TAR_CMD, args); // doesn't create xPath if not existing
   }

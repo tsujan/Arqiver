@@ -12,30 +12,30 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="727"/>
-        <location filename="../../backends.cpp" line="766"/>
+        <location filename="../../backends.cpp" line="731"/>
+        <location filename="../../backends.cpp" line="770"/>
         <source>Could not read archive</source>
         <translation>Nie udało się odczytać archiwum</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="730"/>
-        <location filename="../../backends.cpp" line="771"/>
+        <location filename="../../backends.cpp" line="734"/>
+        <location filename="../../backends.cpp" line="775"/>
         <source>Archive Loaded</source>
         <translation>Załadowano archiwum</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="737"/>
-        <location filename="../../backends.cpp" line="817"/>
+        <location filename="../../backends.cpp" line="741"/>
+        <location filename="../../backends.cpp" line="821"/>
         <source>Modification Finished</source>
         <translation>Zakończono modyfikowanie</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="788"/>
+        <location filename="../../backends.cpp" line="792"/>
         <source>Extraction Finished</source>
         <translation>Zakończono rozpakowywanie</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="898"/>
+        <location filename="../../backends.cpp" line="902"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>W Twoim systemie brakuje %1.
