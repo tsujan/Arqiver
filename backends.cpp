@@ -259,7 +259,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   QStringList args;
   args << "-c" << "-a";
   args << fileArgs_;
-  //Now setup the parent dir
+  /* now, setup the parent dir */
   if (!absolutePaths) {
     for (int i = 0; i < paths.length(); i++) {
       paths[i] = paths[i].section(parent, 1, -1);
@@ -286,7 +286,7 @@ void Backend::startRemove(QStringList& paths) {
   if (paths.contains(filepath_))
     paths.removeAll(filepath_);
   if (contents_.isEmpty() || paths.isEmpty() || !QFile::exists(filepath_))
-    return; //invalid
+    return; // invalid
   paths.removeDuplicates();
   QStringList args;
   if (is7z_) {
@@ -302,7 +302,6 @@ void Backend::startRemove(QStringList& paths) {
   args << fileArgs_;
   skipExistingFiles(tmpfilepath_); // practically not required
   args.replaceInStrings(filepath_, tmpfilepath_);
-  // Add the include rules for all the files we want to keep (no exclude option in "tar")
   for (int i = 0; i < paths.length(); i++) {
     args << "--exclude" << paths[i];
   }
@@ -366,14 +365,14 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     keyArgs_ << "-x";
   }
   QString xPath = path;
-  if (!archiveParentDir_.isEmpty() && archiveParentDir_.startsWith("."))
-    archiveParentDir_.remove(0, 1); // no hidden extraction folder (with rpm)
-  bool archiveParenExists(false);
-  if (!archiveParentDir_.isEmpty()) {
-    if(QFile::exists(xPath + "/" + archiveParentDir_)) {
-      archiveParenExists = true;
+  if (!archiveSingleRoot_.isEmpty() && archiveSingleRoot_.startsWith("."))
+    archiveSingleRoot_.remove(0, 1); // no hidden extraction folder (with rpm)
+  bool archiveRootExists(false);
+  if (!archiveSingleRoot_.isEmpty()) {
+    if(QFile::exists(xPath + "/" + archiveSingleRoot_)) {
+      archiveRootExists = true;
       QDir dir (xPath);
-      QString subdirName = archiveParentDir_ + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+      QString subdirName = archiveSingleRoot_ + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
       xPath += "/" + subdirName;
 
       /* this is practically impossible */
@@ -389,7 +388,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       dir.mkdir(subdirName);
     }
   }
-  else {
+  else { // the archive doesn't have a parent dir and isn't a single file
     QDir dir(xPath);
     QString subdirName = filepath_.section("/", -1) + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
     xPath += "/" + subdirName;
@@ -411,7 +410,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-C" << xPath;
-    if (archiveParenExists)
+    if (archiveRootExists && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
     PROC.start(TAR_CMD, args); // doesn't create xPath if not existing
@@ -538,18 +537,18 @@ QString Backend::extractSingleFile(const QString& path) {
 }
 
 void Backend::parseLines (QStringList& lines) {
-  static bool hasParentDir = false;
+  static bool hasSingleRoot = false;
   if (contents_.isEmpty()) {
-    hasParentDir = true;
-    archiveParentDir_ = QString();
+    hasSingleRoot = true;
+    archiveSingleRoot_ = QString(); // if existent, may mean a parent dir or single file
   }
   if (is7z_) {
     static int Name = 0;
     if (starting7z_) {
-      //Ignore all the p7zip header info
+      /* ignore all p7zip header info */
       while (starting7z_ && !lines.isEmpty()) {
         if (lines[0] == "--")
-          starting7z_ = false; //found the end of the headers
+          starting7z_ = false; // found the end of the headers
         lines.removeAt(0);
       }
     }
@@ -577,15 +576,15 @@ void Backend::parseLines (QStringList& lines) {
           contents_.insert(file, QStringList() << info[2] << info[3] << info[4]);
         }
         if (!file.isEmpty()) {
-          if (hasParentDir) {
-            if(archiveParentDir_.isEmpty()) {
-              archiveParentDir_ = file.section('/', 0, 0);
-              if(archiveParentDir_.isEmpty())
-                hasParentDir = false;
+          if (hasSingleRoot) {
+            if(archiveSingleRoot_.isEmpty()) {
+              archiveSingleRoot_ = file.section('/', 0, 0);
+              if(archiveSingleRoot_.isEmpty())
+                hasSingleRoot = false;
             }
-            else if (archiveParentDir_ != file.section('/', 0, 0)) {
-              hasParentDir = false;
-              archiveParentDir_ = QString();
+            else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
+              hasSingleRoot = false;
+              archiveSingleRoot_ = QString();
             }
           }
         }
@@ -622,15 +621,15 @@ void Backend::parseLines (QStringList& lines) {
         perms = "d";
         file.chop(1);
       }
-      if (hasParentDir) {
-        if(archiveParentDir_.isEmpty()) {
-          archiveParentDir_ = file.section('/', 0, 0);
-          if(archiveParentDir_.isEmpty())
-            hasParentDir = false;
+      if (hasSingleRoot) {
+        if(archiveSingleRoot_.isEmpty()) {
+          archiveSingleRoot_ = file.section('/', 0, 0);
+          if(archiveSingleRoot_.isEmpty())
+            hasSingleRoot = false;
         }
-        else if (archiveParentDir_ != file.section('/', 0, 0)) {
-          hasParentDir = false;
-          archiveParentDir_ = QString();
+        else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
+          hasSingleRoot = false;
+          archiveSingleRoot_ = QString();
         }
       }
       contents_.insert (file, QStringList() << perms << "-1" << QString()); // [perms, size, linkto ]
@@ -647,27 +646,27 @@ void Backend::parseLines (QStringList& lines) {
     if(file.endsWith("/"))
       file.chop(1);
     QString linkto;
-    //See if this file has the "link to" or "->"  notation
+    /* see if this file has the "link to" or "->"  notation */
     if (file.contains(" -> ")) {
       linkto = file.section(" -> ", 1, -1);
       file = file.section(" -> ", 0, 0);
     }
     else if (file.contains(" link to ")) {
-      //Special case - alternate form of a link within a tar archive (not reflected in perms)
+      /* alternate form of a link within a tar archive (not reflected in perms) */
       linkto = file.section(" link to ", 1, -1);
       file = file.section(" link to ", 0, 0);
       if(info[0].startsWith("-"))
         info[0].replace(0, 1, "l");
     }
-    if (hasParentDir) {
-      if(archiveParentDir_.isEmpty()) {
-          archiveParentDir_ = file.section('/', 0, 0);
-          if (archiveParentDir_.isEmpty())
-            hasParentDir = false;
+    if (hasSingleRoot) {
+      if(archiveSingleRoot_.isEmpty()) {
+          archiveSingleRoot_ = file.section('/', 0, 0);
+          if (archiveSingleRoot_.isEmpty())
+            hasSingleRoot = false;
       }
-      else if (archiveParentDir_ != file.section('/', 0, 0)) {
-          hasParentDir = false;
-          archiveParentDir_ = QString();
+      else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
+          hasSingleRoot = false;
+          archiveSingleRoot_ = QString();
       }
     }
     contents_.insert(file, QStringList() << info[0] << info[4] << linkto); // [perms, size, linkto ]

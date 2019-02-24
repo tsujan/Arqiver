@@ -123,7 +123,7 @@ private:
   QStringList encryptedPaths_; // for 7z
   bool isGzip_, is7z_;
   QString pswrd_; // for 7z
-  QString archiveParentDir_;
+  QString archiveSingleRoot_;
 };
 
 }

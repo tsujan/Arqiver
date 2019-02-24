@@ -7,6 +7,7 @@ V0.2.0
  * Focus the view and its first item after updating it.
  * View/expand/collapse the current item with Enter/Return.
  * With tar/bsdtar and if the parent dir exists, change the parent dir name instead of extracting in a child dir.
+ * A root archive file may mean a parent directory or a single file. Previously, it was supposed to be a parent directory and that caused single files not to be extracted with non-Gzip archives when they were present in the extraction directory.
 
 V0.1.0
 ---------
