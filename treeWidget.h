@@ -59,43 +59,38 @@ signals:
 protected:
   virtual void mousePressEvent(QMouseEvent *event) {
     QTreeWidget::mousePressEvent(event);
-    if (event->button() == Qt::LeftButton) {
-      if (indexAt(event->pos()).isValid())
-        dragStartPosition_ = event->pos();
-    }
+    if (event->button() == Qt::LeftButton && indexAt(event->pos()).isValid())
+      dragStartPosition_ = event->pos();
+    else
+      dragStartPosition_ = QPoint();
     dragStarted_ = false;
   }
 
   virtual void mouseMoveEvent(QMouseEvent *event) {
-    if (!dragStartPosition_.isNull()
-        && (event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance()))
-    {
-      dragStarted_ = true;
-    }
-
-    if ((event->buttons() & Qt::LeftButton) && dragStarted_)
-    {
-      //dragStarted_ = false;
-      window()->setAcceptDrops(false);
-      QTreeWidgetItem *it = currentItem();
-      if (!it || it->text(1).isEmpty()) { // it's a directory item
-        event->accept();
+    if(dragStartPosition_.isNull()) {
+        QTreeWidget::mouseMoveEvent(event);
         return;
-      }
-      emit dragStarted(it);
+    }
+    if ((event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance()))
+      dragStarted_ = true;
 
-      QPointer<QDrag> drag = new QDrag(this);
-      QMimeData *mimeData = new QMimeData;
-      mimeData->setData("application/arqiver-item", QByteArray());
-      mimeData->setUrls(QList<QUrl>() << QUrl::fromLocalFile(it->data(0, Qt::UserRole).toString()));
-      drag->setMimeData(mimeData);
-      QPixmap px = it->icon(0).pixmap (22, 22);
-      drag->setPixmap(px);
-      drag->setHotSpot(QPoint(px.width()/2, px.height()));
-      if (drag->exec (Qt::CopyAction) == Qt::IgnoreAction)
-        drag->deleteLater();
+    if ((event->buttons() & Qt::LeftButton) && dragStarted_) {
+      //dragStarted_ = false;
+      QTreeWidgetItem *it = currentItem();
+      if (it && !it->text(1).isEmpty()) { // not a directory item
+        emit dragStarted(it);
+        QPointer<QDrag> drag = new QDrag(this);
+        QMimeData *mimeData = new QMimeData;
+        //mimeData->setData("application/arqiver-item", QByteArray());
+        mimeData->setUrls(QList<QUrl>() << QUrl::fromLocalFile(it->data(0, Qt::UserRole).toString()));
+        drag->setMimeData(mimeData);
+        QPixmap px = it->icon(0).pixmap(22, 22);
+        drag->setPixmap(px);
+        drag->setHotSpot(QPoint(px.width()/2, px.height()));
+        if (drag->exec (Qt::CopyAction) == Qt::IgnoreAction)
+            drag->deleteLater();
+      }
       event->accept();
-      window()->setAcceptDrops(true);
     }
   }
 

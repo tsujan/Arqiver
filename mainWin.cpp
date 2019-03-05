@@ -520,24 +520,20 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void mainWin::dropEvent(QDropEvent *event) {
-  if (event->mimeData()->hasFormat ("application/arqiver-item"))
-    event->ignore(); // don't drop from inside the view (not needed)
-  else {
-    const QList<QUrl> urlList = event->mimeData()->urls();
-    if (!urlList.isEmpty()) {
-      QString file = urlList.at(0).toLocalFile();
-      if (!file.isEmpty()) {
-        lastPswrd_.clear();
-        lastPath_ = file.section("/", 0, -2);
-        textLabel_->setText(tr("Opening Archive..."));
-        expandAll_ = true;
-        BACKEND->loadFile(file);
-        activateWindow();
-        raise();
-      }
+  const QList<QUrl> urlList = event->mimeData()->urls();
+  if (!urlList.isEmpty()) {
+    QString file = urlList.at(0).toLocalFile();
+    if (!file.isEmpty()) {
+      lastPswrd_.clear();
+      lastPath_ = file.section("/", 0, -2);
+      textLabel_->setText(tr("Opening Archive..."));
+      expandAll_ = true;
+      BACKEND->loadFile(file);
+      activateWindow();
+      raise();
     }
-    event->acceptProposedAction();
   }
+  event->acceptProposedAction();
 }
 
 void mainWin::addFiles() {
