@@ -141,9 +141,12 @@ bool Backend::isWorking(){
   return (PROC.state() != QProcess::Running);
 }
 
-//Listing routines
 QStringList Backend::hierarchy() {
   return contents_.keys();
+}
+
+QString Backend::singleRoot() {
+  return archiveSingleRoot_;
 }
 
 QString Backend::sizeString(const QString& file) {
@@ -344,7 +347,11 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     emit extractionSuccessful();
     return;
   }
+
   QStringList args;
+  QStringList filesList = files;
+  filesList.removeAll(QString());
+
   if(is7z_) { // extract the whole archive; no selective extraction
     if (encrypted_)
       args << "-p" + pswrd_;
@@ -354,28 +361,59 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-x" << "--no-same-owner";
-    if (!overwrite) // NOTE: We never overwrite in Arqiver. This might be changed later.
+    if (!overwrite) // NOTE: We never overwrite in Arqiver. This may changed later.
       args << "-k";
     args << fileArgs_;
-    for (int i = 0; i < files.length(); i++) {
-      if (files[i].simplified().isEmpty())
-        continue;
-      args << "--include" << files[i] << "--strip-components" << QString::number(files[i].count("/"));
+    if (!filesList.isEmpty()) {
+        filesList.removeDuplicates();
+        /* If a file comes after its containing folder in the command line,
+           bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
+        filesList.sort();
+        int N = files.length();
+        for (int i = 0; i < N; i++) {
+          if (filesList[N - 1 - i].simplified().isEmpty())
+            continue;
+          args << "--include" << filesList[N - 1 - i]
+               << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
+        }
     }
     keyArgs_ << "-x";
   }
+
   QString xPath = path;
-  if (!archiveSingleRoot_.isEmpty() && archiveSingleRoot_.startsWith("."))
-    archiveSingleRoot_.remove(0, 1); // no hidden extraction folder (with rpm)
   bool archiveRootExists(false);
-  if (!archiveSingleRoot_.isEmpty()) {
-    if(QFile::exists(xPath + "/" + archiveSingleRoot_)) {
-      archiveRootExists = true;
-      QDir dir (xPath);
-      QString subdirName = archiveSingleRoot_ + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+
+  /* prevent overwriting by making an appropriate directory and extracting into it
+     if the whole archive is going to be extracted (otherwise, overwriting will be handled by mainWin) */
+  if (filesList.isEmpty() || is7z_) {
+    QString archiveSingleRoot = archiveSingleRoot_;
+    if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
+      archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
+    if (!archiveSingleRoot.isEmpty()) {
+      if(QFile::exists(xPath + "/" + archiveSingleRoot)) {
+        archiveRootExists = true;
+        QDir dir (xPath);
+        QString subdirName = archiveSingleRoot + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+        xPath += "/" + subdirName;
+
+        /* this is practically impossible */
+        int i = 0;
+        QString suffix;
+        while (QFile::exists(xPath + suffix)) {
+          suffix = QString::number(i);
+          ++i;
+        }
+        xPath += suffix;
+        subdirName += suffix;
+
+        dir.mkdir(subdirName);
+      }
+    }
+    else { // the archive doesn't have a parent dir and isn't a single file
+      QDir dir(xPath);
+      QString subdirName = filepath_.section("/", -1) + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
       xPath += "/" + subdirName;
 
-      /* this is practically impossible */
       int i = 0;
       QString suffix;
       while (QFile::exists(xPath + suffix)) {
@@ -388,22 +426,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       dir.mkdir(subdirName);
     }
   }
-  else { // the archive doesn't have a parent dir and isn't a single file
-    QDir dir(xPath);
-    QString subdirName = filepath_.section("/", -1) + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
-    xPath += "/" + subdirName;
 
-    int i = 0;
-    QString suffix;
-    while (QFile::exists(xPath + suffix)) {
-      suffix = QString::number(i);
-      ++i;
-    }
-    xPath += suffix;
-    subdirName += suffix;
-
-    dir.mkdir(subdirName);
-  }
   if(is7z_) {
     args << "-o" + xPath;
     PROC.start("7z", args);
@@ -605,6 +628,7 @@ void Backend::parseLines (QStringList& lines) {
             file.remove(QRegularExpression("svgz$"));
             file += "svg";
           }
+          archiveSingleRoot_ = file.section('/', 0, 0);
           contents_.insert(file,
                            QStringList() << "-rw-r--r--" << info.at(1) << QString()); // [perms, size, linkto]
         }

@@ -608,16 +608,18 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
 void mainWin::listContextMenu(const QPoint& p) {
   QModelIndex index = ui->tree_contents->indexAt(p);
   if (!index.isValid()) return;
-  QTreeWidgetItem *item = ui->tree_contents->getItemFromIndex (index);
-  if (BACKEND->isDir(item->whatsThis(0)))
-    return;
+  QTreeWidgetItem *item = ui->tree_contents->getItemFromIndex(index);
+  bool isDir(item->text(1).isEmpty());
 
   QMenu menu;
   if (!BACKEND->is7z())
     menu.addAction(ui->actionExtractSel);
-  QAction *action = menu.addAction(tr("View Current Item"));
-  connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
-  menu.addSeparator();
+  if (!isDir) {
+    QAction *action = menu.addAction(tr("View Current Item"));
+    connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
+  }
+  if(!isDir || !BACKEND->is7z())
+    menu.addSeparator();
   menu.addAction(ui->actionCopy);
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }
@@ -759,13 +761,32 @@ void mainWin::extractSelection() {
     sel << ui->tree_contents->currentItem();
   }
   QStringList selList;
+  const QString singleRoot = BACKEND->singleRoot();
   for (int i = 0; i < sel.length(); i++) {
+    if (sel[i]->whatsThis(0) == singleRoot) { // total extraction
+      selList.clear();
+      break;
+    }
     selList << sel[i]->whatsThis(0);
   }
 
-  selList.removeDuplicates();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
+
+  /* check overwriting with partial extractions */
+  if (!selList.isEmpty()) {
+    selList.sort();
+    for (auto &file : selList) {
+        if (QFile::exists(dir + "/" + file.section("/",-1))) {
+          QMessageBox::StandardButton btn = QMessageBox::question(this,
+                                                                  tr("Question"),
+                                                                  tr("Some files will be overwritten.\nDo you want to continue?\n"));
+          if (btn == QMessageBox::No)
+            return;
+          break;
+        }
+    }
+  }
 
   lastPath_ = dir;
   textLabel_->setText(tr("Extracting..."));

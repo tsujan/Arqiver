@@ -40,6 +40,7 @@ public:
   bool isWorking();
 
   QStringList hierarchy();
+  QString singleRoot();
   QString sizeString(const QString& file);
   double size(const QString& file);
   double csize(const QString& file);
