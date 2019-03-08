@@ -106,7 +106,7 @@ private slots:
 private:
   void parseLines(QStringList& lines);
 
-  QProcess PROC;
+  QProcess proc_;
 
   QString filepath_, tmpfilepath_, arqiverDir_;
   QStringList fileArgs_;

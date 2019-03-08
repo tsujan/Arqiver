@@ -37,11 +37,11 @@
 namespace Arqiver {
 
 Backend::Backend(QObject *parent) : QObject(parent) {
-  PROC.setProcessChannelMode(QProcess::MergedChannels);
-  connect(&PROC, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
-  connect(&PROC, &QProcess::readyReadStandardOutput, this, &Backend::processData);
-  connect(&PROC, &QProcess::started, this, &Backend::processStarting);
-  connect(&PROC, &QProcess::errorOccurred, this, &Backend::onError);
+  proc_.setProcessChannelMode(QProcess::MergedChannels);
+  connect(&proc_, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
+  connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
+  connect(&proc_, &QProcess::started, this, &Backend::processStarting);
+  connect(&proc_, &QProcess::errorOccurred, this, &Backend::onError);
   LIST = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
@@ -138,7 +138,7 @@ QString Backend::currentFile() {
 }
 
 bool Backend::isWorking(){
-  return (PROC.state() != QProcess::Running);
+  return (proc_.state() != QProcess::Running);
 }
 
 QStringList Backend::hierarchy() {
@@ -246,7 +246,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
     args << "a" << fileArgs_ << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    PROC.start ("7z", args);
+    proc_.start ("7z", args);
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -280,7 +280,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
     args << "@" + filepath_;
   }
   keyArgs_ << "-c" << "-a" << "-C";
-  PROC.start(TAR_CMD, args);
+  proc_.start(TAR_CMD, args);
 }
 
 void Backend::startRemove(QStringList& paths) {
@@ -293,12 +293,12 @@ void Backend::startRemove(QStringList& paths) {
   paths.removeDuplicates();
   QStringList args;
   if (is7z_) {
-    if (encryptedList_)
-      args << "-p" + pswrd_; // we had the password to open the archive
+    if (encrypted_)
+      args << "-p" + pswrd_;
     args << "d" << fileArgs_ << paths;
     starting7z_ = true;
     keyArgs_ << "d";
-    PROC.start("7z", args);
+    proc_.start("7z", args);
     return;
   }
   args << "-c" << "-a";
@@ -310,7 +310,7 @@ void Backend::startRemove(QStringList& paths) {
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
-  PROC.start(TAR_CMD, args);
+  proc_.start(TAR_CMD, args);
 }
 
 void Backend::startExtract(const QString& path, const QString& file, bool overwrite, bool preservePaths) {
@@ -323,7 +323,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     /* if the extraction takes place in the same directory, we could do it
        in the usual way but the standard output method works in all cases */
     /*if (0 && path == filepath_.section("/", 0, -2)) {
-      PROC.start("gzip", QStringList() << "-d" << "-k" << filepath_);
+      proc_.start("gzip", QStringList() << "-d" << "-k" << filepath_);
       return;
     }*/
     emit processStarting();
@@ -429,14 +429,14 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
   if(is7z_) {
     args << "-o" + xPath;
-    PROC.start("7z", args);
+    proc_.start("7z", args);
   }
   else {
     args << "-C" << xPath;
     if (archiveRootExists && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
-    PROC.start(TAR_CMD, args); // doesn't create xPath if not existing
+    proc_.start(TAR_CMD, args); // doesn't create xPath if not existing
   }
 }
 
@@ -703,7 +703,7 @@ void Backend::startList(bool withPassword) {
   LIST = true;
   if (isGzip_) {
     keyArgs_ << "-l";
-    PROC.start("gzip", QStringList() << "-l" << filepath_);
+    proc_.start("gzip", QStringList() << "-l" << filepath_);
   }
   else if (is7z_) {
     QStringList args;
@@ -713,13 +713,13 @@ void Backend::startList(bool withPassword) {
     args << "l";
     starting7z_ = true;
     keyArgs_ << "l";
-    PROC.start("7z", QStringList() << args << fileArgs_);
+    proc_.start("7z", QStringList() << args << fileArgs_);
   }
   else {
     QStringList args;
     args << "-tv";
     keyArgs_ << "-tv";
-    PROC.start(TAR_CMD, QStringList() << args << fileArgs_);
+    proc_.start(TAR_CMD, QStringList() << args << fileArgs_);
   }
 }
 
@@ -736,7 +736,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       args << "l";
       starting7z_ = true;
       keyArgs_.clear(); keyArgs_ << "l";
-      PROC.start("7z", QStringList() << args << fileArgs_);
+      proc_.start("7z", QStringList() << args << fileArgs_);
     }
     return;
   }
@@ -773,7 +773,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     }
     else { // extraction
       /*if (retcode == 0) {
-        QStringList args = PROC.arguments();
+        QStringList args = proc_.arguments();
         for (int i = 0; i < args.length(); i++) {
           if(args[i].startsWith("-o")) //just extracted to a dir - open it now
             QProcess::startDetached("xdg-open \"" + args[i].section("-o", 1, -1) + "\"");
@@ -861,7 +861,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 void Backend::processData() {
   if (is7z_ && !encryptionQueried_) {
     if (!encryptedList_) {
-      QString read = PROC.readAllStandardOutput();
+      QString read = proc_.readAllStandardOutput();
       if (read.contains("\nERROR: ")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
         encryptedList_ = encrypted_ = true;
       }
@@ -888,7 +888,7 @@ void Backend::processData() {
     return; // no listing here
   }
   static QString data;
-  QString read = data + PROC.readAllStandardOutput();
+  QString read = data + proc_.readAllStandardOutput();
   if (read.endsWith("\n"))
     data.clear();
   else {
@@ -923,7 +923,7 @@ void Backend::processData() {
 void Backend::onError(QProcess::ProcessError error) {
   if (error == QProcess::FailedToStart)
     emit errorMsg(tr("%1 is missing from your system.\nPlease install it for this kind of archive!")
-                  .arg(PROC.program()));
+                  .arg(proc_.program()));
 }
 
 }

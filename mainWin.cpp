@@ -44,7 +44,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
   lastPath_ = QDir::homePath();
-  updateTree_ = true;
+  updateTree_ = true; // will be set to false when extracting (or viewing)
   expandAll_ = false;
   close_ = false;
   processIsRunning_ = false;
@@ -298,7 +298,7 @@ QHash<QString, QTreeWidgetItem*> mainWin::cleanTree(const QStringList& list) {
     const QString path = (*it)->whatsThis(0);
     if (!list.contains(path)
         || (*it)->data(2, Qt::UserRole).toString() != BACKEND->sizeString(path) // size change
-        /* also consider the possibility of lock state change*/
+        /* also consider the possibility of lock state change */
         || (BACKEND->is7z()
             && (((*it)->data(3, Qt::UserRole).toString() == "lock" // see updateTree()
                  && !BACKEND->isEncryptedPath(path))
@@ -582,11 +582,34 @@ void mainWin::addDirs() {
   BACKEND->startAdd(QStringList() << dirs);
 }
 
+// Check if this item or any of its children is encrypted.
+bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    if (BACKEND->isEncryptedPath(item->whatsThis(0))
+        && !BACKEND->is7zSingleExtracted(item->whatsThis(0))) {
+      return true;
+    }
+    int N = item->childCount();
+    if (N > 0) {
+      for (int i = 0; i < N; ++i) {
+        if (subTreeIsEncrypted(item->child(i)))
+          return true;
+      }
+    }
+  }
+  return false;
+}
+
 void mainWin::removeFiles() {
-  QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   QStringList items;
-  for (int i = 0; i < sel.length(); i++){
-    items << sel[i]->whatsThis(0);
+  for (auto item : sel) {
+    if (subTreeIsEncrypted(item)) {
+      /* WARNING: It seems that 7z isn't self-consistent in removal of
+                  encrypted files: sometimes it needs password, sometimes not. */
+      if (!pswrdDialog()) return;
+    }
+    items << item->whatsThis(0);
   }
   items.removeDuplicates();
   textLabel_->setText(tr("Removing Items..."));
@@ -706,6 +729,7 @@ void mainWin::extractFiles() {
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
   if (dir.isEmpty()) return;
   lastPath_ = dir;
+  updateTree_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
@@ -716,6 +740,7 @@ void mainWin::autoextractFiles() {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     if (!pswrdDialog()) return;
   }
+  updateTree_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
@@ -776,7 +801,7 @@ void mainWin::extractSelection() {
   /* check overwriting with partial extractions */
   if (!selList.isEmpty()) {
     selList.sort();
-    for (auto &file : selList) {
+    for (const auto &file : qAsConst(selList)) {
         if (QFile::exists(dir + "/" + file.section("/",-1))) {
           QMessageBox::StandardButton btn = QMessageBox::question(this,
                                                                   tr("Question"),
@@ -789,6 +814,7 @@ void mainWin::extractSelection() {
   }
 
   lastPath_ = dir;
+  updateTree_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir, selList);
 }
@@ -863,7 +889,7 @@ void mainWin::updateTree() {
   QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files.size() > 10000 ? QStringList() : files);
   QHash<const QString&, QTreeWidgetItem*> dirs; // keep track of directory items
 
-  for (const QString& thisFile : static_cast<const QStringList&>(files)) {
+  for (const auto& thisFile : qAsConst(files)) {
     QTreeWidgetItem *item = allPrevItems.value(thisFile);
     if (item != nullptr) { // already in the tree widget
       if(BACKEND->isDir(thisFile))
@@ -873,12 +899,12 @@ void mainWin::updateTree() {
 
     QString mime;
     if (!BACKEND->isDir(thisFile))
-      mime = BACKEND->getMimeType(thisFile.section("/",-1));
+      mime = BACKEND->getMimeType(thisFile.section("/", -1));
     QTreeWidgetItem *it = new QTreeWidgetItem();
 
     /* set texts and icons */
     QSize icnSize = ui->tree_contents->iconSize();
-    it->setText(0, thisFile.section("/",-1));
+    it->setText(0, thisFile.section("/", -1));
     if (!mime.isEmpty()) {
       it->setText(3, "0"); // to put it after directory items
       if (!BACKEND->isLink(thisFile)) {
@@ -926,7 +952,7 @@ void mainWin::updateTree() {
         sections.removeLast();
         QTreeWidgetItem *parentItem = nullptr;
         QString theFile;
-        for (const QString& thisSection : static_cast<const QStringList&>(sections)) {
+        for (const auto& thisSection : qAsConst(sections)) {
           theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
           QTreeWidgetItem *thisParent = dirs.value(theFile);
           if (!thisParent) {

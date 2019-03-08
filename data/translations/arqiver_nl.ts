@@ -358,7 +358,7 @@ Installeer het om dit soort archieven te kunnen beheren!</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="467"/>
-        <location filename="../../mainWin.cpp" line="782"/>
+        <location filename="../../mainWin.cpp" line="807"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
@@ -389,102 +389,102 @@ Installeer het om dit soort archieven te kunnen beheren!</translation>
     <message>
         <location filename="../../mainWin.cpp" line="566"/>
         <location filename="../../mainWin.cpp" line="581"/>
-        <location filename="../../mainWin.cpp" line="741"/>
-        <location filename="../../mainWin.cpp" line="747"/>
+        <location filename="../../mainWin.cpp" line="766"/>
+        <location filename="../../mainWin.cpp" line="772"/>
         <source>Adding Items...</source>
         <translation>Bezig met toevoegen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="592"/>
+        <location filename="../../mainWin.cpp" line="615"/>
         <source>Removing Items...</source>
         <translation>Bezig met verwijderen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="604"/>
-        <location filename="../../mainWin.cpp" line="709"/>
-        <location filename="../../mainWin.cpp" line="719"/>
-        <location filename="../../mainWin.cpp" line="792"/>
-        <location filename="../../mainWin.cpp" line="804"/>
+        <location filename="../../mainWin.cpp" line="627"/>
+        <location filename="../../mainWin.cpp" line="733"/>
+        <location filename="../../mainWin.cpp" line="744"/>
+        <location filename="../../mainWin.cpp" line="818"/>
+        <location filename="../../mainWin.cpp" line="830"/>
         <source>Extracting...</source>
         <translation>Bezig met uitpakken...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="618"/>
+        <location filename="../../mainWin.cpp" line="641"/>
         <source>View Current Item</source>
         <translation>Huidig item tonen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="629"/>
-        <location filename="../../mainWin.cpp" line="637"/>
+        <location filename="../../mainWin.cpp" line="652"/>
+        <location filename="../../mainWin.cpp" line="660"/>
         <source>Enter Password</source>
         <translation>Voer wachtwoord in</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="641"/>
+        <location filename="../../mainWin.cpp" line="664"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="642"/>
+        <location filename="../../mainWin.cpp" line="665"/>
         <source>OK</source>
         <translation>Oké</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="646"/>
+        <location filename="../../mainWin.cpp" line="669"/>
         <source>Encrypt the file list</source>
         <translation>Bestandslijst versleutelen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="647"/>
+        <location filename="../../mainWin.cpp" line="670"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Dit wordt toegepast na het toevoegen van bestanden/mappen.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="706"/>
-        <location filename="../../mainWin.cpp" line="773"/>
+        <location filename="../../mainWin.cpp" line="729"/>
+        <location filename="../../mainWin.cpp" line="798"/>
         <source>Extract Into Directory</source>
         <translation>Uitpakken naar map</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="783"/>
+        <location filename="../../mainWin.cpp" line="808"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="896"/>
+        <location filename="../../mainWin.cpp" line="922"/>
         <source>Link To: %1</source>
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1132"/>
+        <location filename="../../mainWin.cpp" line="1158"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1133"/>
+        <location filename="../../mainWin.cpp" line="1159"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1134"/>
+        <location filename="../../mainWin.cpp" line="1160"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1135"/>
+        <location filename="../../mainWin.cpp" line="1161"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1136"/>
-        <location filename="../../mainWin.cpp" line="1137"/>
+        <location filename="../../mainWin.cpp" line="1162"/>
+        <location filename="../../mainWin.cpp" line="1163"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1136"/>
+        <location filename="../../mainWin.cpp" line="1162"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

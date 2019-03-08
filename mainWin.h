@@ -93,6 +93,7 @@ private:
   bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
   QPixmap emblemize(const QString icon, const QSize& icnSize, bool lock);
   void enableActions(bool enable);
+  bool subTreeIsEncrypted(QTreeWidgetItem *item);
 
   QLabel *iconLabel_;
   Label *textLabel_;
