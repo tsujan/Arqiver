@@ -455,7 +455,7 @@ Deseja continuar?</translation>
     <message>
         <location filename="../../mainWin.cpp" line="922"/>
         <source>Link To: %1</source>
-        <translation>Link Para %1</translation>
+        <translation>Link Para: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1158"/>
