@@ -566,7 +566,8 @@ void Backend::parseLines (QStringList& lines) {
     archiveSingleRoot_ = QString(); // if existent, may mean a parent dir or single file
   }
   if (is7z_) {
-    static int Name = 0;
+    static int nameIndex = 0;
+    if (contents_.isEmpty()) nameIndex = 0;
     if (starting7z_) {
       /* ignore all p7zip header info */
       while (starting7z_ && !lines.isEmpty()) {
@@ -582,20 +583,21 @@ void Backend::parseLines (QStringList& lines) {
         QString file;
         QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
         if(info.size() < 5) continue; // invalid line
-        if (lines[i].contains("  Attr  ")) { // header
-          Name = lines[i].indexOf(info.at(5));
+        if (lines[i].contains("  Attr  ") && info.size() >= 6) { // header
+          nameIndex = lines[i].indexOf(info.at(5));
           continue;
         }
+        if (nameIndex == 0) continue; // impossible because the header comes first
         if (!info.at(2).contains(".")) continue; // bottom line
         // Format: [date, time, attr, size, compressed size, name]
         if(info.size() == 5) {
-          file = lines[i].right(lines[i].size() - Name);
+          file = lines[i].right(lines[i].size() - nameIndex);
           contents_.insert(file, QStringList() << info[2] << info[3] << QString::number(0));
         }
         else { // info.size() == 6
-          if (lines[i].at(Name - 3) == ' ')
+          if (lines[i].at(nameIndex - 3) == ' ')
             info[4] = QString::number(0);
-          file = lines[i].right(lines[i].size() - Name);
+          file = lines[i].right(lines[i].size() - nameIndex);
           contents_.insert(file, QStringList() << info[2] << info[3] << info[4]);
         }
         if (!file.isEmpty()) {
@@ -645,6 +647,7 @@ void Backend::parseLines (QStringList& lines) {
         perms = "d";
         file.chop(1);
       }
+      if (file.isEmpty()) continue; // impossible
       if (hasSingleRoot) {
         if(archiveSingleRoot_.isEmpty()) {
           archiveSingleRoot_ = file.section('/', 0, 0);
@@ -669,6 +672,8 @@ void Backend::parseLines (QStringList& lines) {
     QString file = info[8];
     if(file.endsWith("/"))
       file.chop(1);
+    if (file.isEmpty()) // possible in rare cases (with "application/x-archive", for example)
+      continue;
     QString linkto;
     /* see if this file has the "link to" or "->"  notation */
     if (file.contains(" -> ")) {
@@ -906,7 +911,7 @@ void Backend::processData() {
   if (LIST)
     parseLines(lines);
   if (is7z_) {
-    if (read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password? :
+    if (read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password?
       /* while extracting the archive, another file in it had another password */
       pswrd_ = QString();
     }

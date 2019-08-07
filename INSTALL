@@ -30,14 +30,12 @@ And, finally, in OpenSUSE:
  * libqt5-qtsvg-devel
  * libqt5-qttools-devel
 
-In additon, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
+In addition, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
 
 Then, open a terminal inside this folder and issue the following commands:
 
 	qmake && make
 	sudo make install
-
-If your default Qt installation is not Qt5, put the full path of Qt5 qmake in the first command but before that, put the full path of Qt5's "lrelease" binary into 'arqiver.pro' (only one place).
 
 Afterward, you could use this command to clean the source directory:
 

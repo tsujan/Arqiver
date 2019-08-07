@@ -22,7 +22,8 @@
 #include "mainWin.h"
 
 #include <QLocale>
-#include <QDesktopWidget>
+#include <QWindow>
+#include <QScreen>
 
 namespace Arqiver {
 
@@ -88,7 +89,13 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
 
   ui->spinX->setSuffix(PX);
   ui->spinY->setSuffix(PX);
-  QSize ag = QApplication::desktop()->availableGeometry().size();
+  QSize ag;
+  if (parent != nullptr) {
+    if (QWindow *win = parent->windowHandle()) {
+      if (QScreen *sc = win->screen())
+        ag = sc->availableVirtualGeometry().size();
+    }
+  }
   ui->spinX->setMaximum(ag.width());
   ui->spinY->setMaximum(ag.height());
   ui->spinX->setValue(startSize.width());

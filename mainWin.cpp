@@ -30,7 +30,7 @@
 #include <QCheckBox>
 #include <QTimer>
 #include <QRegularExpression>
-#include <QDesktopWidget>
+//#include <QScreen>
 #include <QPixmapCache>
 #include <QClipboard>
 
@@ -158,12 +158,14 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   }
   else {
     QSize startSize = config_.getStartSize();
-    QSize ag = QApplication::desktop()->availableGeometry().size();
-    if (startSize.width() > ag.width() || startSize.height() > ag.height()) {
+    /*QSize ag;
+    if (QScreen *pScreen = QApplication::primaryScreen()) // the window isn't shown yet
+      ag = pScreen->availableVirtualGeometry().size();
+    if (!ag.isEmpty() && (startSize.width() > ag.width() || startSize.height() > ag.height())) {
       startSize = startSize.boundedTo(ag);
       config_.setStartSize(startSize);
     }
-    else if (startSize.isEmpty()) {
+    else */if (startSize.isEmpty()) {
       startSize = QSize(600, 500);
       config_.setStartSize(startSize);
     }
@@ -529,8 +531,8 @@ void mainWin::dropEvent(QDropEvent *event) {
       textLabel_->setText(tr("Opening Archive..."));
       expandAll_ = true;
       BACKEND->loadFile(file);
-      activateWindow();
       raise();
+      activateWindow();
     }
   }
   event->acceptProposedAction();
@@ -949,30 +951,32 @@ void mainWin::updateTree() {
         /* check the parent paths, create their items if not existing,
            and add children to their parents */
         QStringList sections = thisFile.split("/", QString::SkipEmptyParts);
-        sections.removeLast();
-        QTreeWidgetItem *parentItem = nullptr;
-        QString theFile;
-        for (const auto& thisSection : qAsConst(sections)) {
-          theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
-          QTreeWidgetItem *thisParent = dirs.value(theFile);
-          if (!thisParent) {
-            QTreeWidgetItem *thisItem = new QTreeWidgetItem();
-            thisItem->setText(0, thisSection);
-            thisItem->setIcon(0, QIcon::fromTheme("folder"));
-            thisItem->setWhatsThis(0, theFile);
-            thisItem->setData(2, Qt::UserRole, BACKEND->sizeString(theFile));
+        if (!sections.isEmpty()) { // can be empty in rare cases (with "application/x-archive", for example)
+          sections.removeLast();
+          QTreeWidgetItem *parentItem = nullptr;
+          QString theFile;
+          for (const auto& thisSection : qAsConst(sections)) {
+            theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
+            QTreeWidgetItem *thisParent = dirs.value(theFile);
+            if (!thisParent) {
+              QTreeWidgetItem *thisItem = new QTreeWidgetItem();
+              thisItem->setText(0, thisSection);
+              thisItem->setIcon(0, QIcon::fromTheme("folder"));
+              thisItem->setWhatsThis(0, theFile);
+              thisItem->setData(2, Qt::UserRole, BACKEND->sizeString(theFile));
 
-            dirs.insert(theFile, thisItem);
-            if (parentItem)
-              parentItem->addChild(thisItem);
+              dirs.insert(theFile, thisItem);
+              if (parentItem)
+                parentItem->addChild(thisItem);
+              else
+                ui->tree_contents->addTopLevelItem(thisItem);
+              parentItem = thisItem;
+            }
             else
-              ui->tree_contents->addTopLevelItem(thisItem);
-            parentItem = thisItem;
+              parentItem = thisParent; // already handled
           }
-          else
-            parentItem = thisParent; // already handled
+          parentItem->addChild(it);
         }
-        parentItem->addChild(it);
       }
     }
     else

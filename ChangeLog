@@ -1,3 +1,8 @@
+V0.3.0
+---------
+ * Eliminated a rare cause of crash, when the file list contains "/" and "//" (with "application/x-archive", for example).
+ * Removed QDesktopWidget::availableGeometry (could have been replaced by QGuiApplication::screens but wasn't needed).
+
 V0.2.0
 ---------
  * Added Preferences dialog.
@@ -15,7 +20,7 @@ V0.2.0
 
 V0.1.0
 ---------
- * Arqiver is forked from lumina-archiver with lots of fixes, improvements and additions. It supports libarchive (bsdtar), gzip and 7z. With 7z, it also supports encryption (apssword protection).
+ * Arqiver is forked from lumina-archiver with lots of fixes, improvements and additions. It supports libarchive (bsdtar), gzip and 7z. With 7z, it also supports encryption (password protection).
  * Warn the user if a back-end in not installed.
  * Save the vertical space by making real use of the status bar.
  * Better support for multi-password 7z archives.

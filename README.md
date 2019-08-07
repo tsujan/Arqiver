@@ -12,7 +12,7 @@ Arqiver's homepage is <https://github.com/tsujan/Arqiver>.
 
 ## Credits:
 
-Arqiver is forked from lumina-archiver, belonging to Lumina (<https://github.com/lumina-desktop/lumina>).
+Arqiver was started from lumina-archiver, belonging to Lumina (<https://github.com/lumina-desktop/lumina>).
 
 ## Screenshot
 
