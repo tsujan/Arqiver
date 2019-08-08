@@ -2,6 +2,7 @@ V0.3.0
 ---------
  * Eliminated a rare cause of crash, when the file list contains "/" and "//" (with "application/x-archive", for example).
  * Removed QDesktopWidget::availableGeometry (could have been replaced by QGuiApplication::screens but wasn't needed).
+ * Prevented drop into self.
 
 V0.2.0
 ---------

@@ -504,6 +504,12 @@ void mainWin::openArchive() {
 }
 
 void mainWin::dragEnterEvent(QDragEnterEvent *event) {
+  if (event->source()) {
+    // if the drag has originated in this window, ignore it
+    // (needed when an archive contains archives, as with deb packages)
+    event->ignore();
+    return;
+  }
   if (event->mimeData()->hasUrls()) {
     const QList<QUrl> urlList = event->mimeData()->urls();
     if (!urlList.isEmpty()) {
