@@ -51,3 +51,8 @@ unix {
 
   INSTALLS += target desktop trans
 }
+windows{
+  DATADIR = $$PREFIX/share
+
+  DEFINES += DATADIR=\\\"$$DATADIR\\\"
+}

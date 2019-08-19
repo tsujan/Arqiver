@@ -34,7 +34,9 @@
 #include <QPixmapCache>
 #include <QClipboard>
 
+#ifndef Q_OS_WIN
 #include <unistd.h> // getuid
+#endif
 
 namespace Arqiver {
 
@@ -48,9 +50,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   expandAll_ = false;
   close_ = false;
   processIsRunning_ = false;
-
+#ifndef Q_OS_WIN
   if (getuid() == 0)
     setWindowTitle("Arqiver (" + tr("Root") + ")");
+#endif
 
   /* status bar */
   iconLabel_ = new QLabel();
