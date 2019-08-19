@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
   QApplication a(argc, argv);
   a.setApplicationName(name);
   a.setApplicationVersion(version);
-#ifndef (Q_OS_WIN)
+#ifndef Q_OS_WIN
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
 #endif
 
