@@ -217,12 +217,16 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   /* no path should be repeated */
   paths.removeDuplicates();
 
+  QStringList args;
   if (isGzip_) {
-    if (QFile::exists(filepath_)) return;
     emit processStarting();
+    if (QFile::exists(filepath_)) // the overwrite prompt should be already accepted
+      args << "--to-stdout" << "--force" << paths[0];
+    else
+      args << "--to-stdout" << paths[0];
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(filepath_);
-    tmpProc.start("gzip", QStringList() << "--to-stdout" << paths[0]); // "gzip -c file > archive.gz"
+    tmpProc.start("gzip", args); // "gzip -c (-f) file > archive.gz"
     while (!tmpProc.waitForFinished(500))
       QCoreApplication::processEvents();
     emit processFinished(tmpProc.exitCode() == 0, QString());
@@ -230,7 +234,6 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
     return; // FIXME: Unfortunately, onError() can't be called here
   }
   if (is7z_) {
-    QStringList args;
     if (encryptedList_) {
       /* with an encrypted header, password should be given
          (but the operation will fail silently if it's incorrect) */
@@ -259,7 +262,6 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
       i--;
     }
   }
-  QStringList args;
   args << "-c" << "-a";
   args << fileArgs_;
   /* now, setup the parent dir */
