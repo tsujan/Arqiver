@@ -12,30 +12,30 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="761"/>
-        <location filename="../../backends.cpp" line="800"/>
+        <location filename="../../backends.cpp" line="773"/>
+        <location filename="../../backends.cpp" line="812"/>
         <source>Could not read archive</source>
         <translation>Kan archief niet uitlezen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="764"/>
-        <location filename="../../backends.cpp" line="805"/>
+        <location filename="../../backends.cpp" line="776"/>
+        <location filename="../../backends.cpp" line="817"/>
         <source>Archive Loaded</source>
         <translation>Archief geladen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="771"/>
-        <location filename="../../backends.cpp" line="851"/>
+        <location filename="../../backends.cpp" line="783"/>
+        <location filename="../../backends.cpp" line="863"/>
         <source>Modification Finished</source>
         <translation>Bewerking voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="822"/>
+        <location filename="../../backends.cpp" line="834"/>
         <source>Extraction Finished</source>
         <translation>Uitpakken voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="932"/>
+        <location filename="../../backends.cpp" line="944"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 is niet geïnstalleerd.

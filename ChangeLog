@@ -4,6 +4,7 @@ V0.3.0
  * Removed QDesktopWidget::availableGeometry (could have been replaced by QGuiApplication::screens but wasn't needed).
  * Prevented drop into self.
  * Overwrite a Gzip archive if the overwrite prompt is accepted.
+ * Always wait for the process to be started before waiting for it to be finished.
 
 V0.2.0
 ---------

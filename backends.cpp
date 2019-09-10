@@ -227,8 +227,10 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(filepath_);
     tmpProc.start("gzip", args); // "gzip -c (-f) file > archive.gz"
-    while (!tmpProc.waitForFinished(500))
-      QCoreApplication::processEvents();
+    if(tmpProc.waitForStarted()) {
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+    }
     emit processFinished(tmpProc.exitCode() == 0, QString());
     loadFile(filepath_);
     return; // FIXME: Unfortunately, onError() can't be called here
@@ -342,8 +344,10 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     skipExistingFiles(extName);
     tmpProc.setStandardOutputFile(extName);
     tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
-    while (!tmpProc.waitForFinished(500))
-      QCoreApplication::processEvents();
+    if(tmpProc.waitForStarted()) {
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+    }
     emit processFinished(tmpProc.exitCode() == 0, QString());
     emit extractionFinished();
     emit extractionSuccessful();
@@ -481,8 +485,10 @@ void Backend::startViewFile(const QString& path) {
       emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
-      while (!tmpProc.waitForFinished(500))
-        QCoreApplication::processEvents();
+      if(tmpProc.waitForStarted()) {
+        while (!tmpProc.waitForFinished(500))
+          QCoreApplication::processEvents();
+      }
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit processFinished(tmpProc.exitCode() == 0, QString());
@@ -498,8 +504,10 @@ void Backend::startViewFile(const QString& path) {
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
     tmpProc.start(cmnd, args);
-    while (!tmpProc.waitForFinished(500))
-      QCoreApplication::processEvents();
+    if(tmpProc.waitForStarted()) {
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+    }
     emit processFinished(tmpProc.exitCode() == 0, QString());
   }
   else
@@ -537,8 +545,10 @@ QString Backend::extractSingleFile(const QString& path) {
       emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
-      while (!tmpProc.waitForFinished(500))
-        QCoreApplication::processEvents();
+      if(tmpProc.waitForStarted()) {
+        while (!tmpProc.waitForFinished(500))
+          QCoreApplication::processEvents();
+      }
       if (tmpProc.exitCode() != 0)
         pswrd_ = QString();
       emit processFinished(tmpProc.exitCode() == 0, QString());
@@ -552,8 +562,10 @@ QString Backend::extractSingleFile(const QString& path) {
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(fileName);
     tmpProc.start(cmnd, args);
-    while (!tmpProc.waitForFinished(500))
-      QCoreApplication::processEvents();
+    if(tmpProc.waitForStarted()) {
+      while (!tmpProc.waitForFinished(500))
+        QCoreApplication::processEvents();
+    }
     emit processFinished(tmpProc.exitCode() == 0, QString());
   }
   else
