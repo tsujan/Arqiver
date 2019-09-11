@@ -865,7 +865,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         emit archivingSuccessful();
       else {
         updateList = false;
-        QTimer::singleShot(0, this, SLOT(startInsertFromQueue()));
+        QTimer::singleShot(0, this, &Backend::startInsertFromQueue);
       }
     }
     if (updateList)

@@ -700,6 +700,10 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
   dialog->setLayout(grid);
   dialog->setMinimumSize(dialog->sizeHint());
 
+  bool cursorWasBusy(QGuiApplication::overrideCursor() != nullptr);
+  if (cursorWasBusy)
+    QGuiApplication::restoreOverrideCursor();
+
   bool res = true;
   switch (dialog->exec()) {
   case QDialog::Accepted:
@@ -725,7 +729,13 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
     disconnect(BACKEND, &Backend::loadingFinished, this, &mainWin::autoextractFiles);
     disconnect(BACKEND, &Backend::extractionFinished, this, &mainWin::nextAutoExtraction);
     axFileList_.clear();
+    enableActions(true);
+    statusProgress_->setRange(0, 0);
+    statusProgress_->setValue(0);
+    statusProgress_->setVisible(false);
   }
+  else if (cursorWasBusy && QGuiApplication::overrideCursor() == nullptr)
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
   return res;
 }
@@ -756,7 +766,7 @@ void mainWin::autoextractFiles() {
 void mainWin::nextAutoExtraction() {
   if (axFileList_.isEmpty()) {
     processIsRunning_ = false;
-    QTimer::singleShot (500, this, SLOT (close()));
+    QTimer::singleShot(500, this, &QWidget::close);
   }
   else {
     BACKEND->loadFile(axFileList_.first());
@@ -1056,6 +1066,9 @@ void mainWin::procStarting() {
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile());
+
+  if (QGuiApplication::overrideCursor() == nullptr)
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 }
 
 void mainWin::procFinished(bool success, const QString& msg) {
@@ -1104,7 +1117,10 @@ void mainWin::procFinished(bool success, const QString& msg) {
 
   updateTree_ = true;
   if (close_)
-    QTimer::singleShot (500, this, SLOT (close()));
+    QTimer::singleShot(500, this, &QWidget::close);
+
+  if (QGuiApplication::overrideCursor() != nullptr)
+    QGuiApplication::restoreOverrideCursor();
 }
 
 void mainWin::procUpdate(int percent, const QString& txt) {
