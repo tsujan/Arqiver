@@ -1175,7 +1175,13 @@ void mainWin::procFinished(bool success, const QString& msg) {
   statusProgress_->setValue(0);
   statusProgress_->setVisible(false);
   lastMsg_ = msg;
-  textLabel_->setText(lastMsg_);
+
+  QTreeWidgetItem *cur = ui->tree_contents->currentItem();
+  if (cur && ui->tree_contents->selectedItems().contains(cur))
+    textLabel_->setText(cur->whatsThis(0));
+  else
+    textLabel_->setText(lastMsg_);
+
   iconLabel_->setVisible(true);
   if (success) {
     if (BACKEND->isEncrypted()) {
