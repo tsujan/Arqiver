@@ -95,6 +95,16 @@
       </column>
      </widget>
     </item>
+    <item>
+     <widget class="LineEdit" name="lineEdit">
+      <property name="placeholderText">
+       <string>Filter Files...</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -274,6 +284,11 @@
    <class>Arqiver::TreeWidget</class>
    <extends>QTreeWidget</extends>
    <header>treeWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>lineedit.h</header>
   </customwidget>
  </customwidgets>
  <connections/>

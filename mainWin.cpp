@@ -48,6 +48,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   expandAll_ = false;
   close_ = false;
   processIsRunning_ = false;
+  filterTimer_ = nullptr;
+  reapplyFilter_ = true;
+
+  ui->tree_contents->installEventFilter(this);
 
   if (getuid() == 0)
     setWindowTitle("Arqiver (" + tr("Root") + ")");
@@ -130,9 +134,11 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
 
-  connect (ui->actionPref, &QAction::triggered, this, &mainWin::prefDialog);
+  connect(ui->lineEdit, &QLineEdit::textChanged, this, &mainWin::filter);
 
-  connect (ui->actionAbout, &QAction::triggered, this, &mainWin::aboutDialog);
+  connect(ui->actionPref, &QAction::triggered, this, &mainWin::prefDialog);
+
+  connect(ui->actionAbout, &QAction::triggered, this, &mainWin::aboutDialog);
 
   /* the labels and column sizes of the header (the 4th hidden column will
      be used for putting directory items first and will save the lock info) */
@@ -182,6 +188,77 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
 mainWin::~mainWin() {
   config_.writeConfig();
+  if (filterTimer_) {
+    disconnect(filterTimer_, &QTimer::timeout, this, &mainWin::reallyApplyFilter);
+    filterTimer_->stop();
+    delete filterTimer_;
+  }
+}
+
+bool mainWin::eventFilter(QObject *watched, QEvent *event) {
+  if (watched == ui->tree_contents && event->type() == QEvent::KeyPress) {
+    /* when a text is typed inside the tree, type it inside the filter line-edit too */
+    if (QKeyEvent *ke = static_cast<QKeyEvent*>(event)) {
+      if (ke->key() != Qt::Key_Return && ke->key() != Qt::Key_Enter
+          && ke->key() != Qt::Key_Up && ke->key() != Qt::Key_Down
+          && ke->key() != Qt::Key_Home && ke->key() != Qt::Key_End
+          && ke->key() != Qt::Key_PageUp && ke->key() != Qt::Key_PageDown) {
+        ui->lineEdit->pressKey(ke);
+        return false;
+      }
+    }
+  }
+  return QMainWindow::eventFilter(watched, event);
+}
+
+void mainWin::filter(const QString&/*text*/) {
+  if (filterTimer_ == nullptr) {
+    filterTimer_ = new QTimer();
+    filterTimer_->setSingleShot(true);
+    connect(filterTimer_, &QTimer::timeout, this, &mainWin::reallyApplyFilter);
+  }
+  filterTimer_->start(200);
+}
+
+void mainWin::reallyApplyFilter() {
+  const QString filter = ui->lineEdit->text();
+  QTreeWidgetItemIterator it(ui->tree_contents);
+  if (filter.isEmpty()) {
+    while (*it) {
+      (*it)->setHidden(false);
+      ++it;
+    }
+    return;
+  }
+  while (*it) {
+    if (!(*it)->text(1).isEmpty() && !(*it)->text(0).contains(filter, Qt::CaseInsensitive))
+      (*it)->setHidden(true);
+    else
+      (*it)->setHidden(false);
+    ++it;
+  }
+  /* hide all childless directories to make filtering practical */
+  QTreeWidgetItemIterator it1(ui->tree_contents);
+  while (*it1) {
+    hideChildlessDir((*it1));
+    ++it1;
+  }
+}
+
+void mainWin::hideChildlessDir(QTreeWidgetItem *item) {
+  if (item->isHidden() || !item->text(1).isEmpty())
+    return;
+  int N = item->childCount();
+  for (int i = 0; i < N; ++i) {
+    QTreeWidgetItem *child = item->child(i);
+    if (child->isHidden()) continue;
+    hideChildlessDir(child);
+    if (!child->isHidden()) {
+      child->setHidden(false);
+      return;
+    }
+  }
+  item->setHidden(true);
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {
@@ -632,6 +709,7 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
     if (!pswrdDialog()) return;
   }
   updateTree_ = false;
+  reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
   it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
@@ -748,6 +826,7 @@ void mainWin::extractFiles() {
   if (dir.isEmpty()) return;
   lastPath_ = dir;
   updateTree_ = false;
+  reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
@@ -759,6 +838,7 @@ void mainWin::autoextractFiles() {
     if (!pswrdDialog()) return;
   }
   updateTree_ = false;
+  reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir);
 }
@@ -833,6 +913,7 @@ void mainWin::extractSelection() {
 
   lastPath_ = dir;
   updateTree_ = false;
+  reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startExtract(dir, selList);
 }
@@ -845,6 +926,7 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
     if (!pswrdDialog()) return;
   }
   updateTree_ = false;
+  reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
   BACKEND->startViewFile(it->whatsThis(0));
 }
@@ -1051,6 +1133,11 @@ void mainWin::enableActions(bool enable) {
   ui->actionExpand->setEnabled(enable);
   ui->actionCollapse->setEnabled(enable);
   ui->actionAbout->setEnabled(enable);
+  ui->lineEdit->setEnabled(enable);
+
+  if (enable && reapplyFilter_ && !ui->lineEdit->text().isEmpty())
+    reallyApplyFilter();
+  reapplyFilter_ = true;
 }
 
 void mainWin::procStarting() {

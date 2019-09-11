@@ -49,6 +49,9 @@ public:
     return config_;
   }
 
+protected:
+  bool eventFilter(QObject *watched, QEvent *event);
+
 private slots:
   void newArchive();
   void openArchive();
@@ -73,6 +76,9 @@ private slots:
   void procUpdate(int percent, const QString& txt);
   void openEncryptedList(const QString& path);
 
+  void filter(const QString&);
+  void reallyApplyFilter();
+
   void selectionChanged();
 
   void prefDialog();
@@ -94,6 +100,7 @@ private:
   QPixmap emblemize(const QString icon, const QSize& icnSize, bool lock);
   void enableActions(bool enable);
   bool subTreeIsEncrypted(QTreeWidgetItem *item);
+  void hideChildlessDir(QTreeWidgetItem *item);
 
   QLabel *iconLabel_;
   Label *textLabel_;
@@ -109,6 +116,8 @@ private:
   bool expandAll_;
   bool close_;
   bool processIsRunning_;
+  QTimer *filterTimer_;
+  bool reapplyFilter_;
 
   Config config_;
 };

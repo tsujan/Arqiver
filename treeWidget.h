@@ -117,6 +117,18 @@ protected:
     QTreeWidget::keyReleaseEvent(event);
   }
 
+  virtual void keyPressEvent(QKeyEvent *event) {
+    /* ignore typing */
+    if (event->key() != Qt::Key_Return && event->key() != Qt::Key_Enter
+        && event->key() != Qt::Key_Up && event->key() != Qt::Key_Down
+        && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
+        && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) {
+      event->accept();
+      return;
+    }
+    QTreeWidget::keyPressEvent(event);
+  }
+
 private:
   QPoint dragStartPosition_;
   bool dragStarted_;

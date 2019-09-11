@@ -7,6 +7,7 @@ HEADERS	+= mainWin.h \
            backends.h \
            label.h \
            treeWidget.h \
+           lineedit.h \
            svgicons.h \
            config.h \
            pref.h
