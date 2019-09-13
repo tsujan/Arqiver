@@ -39,7 +39,7 @@
         <location filename="../../backends.cpp" line="842"/>
         <location filename="../../backends.cpp" line="892"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Extração Falhou</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="985"/>
