@@ -12,6 +12,7 @@ V0.3.0
  * Handled extraction of files with identical names inside 7z archives.
  * To prevent a file from being opened multiple times, ignore auto-repeat when Enter/Return is pressed inside the tree view.
  * Remove the temporary extracted files when they are replaced in the archive.
+ * Enable selective extraction for 7z ("7z x archive -oDIR path1, path2,…").
 
 V0.2.0
 ---------

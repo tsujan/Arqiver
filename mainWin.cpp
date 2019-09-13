@@ -753,8 +753,7 @@ void mainWin::listContextMenu(const QPoint& p) {
   bool isDir(item->text(1).isEmpty());
 
   QMenu menu;
-  if (!BACKEND->is7z())
-    menu.addAction(ui->actionExtractSel);
+  menu.addAction(ui->actionExtractSel);
   if (!isDir) {
     QAction *action = menu.addAction(tr("View Current Item"));
     connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
@@ -932,6 +931,7 @@ void mainWin::extractSelection() {
   if (dir.isEmpty()) return;
 
   /* check overwriting with partial extractions */
+  bool overwrite(false);
   if (!selList.isEmpty()) {
     selList.sort();
     for (const auto &file : qAsConst(selList)) {
@@ -941,6 +941,7 @@ void mainWin::extractSelection() {
                                                                   tr("Some files will be overwritten.\nDo you want to continue?\n"));
           if (btn == QMessageBox::No)
             return;
+          overwrite = true;
           break;
         }
     }
@@ -950,7 +951,7 @@ void mainWin::extractSelection() {
   updateTree_ = false;
   reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
-  BACKEND->startExtract(dir, selList);
+  BACKEND->startExtract(dir, selList, overwrite);
 }
 
 void mainWin::viewFile(QTreeWidgetItem *it) {
@@ -1239,8 +1240,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
   ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
   ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
-  ui->actionExtractSel->setEnabled(!BACKEND->is7z() // no selective extraction for 7z
-                                   && info.exists() && !ui->tree_contents->selectedItems().isEmpty());
+  ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
   ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
   ui->actionPassword->setEnabled(BACKEND->is7z());
 
@@ -1269,8 +1269,7 @@ void mainWin::openEncryptedList(const QString& path) {
 }
 
 void mainWin::selectionChanged() {
-  ui->actionExtractSel->setEnabled(!BACKEND->is7z() // no selective extraction for 7z
-                                   && !ui->tree_contents->selectedItems().isEmpty());
+  ui->actionExtractSel->setEnabled(!ui->tree_contents->selectedItems().isEmpty());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
     textLabel_->setText(cur->whatsThis(0));

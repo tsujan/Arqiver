@@ -357,9 +357,16 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   QStringList args;
   QStringList filesList = files;
   filesList.removeAll(QString());
+  if (!filesList.isEmpty())
+    filesList.removeDuplicates();
 
   if(is7z_) { // extract the whole archive; no selective extraction
-    args << "-aou"; // the archive may contain files with identical names
+    if (filesList.isEmpty())
+      args << "-aou"; // auto-rename: the archive may contain files with identical names
+    else if (overwrite)
+      args << "-aoa"; // overwrite without prompt
+    else
+      args << "-aos"; // skip extraction of existing files
     if (encrypted_)
       args << "-p" + pswrd_;
     args << (preservePaths ? "x" : "e") << fileArgs_;
@@ -368,11 +375,10 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-x" << "--no-same-owner";
-    if (!overwrite) // NOTE: We never overwrite in Arqiver. This might change later.
+    if (!overwrite)
       args << "-k";
     args << fileArgs_;
     if (!filesList.isEmpty()) {
-        filesList.removeDuplicates();
         /* If a file comes after its containing folder in the command line,
            bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
         filesList.sort();
@@ -392,7 +398,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
   /* prevent overwriting by making an appropriate directory and extracting into it
      if the whole archive is going to be extracted (otherwise, overwriting will be handled by mainWin) */
-  if (filesList.isEmpty() || is7z_) {
+  if (filesList.isEmpty()) {
     QString archiveSingleRoot = archiveSingleRoot_;
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
@@ -436,6 +442,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
   if(is7z_) {
     args << "-o" + xPath;
+    if (!filesList.isEmpty())
+      args << filesList;
     proc_.start("7z", args);
   }
   else {
@@ -517,6 +525,7 @@ void Backend::startViewFile(const QString& path) {
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_;
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
+      args << path;
       emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
@@ -576,7 +585,7 @@ QString Backend::extractSingleFile(const QString& path) {
       QStringList args;
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y";
+      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << path;
       emit processStarting();
       QProcess tmpProc;
       tmpProc.start ("7z", args);
