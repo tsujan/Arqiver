@@ -622,16 +622,6 @@ void mainWin::dropEvent(QDropEvent *event) {
 }
 
 void mainWin::addFiles() {
-  /* NOTE: If the archive has list encryption, its
-           password will be needed for adding files.
-           Otherwise, the password will be optional.*/
-  if (lastPswrd_.isEmpty()) {
-    if (BACKEND->hasEncryptedList()) {
-      if (!pswrdDialog(true, true)) return;
-    }
-    else
-      BACKEND->setPswrd(QString());
-  }
   QStringList files;
   if(BACKEND->isGzip()) { // accepts only one file
     QFileDialog dialog(this);
@@ -648,32 +638,71 @@ void mainWin::addFiles() {
   if (files.isEmpty()) return;
   if (!files.at(0).isEmpty())
     lastPath_ = files.at(0).section("/", 0, -2);
+
+  /* NOTE: If the archive has list encryption or a file already exists
+           in the archive and is encrypted, the password will be needed.
+           Otherwise, the password will be optional. */
+  bool passWordSet(false);
+  if (lastPswrd_.isEmpty() && BACKEND->hasEncryptedList()) {
+    if (!pswrdDialog(true, true)) return;
+    passWordSet = true;
+  }
+  int tc = ui->tree_contents->topLevelItemCount();
+  for (int i = 0; i < tc; ++i) {
+    QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
+    for (auto &file : qAsConst(files)) {
+      if(file.section("/",-1) == item->whatsThis(0)) {
+        BACKEND->removeSingleExtracted(item->whatsThis(0)); // the file will be replaced
+        if (lastPswrd_.isEmpty() && subTreeIsEncrypted(item)) {
+          if (!pswrdDialog()) return;
+          passWordSet = true;
+          break;
+        }
+      }
+    }
+  }
+  if (lastPswrd_.isEmpty() && !passWordSet) // optional password
+    BACKEND->setPswrd(QString());
+
   textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(files);
 }
 
-void mainWin::addDirs() {
-  if (lastPswrd_.isEmpty()) { // as in addFiles()
-    if (BACKEND->hasEncryptedList()) {
-      if (!pswrdDialog(true, true)) return;
-    }
-    else
-      BACKEND->setPswrd(QString());
+void mainWin::addDirs() { // only a single directory for now
+  QString dir = QFileDialog::getExistingDirectory(this, tr("Add to Archive"), lastPath_ );
+  if (dir.isEmpty()) return;
+  lastPath_ = dir;
+
+  /* as in addFiles() */
+  bool passWordSet(false);
+  if (lastPswrd_.isEmpty() && BACKEND->hasEncryptedList()) {
+    if (!pswrdDialog(true, true)) return;
+    passWordSet = true;
   }
-  QString dirs = QFileDialog::getExistingDirectory(this, tr("Add to Archive"), lastPath_ );
-  if (dirs.isEmpty()) return;
-  lastPath_ = dirs;
+  int tc = ui->tree_contents->topLevelItemCount();
+  for (int i = 0; i < tc; ++i) {
+    QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
+    if(dir.section("/",-1) == item->whatsThis(0)) {
+      BACKEND->removeSingleExtracted(item->whatsThis(0)); // the directory will be replaced
+      if (lastPswrd_.isEmpty() && subTreeIsEncrypted(item)) {
+        if (!pswrdDialog()) return;
+        passWordSet = true;
+      }
+      break;
+    }
+  }
+  if (lastPswrd_.isEmpty() && !passWordSet)
+    BACKEND->setPswrd(QString());
+
   textLabel_->setText(tr("Adding Items..."));
-  BACKEND->startAdd(QStringList() << dirs);
+  BACKEND->startAdd(QStringList() << dir);
 }
 
 // Check if this item or any of its children is encrypted.
 bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (BACKEND->isEncryptedPath(item->whatsThis(0))
-        && !BACKEND->is7zSingleExtracted(item->whatsThis(0))) {
+    if (BACKEND->isEncryptedPath(item->whatsThis(0)))
       return true;
-    }
     int N = item->childCount();
     if (N > 0) {
       for (int i = 0; i < N; ++i) {
@@ -686,14 +715,16 @@ bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
 }
 
 void mainWin::removeFiles() {
+  /* WARNING: 7z isn't self-consistent in file removal: sometimes it needs password,
+              sometimes not. Moreover, it may remove files with a wrong password. */
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
+    return;
   const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   QStringList items;
   for (auto item : sel) {
-    if (subTreeIsEncrypted(item)) {
-      /* WARNING: It seems that 7z isn't self-consistent in removal of
-                  encrypted files: sometimes it needs password, sometimes not. */
+    /*if (subTreeIsEncrypted(item)) {
       if (!pswrdDialog()) return;
-    }
+    }*/
     items << item->whatsThis(0);
   }
   items.removeDuplicates();
@@ -705,8 +736,9 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
       && BACKEND->isEncryptedPath(it->whatsThis(0))
-      && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
-    if (!pswrdDialog()) return;
+      && !BACKEND->isSingleExtracted(it->whatsThis(0))
+      && !pswrdDialog()) {
+    return;
   }
   updateTree_ = false;
   reapplyFilter_ = false;
@@ -819,10 +851,14 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
 }
 
 void mainWin::extractFiles() {
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdDialog()) return;
-  }
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
+    return;
+  bool cursorWasBusy(QGuiApplication::overrideCursor() != nullptr);
+  if (cursorWasBusy) // simple extraction: after loading but before updating tree
+    QGuiApplication::restoreOverrideCursor();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
+  if (cursorWasBusy && QGuiApplication::overrideCursor() == nullptr)
+    QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   if (dir.isEmpty()) return;
   lastPath_ = dir;
   updateTree_ = false;
@@ -834,9 +870,8 @@ void mainWin::extractFiles() {
 void mainWin::autoextractFiles() {
   QString dir = BACKEND->currentFile().section("/",0,-2);
   if (dir.isEmpty()) return;
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    if (!pswrdDialog()) return;
-  }
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
+    return;
   updateTree_ = false;
   reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
@@ -922,8 +957,9 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
   if (it->text(1).isEmpty()) return; // it's a directory item
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
       && BACKEND->isEncryptedPath(it->whatsThis(0))
-      && !BACKEND->is7zSingleExtracted(it->whatsThis(0))) {
-    if (!pswrdDialog()) return;
+      && !BACKEND->isSingleExtracted(it->whatsThis(0))
+      && !pswrdDialog()) {
+    return;
   }
   updateTree_ = false;
   reapplyFilter_ = false;

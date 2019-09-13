@@ -28,7 +28,6 @@
 #include <QMimeData>
 #include <QIcon>
 #include <QApplication>
-#include <QTimer>
 
 namespace Arqiver {
 
@@ -38,8 +37,8 @@ class TreeWidget : public QTreeWidget
 
 public:
   TreeWidget(QWidget *parent = nullptr) : QTreeWidget(parent) {
-    timer_ = nullptr;
     dragStarted_ = false; // not needed
+    enterPressedHere_ = false;
     setDragDropMode(QAbstractItemView::DragOnly);
     setContextMenuPolicy (Qt::CustomContextMenu);
   }
@@ -95,34 +94,26 @@ protected:
   }
 
   virtual void keyReleaseEvent(QKeyEvent *event) {
-    /* NOTE: If Enter is kept pressed, it will be released and then will be
-             pressed again, and so on. As a workaround, a timer is used here. */
-    if (currentItem() && (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)) {
-      if(!timer_) {
-        timer_ = new QTimer (this);
-        timer_->setSingleShot(true);
-        timer_->start(250);
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+      /* NOTE: If Enter is kept pressed, it will be released and then will be
+               pressed again, and so on. So, auto-repeating is ignored here. */
+      if (enterPressedHere_ && !event->isAutoRepeat() && currentItem()) {
+        emit enterPressed(currentItem());
+        event->accept();
+        enterPressedHere_ = false;
+        return;
       }
-      else {
-        if (timer_->isActive()) {
-          event->accept();
-          return;
-        }
-        timer_->start(250);
-      }
-      emit enterPressed(currentItem());
-      event->accept();
-      return;
+      enterPressedHere_ = false;
     }
     QTreeWidget::keyReleaseEvent(event);
   }
 
   virtual void keyPressEvent(QKeyEvent *event) {
-    /* ignore typing */
-    if (event->key() != Qt::Key_Return && event->key() != Qt::Key_Enter
-        && event->key() != Qt::Key_Up && event->key() != Qt::Key_Down
-        && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
-        && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) {
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
+      enterPressedHere_ = true; // to know if it's pressed here and, e.g., not inside a modal dialog
+    else if (event->key() != Qt::Key_Up && event->key() != Qt::Key_Down
+            && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
+            && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) { // ignore typing
       event->accept();
       return;
     }
@@ -132,7 +123,7 @@ protected:
 private:
   QPoint dragStartPosition_;
   bool dragStarted_;
-  QTimer *timer_;
+  bool enterPressedHere_;
 };
 
 }

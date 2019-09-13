@@ -7,6 +7,11 @@ V0.3.0
  * Always wait for a process (command) to be started before waiting for it to be finished.
  * Show the busy cursor while doing jobs.
  * Added file filtering.
+ * To work around the inconsistent behavior of 7z on file removal, always ask the password.
+ * Ask the password on replacing an encrypted file (inside a 7z archive).
+ * Handled extraction of files with identical names inside 7z archives.
+ * To prevent a file from being opened multiple times, ignore auto-repeat when Enter/Return is pressed inside the tree view.
+ * Remove the temporary extracted files when they are replaced in the archive.
 
 V0.2.0
 ---------

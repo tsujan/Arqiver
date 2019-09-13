@@ -80,7 +80,8 @@ public:
   }
 
   bool isEncryptedPath(const QString& path) const;
-  bool is7zSingleExtracted(const QString& archivePath) const;
+  bool isSingleExtracted(const QString& archivePath) const;
+  void removeSingleExtracted(const QString& archivePath) const;
 
 signals:
   void loadingFinished(); // emitted regardless of success

@@ -359,6 +359,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   filesList.removeAll(QString());
 
   if(is7z_) { // extract the whole archive; no selective extraction
+    args << "-aou"; // the archive may contain files with identical names
     if (encrypted_)
       args << "-p" + pswrd_;
     args << (preservePaths ? "x" : "e") << fileArgs_;
@@ -367,7 +368,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-x" << "--no-same-owner";
-    if (!overwrite) // NOTE: We never overwrite in Arqiver. This may changed later.
+    if (!overwrite) // NOTE: We never overwrite in Arqiver. This might change later.
       args << "-k";
     args << fileArgs_;
     if (!filesList.isEmpty()) {
@@ -451,8 +452,41 @@ bool Backend::isEncryptedPath(const QString& path) const {
   return (encryptedList_ || encryptedPaths_.contains(path));
 }
 
-bool Backend::is7zSingleExtracted(const QString& archivePath) const {
+bool Backend::isSingleExtracted(const QString& archivePath) const {
   return (!arqiverDir_.isEmpty() && QFile::exists(arqiverDir_ + "/" + archivePath));
+}
+
+static inline bool removeDir(const QString &dirName)
+{
+  bool res = true;
+  QDir dir(dirName);
+  if (dir.exists()) {
+      const QFileInfoList infoList = dir.entryInfoList(QDir::Files | QDir::AllDirs
+                                                       | QDir::NoDotAndDotDot | QDir::System | QDir::Hidden,
+                                                       QDir::DirsFirst);
+      for (const QFileInfo& info : infoList) {
+        if (info.isDir())
+          res = removeDir(info.absoluteFilePath());
+        else
+          res = QFile::remove(info.absoluteFilePath());
+        if (!res) return res;
+      }
+      res = dir.rmdir(dirName);
+  }
+  return res;
+}
+
+void Backend::removeSingleExtracted(const QString& archivePath) const {
+  if (!arqiverDir_.isEmpty()) {
+    const QString filePath = arqiverDir_ + "/" + archivePath;
+    if (QFile::exists(filePath)) {
+      QFileInfo info(filePath);
+      if (info.isDir())
+        removeDir(filePath);
+      else
+        QFile::remove(filePath);
+    }
+  }
 }
 
 void Backend::startViewFile(const QString& path) {
@@ -478,6 +512,7 @@ void Backend::startViewFile(const QString& path) {
     }
     else if (is7z_) {
       QStringList args;
+      args << "-aou"; // the archive may contain files with identical names
       if (encrypted_)
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_;
@@ -776,7 +811,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         result = tr("Archive Loaded");
         emit loadingSuccessful();
       }
-      emit processFinished((retcode == 0), result);
+      emit processFinished(retcode == 0, result);
       result.clear();
     }
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
@@ -799,9 +834,13 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
         }
       }*/
       emit extractionFinished();
-      if (retcode == 0)
+      if (retcode == 0) {
         emit extractionSuccessful();
-      emit processFinished((retcode == 0), result);
+        result = tr("Extraction Finished");
+      }
+      else if (result.isEmpty())
+        result = tr("Extraction Failed");
+      emit processFinished(retcode == 0, result);
       result.clear();
     }
     return;
@@ -820,7 +859,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       if (isGzip_)
         emit archivingSuccessful(); // because the created archive is just loaded (-> startAdd)
     }
-    emit processFinished((retcode == 0), result);
+    emit processFinished(retcode == 0, result);
     result.clear();
   }
   else
@@ -849,6 +888,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
           QProcess::startDetached("xdg-open \"" + dir + "\""); //just extracted to a dir - open it now
         }*/
       }
+      else if (result.isEmpty())
+        result = tr("Extraction Failed");
     }
     else if (keyArgs_.contains("-c")) { // addition/removal
       if (QFile::exists(tmpfilepath_)) {
