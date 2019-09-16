@@ -217,7 +217,7 @@ void mainWin::filter(const QString&/*text*/) {
     filterTimer_->setSingleShot(true);
     connect(filterTimer_, &QTimer::timeout, this, &mainWin::reallyApplyFilter);
   }
-  filterTimer_->start(200);
+  filterTimer_->start(350);
 }
 
 void mainWin::reallyApplyFilter() {
