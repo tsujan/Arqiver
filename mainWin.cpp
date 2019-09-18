@@ -197,7 +197,7 @@ mainWin::~mainWin() {
 
 bool mainWin::eventFilter(QObject *watched, QEvent *event) {
   if (watched == ui->tree_contents && event->type() == QEvent::KeyPress) {
-    /* when a text is typed inside the tree, type it inside the filter line-edit too */
+    /* when a text is typed inside the tree, type it inside the filter line-edit */
     if (QKeyEvent *ke = static_cast<QKeyEvent*>(event)) {
       if (ke->key() != Qt::Key_Return && ke->key() != Qt::Key_Enter
           && ke->key() != Qt::Key_Up && ke->key() != Qt::Key_Down

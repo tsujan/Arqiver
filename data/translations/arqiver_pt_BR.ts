@@ -50,6 +50,15 @@ Por favor, instale-o para este tipo de arquivo!</translation>
     </message>
 </context>
 <context>
+    <name>Arqiver::LineEdit</name>
+    <message>
+        <location filename="../../lineedit.h" line="32"/>
+        <source>You could type inside the main view.
+Clear text with the Escape key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Arqiver::PrefDialog</name>
     <message>
         <location filename="../../pref.ui" line="14"/>

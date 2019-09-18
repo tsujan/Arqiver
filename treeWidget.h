@@ -112,8 +112,8 @@ protected:
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
       enterPressedHere_ = true; // to know if it's pressed here and, e.g., not inside a modal dialog
     else if (event->key() != Qt::Key_Up && event->key() != Qt::Key_Down
-            && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
-            && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) { // ignore typing
+             && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
+             && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) { // ignore typing
       event->accept();
       return;
     }

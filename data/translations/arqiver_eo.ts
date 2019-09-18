@@ -50,6 +50,16 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
     </message>
 </context>
 <context>
+    <name>Arqiver::LineEdit</name>
+    <message>
+        <location filename="../../lineedit.h" line="32"/>
+        <source>You could type inside the main view.
+Clear text with the Escape key.</source>
+        <translation>Vi povas tajpi en la ĉefan vidon.
+Viŝu la tekston per la eskapa klavo.</translation>
+    </message>
+</context>
+<context>
     <name>Arqiver::PrefDialog</name>
     <message>
         <location filename="../../pref.ui" line="14"/>
@@ -389,7 +399,7 @@ Bonvole insatlu ĝin por ĉi tia arkivo!</translation>
     <message>
         <location filename="../../mainWin.cpp" line="570"/>
         <source>Open Archive</source>
-        <translation>Malfermi Arkivons</translation>
+        <translation>Malfermi Arkivon</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="629"/>
