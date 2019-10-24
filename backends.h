@@ -48,8 +48,8 @@ public:
   bool isLink(const QString& file);
   QString linkTo(const QString& file);
 
-  void startAdd(QStringList& paths, bool absolutePaths = false);
-  void startRemove(QStringList& paths);
+  void startAdd(const QStringList& paths, bool absolutePaths = false);
+  void startRemove(const QStringList& paths);
   void startExtract(const QString& path, const QString& file = QString(), bool overwrite = true, bool preservePaths = true);
   void startExtract(const QString& path, const QStringList& files, bool overwrite = true, bool preservePaths = true);
 

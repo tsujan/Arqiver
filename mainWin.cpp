@@ -508,15 +508,10 @@ QString mainWin::filterToExtension(const QString& filter) {
 void mainWin::newArchive() {
   QString file;
 
-  QString path;
   QString ext = (lastFilter_.isEmpty() ? ".tar.gz" : filterToExtension(lastFilter_));
-  if (!saFileList_.isEmpty()) {
-    path =  QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
-              ? saFileList_.at(0) + (lastFilter_.isEmpty()
-                                       ? ".tar.gz"
-                                       : filterToExtension(lastFilter_))
-              : saFileList_.at(0);
-  }
+  QString path;
+  if (!saFileList_.isEmpty())
+    path =  saFileList_.at(0);
   bool retry(true);
   while (retry) {
     QFileDialog dlg(this, tr("Create Archive"),

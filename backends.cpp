@@ -199,31 +199,32 @@ static inline void skipExistingFiles(QString& file) {
   file += suffix;
 }
 
-void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
+void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   keyArgs_.clear();
+  QStringList filePaths = paths;
   /* exclude the archive itself */
-  if (paths.contains(filepath_))
-    paths.removeAll(filepath_);
+  if (filePaths.contains(filepath_))
+    filePaths.removeAll(filepath_);
   /* no path should be a parent folder of the archive */
   QString parentDir = filepath_.section("/", 0, -2);
-  for (int i = 0; !paths.isEmpty() && i < paths.length(); i++) {
-    if (parentDir.startsWith (paths[i])) {
-      paths.removeAt(i);
+  for (int i = 0; !filePaths.isEmpty() && i < filePaths.length(); i++) {
+    if (parentDir.startsWith (filePaths[i])) {
+      filePaths.removeAt(i);
       i--;
     }
   }
 
-  if(paths.isEmpty()) return;
+  if(filePaths.isEmpty()) return;
   /* no path should be repeated */
-  paths.removeDuplicates();
+  filePaths.removeDuplicates();
 
   QStringList args;
   if (isGzip_) {
     emit processStarting();
     if (QFile::exists(filepath_)) // the overwrite prompt should be already accepted
-      args << "--to-stdout" << "--force" << paths[0];
+      args << "--to-stdout" << "--force" << filePaths[0];
     else
-      args << "--to-stdout" << paths[0];
+      args << "--to-stdout" << filePaths[0];
     QProcess tmpProc;
     tmpProc.setStandardOutputFile(filepath_);
     tmpProc.start("gzip", args); // "gzip -c (-f) file > archive.gz"
@@ -248,7 +249,7 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
       args << "-p" + pswrd_;
       encrypted_ = true;
     }
-    args << "a" << fileArgs_ << paths;
+    args << "a" << fileArgs_ << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
     proc_.start ("7z", args);
@@ -256,11 +257,11 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   }
   /* NOTE: All paths should have the same parent directory.
            Check that and put the wrong paths into insertQueue_. */
-  QString parent = paths[0].section("/", 0, -2);
+  QString parent = filePaths[0].section("/", 0, -2);
   insertQueue_.clear();
-  for (int i = 1; i < paths.length(); i++) {
-    if (paths[i].section("/", 0, -2) != parent) {
-      insertQueue_ << paths.takeAt(i);
+  for (int i = 1; i < filePaths.length(); i++) {
+    if (filePaths[i].section("/", 0, -2) != parent) {
+      insertQueue_ << filePaths.takeAt(i);
       i--;
     }
   }
@@ -268,16 +269,16 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   args << fileArgs_;
   /* now, setup the parent dir */
   if (!absolutePaths) {
-    for (int i = 0; i < paths.length(); i++) {
-      paths[i] = paths[i].section(parent, 1, -1);
-      if (paths[i].startsWith("/"))
-        paths[i].remove(0, 1);
+    for (int i = 0; i < filePaths.length(); i++) {
+      filePaths[i] = filePaths[i].section(parent, 1, -1);
+      if (filePaths[i].startsWith("/"))
+        filePaths[i].remove(0, 1);
     }
     args << "-C" << parent;
   }
   else
     args << "-C" << "/";
-  args << paths;
+  args << filePaths;
   if (QFile::exists(filepath_)) { // append to the existing archive
     skipExistingFiles(tmpfilepath_); // practically not required
     args.replaceInStrings(filepath_, tmpfilepath_);
@@ -287,19 +288,20 @@ void Backend::startAdd(QStringList& paths,  bool absolutePaths) {
   proc_.start(TAR_CMD, args);
 }
 
-void Backend::startRemove(QStringList& paths) {
+void Backend::startRemove(const QStringList& paths) {
   keyArgs_.clear();
   if (isGzip_) return;
-  if (paths.contains(filepath_))
-    paths.removeAll(filepath_);
-  if (contents_.isEmpty() || paths.isEmpty() || !QFile::exists(filepath_))
+  QStringList filePaths = paths;
+  if (filePaths.contains(filepath_))
+    filePaths.removeAll(filepath_);
+  if (contents_.isEmpty() || filePaths.isEmpty() || !QFile::exists(filepath_))
     return; // invalid
-  paths.removeDuplicates();
+  filePaths.removeDuplicates();
   QStringList args;
   if (is7z_) {
     if (encrypted_)
       args << "-p" + pswrd_;
-    args << "d" << fileArgs_ << paths;
+    args << "d" << fileArgs_ << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
     proc_.start("7z", args);
@@ -309,8 +311,8 @@ void Backend::startRemove(QStringList& paths) {
   args << fileArgs_;
   skipExistingFiles(tmpfilepath_); // practically not required
   args.replaceInStrings(filepath_, tmpfilepath_);
-  for (int i = 0; i < paths.length(); i++) {
-    args << "--exclude" << paths[i];
+  for (int i = 0; i < filePaths.length(); i++) {
+    args << "--exclude" << filePaths[i];
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
