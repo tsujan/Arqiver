@@ -509,6 +509,7 @@ void mainWin::newArchive() {
   QString file;
 
   QString path;
+  QString ext = (lastFilter_.isEmpty() ? ".tar.gz" : filterToExtension(lastFilter_));
   if (!saFileList_.isEmpty()) {
     path =  QFile::exists(saFileList_.at(0)) && QFileInfo(saFileList_.at(0)).isDir()
               ? saFileList_.at(0) + (lastFilter_.isEmpty()
@@ -522,8 +523,10 @@ void mainWin::newArchive() {
                     /* KDE's buggy file dialog needs a directory path here */
                     path.isEmpty() ? lastPath_ : path.section("/", 0, -2),
                     archivingTypes());
-    if (!path.isEmpty())
+    if (!path.isEmpty()) { // add an appropriate extension
+      path += ext;
       dlg.selectFile(path);
+    }
     dlg.setAcceptMode(QFileDialog::AcceptSave);
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.selectNameFilter(lastFilter_);
@@ -536,12 +539,11 @@ void mainWin::newArchive() {
     else return; // with auto-archiving, the application will exit because its main window isn't shown
     if (file.isEmpty()) return;
     QRegularExpressionMatch match;
-    int indx = file.indexOf(archivingExt, 0, &match);
+    int indx = file.lastIndexOf(archivingExt, -1, &match);
     if (indx > 0 && indx + match.capturedLength() == file.length())
       retry = false; // the input had an acceptable extension
     else {
-      file += (lastFilter_.isEmpty() ? ".tar.gz" : filterToExtension(lastFilter_));
-      if (QFile::exists(file)) {
+      if (QFile::exists(file + ext)) {
         QMessageBox::StandardButton btn = QMessageBox::question(this,
                                                                 tr("Question"),
                                                                 tr("The following archive already exists:")
@@ -549,9 +551,15 @@ void mainWin::newArchive() {
                                                                 + tr("Do you want to replace it?\n"));
         if (btn == QMessageBox::No)
           path = file;
-        else retry = false;
+        else {
+          file += ext;
+          retry = false;
+        }
       }
-      else retry = false;
+      else {
+        file += ext;
+        retry = false;
+      }
     }
   }
 
