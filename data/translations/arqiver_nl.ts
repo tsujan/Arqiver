@@ -12,37 +12,37 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="819"/>
-        <location filename="../../backends.cpp" line="862"/>
+        <location filename="../../backends.cpp" line="829"/>
+        <location filename="../../backends.cpp" line="872"/>
         <source>Could not read archive</source>
         <translation>Kan archief niet uitlezen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="822"/>
-        <location filename="../../backends.cpp" line="867"/>
+        <location filename="../../backends.cpp" line="832"/>
+        <location filename="../../backends.cpp" line="877"/>
         <source>Archive Loaded</source>
         <translation>Archief geladen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="829"/>
-        <location filename="../../backends.cpp" line="915"/>
+        <location filename="../../backends.cpp" line="839"/>
+        <location filename="../../backends.cpp" line="925"/>
         <source>Modification Finished</source>
         <translation>Bewerking voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="850"/>
-        <location filename="../../backends.cpp" line="884"/>
+        <location filename="../../backends.cpp" line="860"/>
+        <location filename="../../backends.cpp" line="894"/>
         <source>Extraction Finished</source>
         <translation>Uitpakken voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="853"/>
-        <location filename="../../backends.cpp" line="903"/>
+        <location filename="../../backends.cpp" line="863"/>
+        <location filename="../../backends.cpp" line="913"/>
         <source>Extraction Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="996"/>
+        <location filename="../../backends.cpp" line="1006"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 is niet geïnstalleerd.
@@ -479,33 +479,33 @@ Do you want to continue?
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1315"/>
+        <location filename="../../mainWin.cpp" line="1318"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1316"/>
+        <location filename="../../mainWin.cpp" line="1319"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1317"/>
+        <location filename="../../mainWin.cpp" line="1320"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1318"/>
+        <location filename="../../mainWin.cpp" line="1321"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1319"/>
-        <location filename="../../mainWin.cpp" line="1320"/>
+        <location filename="../../mainWin.cpp" line="1322"/>
+        <location filename="../../mainWin.cpp" line="1323"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1319"/>
+        <location filename="../../mainWin.cpp" line="1322"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

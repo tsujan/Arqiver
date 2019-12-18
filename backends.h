@@ -109,6 +109,8 @@ private:
 
   QProcess proc_;
 
+  QHash<QString, QString> mimeTypes_; // to speed up mime type search
+
   QString filepath_, tmpfilepath_, arqiverDir_;
   QStringList fileArgs_;
   /* "keyArgs_" is used, instead of QProcess::arguments(), to exlude file/item names

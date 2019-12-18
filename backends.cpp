@@ -53,9 +53,19 @@ Backend::~Backend() {
 }
 
 QString Backend::getMimeType(const QString &fname) {
-  QMimeDatabase mimeDatabase;
-  QMimeType mimeType = mimeDatabase.mimeTypeForFile(QFileInfo(fname));
-  return mimeType.name();
+  QString mimeType, suffix;
+  int left = fname.indexOf(QLatin1Char('.'));
+  if (left != -1) {
+    suffix = fname.right(fname.size() - left - 1);
+    mimeType = mimeTypes_.value(suffix);
+  }
+  if (mimeType.isEmpty()) {
+    QMimeDatabase mimeDatabase;
+    mimeType = mimeDatabase.mimeTypeForFile(QFileInfo(fname)).name();
+    if (!suffix.isEmpty())
+      mimeTypes_.insert(suffix, mimeType);
+  }
+  return mimeType;
 }
 
 void Backend::loadFile(const QString& path, bool withPassword) {

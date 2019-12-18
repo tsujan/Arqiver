@@ -1113,7 +1113,10 @@ void mainWin::updateTree() {
             else
               parentItem = thisParent; // already handled
           }
-          parentItem->addChild(it);
+          if (parentItem)
+            parentItem->addChild(it);
+          else
+            ui->tree_contents->addTopLevelItem(it);
         }
       }
     }

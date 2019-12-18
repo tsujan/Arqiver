@@ -1,3 +1,7 @@
+V0.3.2
+---------
+ * Added a workaround for the low performance of QMimeDatabase. Loading of heavy archives is much faster now.
+
 V0.3.1
 ---------
  * Fixed archiving of files from different folders.
