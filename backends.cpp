@@ -134,7 +134,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
 bool Backend::canModify() {
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
-    validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << ".svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
+    validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << ".svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tar.zst" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
   }
   for (int i = 0; i < validEXT.length(); i++) {
     if (filepath_.endsWith(validEXT[i]))
