@@ -294,8 +294,8 @@ Viŝu la tekston per la eskapa klavo.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="414"/>
         <location filename="../../mainWin.cpp" line="439"/>
-        <source>Zstandard Compressed Archive (*.tar.zst)</source>
-        <translation>Zstandard-Kompaktigita Arkivo (*.tar.zst)</translation>
+        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
+        <translation>Zstandard-Kompaktigita Arkivo (*.tar.zst *.tzst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="415"/>

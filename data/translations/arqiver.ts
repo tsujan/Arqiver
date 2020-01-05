@@ -292,7 +292,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../mainWin.cpp" line="414"/>
         <location filename="../../mainWin.cpp" line="439"/>
-        <source>Zstandard Compressed Archive (*.tar.zst)</source>
+        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
