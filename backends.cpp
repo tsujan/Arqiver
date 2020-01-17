@@ -42,6 +42,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
   connect(&proc_, &QProcess::started, this, &Backend::processStarting);
   connect(&proc_, &QProcess::errorOccurred, this, &Backend::onError);
+  isKilled_ = false;
   LIST = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
@@ -799,6 +800,24 @@ void Backend::startList(bool withPassword) {
 }
 
 void Backend::procFinished(int retcode, QProcess::ExitStatus) {
+  if (isKilled_) {
+    isKilled_ = false;
+    if (keyArgs_.contains("l") || keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
+      /* reset most variables (the rest will be reset with the next loading) */
+      LIST = false;
+      isGzip_ = is7z_ = false;
+      starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
+      keyArgs_.clear();
+      contents_.clear();
+      insertQueue_.clear();
+      encryptedPaths_.clear();
+      pswrd_ = archiveSingleRoot_ = result_ = data_ = QString();
+
+      emit processFinished(false, tr("Could not read archive"));
+      return;
+    }
+  }
+
   if (is7z_ && !encryptionQueried_ && keyArgs_.contains("l")) {
     encryptionQueried_ = true;
     if (encryptedList_)
@@ -817,7 +836,6 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   }
 
   /* NOTE: processFinished() should be emitted once, in the end */
-  static QString result;
   processData();
   LIST = false;
   if (is7z_) {
@@ -826,17 +844,17 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       emit loadingFinished();
       if (retcode != 0) {
         contents_.clear();
-        result = tr("Could not read archive");
+        result_ = tr("Could not read archive");
       }
-      else if (result.isEmpty()) {
-        result = tr("Archive Loaded");
+      else if (result_.isEmpty()) {
+        result_ = tr("Archive Loaded");
         emit loadingSuccessful();
       }
-      emit processFinished(retcode == 0, result);
-      result.clear();
+      emit processFinished(retcode == 0, result_);
+      result_.clear();
     }
     else if (keyArgs_.contains("a") || keyArgs_.contains("d")) { // addition/removal
-      result = tr("Modification Finished");
+      result_ = tr("Modification Finished");
       emit archivingSuccessful();
       if (!encryptedList_) {
         /* We want to know which files are encrypted after an addition.
@@ -857,31 +875,31 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       emit extractionFinished();
       if (retcode == 0) {
         emit extractionSuccessful();
-        result = tr("Extraction Finished");
+        result_ = tr("Extraction Finished");
       }
-      else if (result.isEmpty())
-        result = tr("Extraction Failed");
-      emit processFinished(retcode == 0, result);
-      result.clear();
+      else if (result_.isEmpty())
+        result_ = tr("Extraction Failed");
+      emit processFinished(retcode == 0, result_);
+      result_.clear();
     }
     return;
   }
   if (keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
     if (retcode != 0) {
       contents_.clear();
-      result = tr("Could not read archive");
+      result_ = tr("Could not read archive");
     }
-    else if (result.isEmpty()) {
+    else if (result_.isEmpty()) {
       emit loadingFinished();
       if (retcode == 0) {
-        result = tr("Archive Loaded");
+        result_ = tr("Archive Loaded");
         emit loadingSuccessful();
       }
       if (isGzip_)
         emit archivingSuccessful(); // because the created archive is just loaded (-> startAdd)
     }
-    emit processFinished(retcode == 0, result);
-    result.clear();
+    emit processFinished(retcode == 0, result_);
+    result_.clear();
   }
   else
   {
@@ -891,7 +909,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       emit extractionFinished();
       if (retcode == 0)
       {
-        result = tr("Extraction Finished");
+        result_ = tr("Extraction Finished");
         emit extractionSuccessful();
         /*if (args.count("--include") == 1) {
           //Need to find the full path to the (single) extracted file
@@ -909,8 +927,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
           QProcess::startDetached("xdg-open \"" + dir + "\""); //just extracted to a dir - open it now
         }*/
       }
-      else if (result.isEmpty())
-        result = tr("Extraction Failed");
+      else if (result_.isEmpty())
+        result_ = tr("Extraction Failed");
     }
     else if (keyArgs_.contains("-c")) { // addition/removal
       if (QFile::exists(tmpfilepath_)) {
@@ -922,7 +940,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
           QFile::remove(tmpfilepath_);
       }
 
-      result = tr("Modification Finished");
+      result_ = tr("Modification Finished");
       if (insertQueue_.isEmpty())
         emit archivingSuccessful();
       else {
@@ -933,8 +951,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     if (updateList)
       startList();
     else {
-      emit processFinished(retcode == 0, result);
-      result.clear();
+      emit processFinished(retcode == 0, result_);
+      result_.clear();
     }
   }
 }
@@ -968,12 +986,11 @@ void Backend::processData() {
     }
     return; // no listing here
   }
-  static QString data;
-  QString read = data + proc_.readAllStandardOutput();
+  QString read = data_ + proc_.readAllStandardOutput();
   if (read.endsWith("\n"))
-    data.clear();
+    data_.clear();
   else {
-    data = read.section("\n", -1);
+    data_ = read.section("\n", -1);
     read = read.section("\n", 0, -2);
   }
   QStringList lines = read.split("\n", QString::SkipEmptyParts);

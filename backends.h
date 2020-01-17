@@ -83,6 +83,13 @@ public:
   bool isSingleExtracted(const QString& archivePath) const;
   void removeSingleExtracted(const QString& archivePath) const;
 
+  void killProc() {
+    if (proc_.state() == QProcess::Running) {
+      isKilled_ = true;
+      proc_.kill();
+    }
+  }
+
 signals:
   void loadingFinished(); // emitted regardless of success
   void loadingSuccessful();
@@ -128,6 +135,12 @@ private:
   bool isGzip_, is7z_;
   QString pswrd_; // for 7z
   QString archiveSingleRoot_;
+
+  QString result_; // the message sent by procFinished()
+
+  QString data_; // used when processing data
+
+  bool isKilled_;
 };
 
 }

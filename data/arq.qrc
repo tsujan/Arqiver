@@ -18,6 +18,7 @@
     <file>icons/help-about.svg</file>
     <file>icons/locked.svg</file>
     <file>icons/preferences-system.svg</file>
+    <file>icons/process-stop.svg</file>
     <file>icons/unlocked.svg</file>
   </qresource>
 </RCC>

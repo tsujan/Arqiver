@@ -69,7 +69,6 @@ private slots:
   void expandOrView(QTreeWidgetItem *it);
   void extractSingleFile(QTreeWidgetItem *it);
   void listContextMenu(const QPoint& p);
-  void updateTree();
 
   void procStarting();
   void procFinished(bool, const QString& msg);
@@ -91,6 +90,7 @@ private:
   void dropEvent(QDropEvent *event);
   void changeEvent(QEvent *event);
   QHash<QString, QTreeWidgetItem*> cleanTree(const QStringList& list); // returns the remaining items
+  void updateTree();
   QString allArchivingTypes();
   QString archivingTypes();
   QHash<QString, QString> supportedMimeTypes();

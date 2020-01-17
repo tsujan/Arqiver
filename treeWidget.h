@@ -40,7 +40,7 @@ public:
     dragStarted_ = false; // not needed
     enterPressedHere_ = false;
     setDragDropMode(QAbstractItemView::DragOnly);
-    setContextMenuPolicy (Qt::CustomContextMenu);
+    setContextMenuPolicy(Qt::CustomContextMenu);
   }
 
   QTreeWidgetItem *getItemFromIndex(const QModelIndex &index) const {

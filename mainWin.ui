@@ -149,6 +149,8 @@
     </property>
     <addaction name="actionExpand"/>
     <addaction name="actionCollapse"/>
+    <addaction name="separator"/>
+    <addaction name="actionStop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -177,6 +179,8 @@
    </attribute>
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
+   <addaction name="separator"/>
+   <addaction name="actionStop"/>
    <addaction name="actionAddFile"/>
    <addaction name="actionAddDir"/>
    <addaction name="actionRemoveFile"/>
@@ -270,6 +274,14 @@
   <action name="actionPref">
    <property name="text">
     <string>&amp;Preferences</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Stop &amp;Process</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

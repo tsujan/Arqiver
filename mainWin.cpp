@@ -88,6 +88,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
   ui->actionCopy->setIcon(symbolicIcon::icon(":icons/edit-copy.svg"));
   ui->actionPref->setIcon(symbolicIcon::icon(":icons/preferences-system.svg"));
+  ui->actionStop->setIcon(symbolicIcon::icon(":icons/process-stop.svg"));
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -107,6 +108,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(BACKEND, &Backend::errorMsg, this, [this](const QString& msg) {
     QMessageBox::critical(this, tr("Error"), msg);
   });
+  connect(ui->actionStop, &QAction::triggered, [this] {BACKEND->killProc();});
 
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -1210,8 +1212,16 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile());
 
-  if (updateTree_)
-    updateTree();
+  if (updateTree_) {
+    if (success)
+      updateTree();
+    else {
+      ui->tree_contents->clear();
+      ui->tree_contents->setEnabled(true);
+      ui->tree_contents->setFocus();
+      enableActions(true);
+    }
+  }
   else {
     ui->tree_contents->setEnabled(true);
     enableActions(true);
@@ -1240,17 +1250,28 @@ void mainWin::procFinished(bool success, const QString& msg) {
   }
   else
     iconLabel_->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
-  QFileInfo info(BACKEND->currentFile());
-  bool canmodify = info.isWritable();
-  if (!info.exists())
-    canmodify = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
-  canmodify = canmodify && BACKEND->canModify(); // also include the file type limitations
-  ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
-  ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
-  ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
-  ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
-  ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
-  ui->actionPassword->setEnabled(BACKEND->is7z());
+
+  if (updateTree_ && !success) {
+    ui->actionAddFile->setEnabled(false);
+    ui->actionRemoveFile->setEnabled(false);
+    ui->actionExtractAll->setEnabled(false);
+    ui->actionExtractSel->setEnabled(false);
+    ui->actionAddDir->setEnabled(false);
+    ui->actionPassword->setEnabled(false);
+  }
+  else {
+    QFileInfo info(BACKEND->currentFile());
+    bool canmodify = info.isWritable();
+    if (!info.exists())
+      canmodify = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
+    canmodify = canmodify && BACKEND->canModify(); // also include the file type limitations
+    ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
+    ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
+    ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
+    ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
+    ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
+    ui->actionPassword->setEnabled(BACKEND->is7z());
+  }
 
   updateTree_ = true;
   if (close_)
