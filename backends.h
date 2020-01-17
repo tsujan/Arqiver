@@ -37,7 +37,6 @@ public:
   bool canModify();
 
   QString currentFile();
-  bool isWorking();
 
   QStringList hierarchy();
   QString singleRoot();
@@ -83,12 +82,8 @@ public:
   bool isSingleExtracted(const QString& archivePath) const;
   void removeSingleExtracted(const QString& archivePath) const;
 
-  void killProc() {
-    if (proc_.state() == QProcess::Running) {
-      isKilled_ = true;
-      proc_.kill();
-    }
-  }
+  bool isWorking();
+  void killProc();
 
 signals:
   void loadingFinished(); // emitted regardless of success
@@ -115,6 +110,7 @@ private:
   void parseLines(QStringList& lines);
 
   QProcess proc_;
+  QProcess tmpProc_; // for secondary jobs
 
   QHash<QString, QString> mimeTypes_; // to speed up mime type search
 

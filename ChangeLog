@@ -2,6 +2,7 @@ V0.4.0
 ---------
  * Added support for Zstd (because tar supports it).
  * Allow stopping (killing) long processes.
+ * Prevent DND when the backend is busy.
 
 V0.3.2
 ---------

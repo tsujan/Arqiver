@@ -588,7 +588,8 @@ void mainWin::openArchive() {
 }
 
 void mainWin::dragEnterEvent(QDragEnterEvent *event) {
-  if (event->source()) {
+  if (BACKEND->isWorking() // no DND when the backend is busy
+      || event->source()) {
     // if the drag has originated in this window, ignore it
     // (needed when an archive contains archives, as with deb packages)
     event->ignore();
@@ -612,6 +613,10 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void mainWin::dropEvent(QDropEvent *event) {
+  if (BACKEND->isWorking()) {
+    event->ignore();
+    return;
+  }
   const QList<QUrl> urlList = event->mimeData()->urls();
   if (!urlList.isEmpty()) {
     QString file = urlList.at(0).toLocalFile();

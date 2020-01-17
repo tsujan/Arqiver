@@ -148,10 +148,6 @@ QString Backend::currentFile() {
   return filepath_;
 }
 
-bool Backend::isWorking(){
-  return (proc_.state() != QProcess::Running);
-}
-
 QStringList Backend::hierarchy() {
   return contents_.keys();
 }
@@ -236,14 +232,13 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
       args << "--to-stdout" << "--force" << filePaths[0];
     else
       args << "--to-stdout" << filePaths[0];
-    QProcess tmpProc;
-    tmpProc.setStandardOutputFile(filepath_);
-    tmpProc.start("gzip", args); // "gzip -c (-f) file > archive.gz"
-    if(tmpProc.waitForStarted()) {
-      while (!tmpProc.waitForFinished(500))
+    tmpProc_.setStandardOutputFile(filepath_);
+    tmpProc_.start("gzip", args); // "gzip -c (-f) file > archive.gz"
+    if(tmpProc_.waitForStarted()) {
+      while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
-    emit processFinished(tmpProc.exitCode() == 0, QString());
+    emit processFinished(tmpProc_.exitCode() == 0, QString());
     loadFile(filepath_);
     return; // FIXME: Unfortunately, onError() can't be called here
   }
@@ -344,7 +339,6 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       return;
     }*/
     emit processStarting();
-    QProcess tmpProc;
     QString extName = filepath_.section("/", -1);
     if(extName.contains(".")) {
       extName = extName.section(".", 0, -2);
@@ -355,13 +349,13 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }
     extName = path + "/" + extName;
     skipExistingFiles(extName);
-    tmpProc.setStandardOutputFile(extName);
-    tmpProc.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
-    if(tmpProc.waitForStarted()) {
-      while (!tmpProc.waitForFinished(500))
+    tmpProc_.setStandardOutputFile(extName);
+    tmpProc_.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
+    if(tmpProc_.waitForStarted()) {
+      while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
-    emit processFinished(tmpProc.exitCode() == 0, QString());
+    emit processFinished(tmpProc_.exitCode() == 0, QString());
     emit extractionFinished();
     emit extractionSuccessful();
     return;
@@ -524,7 +518,13 @@ void Backend::startViewFile(const QString& path) {
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
                                             : parentDir + "/")
                      + path.section("/",-1);
-  if (!QFile::exists(fileName)) {
+  QFile file(fileName);
+  bool fileExists(file.exists());
+  if (fileExists && file.size() == static_cast<qint64>(0)) {
+    file.remove();
+    fileExists = false;
+  }
+  if (!fileExists) {
     QString cmnd;
     QStringList args;
     if (isGzip_) {
@@ -540,17 +540,19 @@ void Backend::startViewFile(const QString& path) {
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
       args << path;
       emit processStarting();
-      QProcess tmpProc;
-      tmpProc.start ("7z", args);
-      if(tmpProc.waitForStarted()) {
-        while (!tmpProc.waitForFinished(500))
+      tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+      tmpProc_.start("7z", args);
+      if(tmpProc_.waitForStarted()) {
+        while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
-      if (tmpProc.exitCode() != 0)
+      if (tmpProc_.exitCode() != 0)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
-      emit processFinished(tmpProc.exitCode() == 0, QString());
-      if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
-        QProcess::startDetached("xdg-open", QStringList() << fileName);
+      emit processFinished(tmpProc_.exitCode() == 0, QString());
+      if (tmpProc_.exitCode() == 0) {
+        if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+          QProcess::startDetached("xdg-open", QStringList() << fileName);
+      }
       return;
     }
     else {
@@ -558,14 +560,15 @@ void Backend::startViewFile(const QString& path) {
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
     emit processStarting();
-    QProcess tmpProc;
-    tmpProc.setStandardOutputFile(fileName);
-    tmpProc.start(cmnd, args);
-    if(tmpProc.waitForStarted()) {
-      while (!tmpProc.waitForFinished(500))
+    tmpProc_.setStandardOutputFile(fileName);
+    tmpProc_.start(cmnd, args);
+    if(tmpProc_.waitForStarted()) {
+      while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
-    emit processFinished(tmpProc.exitCode() == 0, QString());
+    emit processFinished(tmpProc_.exitCode() == 0, QString());
+    if (tmpProc_.exitCode() != 0)
+      return;
   }
   else
     emit processFinished(true, QString());
@@ -587,7 +590,13 @@ QString Backend::extractSingleFile(const QString& path) {
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
                                           : parentDir + "/")
                      + path.section("/",-1);
-  if (!QFile::exists(fileName)) {
+  QFile file(fileName);
+  bool fileExists(file.exists());
+  if (fileExists && file.size() == static_cast<qint64>(0)) {
+    file.remove();
+    fileExists = false;
+  }
+  if (!fileExists) {
     QString cmnd;
     QStringList args;
     if (isGzip_) {
@@ -600,15 +609,15 @@ QString Backend::extractSingleFile(const QString& path) {
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << path;
       emit processStarting();
-      QProcess tmpProc;
-      tmpProc.start ("7z", args);
-      if(tmpProc.waitForStarted()) {
-        while (!tmpProc.waitForFinished(500))
+      tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+      tmpProc_.start("7z", args);
+      if(tmpProc_.waitForStarted()) {
+        while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
-      if (tmpProc.exitCode() != 0)
+      if (tmpProc_.exitCode() != 0)
         pswrd_ = QString();
-      emit processFinished(tmpProc.exitCode() == 0, QString());
+      emit processFinished(tmpProc_.exitCode() == 0, QString());
       return fileName;
     }
     else {
@@ -616,14 +625,13 @@ QString Backend::extractSingleFile(const QString& path) {
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
     emit processStarting();
-    QProcess tmpProc;
-    tmpProc.setStandardOutputFile(fileName);
-    tmpProc.start(cmnd, args);
-    if(tmpProc.waitForStarted()) {
-      while (!tmpProc.waitForFinished(500))
+    tmpProc_.setStandardOutputFile(fileName);
+    tmpProc_.start(cmnd, args);
+    if(tmpProc_.waitForStarted()) {
+      while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
-    emit processFinished(tmpProc.exitCode() == 0, QString());
+    emit processFinished(tmpProc_.exitCode() == 0, QString());
   }
   else
     emit processFinished(true, QString());
@@ -1022,6 +1030,21 @@ void Backend::onError(QProcess::ProcessError error) {
   if (error == QProcess::FailedToStart)
     emit errorMsg(tr("%1 is missing from your system.\nPlease install it for this kind of archive!")
                   .arg(proc_.program()));
+}
+
+bool Backend::isWorking() { // used only with DND
+  return (proc_.state() == QProcess::Running
+          || tmpProc_.state() == QProcess::Running);
+}
+
+void Backend::killProc() {
+  if (proc_.state() == QProcess::Running) {
+    isKilled_ = true;
+    proc_.kill();
+  }
+  else if (tmpProc_.state() == QProcess::Running) { // tmpProc_ starts after proc_ is finished
+    tmpProc_.kill();
+  }
 }
 
 }
