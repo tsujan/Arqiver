@@ -38,8 +38,6 @@ TreeWidget::TreeWidget(QWidget *parent) : QTreeWidget(parent) {
   setContextMenuPolicy(Qt::CustomContextMenu);
   setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
   smoothScrollTimer_ = nullptr;
-
-  viewport()->installEventFilter(this);
 }
 /*************************/
 TreeWidget::~TreeWidget() {
