@@ -14,6 +14,7 @@ HEADERS	+= mainWin.h \
 
 SOURCES	+= main.cpp \
            mainWin.cpp \
+           treeWidget.cpp \
            backends.cpp \
            svgicons.cpp \
            config.cpp \

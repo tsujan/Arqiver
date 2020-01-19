@@ -3,6 +3,7 @@ V0.4.0
  * Added support for Zstd (because tar supports it).
  * Allow stopping (killing) long processes.
  * Prevent DND when the backend is busy.
+ * Smooth scrolling when the mouse wheel turns inside the view.
 
 V0.3.2
 ---------

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2020 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -113,6 +113,7 @@ private:
   QString lastPswrd_;
   QString lastMsg_;
   bool updateTree_;
+  bool scrollToCurrent_;
   bool expandAll_;
   bool close_;
   bool processIsRunning_;

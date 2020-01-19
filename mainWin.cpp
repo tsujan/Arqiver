@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2020 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -28,7 +28,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QCheckBox>
-#include <QTimer>
+#include <QMimeData>
 #include <QRegularExpression>
 //#include <QScreen>
 #include <QPixmapCache>
@@ -45,6 +45,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   lastPath_ = QDir::homePath();
   updateTree_ = true; // will be set to false when extracting (or viewing)
+  scrollToCurrent_ = true; // will be set to false when adding files/folders
   expandAll_ = false;
   close_ = false;
   processIsRunning_ = false;
@@ -676,6 +677,7 @@ void mainWin::addFiles() {
   if (lastPswrd_.isEmpty() && !passWordSet) // optional password
     BACKEND->setPswrd(QString());
 
+  scrollToCurrent_ = false;
   textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(files);
 }
@@ -706,6 +708,7 @@ void mainWin::addDirs() { // only a single directory for now
   if (lastPswrd_.isEmpty() && !passWordSet)
     BACKEND->setPswrd(QString());
 
+  scrollToCurrent_ = false;
   textLabel_->setText(tr("Adding Items..."));
   BACKEND->startAdd(QStringList() << dir);
 }
@@ -1151,6 +1154,11 @@ void mainWin::updateTree() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
       ui->tree_contents->sortItems(3, Qt::AscendingOrder);
     });
+    if (scrollToCurrent_) {
+      QTimer::singleShot(0, this, [this]() {
+        ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
+      });
+    }
   }
 
   setUpdatesEnabled(true);
@@ -1279,6 +1287,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   }
 
   updateTree_ = true;
+  scrollToCurrent_ = true;
   if (close_)
     QTimer::singleShot(500, this, &QWidget::close);
 
