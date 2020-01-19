@@ -38,6 +38,14 @@ TreeWidget::TreeWidget(QWidget *parent) : QTreeWidget(parent) {
   setContextMenuPolicy(Qt::CustomContextMenu);
   setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
   smoothScrollTimer_ = nullptr;
+
+  /* set the scrolling step to the row height (Qt should have done it, IMO) */
+  if (model()) { // we don't change the model
+    connect(model(), &QAbstractItemModel::rowsInserted, this, [this] (const QModelIndex &parent, int first, int last) {
+      if (!parent.isValid() && first == 0 && last == 0)
+        verticalScrollBar()->setSingleStep(rowHeight(model()->index(0,0)));
+    });
+  }
 }
 /*************************/
 TreeWidget::~TreeWidget() {
