@@ -731,6 +731,14 @@ bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
 }
 
 void mainWin::removeFiles() {
+  if (config_.getRemovalPrompt()) {
+    if (QMessageBox::question(this,
+                              tr("Question"),
+                              tr("Do you want to remove the selected item(s)?\n"))
+        == QMessageBox::No) {
+      return;
+    }
+  }
   const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   if (sel.isEmpty()) return;
   /* WARNING: 7z isn't self-consistent in file removal: sometimes it needs password,

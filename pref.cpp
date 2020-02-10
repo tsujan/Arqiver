@@ -116,6 +116,15 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   connect(ui->spinX, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefStartSize);
   connect(ui->spinY, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefStartSize);
 
+  if (mainWin *win = qobject_cast<mainWin*>(parent_))
+    ui->promptBox->setChecked(win->getConfig().getRemovalPrompt());
+  connect(ui->promptBox, &QCheckBox::stateChanged, [this] (int state) {
+    if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+      Config& config = win->getConfig();
+      config.setRemovalPrompt(state == Qt::Checked);
+    }
+  });
+
   ui->winSizeBox->setFocus();
   setTabOrder(ui->winSizeBox, ui->spinX);
   setTabOrder(ui->spinX, ui->spinY);

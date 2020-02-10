@@ -62,6 +62,13 @@ public:
     isMaxed_ = isMaxed;
   }
 
+  bool getRemovalPrompt() const {
+      return removalPrompt_;
+  }
+  void setRemovalPrompt(bool prompt) {
+    removalPrompt_ = prompt;
+  }
+
   QSize getWinSize() const {
     return winSize_;
   }
@@ -91,7 +98,7 @@ public:
   }
 
 private:
-  bool remSize_, isMaxed_;
+  bool remSize_, isMaxed_, removalPrompt_;
   QSize winSize_, startSize_;
   int iconSize_;
   QString lastFilter_;

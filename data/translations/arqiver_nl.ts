@@ -67,17 +67,22 @@ Clear text with the Escape key.</source>
         <translation>Voorkeuren</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="62"/>
+        <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
         <translation>Opstarten met deze afmetingen:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="69"/>
+        <location filename="../../pref.ui" line="91"/>
+        <source>Show prompt on removing items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
         <translation>Ven&amp;sterafmetingen onthouden bij sluiten</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="103"/>
+        <location filename="../../pref.ui" line="80"/>
         <source>Size of view icons:</source>
         <translation>Grootte van weergavepictogrammen:</translation>
     </message>
@@ -87,7 +92,7 @@ Clear text with the Escape key.</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="181"/>
+        <location filename="../../pref.cpp" line="190"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>De applicatie moet worden herstart om de wijzigingen toe te passen.</translation>
     </message>
@@ -396,7 +401,8 @@ Clear text with the Escape key.</source>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="549"/>
-        <location filename="../../mainWin.cpp" line="954"/>
+        <location filename="../../mainWin.cpp" line="736"/>
+        <location filename="../../mainWin.cpp" line="962"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
@@ -427,102 +433,108 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../mainWin.cpp" line="682"/>
         <location filename="../../mainWin.cpp" line="713"/>
-        <location filename="../../mainWin.cpp" line="915"/>
-        <location filename="../../mainWin.cpp" line="921"/>
+        <location filename="../../mainWin.cpp" line="923"/>
+        <location filename="../../mainWin.cpp" line="929"/>
         <source>Adding Items...</source>
         <translation>Bezig met toevoegen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="748"/>
+        <location filename="../../mainWin.cpp" line="737"/>
+        <source>Do you want to remove the selected item(s)?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="756"/>
         <source>Removing Items...</source>
         <translation>Bezig met verwijderen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="762"/>
-        <location filename="../../mainWin.cpp" line="882"/>
-        <location filename="../../mainWin.cpp" line="893"/>
-        <location filename="../../mainWin.cpp" line="967"/>
-        <location filename="../../mainWin.cpp" line="981"/>
+        <location filename="../../mainWin.cpp" line="770"/>
+        <location filename="../../mainWin.cpp" line="890"/>
+        <location filename="../../mainWin.cpp" line="901"/>
+        <location filename="../../mainWin.cpp" line="975"/>
+        <location filename="../../mainWin.cpp" line="989"/>
         <source>Extracting...</source>
         <translation>Bezig met uitpakken...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="775"/>
+        <location filename="../../mainWin.cpp" line="783"/>
         <source>View Current Item</source>
         <translation>Huidig item tonen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="786"/>
         <location filename="../../mainWin.cpp" line="794"/>
+        <location filename="../../mainWin.cpp" line="802"/>
         <source>Enter Password</source>
         <translation>Voer wachtwoord in</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="798"/>
+        <location filename="../../mainWin.cpp" line="806"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="799"/>
+        <location filename="../../mainWin.cpp" line="807"/>
         <source>OK</source>
         <translation>Oké</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="803"/>
+        <location filename="../../mainWin.cpp" line="811"/>
         <source>Encrypt the file list</source>
         <translation>Bestandslijst versleutelen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="804"/>
+        <location filename="../../mainWin.cpp" line="812"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Dit wordt toegepast na het toevoegen van bestanden/mappen.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="875"/>
-        <location filename="../../mainWin.cpp" line="944"/>
+        <location filename="../../mainWin.cpp" line="883"/>
+        <location filename="../../mainWin.cpp" line="952"/>
         <source>Extract Into Directory</source>
         <translation>Uitpakken naar map</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="955"/>
+        <location filename="../../mainWin.cpp" line="963"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1073"/>
+        <location filename="../../mainWin.cpp" line="1081"/>
         <source>Link To: %1</source>
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1357"/>
+        <location filename="../../mainWin.cpp" line="1365"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1358"/>
+        <location filename="../../mainWin.cpp" line="1366"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1359"/>
+        <location filename="../../mainWin.cpp" line="1367"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1360"/>
+        <location filename="../../mainWin.cpp" line="1368"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1361"/>
-        <location filename="../../mainWin.cpp" line="1362"/>
+        <location filename="../../mainWin.cpp" line="1369"/>
+        <location filename="../../mainWin.cpp" line="1370"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1361"/>
+        <location filename="../../mainWin.cpp" line="1369"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

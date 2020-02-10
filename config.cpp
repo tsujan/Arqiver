@@ -22,7 +22,12 @@
 namespace Arqiver {
 
 Config::Config() :
-  remSize_(true) {
+  remSize_(true),
+  isMaxed_(false),
+  removalPrompt_(true),
+  winSize_(QSize(600, 500)),
+  startSize_(QSize(600, 500)),
+  iconSize_(24) {
 }
 
 Config::~Config() {}
@@ -45,6 +50,8 @@ void Config::readConfig() {
     startSize_ = QSize(600, 500);
 
   iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
+
+  removalPrompt_ = settings.value("removalPrompt", true).toBool();
 
   settings.endGroup();
 
@@ -71,6 +78,8 @@ void Config::writeConfig() {
   settings.setValue("startSize", startSize_);
 
   settings.setValue("iconSize", iconSize_);
+
+  settings.setValue("removalPrompt", removalPrompt_);
 
   settings.endGroup();
 

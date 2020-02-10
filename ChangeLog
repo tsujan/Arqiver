@@ -6,6 +6,7 @@ V0.4.0
  * Smooth scrolling when the mouse wheel turns inside the view.
  * Fixed a potential issue in translations.
  * Enable the "Remove File(s)" action only if an item is selected.
+ * Show (optional) prompt before removing items.
 
 V0.3.2
 ---------
