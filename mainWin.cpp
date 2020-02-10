@@ -44,6 +44,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
   lastPath_ = QDir::homePath();
+  canmodify_ = true;
   updateTree_ = true; // will be set to false when extracting (or viewing)
   scrollToCurrent_ = true; // will be set to false when adding files/folders
   expandAll_ = false;
@@ -730,11 +731,12 @@ bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
 }
 
 void mainWin::removeFiles() {
+  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  if (sel.isEmpty()) return;
   /* WARNING: 7z isn't self-consistent in file removal: sometimes it needs password,
               sometimes not. Moreover, it may remove files with a wrong password. */
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
     return;
-  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   QStringList items;
   for (auto item : sel) {
     /*if (subTreeIsEncrypted(item)) {
@@ -921,17 +923,14 @@ void mainWin::simpleArchivetFiles() {
 }
 
 void mainWin::extractSelection() {
-  if (ui->tree_contents->currentItem() == nullptr) return; // nothing selected
+  QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  if (sel.isEmpty()) return;
 
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
     /* not needed because there's no selective extraction for 7z */
     if (!pswrdDialog()) return;
   }
 
-  QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
-  if (sel.isEmpty()) {
-    sel << ui->tree_contents->currentItem();
-  }
   QStringList selList;
   const QString singleRoot = BACKEND->singleRoot();
   for (int i = 0; i < sel.length(); i++) {
@@ -1274,15 +1273,16 @@ void mainWin::procFinished(bool success, const QString& msg) {
   }
   else {
     QFileInfo info(BACKEND->currentFile());
-    bool canmodify = info.isWritable();
+    canmodify_ = info.isWritable();
     if (!info.exists())
-      canmodify = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
-    canmodify = canmodify && BACKEND->canModify(); // also include the file type limitations
-    ui->actionAddFile->setEnabled(canmodify && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
-    ui->actionRemoveFile->setEnabled(canmodify && info.exists() && !BACKEND->isGzip());
+      canmodify_ = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
+    canmodify_ = canmodify_ && BACKEND->canModify(); // also include the file type limitations
+    ui->actionAddFile->setEnabled(canmodify_ && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
     ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
-    ui->actionExtractSel->setEnabled(info.exists() && !ui->tree_contents->selectedItems().isEmpty());
-    ui->actionAddDir->setEnabled(canmodify && !BACKEND->isGzip());
+    bool hasSelection = info.exists() && !ui->tree_contents->selectedItems().isEmpty();
+    ui->actionExtractSel->setEnabled(hasSelection);
+    ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
+    ui->actionAddDir->setEnabled(canmodify_ && !BACKEND->isGzip());
     ui->actionPassword->setEnabled(BACKEND->is7z());
   }
 
@@ -1312,7 +1312,9 @@ void mainWin::openEncryptedList(const QString& path) {
 }
 
 void mainWin::selectionChanged() {
-  ui->actionExtractSel->setEnabled(!ui->tree_contents->selectedItems().isEmpty());
+  bool hasSelection = !ui->tree_contents->selectedItems().isEmpty();
+  ui->actionExtractSel->setEnabled(hasSelection);
+  ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
     textLabel_->setText(cur->whatsThis(0));

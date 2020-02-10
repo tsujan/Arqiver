@@ -4,6 +4,8 @@ V0.4.0
  * Allow stopping (killing) long processes.
  * Prevent DND when the backend is busy.
  * Smooth scrolling when the mouse wheel turns inside the view.
+ * Fixed a potential issue in translations.
+ * Enable the "Remove File(s)" action only if an item is selected.
 
 V0.3.2
 ---------

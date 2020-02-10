@@ -75,27 +75,27 @@ int main(int argc, char **argv) {
   QTranslator qtTranslator;
   if (!qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
     if (!langs.isEmpty()) {
-      lang = langs.first().split (QLatin1Char ('-')).first();
-      qtTranslator.load ("qt_" + lang, QLibraryInfo::location (QLibraryInfo::TranslationsPath));
+      lang = langs.first().split(QLatin1Char('_')).first();
+      qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     }
   }
   a.installTranslator(&qtTranslator);
 
   QTranslator ArqTranslator;
   ArqTranslator.load("arqiver_" + lang, DATADIR "/arqiver/translations");
-  a.installTranslator (&ArqTranslator);
+  a.installTranslator(&ArqTranslator);
 
   QStringList args;
   for (int i = 1; i < argc; i++) {
     if (QString(argv[i]).startsWith("--"))
       args << QString(argv[i]);
     else {
-      QString str = QString::fromUtf8 (argv[i]);
-      if (str.contains ("/")) {
-        if (str.startsWith ("file://"))
+      QString str = QString::fromUtf8(argv[i]);
+      if (str.contains("/")) {
+        if (str.startsWith("file://"))
           str = QUrl (str).toLocalFile();
         /* always an absolute path (works around KDE's double slash bug too) */
-        QFileInfo fInfo (str);
+        QFileInfo fInfo(str);
         str = fInfo.absoluteFilePath();
       }
       args << str;
