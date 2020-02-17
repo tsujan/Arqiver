@@ -176,7 +176,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
       config_.setStartSize(startSize);
     }
     else */if (startSize.isEmpty()) {
-      startSize = QSize(600, 500);
+      startSize = QSize(700, 500);
       config_.setStartSize(startSize);
     }
     resize(startSize);
@@ -266,7 +266,7 @@ void mainWin::hideChildlessDir(QTreeWidgetItem *item) {
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {
-  if(processIsRunning_)
+  if (processIsRunning_)
     event->ignore();
   else {
     if (config_.getRemSize() && windowState() == Qt::WindowNoState)
@@ -1161,16 +1161,8 @@ void mainWin::updateTree() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
       ui->tree_contents->sortItems(3, Qt::AscendingOrder);
     });
-    if (scrollToCurrent_) {
-      QTimer::singleShot(0, this, [this]() {
-        ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
-      });
-    }
   }
 
-  setUpdatesEnabled(true);
-  ui->tree_contents->setEnabled(true);
-  enableActions(true);
   if (expandAll_) {
     if (itemAdded) {
       ui->tree_contents->expandAll();
@@ -1184,7 +1176,17 @@ void mainWin::updateTree() {
     }
     expandAll_ = false;
   }
-  ui->tree_contents->setFocus();
+
+  QTimer::singleShot(0, this, [this]() {
+    if (scrollToCurrent_)
+      ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
+    setUpdatesEnabled(true);
+    ui->tree_contents->setEnabled(true);
+    enableActions(true);
+    ui->tree_contents->setFocus();
+    if (QGuiApplication::overrideCursor() != nullptr)
+      QGuiApplication::restoreOverrideCursor();
+  });
 }
 
 void mainWin::enableActions(bool enable) {
@@ -1294,13 +1296,16 @@ void mainWin::procFinished(bool success, const QString& msg) {
     ui->actionPassword->setEnabled(BACKEND->is7z());
   }
 
+  if (!(updateTree_ && success) // otherwise, the cursor will be restored in updateTree()
+      && QGuiApplication::overrideCursor() != nullptr)
+  {
+    QGuiApplication::restoreOverrideCursor();
+  }
+
   updateTree_ = true;
   scrollToCurrent_ = true;
   if (close_)
     QTimer::singleShot(500, this, &QWidget::close);
-
-  if (QGuiApplication::overrideCursor() != nullptr)
-    QGuiApplication::restoreOverrideCursor();
 }
 
 void mainWin::procUpdate(int percent, const QString& txt) {

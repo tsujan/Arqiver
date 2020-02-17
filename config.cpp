@@ -25,8 +25,8 @@ Config::Config() :
   remSize_(true),
   isMaxed_(false),
   removalPrompt_(true),
-  winSize_(QSize(600, 500)),
-  startSize_(QSize(600, 500)),
+  winSize_(QSize(700, 500)),
+  startSize_(QSize(700, 500)),
   iconSize_(24) {
 }
 
@@ -40,14 +40,14 @@ void Config::readConfig() {
   if (settings.value("size") == "none")
     remSize_ = false; // true by default
   else {
-    winSize_ = settings.value("size", QSize(600, 500)).toSize();
+    winSize_ = settings.value("size", QSize(700, 500)).toSize();
     if (!winSize_.isValid() || winSize_.isNull())
-      winSize_ = QSize(600, 500);
+      winSize_ = QSize(700, 500);
     isMaxed_ = settings.value("max", false).toBool();
   }
-  startSize_ = settings.value("startSize", QSize(600, 500)).toSize();
+  startSize_ = settings.value("startSize", QSize(700, 500)).toSize();
   if (!startSize_.isValid() || startSize_.isNull())
-    startSize_ = QSize(600, 500);
+    startSize_ = QSize(700, 500);
 
   iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
 
