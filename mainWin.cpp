@@ -731,6 +731,8 @@ bool mainWin::subTreeIsEncrypted(QTreeWidgetItem *item) {
 }
 
 void mainWin::removeFiles() {
+  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  if (sel.isEmpty()) return;
   if (config_.getRemovalPrompt()) {
     if (QMessageBox::question(this,
                               tr("Question"),
@@ -739,8 +741,6 @@ void mainWin::removeFiles() {
       return;
     }
   }
-  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
-  if (sel.isEmpty()) return;
   /* WARNING: 7z isn't self-consistent in file removal: sometimes it needs password,
               sometimes not. Moreover, it may remove files with a wrong password. */
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
@@ -1177,12 +1177,12 @@ void mainWin::updateTree() {
     expandAll_ = false;
   }
 
+  enableActions(true); // should be done immediately (see procFinished)
   QTimer::singleShot(0, this, [this]() {
     if (scrollToCurrent_)
       ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
     setUpdatesEnabled(true);
     ui->tree_contents->setEnabled(true);
-    enableActions(true);
     ui->tree_contents->setFocus();
     if (QGuiApplication::overrideCursor() != nullptr)
       QGuiApplication::restoreOverrideCursor();
