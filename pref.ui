@@ -55,6 +55,9 @@
      <property name="text">
       <string notr="true">x</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </item>
    <item row="1" column="3">
@@ -93,6 +96,39 @@
     </widget>
    </item>
    <item row="4" column="0">
+    <widget class="QLabel" name="tarLabel">
+     <property name="toolTip">
+      <string>Leave empty for the default.
+
+Warning: Arqiver will not work if the
+binary does not belong to libarchive.</string>
+     </property>
+     <property name="text">
+      <string>libarchive binary:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" colspan="3">
+    <widget class="QLineEdit" name="tarLineEdit">
+     <property name="toolTip">
+      <string>Leave empty for the default.
+
+Warning: Arqiver will not work if the
+binary does not belong to libarchive.</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="QToolButton" name="tarButton">
+     <property name="text">
+      <string notr="true">...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -105,10 +141,10 @@
      </property>
     </spacer>
    </item>
-   <item row="5" column="0" colspan="5">
+   <item row="6" column="0" colspan="5">
     <widget class="QLabel" name="promptLabel"/>
    </item>
-   <item row="6" column="0" colspan="5">
+   <item row="7" column="0" colspan="5">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Close</set>

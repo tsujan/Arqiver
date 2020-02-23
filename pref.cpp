@@ -21,6 +21,7 @@
 #include "ui_pref.h"
 #include "mainWin.h"
 
+#include <QFileDialog>
 #include <QLocale>
 #include <QWindow>
 #include <QScreen>
@@ -37,6 +38,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     initialIconSize_ = config.getIconSize();
     remSize = config.getRemSize();
     startSize = config.getStartSize();
+    initialTar_ = config.getTarBinary();
   }
   else {
     initialIconSize_ = 24;
@@ -125,6 +127,16 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     }
   });
 
+#ifdef Q_OS_LINUX
+  ui->tarLabel->hide();
+  ui->tarLineEdit->hide();
+  ui->tarButton->hide();
+#else
+  ui->tarLineEdit->setText(initialTar_);
+  connect(ui->tarButton, &QAbstractButton::clicked, this, &PrefDialog::addTarBinary);
+  connect(ui->tarLineEdit, &QLineEdit::textEdited, this, &PrefDialog::addTarBinary);
+#endif
+
   ui->winSizeBox->setFocus();
   setTabOrder(ui->winSizeBox, ui->spinX);
   setTabOrder(ui->spinX, ui->spinY);
@@ -187,6 +199,31 @@ void PrefDialog::prefIconSize(int index) {
         break;
     }
     if (config.getIconSize() != initialIconSize_)
+      showPrompt(tr("Application restart is needed for changes to take effect."));
+    else
+      showPrompt();
+  }
+}
+
+void PrefDialog::addTarBinary() {
+  if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+    Config& config = win->getConfig();
+    if (QObject::sender() == ui->tarLineEdit)
+      config.setTarBinary(ui->tarLineEdit->text());
+    else{
+      QFileDialog dialog(this);
+      dialog.setAcceptMode(QFileDialog::AcceptOpen);
+      dialog.setWindowTitle(tr("Select libarchive binary"));
+      dialog.setFileMode(QFileDialog::ExistingFile);
+      if (dialog.exec()) {
+        const QStringList files = dialog.selectedFiles();
+        if (!files.isEmpty()) {
+          ui->tarLineEdit->setText(files.at(0));
+          config.setTarBinary(files.at(0));
+        }
+      }
+    }
+    if (initialTar_ != ui->tarLineEdit->text())
       showPrompt(tr("Application restart is needed for changes to take effect."));
     else
       showPrompt();

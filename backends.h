@@ -55,6 +55,8 @@ public:
   void startViewFile(const QString& path);
   QString extractSingleFile(const QString& path);
 
+  void setTarCommand(const QString& cmnd);
+
   bool isGzip() const {
     return isGzip_;
   }
@@ -108,6 +110,8 @@ private slots:
 
 private:
   void parseLines(QStringList& lines);
+
+  QString tarCmnd_;
 
   QProcess proc_;
   QProcess tmpProc_; // for secondary jobs

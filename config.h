@@ -90,6 +90,13 @@ public:
     lastFilter_ = last;
   }
 
+  QString getTarBinary() const {
+    return tarBinary_;
+  }
+  void setTarBinary(const QString& binary) {
+    tarBinary_ = binary;
+  }
+
   int getIconSize() const {
     return iconSize_;
   }
@@ -102,6 +109,7 @@ private:
   QSize winSize_, startSize_;
   int iconSize_;
   QString lastFilter_;
+  QString tarBinary_;
 };
 
 }

@@ -37,6 +37,7 @@
 namespace Arqiver {
 
 Backend::Backend(QObject *parent) : QObject(parent) {
+  tarCmnd_ = TAR_CMD;
   proc_.setProcessChannelMode(QProcess::MergedChannels);
   connect(&proc_, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
@@ -51,6 +52,18 @@ Backend::Backend(QObject *parent) : QObject(parent) {
 Backend::~Backend() {
   if(!arqiverDir_.isEmpty())
     QDir(arqiverDir_).removeRecursively();
+}
+
+void Backend::setTarCommand(const QString& cmnd) {
+#ifdef Q_OS_LINUX
+  Q_UNUSED(cmnd);
+  tarCmnd_ = TAR_CMD;
+#else
+  if(cmnd.isEmpty())
+    tarCmnd_ = TAR_CMD;
+  else
+    tarCmnd_ = cmnd;
+#endif
 }
 
 QString Backend::getMimeType(const QString &fname) {
@@ -291,7 +304,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
     args << "@" + filepath_;
   }
   keyArgs_ << "-c" << "-a" << "-C";
-  proc_.start(TAR_CMD, args);
+  proc_.start(tarCmnd_, args);
 }
 
 void Backend::startRemove(const QStringList& paths) {
@@ -322,7 +335,7 @@ void Backend::startRemove(const QStringList& paths) {
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
-  proc_.start(TAR_CMD, args);
+  proc_.start(tarCmnd_, args);
 }
 
 void Backend::startExtract(const QString& path, const QString& file, bool overwrite, bool preservePaths) {
@@ -458,7 +471,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (archiveRootExists && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
-    proc_.start(TAR_CMD, args); // doesn't create xPath if not existing
+    proc_.start(tarCmnd_, args); // doesn't create xPath if not existing
   }
 }
 
@@ -556,7 +569,7 @@ void Backend::startViewFile(const QString& path) {
       return;
     }
     else {
-      cmnd = TAR_CMD;
+      cmnd = tarCmnd_;
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
     emit processStarting();
@@ -621,7 +634,7 @@ QString Backend::extractSingleFile(const QString& path) {
       return fileName;
     }
     else {
-      cmnd = TAR_CMD;
+      cmnd = tarCmnd_;
       args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
     }
     emit processStarting();
@@ -739,8 +752,9 @@ void Backend::parseLines (QStringList& lines) {
         }
       }
       contents_.insert (file, QStringList() << perms << "-1" << QString()); // [perms, size, linkto ]
+      continue;
     }
-    // here, lines[i] is like: -rw-r--r--  0 1000   1000        7 Jun 30 23:49 PATH
+    // here, lines[i] is like: -rw-r--r--  0 USER GROUP  32616 Oct  4  2018 PATH
     indx = lines[i].indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
     if (indx != 0 || match.capturedLength() == lines[i].length())
       continue; // invalid line
@@ -803,7 +817,7 @@ void Backend::startList(bool withPassword) {
     QStringList args;
     args << "-tv";
     keyArgs_ << "-tv";
-    proc_.start(TAR_CMD, QStringList() << args << fileArgs_);
+    proc_.start(tarCmnd_, QStringList() << args << fileArgs_);
   }
 }
 

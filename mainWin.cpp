@@ -161,6 +161,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* apply the configuration */
   config_.readConfig();
+  BACKEND->setTarCommand(config_.getTarBinary());
   if (config_.getRemSize()) {
     resize(config_.getWinSize());
     if (config_.getIsMaxed())

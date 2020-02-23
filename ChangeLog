@@ -8,6 +8,7 @@ V0.4.0
  * Enable the "Remove File(s)" action only if an item is selected.
  * Show (optional) prompt before removing items.
  * Show the updated view only after populating and adjusting it.
+ * Added an option to select libarchive binary with non-Linux systems.
 
 V0.3.2
 ---------

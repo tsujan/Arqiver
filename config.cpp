@@ -57,6 +57,7 @@ void Config::readConfig() {
 
   settings.beginGroup("archive");
   lastFilter_ = settings.value("lastFilter").toString();
+  tarBinary_ = settings.value("tarBinary").toString();
   settings.endGroup();
 }
 /*************************/
@@ -85,6 +86,10 @@ void Config::writeConfig() {
 
   settings.beginGroup("archive");
   settings.setValue("lastFilter", lastFilter_);
+  if (tarBinary_.isEmpty())
+    settings.remove("tarBinary");
+  else
+    settings.setValue("tarBinary", tarBinary_);
   settings.endGroup();
 }
 

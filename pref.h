@@ -39,6 +39,7 @@ public:
 private slots:
   void prefStartSize(int value);
   void prefIconSize(int index);
+  void addTarBinary();
 
 private:
   void closeEvent(QCloseEvent *event);
@@ -47,6 +48,7 @@ private:
   Ui::PrefDialog *ui;
   QWidget *parent_;
   int initialIconSize_;
+  QString initialTar_;
 };
 
 }
