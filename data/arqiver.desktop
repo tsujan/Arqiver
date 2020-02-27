@@ -3,6 +3,7 @@ Name=Arqiver
 Comment=A Qt front-end for libarchive
 Comment[eo]=Qt-bazita fasado por libarchive
 Comment[pl]=Front-end do libarchive oparty o Qt
+Comment[ru]=Qt интерфейс для архиватора libarchive
 Exec=arqiver %f
 Icon=utilities-file-archiver
 Terminal=false
