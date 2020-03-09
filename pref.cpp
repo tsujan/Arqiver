@@ -210,7 +210,7 @@ void PrefDialog::addTarBinary() {
     Config& config = win->getConfig();
     if (QObject::sender() == ui->tarLineEdit)
       config.setTarBinary(ui->tarLineEdit->text());
-    else{
+    else {
       QFileDialog dialog(this);
       dialog.setAcceptMode(QFileDialog::AcceptOpen);
       dialog.setWindowTitle(tr("Select libarchive binary"));
