@@ -118,7 +118,9 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   if (mt == "application/gzip" || mt == "application/x-gzpdf" || mt == "image/svg+xml-compressed") {
     isGzip_ = true; is7z_ = false;
   }
-  else if (mt == "application/x-7z-compressed") {
+  else if (mt == "application/x-7z-compressed"
+           || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
+           || mt == "application/vnd.ms-cab-compressed") {
     is7z_ = true; isGzip_ = false;
   }
   else {

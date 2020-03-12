@@ -458,6 +458,9 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/vnd.debian.binary-package", tr("READ-ONLY: Debian Package (*.deb)"));
     supported.insert ("application/x-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
     supported.insert ("application/x-source-rpm", tr("READ-ONLY: RedHat Package (*.rpm)"));
+    supported.insert ("application/x-ms-dos-executable", tr("READ-ONLY: MS Windows Executable (*.exe *.com)"));
+    supported.insert ("application/x-msi", tr("READ-ONLY: MS Windows Installer Package (*.msi)"));
+    supported.insert ("application/vnd.ms-cab-compressed", tr("READ-ONLY: MS Windows Cabinet Archive (*.cab)"));
   }
   return supported;
 }
@@ -466,7 +469,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();

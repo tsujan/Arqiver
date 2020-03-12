@@ -1,3 +1,7 @@
+V0.4.1
+---------
+ * Added read-only support for MS Windows packages.
+
 V0.4.0
 ---------
  * Added support for Zstd (because tar supports it).
