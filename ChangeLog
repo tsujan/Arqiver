@@ -1,7 +1,8 @@
 V0.4.1
 ---------
- * Added read-only support for MS Windows packages.
+ * Added read-only support for MS Windows packages through 7z.
  * Accept 7z lists without Date and Time (may happen with MS Windows packages).
+ * Added read-only support for Android packages through bsdtar.
 
 V0.4.0
 ---------

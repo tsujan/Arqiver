@@ -285,8 +285,8 @@ binary does not belong to libarchive.</source>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="336"/>
-        <location filename="../../mainWin.cpp" line="591"/>
-        <location filename="../../mainWin.cpp" line="632"/>
+        <location filename="../../mainWin.cpp" line="592"/>
+        <location filename="../../mainWin.cpp" line="633"/>
         <source>Opening Archive...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -419,155 +419,160 @@ binary does not belong to libarchive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="472"/>
+        <location filename="../../mainWin.cpp" line="464"/>
+        <source>READ-ONLY: Android Package (*.apk)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="473"/>
         <source>All Known Types %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="477"/>
+        <location filename="../../mainWin.cpp" line="478"/>
         <source>Show All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="527"/>
+        <location filename="../../mainWin.cpp" line="528"/>
         <source>Create Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="553"/>
-        <location filename="../../mainWin.cpp" line="742"/>
-        <location filename="../../mainWin.cpp" line="966"/>
+        <location filename="../../mainWin.cpp" line="554"/>
+        <location filename="../../mainWin.cpp" line="743"/>
+        <location filename="../../mainWin.cpp" line="967"/>
         <source>Question</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="554"/>
+        <location filename="../../mainWin.cpp" line="555"/>
         <source>The following archive already exists:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="556"/>
+        <location filename="../../mainWin.cpp" line="557"/>
         <source>Do you want to replace it?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="584"/>
         <source>Open Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="647"/>
-        <location filename="../../mainWin.cpp" line="655"/>
-        <location filename="../../mainWin.cpp" line="691"/>
+        <location filename="../../mainWin.cpp" line="648"/>
+        <location filename="../../mainWin.cpp" line="656"/>
+        <location filename="../../mainWin.cpp" line="692"/>
         <source>Add to Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="686"/>
-        <location filename="../../mainWin.cpp" line="717"/>
-        <location filename="../../mainWin.cpp" line="927"/>
-        <location filename="../../mainWin.cpp" line="933"/>
+        <location filename="../../mainWin.cpp" line="687"/>
+        <location filename="../../mainWin.cpp" line="718"/>
+        <location filename="../../mainWin.cpp" line="928"/>
+        <location filename="../../mainWin.cpp" line="934"/>
         <source>Adding Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="743"/>
+        <location filename="../../mainWin.cpp" line="744"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="760"/>
+        <location filename="../../mainWin.cpp" line="761"/>
         <source>Removing Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="774"/>
-        <location filename="../../mainWin.cpp" line="894"/>
-        <location filename="../../mainWin.cpp" line="905"/>
-        <location filename="../../mainWin.cpp" line="979"/>
-        <location filename="../../mainWin.cpp" line="993"/>
+        <location filename="../../mainWin.cpp" line="775"/>
+        <location filename="../../mainWin.cpp" line="895"/>
+        <location filename="../../mainWin.cpp" line="906"/>
+        <location filename="../../mainWin.cpp" line="980"/>
+        <location filename="../../mainWin.cpp" line="994"/>
         <source>Extracting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="787"/>
+        <location filename="../../mainWin.cpp" line="788"/>
         <source>View Current Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="798"/>
-        <location filename="../../mainWin.cpp" line="806"/>
+        <location filename="../../mainWin.cpp" line="799"/>
+        <location filename="../../mainWin.cpp" line="807"/>
         <source>Enter Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="810"/>
+        <location filename="../../mainWin.cpp" line="811"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="811"/>
+        <location filename="../../mainWin.cpp" line="812"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="815"/>
+        <location filename="../../mainWin.cpp" line="816"/>
         <source>Encrypt the file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="816"/>
+        <location filename="../../mainWin.cpp" line="817"/>
         <source>This will take effect after files/folders are added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="887"/>
-        <location filename="../../mainWin.cpp" line="956"/>
+        <location filename="../../mainWin.cpp" line="888"/>
+        <location filename="../../mainWin.cpp" line="957"/>
         <source>Extract Into Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="967"/>
+        <location filename="../../mainWin.cpp" line="968"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1085"/>
+        <location filename="../../mainWin.cpp" line="1086"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1374"/>
+        <location filename="../../mainWin.cpp" line="1375"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1375"/>
+        <location filename="../../mainWin.cpp" line="1376"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1376"/>
+        <location filename="../../mainWin.cpp" line="1377"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1377"/>
+        <location filename="../../mainWin.cpp" line="1378"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1378"/>
         <location filename="../../mainWin.cpp" line="1379"/>
+        <location filename="../../mainWin.cpp" line="1380"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1378"/>
+        <location filename="../../mainWin.cpp" line="1379"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>
