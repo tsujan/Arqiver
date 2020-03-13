@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="854"/>
-        <location filename="../../backends.cpp" line="885"/>
-        <location filename="../../backends.cpp" line="928"/>
+        <location filename="../../backends.cpp" line="861"/>
+        <location filename="../../backends.cpp" line="892"/>
+        <location filename="../../backends.cpp" line="935"/>
         <source>Could not read archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="888"/>
-        <location filename="../../backends.cpp" line="933"/>
+        <location filename="../../backends.cpp" line="895"/>
+        <location filename="../../backends.cpp" line="940"/>
         <source>Archive Loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="895"/>
-        <location filename="../../backends.cpp" line="981"/>
+        <location filename="../../backends.cpp" line="902"/>
+        <location filename="../../backends.cpp" line="988"/>
         <source>Modification Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="916"/>
-        <location filename="../../backends.cpp" line="950"/>
+        <location filename="../../backends.cpp" line="923"/>
+        <location filename="../../backends.cpp" line="957"/>
         <source>Extraction Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="919"/>
-        <location filename="../../backends.cpp" line="969"/>
+        <location filename="../../backends.cpp" line="926"/>
+        <location filename="../../backends.cpp" line="976"/>
         <source>Extraction Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1061"/>
+        <location filename="../../backends.cpp" line="1068"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation type="unfinished"></translation>

@@ -664,8 +664,12 @@ void Backend::parseLines (QStringList& lines) {
     archiveSingleRoot_ = QString(); // if existent, may mean a parent dir or single file
   }
   if (is7z_) {
+    static int attrIndex = 0;
+    static int cSizeIndex = 0; // end of the compressed size column
     static int nameIndex = 0;
-    if (contents_.isEmpty()) nameIndex = 0;
+    if (contents_.isEmpty()) {
+      attrIndex = cSizeIndex = nameIndex = 0;
+    }
     if (starting7z_) {
       /* ignore all p7zip header info */
       while (starting7z_ && !lines.isEmpty()) {
@@ -681,32 +685,35 @@ void Backend::parseLines (QStringList& lines) {
         QString file;
         QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
         if (info.size() < 3) continue; // invalid line
-        if (lines[i].contains("  Attr  ") && info.size() >= 6) { // header
+        // Format: [Date, Time, Attr, Size, Compressed, Name]
+        if (info[2] == "Attr" && info.size() >= 6) { // header
+          attrIndex = lines[i].indexOf(info.at(2));
+          cSizeIndex = lines[i].indexOf(info.at(4)) + info.at(4).size();
           nameIndex = lines[i].indexOf(info.at(5));
           continue;
         }
-        if (nameIndex == 0) continue; // impossible because the header comes first
-        // Format: [Date, Time, Attr, Size, Compressed, Name]
+        const int lineSize = lines[i].size();
+        if (attrIndex <= 0 || cSizeIndex <= 0 || nameIndex < 3
+            || attrIndex >= lineSize || cSizeIndex >= lineSize || nameIndex >= lineSize) {
+          continue; // the header should be read first
+        }
         /* we suppose that the row starts either with Date or with Attr (Date and Time are empty) */
-        if ((info.size() >= 5 && !info.at(2).contains("."))
-            || (info.size() < 5 && !info.at(0).contains("."))) {
+        QString attrStr = lines[i].mid(attrIndex - 1, 5); // the Attr column has 5 characters (like "....A")
+        if (!attrStr.contains("."))
           continue; // a row that isn't related to a file
+        bool hasCSize = !lines[i].at(cSizeIndex - 1).isSpace();
+        if (info.size() < 5) {
+          if (!info[0].contains(".")) continue; // should start with Attr (no Date and Time)
+          file = lines[i].right(lineSize - nameIndex);
+          contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
         }
-        if (info.size() < 5) { // starts with Attr (no Date and Time)
-          if (lines[i].at(nameIndex - 3) == ' ')
-            info[2] = QString::number(0);
-          file = lines[i].right(lines[i].size() - nameIndex);
-          contents_.insert(file, QStringList() << info[0] << info[1] << info[2]);
-        }
-        else if (info.size() == 5) { // no Compressed column
-          file = lines[i].right(lines[i].size() - nameIndex);
-          contents_.insert(file, QStringList() << info[2] << info[3] << QString::number(0));
-        }
-        else { // info.size() == 6
-          if (lines[i].at(nameIndex - 3) == ' ')
-            info[4] = QString::number(0);
-          file = lines[i].right(lines[i].size() - nameIndex);
-          contents_.insert(file, QStringList() << info[2] << info[3] << info[4]);
+        else {
+          file = lines[i].right(lineSize - nameIndex);
+          if (info[0].contains(".")) { // starts with Attr (no Date and Time)
+            contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
+          }
+          else
+            contents_.insert(file, QStringList() << attrStr << info[3] << (hasCSize ? info[4] : QString::number(0)));
         }
         if (!file.isEmpty()) {
           if (hasSingleRoot) {
@@ -728,7 +735,7 @@ void Backend::parseLines (QStringList& lines) {
   for (int i = 0; i < lines.length(); i++) {
     if (isGzip_) {
       // lines[i] is:                 <compressed_size>                   <uncompressed_size> -33.3% /x/y/z}
-       QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
+      QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
       if (contents_.isEmpty() && info.size() >= 4) {
         int indx = lines[i].indexOf("% ");
         if (indx > -1) {
