@@ -712,8 +712,9 @@ void Backend::parseLines (QStringList& lines) {
           if (info[0].contains(".")) { // starts with Attr (no Date and Time)
             contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
           }
-          else
+          else {
             contents_.insert(file, QStringList() << attrStr << info[3] << (hasCSize ? info[4] : QString::number(0)));
+          }
         }
         if (!file.isEmpty()) {
           if (hasSingleRoot) {

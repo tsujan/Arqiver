@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="861"/>
-        <location filename="../../backends.cpp" line="892"/>
-        <location filename="../../backends.cpp" line="935"/>
+        <location filename="../../backends.cpp" line="862"/>
+        <location filename="../../backends.cpp" line="893"/>
+        <location filename="../../backends.cpp" line="936"/>
         <source>Could not read archive</source>
         <translation>Kan archief niet uitlezen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="895"/>
-        <location filename="../../backends.cpp" line="940"/>
+        <location filename="../../backends.cpp" line="896"/>
+        <location filename="../../backends.cpp" line="941"/>
         <source>Archive Loaded</source>
         <translation>Archief geladen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="902"/>
-        <location filename="../../backends.cpp" line="988"/>
+        <location filename="../../backends.cpp" line="903"/>
+        <location filename="../../backends.cpp" line="989"/>
         <source>Modification Finished</source>
         <translation>Bewerking voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="923"/>
-        <location filename="../../backends.cpp" line="957"/>
+        <location filename="../../backends.cpp" line="924"/>
+        <location filename="../../backends.cpp" line="958"/>
         <source>Extraction Finished</source>
         <translation>Uitpakken voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="926"/>
-        <location filename="../../backends.cpp" line="976"/>
+        <location filename="../../backends.cpp" line="927"/>
+        <location filename="../../backends.cpp" line="977"/>
         <source>Extraction Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1068"/>
+        <location filename="../../backends.cpp" line="1069"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 is niet geïnstalleerd.
@@ -548,33 +548,33 @@ Do you want to continue?
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1375"/>
+        <location filename="../../mainWin.cpp" line="1384"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1376"/>
+        <location filename="../../mainWin.cpp" line="1385"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1377"/>
+        <location filename="../../mainWin.cpp" line="1386"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1378"/>
+        <location filename="../../mainWin.cpp" line="1387"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1379"/>
-        <location filename="../../mainWin.cpp" line="1380"/>
+        <location filename="../../mainWin.cpp" line="1388"/>
+        <location filename="../../mainWin.cpp" line="1389"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1379"/>
+        <location filename="../../mainWin.cpp" line="1388"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

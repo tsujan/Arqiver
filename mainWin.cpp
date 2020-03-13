@@ -1323,6 +1323,15 @@ void mainWin::procUpdate(int percent, const QString& txt) {
 void mainWin::openEncryptedList(const QString& path) {
   if (!pswrdDialog()) {
     processIsRunning_ = false; // it's safe to exit
+    /* clear contents because nothing is loaded */
+    ui->tree_contents->clear();
+    /* also, prevent confusion by disabling actions */
+    ui->actionAddFile->setEnabled(false);
+    ui->actionRemoveFile->setEnabled(false);
+    ui->actionExtractAll->setEnabled(false);
+    ui->actionAddDir->setEnabled(false);
+    ui->actionExtractSel->setEnabled(false);
+    ui->actionPassword->setEnabled(false);
     return;
   }
   axFileList_.removeOne(path);
