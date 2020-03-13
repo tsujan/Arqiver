@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="850"/>
-        <location filename="../../backends.cpp" line="881"/>
-        <location filename="../../backends.cpp" line="924"/>
+        <location filename="../../backends.cpp" line="854"/>
+        <location filename="../../backends.cpp" line="885"/>
+        <location filename="../../backends.cpp" line="928"/>
         <source>Could not read archive</source>
         <translation>La arkivo ne legeblis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="884"/>
-        <location filename="../../backends.cpp" line="929"/>
+        <location filename="../../backends.cpp" line="888"/>
+        <location filename="../../backends.cpp" line="933"/>
         <source>Archive Loaded</source>
         <translation>Arkivo Ŝargita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="891"/>
-        <location filename="../../backends.cpp" line="977"/>
+        <location filename="../../backends.cpp" line="895"/>
+        <location filename="../../backends.cpp" line="981"/>
         <source>Modification Finished</source>
         <translation>Modifado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="912"/>
-        <location filename="../../backends.cpp" line="946"/>
+        <location filename="../../backends.cpp" line="916"/>
+        <location filename="../../backends.cpp" line="950"/>
         <source>Extraction Finished</source>
         <translation>Ekstraktado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="915"/>
-        <location filename="../../backends.cpp" line="965"/>
+        <location filename="../../backends.cpp" line="919"/>
+        <location filename="../../backends.cpp" line="969"/>
         <source>Extraction Failed</source>
         <translation>Ekstraktado Malsukcesis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1057"/>
+        <location filename="../../backends.cpp" line="1061"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 mankas al via sistemo.

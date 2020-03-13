@@ -70,8 +70,12 @@ QString Backend::getMimeType(const QString &fname) {
   QString mimeType, suffix;
   int left = fname.indexOf(QLatin1Char('.'));
   if (left != -1) {
-    suffix = fname.right(fname.size() - left - 1);
-    mimeType = mimeTypes_.value(suffix);
+    if (fname.compare("CMakeLists.txt", Qt::CaseInsensitive) == 0) // exception
+      mimeType = "text/x-cmake";
+    else {
+      suffix = fname.right(fname.size() - left - 1);
+      mimeType = mimeTypes_.value(suffix);
+    }
   }
   if (mimeType.isEmpty()) {
     QMimeDatabase mimeDatabase;
@@ -676,25 +680,25 @@ void Backend::parseLines (QStringList& lines) {
       if (LIST) {
         QString file;
         QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
-        if(info.size() < 3) continue; // invalid line
+        if (info.size() < 3) continue; // invalid line
         if (lines[i].contains("  Attr  ") && info.size() >= 6) { // header
           nameIndex = lines[i].indexOf(info.at(5));
           continue;
         }
         if (nameIndex == 0) continue; // impossible because the header comes first
         // Format: [Date, Time, Attr, Size, Compressed, Name]
-        /* we suppose that the list starts either with Date or with Attr (Date and Time are empty) */
+        /* we suppose that the row starts either with Date or with Attr (Date and Time are empty) */
         if ((info.size() >= 5 && !info.at(2).contains("."))
             || (info.size() < 5 && !info.at(0).contains("."))) {
-          continue; // bottom line
+          continue; // a row that isn't related to a file
         }
-        if(info.size() < 5) { // starts with Attr (no Date and Time)
+        if (info.size() < 5) { // starts with Attr (no Date and Time)
           if (lines[i].at(nameIndex - 3) == ' ')
             info[2] = QString::number(0);
           file = lines[i].right(lines[i].size() - nameIndex);
           contents_.insert(file, QStringList() << info[0] << info[1] << info[2]);
         }
-        else if(info.size() == 5) { // no Compressed
+        else if (info.size() == 5) { // no Compressed column
           file = lines[i].right(lines[i].size() - nameIndex);
           contents_.insert(file, QStringList() << info[2] << info[3] << QString::number(0));
         }
