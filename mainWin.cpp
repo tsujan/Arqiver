@@ -305,23 +305,23 @@ void mainWin::loadArguments(const QStringList& args) {
     */
     QStringList files;
     for (int i = 0; i < args.length(); i++) {
-      if (args[i].startsWith("--")) {
+      if (args.at(i).startsWith("--")) {
         if (action >= 0) break;
-        else if (args[i]=="--ax") {
+        else if (args.at(i) == "--ax") {
           action = 0; continue;
         }
-        else if (args[i]=="--aa") {
+        else if (args.at(i) == "--aa") {
           action = 1; continue;
         }
-        else if (args[i]=="--sx") {
+        else if (args.at(i) == "--sx") {
           action = 2; continue;
         }
-        else if (args[i]=="--sa") {
+        else if (args.at(i) == "--sa") {
           action = 3; continue;
         }
       }
       else {
-        files << args[i];
+        files << args.at(i);
       }
     }
 
@@ -348,12 +348,12 @@ void mainWin::loadArguments(const QStringList& args) {
       aaFileList_.removeFirst();
       connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::autoArchiveFiles);
       connect(BACKEND, &Backend::archivingSuccessful, [this] {close_ = true;});
-      BACKEND->loadFile(files[0]);
+      BACKEND->loadFile(files.at(0));
     }
     else if (action == 2) {
       connect(BACKEND, &Backend::loadingSuccessful, this, &mainWin::simpleExtractFiles);
       connect(BACKEND, &Backend::extractionSuccessful, [this] {close_ = true;});
-      BACKEND->loadFile(files[0]);
+      BACKEND->loadFile(files.at(0));
     }
     else if (action == 3) {
       saFileList_ = files;
@@ -363,7 +363,7 @@ void mainWin::loadArguments(const QStringList& args) {
     }
     else {
       expandAll_ = true;
-      BACKEND->loadFile(files[0]);
+      BACKEND->loadFile(files.at(0));
     }
   });
 }
@@ -947,11 +947,11 @@ void mainWin::extractSelection() {
   QStringList selList;
   const QString singleRoot = BACKEND->singleRoot();
   for (int i = 0; i < sel.length(); i++) {
-    if (sel[i]->whatsThis(0) == singleRoot) { // total extraction
+    if (sel.at(i)->whatsThis(0) == singleRoot) { // total extraction
       selList.clear();
       break;
     }
-    selList << sel[i]->whatsThis(0);
+    selList << sel.at(i)->whatsThis(0);
   }
 
   QString dir = QFileDialog::getExistingDirectory(this, tr("Extract Into Directory"), lastPath_);
@@ -1009,11 +1009,11 @@ static inline QString displaySize(const qint64 size) {
   static const QStringList labels = {"B", "K", "M", "G", "T"};
   int i = 0;
   qreal displaySize = size;
-  while (displaySize > 1024) {
-    displaySize /= 1024.0;
+  while (displaySize > static_cast<qreal>(1024) && i < 4) {
+    displaySize /= static_cast<qreal>(1024);
     ++i;
   }
-  return (QString::number(qRound(displaySize)) + labels[i]);
+  return (QString::number(qRound(displaySize)) + labels.at(i));
 }
 
 QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lock) {
@@ -1188,6 +1188,7 @@ void mainWin::updateTree() {
       ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
     setUpdatesEnabled(true);
     ui->tree_contents->setEnabled(true);
+    ui->tree_contents->update(); // sometimes needed
     ui->tree_contents->setFocus();
     if (QGuiApplication::overrideCursor() != nullptr)
       QGuiApplication::restoreOverrideCursor();

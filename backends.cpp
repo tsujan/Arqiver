@@ -157,7 +157,7 @@ bool Backend::canModify() {
     validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << ".svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tar.zst" << ".tzst" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
   }
   for (int i = 0; i < validEXT.length(); i++) {
-    if (filepath_.endsWith(validEXT[i]))
+    if (filepath_.endsWith(validEXT.at(i)))
       return true;
   }
   return false;
@@ -234,7 +234,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   /* no path should be a parent folder of the archive */
   QString parentDir = filepath_.section("/", 0, -2);
   for (int i = 0; !filePaths.isEmpty() && i < filePaths.length(); i++) {
-    if (parentDir.startsWith (filePaths[i])) {
+    if (parentDir.startsWith(filePaths.at(i))) {
       filePaths.removeAt(i);
       i--;
     }
@@ -285,7 +285,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   QString parent = filePaths[0].section("/", 0, -2);
   insertQueue_.clear();
   for (int i = 1; i < filePaths.length(); i++) {
-    if (filePaths[i].section("/", 0, -2) != parent) {
+    if (filePaths.at(i).section("/", 0, -2) != parent) {
       insertQueue_ << filePaths.takeAt(i);
       i--;
     }
@@ -337,7 +337,7 @@ void Backend::startRemove(const QStringList& paths) {
   skipExistingFiles(tmpfilepath_); // practically not required
   args.replaceInStrings(filepath_, tmpfilepath_);
   for (int i = 0; i < filePaths.length(); i++) {
-    args << "--exclude" << filePaths[i];
+    args << "--exclude" << filePaths.at(i);
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
@@ -679,36 +679,36 @@ void Backend::parseLines (QStringList& lines) {
       }
     }
     for (int i = 0; i < lines.length(); i++) {
-      if (lines[i].simplified().isEmpty() || lines[i].startsWith("----") || lines[i].startsWith(" = "))
+      if (lines.at(i).simplified().isEmpty() || lines.at(i).startsWith("----") || lines.at(i).startsWith(" = "))
         continue;
       if (LIST) {
         QString file;
-        QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
+        QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
         if (info.size() < 3) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
         if (info[2] == "Attr" && info.size() >= 6) { // header
-          attrIndex = lines[i].indexOf(info.at(2));
-          cSizeIndex = lines[i].indexOf(info.at(4)) + info.at(4).size();
-          nameIndex = lines[i].indexOf(info.at(5));
+          attrIndex = lines.at(i).indexOf(info.at(2));
+          cSizeIndex = lines.at(i).indexOf(info.at(4)) + info.at(4).size();
+          nameIndex = lines.at(i).indexOf(info.at(5));
           continue;
         }
-        const int lineSize = lines[i].size();
+        const int lineSize = lines.at(i).size();
         if (attrIndex <= 0 || cSizeIndex <= 0 || nameIndex < 3
             || attrIndex >= lineSize || cSizeIndex >= lineSize || nameIndex >= lineSize) {
           continue; // the header should be read first
         }
         /* we suppose that the row starts either with Date or with Attr (Date and Time are empty) */
-        QString attrStr = lines[i].mid(attrIndex - 1, 5); // the Attr column has 5 characters (like "....A")
+        QString attrStr = lines.at(i).mid(attrIndex - 1, 5); // the Attr column has 5 characters (like "....A")
         if (!attrStr.contains("."))
           continue; // a row that isn't related to a file
-        bool hasCSize = !lines[i].at(cSizeIndex - 1).isSpace();
+        bool hasCSize = !lines.at(i).at(cSizeIndex - 1).isSpace();
         if (info.size() < 5) {
           if (!info[0].contains(".")) continue; // should start with Attr (no Date and Time)
-          file = lines[i].right(lineSize - nameIndex);
+          file = lines.at(i).right(lineSize - nameIndex);
           contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
         }
         else {
-          file = lines[i].right(lineSize - nameIndex);
+          file = lines.at(i).right(lineSize - nameIndex);
           if (info[0].contains(".")) { // starts with Attr (no Date and Time)
             contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
           }
@@ -736,11 +736,11 @@ void Backend::parseLines (QStringList& lines) {
   for (int i = 0; i < lines.length(); i++) {
     if (isGzip_) {
       // lines[i] is:                 <compressed_size>                   <uncompressed_size> -33.3% /x/y/z}
-      QStringList info = lines[i].split(" ",QString::SkipEmptyParts);
+      QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
       if (contents_.isEmpty() && info.size() >= 4) {
-        int indx = lines[i].indexOf("% ");
+        int indx = lines.at(i).indexOf("% ");
         if (indx > -1) {
-          QString file = lines[i].mid(indx + 2).section('/', -1);
+          QString file = lines.at(i).mid(indx + 2).section('/', -1);
           if (filepath_.endsWith(".svgz") && file.endsWith(".svgz")) {
             /* WARNING: gzip lists the file as svgz again */
             file.remove(QRegularExpression("svgz$"));
@@ -754,10 +754,10 @@ void Backend::parseLines (QStringList& lines) {
       return;
     }
     QRegularExpressionMatch match;
-    int indx = lines[i].indexOf(QRegularExpression("^\\s*x\\s+"), 0 , &match);
+    int indx = lines.at(i).indexOf(QRegularExpression("^\\s*x\\s+"), 0 , &match);
     if (indx == 0 && getMimeType(filepath_) == "application/zip") {
       /* ZIP archives may not have all the extra information - just file names */
-      QString file = lines[i].right(lines[i].length() - match.capturedLength());
+      QString file = lines.at(i).right(lines.at(i).length() - match.capturedLength());
       QString perms;
       if(file.endsWith("/")) {
         perms = "d";
@@ -779,12 +779,12 @@ void Backend::parseLines (QStringList& lines) {
       continue;
     }
     // here, lines[i] is like: -rw-r--r--  0 USER GROUP  32616 Oct  4  2018 PATH
-    indx = lines[i].indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
-    if (indx != 0 || match.capturedLength() == lines[i].length())
+    indx = lines.at(i).indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
+    if (indx != 0 || match.capturedLength() == lines.at(i).length())
       continue; // invalid line
     QStringList info;
-    info << lines[i].left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
-    info << lines[i].right(lines[i].length() - match.capturedLength());
+    info << lines.at(i).left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
+    info << lines.at(i).right(lines.at(i).length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
     QString file = info[8];
     if(file.endsWith("/"))
@@ -914,8 +914,8 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       /*if (retcode == 0) {
         QStringList args = proc_.arguments();
         for (int i = 0; i < args.length(); i++) {
-          if(args[i].startsWith("-o")) //just extracted to a dir - open it now
-            QProcess::startDetached("xdg-open \"" + args[i].section("-o", 1, -1) + "\"");
+          if(args.at(i).startsWith("-o")) //just extracted to a dir - open it now
+            QProcess::startDetached("xdg-open \"" + args.at(i).section("-o", 1, -1) + "\"");
         }
       }*/
       emit extractionFinished();
