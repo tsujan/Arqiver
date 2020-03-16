@@ -84,9 +84,9 @@ Limpar texto com a tecla Escape.</translation>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation>Deixe em branco por padrão.
+        <translation>Deixar em branco por padrão.
 
-Aviso: O Arqiver não funcionará se o
+Atenção: O Arqiver não funcionará se o
 binário não pertencer ao libarchive.</translation>
     </message>
     <message>
