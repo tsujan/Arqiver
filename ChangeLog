@@ -4,6 +4,7 @@ V0.5.0
  * Accept 7z lists without Date and Time (may happen with MS Windows packages).
  * Added read-only support for Android packages through bsdtar.
  * Reset the GUI if the archive's password isn't entered (correctly).
+ * Speed up listing by using static regexes.
 
 V0.4.0
 ---------

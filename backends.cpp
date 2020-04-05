@@ -753,33 +753,38 @@ void Backend::parseLines (QStringList& lines) {
       }
       return;
     }
+    int indx;
     QRegularExpressionMatch match;
-    int indx = lines.at(i).indexOf(QRegularExpression("^\\s*x\\s+"), 0 , &match);
-    if (indx == 0 && getMimeType(filepath_) == "application/zip") {
-      /* ZIP archives may not have all the extra information - just file names */
-      QString file = lines.at(i).right(lines.at(i).length() - match.capturedLength());
-      QString perms;
-      if(file.endsWith("/")) {
-        perms = "d";
-        file.chop(1);
-      }
-      if (file.isEmpty()) continue; // impossible
-      if (hasSingleRoot) {
-        if(archiveSingleRoot_.isEmpty()) {
-          archiveSingleRoot_ = file.section('/', 0, 0);
-          if(archiveSingleRoot_.isEmpty())
+    if (getMimeType(filepath_) == "application/zip") {
+      static const QRegularExpression badZipExp("^\\s*x\\s+");
+      indx = lines.at(i).indexOf(badZipExp, 0 , &match);
+      if (indx == 0) {
+        /* ZIP archives may not have all the extra information - just file names */
+        QString file = lines.at(i).right(lines.at(i).length() - match.capturedLength());
+        QString perms;
+        if(file.endsWith("/")) {
+          perms = "d";
+          file.chop(1);
+        }
+        if (file.isEmpty()) continue; // impossible
+        if (hasSingleRoot) {
+          if(archiveSingleRoot_.isEmpty()) {
+            archiveSingleRoot_ = file.section('/', 0, 0);
+            if(archiveSingleRoot_.isEmpty())
+              hasSingleRoot = false;
+          }
+          else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
             hasSingleRoot = false;
+            archiveSingleRoot_ = QString();
+          }
         }
-        else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
-          hasSingleRoot = false;
-          archiveSingleRoot_ = QString();
-        }
+        contents_.insert (file, QStringList() << perms << "-1" << QString()); // [perms, size, linkto ]
+        continue;
       }
-      contents_.insert (file, QStringList() << perms << "-1" << QString()); // [perms, size, linkto ]
-      continue;
     }
     // here, lines[i] is like: -rw-r--r--  0 USER GROUP  32616 Oct  4  2018 PATH
-    indx = lines.at(i).indexOf(QRegularExpression("(\\S+\\s+){7}\\S+ "), 0 , &match);
+    static const QRegularExpression nonPathExp("(\\S+\\s+){7}\\S+ ");
+    indx = lines.at(i).indexOf(nonPathExp, 0 , &match);
     if (indx != 0 || match.capturedLength() == lines.at(i).length())
       continue; // invalid line
     QStringList info;
