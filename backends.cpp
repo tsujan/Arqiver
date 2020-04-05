@@ -177,42 +177,42 @@ QString Backend::singleRoot() {
 
 QString Backend::sizeString(const QString& file) {
   if (contents_.contains(file))
-    return contents_.value(file)[1];
+    return contents_.value(file).at(1);
   return QString();
 }
 
 double Backend::size(const QString& file) {
   if (!contents_.contains(file))
     return -1;
-  return contents_.value(file)[1].toDouble();
+  return contents_.value(file).at(1).toDouble();
 }
 
 double Backend::csize(const QString& file) {
   if (!contents_.contains(file))
     return -1;
   if (is7z_)
-    return contents_.value(file)[2].toDouble();
-  return contents_.value(file)[1].toDouble();
+    return contents_.value(file).at(2).toDouble();
+  return contents_.value(file).at(1).toDouble();
 }
 
 bool Backend::isDir(const QString& file) {
   if (!contents_.contains(file))
     return false;
   if (is7z_)
-    return contents_.value(file)[0].startsWith("D");
-  return contents_.value(file)[0].startsWith("d");
+    return contents_.value(file).at(0).startsWith("D");
+  return contents_.value(file).at(0).startsWith("d");
 }
 
 bool Backend::isLink(const QString& file) {
   if (!contents_.contains(file))
     return false;
-  return contents_.value(file)[0].startsWith("l");
+  return contents_.value(file).at(0).startsWith("l");
 }
 
 QString Backend::linkTo(const QString& file) {
   if (!contents_.contains(file))
     return QString();
-  return contents_.value(file)[2];
+  return contents_.value(file).at(2);
 }
 
 static inline void skipExistingFiles(QString& file) {
@@ -248,9 +248,9 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   if (isGzip_) {
     emit processStarting();
     if (QFile::exists(filepath_)) // the overwrite prompt should be already accepted
-      args << "--to-stdout" << "--force" << filePaths[0];
+      args << "--to-stdout" << "--force" << filePaths.at(0);
     else
-      args << "--to-stdout" << filePaths[0];
+      args << "--to-stdout" << filePaths.at(0);
     tmpProc_.setStandardOutputFile(filepath_);
     tmpProc_.start("gzip", args); // "gzip -c (-f) file > archive.gz"
     if(tmpProc_.waitForStarted()) {
@@ -282,7 +282,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   }
   /* NOTE: All paths should have the same parent directory.
            Check that and put the wrong paths into insertQueue_. */
-  QString parent = filePaths[0].section("/", 0, -2);
+  QString parent = filePaths.at(0).section("/", 0, -2);
   insertQueue_.clear();
   for (int i = 1; i < filePaths.length(); i++) {
     if (filePaths.at(i).section("/", 0, -2) != parent) {
@@ -673,7 +673,7 @@ void Backend::parseLines (QStringList& lines) {
     if (starting7z_) {
       /* ignore all p7zip header info */
       while (starting7z_ && !lines.isEmpty()) {
-        if (lines[0] == "--")
+        if (lines.at(0) == "--")
           starting7z_ = false; // found the end of the headers
         lines.removeAt(0);
       }
@@ -686,7 +686,7 @@ void Backend::parseLines (QStringList& lines) {
         QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
         if (info.size() < 3) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
-        if (info[2] == "Attr" && info.size() >= 6) { // header
+        if (info.at(2) == "Attr" && info.size() >= 6) { // header
           attrIndex = lines.at(i).indexOf(info.at(2));
           cSizeIndex = lines.at(i).indexOf(info.at(4)) + info.at(4).size();
           nameIndex = lines.at(i).indexOf(info.at(5));
@@ -703,17 +703,17 @@ void Backend::parseLines (QStringList& lines) {
           continue; // a row that isn't related to a file
         bool hasCSize = !lines.at(i).at(cSizeIndex - 1).isSpace();
         if (info.size() < 5) {
-          if (!info[0].contains(".")) continue; // should start with Attr (no Date and Time)
+          if (!info.at(0).contains(".")) continue; // should start with Attr (no Date and Time)
           file = lines.at(i).right(lineSize - nameIndex);
-          contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
+          contents_.insert(file, QStringList() << attrStr << info.at(1) << (hasCSize ? info.at(2) : QString::number(0)));
         }
         else {
           file = lines.at(i).right(lineSize - nameIndex);
-          if (info[0].contains(".")) { // starts with Attr (no Date and Time)
-            contents_.insert(file, QStringList() << attrStr << info[1] << (hasCSize ? info[2] : QString::number(0)));
+          if (info.at(0).contains(".")) { // starts with Attr (no Date and Time)
+            contents_.insert(file, QStringList() << attrStr << info.at(1) << (hasCSize ? info.at(2) : QString::number(0)));
           }
           else {
-            contents_.insert(file, QStringList() << attrStr << info[3] << (hasCSize ? info[4] : QString::number(0)));
+            contents_.insert(file, QStringList() << attrStr << info.at(3) << (hasCSize ? info.at(4) : QString::number(0)));
           }
         }
         if (!file.isEmpty()) {
@@ -791,7 +791,7 @@ void Backend::parseLines (QStringList& lines) {
     info << lines.at(i).left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
     info << lines.at(i).right(lines.at(i).length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
-    QString file = info[8];
+    QString file = info.at(8);
     if(file.endsWith("/"))
       file.chop(1);
     if (file.isEmpty()) // possible in rare cases (with "application/x-archive", for example)
@@ -806,7 +806,7 @@ void Backend::parseLines (QStringList& lines) {
       /* alternate form of a link within a tar archive (not reflected in perms) */
       linkto = file.section(" link to ", 1, -1);
       file = file.section(" link to ", 0, 0);
-      if(info[0].startsWith("-"))
+      if(info.at(0).startsWith("-"))
         info[0].replace(0, 1, "l");
     }
     if (hasSingleRoot) {
@@ -820,7 +820,7 @@ void Backend::parseLines (QStringList& lines) {
           archiveSingleRoot_ = QString();
       }
     }
-    contents_.insert(file, QStringList() << info[0] << info[4] << linkto); // [perms, size, linkto ]
+    contents_.insert(file, QStringList() << info.at(0) << info.at(4) << linkto); // [perms, size, linkto ]
   }
 }
 
