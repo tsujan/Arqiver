@@ -18,6 +18,7 @@
  */
 
 #include "treeWidget.h"
+#include <QUrl>
 #include <QScrollBar>
 #include <QPointer>
 #include <QDrag>

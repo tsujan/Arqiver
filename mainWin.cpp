@@ -23,6 +23,7 @@
 #include "svgicons.h"
 #include "pref.h"
 
+#include <QUrl>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QLineEdit>
@@ -68,6 +69,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   statusProgress_->setTextVisible(false);
   statusProgress_->setMaximumHeight(qMax(QFontMetrics(font()).height(), 16));
   statusProgress_->setFocusPolicy(Qt::NoFocus);
+  statusProgress_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   ui->statusbar->addWidget(iconLabel_);
   ui->statusbar->addWidget(statusProgress_);
   ui->statusbar->addPermanentWidget(textLabel_);
@@ -296,32 +298,37 @@ void mainWin::loadArguments(const QStringList& args) {
      As a workaround, we show the window only when no dialog is
      going to be shown before it. */
   QTimer::singleShot(0, this, [this, args]() {
-    int action = -1;
+    int action = -1; // load archive
     /*
       0: auto extracting   -> arqiver --ax Archive(s)
       1: auto archiving    -> arqiver --aa Archive Files
       2: simple extracting -> arqiver --sx Archive
       3: simple archiving  -> arqiver --sa Files
     */
-    QStringList files;
-    for (int i = 0; i < args.length(); i++) {
-      if (args.at(i).startsWith("--")) {
-        if (action >= 0) break;
-        else if (args.at(i) == "--ax") {
-          action = 0; continue;
-        }
-        else if (args.at(i) == "--aa") {
-          action = 1; continue;
-        }
-        else if (args.at(i) == "--sx") {
-          action = 2; continue;
-        }
-        else if (args.at(i) == "--sa") {
-          action = 3; continue;
-        }
+    if (!args.isEmpty()) {
+      if (args.at(0) == "--ax") {
+        action = 0;
       }
-      else {
-        files << args.at(i);
+      else if (args.at(0) == "--aa") {
+        action = 1;
+      }
+      else if (args.at(0) == "--sx") {
+        action = 2;
+      }
+      else if (args.at(0) == "--sa") {
+        action = 3;
+      }
+    }
+    QStringList files;
+    int i = (action >= 0 ? 1 : 0);
+    for (; i < args.length(); i++) {
+      if (!args.at(i).isEmpty()) {
+        /* always an absolute path */
+        QString file = args.at(i);
+        if (file.startsWith("file://"))
+          file = QUrl(file).toLocalFile();
+        file = QDir::current().absoluteFilePath(file);
+        files << QDir::cleanPath(file);
       }
     }
 
@@ -330,8 +337,7 @@ void mainWin::loadArguments(const QStringList& args) {
 
     if (files.isEmpty()) return;
     files.removeDuplicates();
-    if (!files.at(0).isEmpty())
-      lastPath_ = files.at(0).section("/", 0, -2);
+    lastPath_ = files.at(0).section("/", 0, -2);
 
     textLabel_->setText(tr("Opening Archive..."));
     if (action == 0) {

@@ -5,6 +5,7 @@ V0.5.0
  * Added read-only support for Android packages through bsdtar.
  * Reset the GUI if the archive's password isn't entered (correctly).
  * Speed up listing by using static regexes.
+ * Handle relative file paths correctly.
 
 V0.4.0
 ---------

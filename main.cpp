@@ -22,7 +22,6 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QTextStream>
-#include <QFileInfo>
 
 #include "mainWin.h"
 
@@ -86,21 +85,8 @@ int main(int argc, char **argv) {
   a.installTranslator(&ArqTranslator);
 
   QStringList args;
-  for (int i = 1; i < argc; i++) {
-    if (QString(argv[i]).startsWith("--"))
-      args << QString(argv[i]);
-    else {
-      QString str = QString::fromUtf8(argv[i]);
-      if (str.contains("/")) {
-        if (str.startsWith("file://"))
-          str = QUrl (str).toLocalFile();
-        /* always an absolute path (works around KDE's double slash bug too) */
-        QFileInfo fInfo(str);
-        str = fInfo.absoluteFilePath();
-      }
-      args << str;
-    }
-  }
+  for (int i = 1; i < argc; i++)
+    args << QString::fromUtf8(argv[i]);
 
   Arqiver::mainWin W;
   // see mainWin::loadArguments() for an explanation
