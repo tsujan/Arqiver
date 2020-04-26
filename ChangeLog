@@ -2,6 +2,7 @@ V0.5.1
 --------
  * Added an option to (not) stretch the first column.
  * Added app icon.
+ * A workaround for a Qt bug that might give a too small height to rows if the horizontal scrollbar isn't at its minimum value when items are removed.
 
 V0.5.0
 ---------

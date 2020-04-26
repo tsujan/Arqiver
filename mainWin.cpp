@@ -29,6 +29,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QCheckBox>
+#include <QScrollBar>
 #include <QMimeData>
 #include <QRegularExpression>
 //#include <QScreen>
@@ -372,6 +373,13 @@ void mainWin::loadArguments(const QStringList& args) {
 }
 
 QHash<QString, QTreeWidgetItem*> mainWin::cleanTree(const QStringList& list) {
+  /* this is a workaround for a Qt bug that might give a too small height to rows
+     if the horizontal scrollbar isn't at its minimum value when items are removed */
+  if (QScrollBar *hs = ui->tree_contents->horizontalScrollBar()) {
+    if (hs->isVisible())
+      hs->setValue(hs->minimum());
+  }
+
   QHash<QString, QTreeWidgetItem*> items;
   if (ui->tree_contents->topLevelItemCount() == 0)
     return items;
