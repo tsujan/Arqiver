@@ -1,3 +1,8 @@
+V0.5.1
+--------
+ * Added an option to (not) stretch the first column.
+ * Added app icon.
+
 V0.5.0
 ---------
  * Added read-only support for MS Windows packages through 7z.

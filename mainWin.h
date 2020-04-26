@@ -49,6 +49,8 @@ public:
     return config_;
   }
 
+  void stretchFirstColumn(bool stretch);
+
 protected:
   bool eventFilter(QObject *watched, QEvent *event);
 

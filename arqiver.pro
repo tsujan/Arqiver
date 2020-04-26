@@ -48,8 +48,11 @@ unix {
   desktop.files = ./data/arqiver.desktop
   desktop.path = $${DATADIR}/applications
 
+  iconsvg.path = $${DATADIR}/icons/hicolor/scalable/apps
+  iconsvg.files += data/icons/$${TARGET}.svg
+
   trans.path = $${DATADIR}/arqiver
   trans.files += data/translations/translations
 
-  INSTALLS += target desktop trans
+  INSTALLS += target desktop iconsvg trans
 }

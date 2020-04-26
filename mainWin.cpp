@@ -77,7 +77,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   statusProgress_->setVisible(false);
 
   /* icons */
-  setWindowIcon(QIcon::fromTheme("utilities-file-archiver"));
+  QIcon icn = QIcon::fromTheme("arqiver");
+  if (icn.isNull())
+    icn = QIcon (":icons/arqiver.svg");
+  setWindowIcon(icn);
   ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
   ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
   ui->actionQuit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
@@ -150,19 +153,13 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
      be used for putting directory items first and will save the lock info) */
   ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size") << QString());
   ui->tree_contents->header()->setSectionHidden(3, true);
-  ui->tree_contents->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-  QTimer::singleShot(0, this, [this]() {
-    ui->tree_contents->resizeColumnToContents(2);
-  });
-  QTimer::singleShot(0, this, [this]() {
-    ui->tree_contents->resizeColumnToContents(1);
-  });
 
   /* support file dropping into the window */
   setAcceptDrops(true);
 
   /* apply the configuration */
   config_.readConfig();
+  stretchFirstColumn(config_.getStretchFirstColumn());
   BACKEND->setTarCommand(config_.getTarBinary());
   if (config_.getRemSize()) {
     resize(config_.getWinSize());
@@ -1167,6 +1164,11 @@ void mainWin::updateTree() {
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->resizeColumnToContents(1);
     });
+    if (!config_.getStretchFirstColumn()) {
+      QTimer::singleShot(0, this, [this]() {
+        ui->tree_contents->resizeColumnToContents(0);
+      });
+    }
     /* sort items by their names but put directory items first */
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
@@ -1356,6 +1358,23 @@ void mainWin::selectionChanged() {
     textLabel_->setText(lastMsg_);
 }
 
+void mainWin::stretchFirstColumn(bool stretch) {
+  ui->tree_contents->header()->setSectionResizeMode(0, stretch
+                                                       ? QHeaderView::Stretch
+                                                       : QHeaderView::Interactive);
+  QTimer::singleShot(0, this, [this]() {
+    ui->tree_contents->resizeColumnToContents(2);
+  });
+  QTimer::singleShot(0, this, [this]() {
+    ui->tree_contents->resizeColumnToContents(1);
+  });
+  if (!stretch) {
+    QTimer::singleShot(0, this, [this]() {
+      ui->tree_contents->resizeColumnToContents(0);
+    });
+  }
+}
+
 void mainWin::prefDialog() {
     PrefDialog dlg(this);
     dlg.exec();
@@ -1386,7 +1405,10 @@ void mainWin::aboutDialog() {
   };
 
   AboutDialog dialog (this);
-  dialog.setMainIcon(QIcon::fromTheme("utilities-file-archiver"));
+  QIcon icn = QIcon::fromTheme("arqiver");
+  if (icn.isNull())
+    icn = QIcon (":icons/arqiver.svg");
+  dialog.setMainIcon(icn);
   dialog.settMainTitle (QString("<center><b><big>%1 %2</big></b></center><br>").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
   dialog.setMainText("<center> " + tr("A simple Qt archive manager") + " </center>\n<center> "
                      + tr("based on libarchive, gzip and 7z") + " </center><br><center> "

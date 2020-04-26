@@ -49,6 +49,7 @@ private:
   QWidget *parent_;
   int initialIconSize_;
   QString initialTar_;
+  bool initialStretchFirstCol_;
 };
 
 }

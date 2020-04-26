@@ -33,12 +33,14 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   parent_ = parent;
   bool remSize;
   QSize startSize;
+  initialStretchFirstCol_ = true;
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     Config config = win->getConfig();
     initialIconSize_ = config.getIconSize();
     remSize = config.getRemSize();
     startSize = config.getStartSize();
     initialTar_ = config.getTarBinary();
+    initialStretchFirstCol_ = config.getStretchFirstColumn();
   }
   else {
     initialIconSize_ = 24;
@@ -127,6 +129,14 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     }
   });
 
+  ui->stretchBox->setChecked(initialStretchFirstCol_);
+  connect(ui->stretchBox, &QCheckBox::stateChanged, [this] (int state) {
+    if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+      Config& config = win->getConfig();
+      config.setStretchFirstColumn(state == Qt::Checked);
+    }
+  });
+
 #ifdef Q_OS_LINUX
   ui->tarLabel->hide();
   ui->tarLineEdit->hide();
@@ -149,6 +159,10 @@ PrefDialog::~PrefDialog() {
 }
 
 void PrefDialog::closeEvent(QCloseEvent *event) {
+  if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+    if (initialStretchFirstCol_ != win->getConfig().getStretchFirstColumn())
+      win->stretchFirstColumn(!initialStretchFirstCol_);
+  }
   event->accept();
 }
 
