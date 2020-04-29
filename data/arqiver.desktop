@@ -2,6 +2,7 @@
 Name=Arqiver
 Comment=A Qt front-end for libarchive
 Comment[eo]=Qt-bazita fasado por libarchive
+Comment[hu]=Egy Qt felület a libarchive-hoz
 Comment[pl]=Front-end do libarchive oparty o Qt
 Comment[ru]=Qt интерфейс для архиватора libarchive
 Exec=arqiver %f
