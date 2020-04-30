@@ -361,11 +361,11 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     QString extName = filepath_.section("/", -1);
     if(extName.contains(".")) {
       extName = extName.section(".", 0, -2);
-      if (extName.isEmpty())
-        extName = "arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
-      else if (filepath_.endsWith(".svgz") && !extName.endsWith(".svg"))
-        extName += ".svg";
     }
+    if (extName.isEmpty())
+      extName = "arqiver-extracted";
+    if (filepath_.endsWith(".svgz") && !extName.endsWith(".svg"))
+      extName += ".svg";
     extName = path + "/" + extName;
     skipExistingFiles(extName);
     tmpProc_.setStandardOutputFile(extName);
@@ -432,14 +432,13 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       if(QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootExists = true;
         QDir dir (xPath);
-        QString subdirName = archiveSingleRoot + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+        QString subdirName = archiveSingleRoot;
         xPath += "/" + subdirName;
 
-        /* this is practically impossible */
         int i = 0;
         QString suffix;
         while (QFile::exists(xPath + suffix)) {
-          suffix = QString::number(i);
+          suffix = "-" + QString::number(i);
           ++i;
         }
         xPath += suffix;
@@ -450,13 +449,20 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }
     else { // the archive doesn't have a parent dir and isn't a single file
       QDir dir(xPath);
-      QString subdirName = filepath_.section("/", -1) + "-arqiver-" + QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+      QString subdirName = filepath_.section("/", -1);
+      if (subdirName.contains(".")) {
+        subdirName = subdirName.section(".", 0, -2);
+      if (subdirName.endsWith(".tar"))
+          subdirName = subdirName.section(".", 0, -2);
+      }
+      if (subdirName.isEmpty())
+        subdirName = "arqiver-extracted";
       xPath += "/" + subdirName;
 
       int i = 0;
       QString suffix;
       while (QFile::exists(xPath + suffix)) {
-        suffix = QString::number(i);
+        suffix = "-" + QString::number(i);
         ++i;
       }
       xPath += suffix;
