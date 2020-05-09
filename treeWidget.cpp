@@ -67,7 +67,7 @@ void TreeWidget::mousePressEvent(QMouseEvent *event) {
 }
 /*************************/
 void TreeWidget::mouseMoveEvent(QMouseEvent *event) {
-  if(dragStartPosition_.isNull()) {
+  if (dragStartPosition_.isNull()) {
       QTreeWidget::mouseMoveEvent(event);
       return;
   }
@@ -155,9 +155,9 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
 }
 /*************************/
 void TreeWidget::scrollSmoothly() {
-  if (!verticalScrollBar()) { // impossible
+  if (!verticalScrollBar()) // impossible
     return;
-  }
+
   int totalDelta = 0;
   QList<scrollData>::iterator it = queuedScrollSteps_.begin();
   while (it != queuedScrollSteps_.end()) {

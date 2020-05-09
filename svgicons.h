@@ -24,7 +24,7 @@
 
 namespace Arqiver {
 namespace symbolicIcon {
-    QIcon icon (const QString& fileName);
+  QIcon icon(const QString& fileName);
 }
 }
 #endif // SVGICONS_H

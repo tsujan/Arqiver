@@ -28,8 +28,7 @@
 
 namespace Arqiver {
 
-class TreeWidget : public QTreeWidget
-{
+class TreeWidget : public QTreeWidget {
   Q_OBJECT
 
 public:

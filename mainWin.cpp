@@ -141,7 +141,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
 
-  connect(ui->actionExpand, &QAction::triggered, [this] {ui->tree_contents->expandAll();});
+  connect(ui->actionExpand, &QAction::triggered, [this] {
+    ui->tree_contents->expandAll();
+    ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
+  });
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
 
   connect(ui->lineEdit, &QLineEdit::textChanged, this, &mainWin::filter);
@@ -233,21 +236,23 @@ void mainWin::reallyApplyFilter() {
       (*it)->setHidden(false);
       ++it;
     }
-    return;
   }
-  while (*it) {
-    if (!(*it)->text(1).isEmpty() && !(*it)->text(0).contains(filter, Qt::CaseInsensitive))
-      (*it)->setHidden(true);
-    else
-      (*it)->setHidden(false);
-    ++it;
+  else {
+    while (*it) {
+      if (!(*it)->text(1).isEmpty() && !(*it)->text(0).contains(filter, Qt::CaseInsensitive))
+        (*it)->setHidden(true);
+      else
+        (*it)->setHidden(false);
+      ++it;
+    }
+    /* hide all childless directories to make filtering practical */
+    QTreeWidgetItemIterator it1(ui->tree_contents);
+    while (*it1) {
+      hideChildlessDir((*it1));
+      ++it1;
+    }
   }
-  /* hide all childless directories to make filtering practical */
-  QTreeWidgetItemIterator it1(ui->tree_contents);
-  while (*it1) {
-    hideChildlessDir((*it1));
-    ++it1;
-  }
+  ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
 }
 
 void mainWin::hideChildlessDir(QTreeWidgetItem *item) {
@@ -653,15 +658,14 @@ void mainWin::dropEvent(QDropEvent *event) {
 
 void mainWin::addFiles() {
   QStringList files;
-  if(BACKEND->isGzip()) { // accepts only one file
+  if (BACKEND->isGzip()) { // accepts only one file
     QFileDialog dialog(this);
     dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setWindowTitle(tr("Add to Archive"));
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setDirectory(lastPath_);
-    if(dialog.exec()) {
+    if (dialog.exec())
       files = dialog.selectedFiles();
-    }
   }
   else
     files = QFileDialog::getOpenFileNames(this, tr("Add to Archive"), lastPath_);
@@ -681,7 +685,7 @@ void mainWin::addFiles() {
   for (int i = 0; i < tc; ++i) {
     QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
     for (auto &file : qAsConst(files)) {
-      if(file.section("/",-1) == item->whatsThis(0)) {
+      if (file.section("/",-1) == item->whatsThis(0)) {
         BACKEND->removeSingleExtracted(item->whatsThis(0)); // the file will be replaced
         if (lastPswrd_.isEmpty() && subTreeIsEncrypted(item)) {
           if (!pswrdDialog()) return;
@@ -713,7 +717,7 @@ void mainWin::addDirs() { // only a single directory for now
   int tc = ui->tree_contents->topLevelItemCount();
   for (int i = 0; i < tc; ++i) {
     QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
-    if(dir.section("/",-1) == item->whatsThis(0)) {
+    if (dir.section("/",-1) == item->whatsThis(0)) {
       BACKEND->removeSingleExtracted(item->whatsThis(0)); // the directory will be replaced
       if (lastPswrd_.isEmpty() && subTreeIsEncrypted(item)) {
         if (!pswrdDialog()) return;
@@ -799,7 +803,7 @@ void mainWin::listContextMenu(const QPoint& p) {
     QAction *action = menu.addAction(tr("View Current Item"));
     connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
   }
-  if(!isDir || !BACKEND->is7z())
+  if (!isDir || !BACKEND->is7z())
     menu.addSeparator();
   menu.addAction(ui->actionCopy);
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
@@ -838,7 +842,7 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
   grid->setColumnStretch(1, 1);
   grid->setRowStretch(4, 1);
 
-  if(!listEncryptionBox) {
+  if (!listEncryptionBox) {
     box->setVisible(false);
     label->setVisible(false);
   }
@@ -1067,7 +1071,7 @@ void mainWin::updateTree() {
   for (const auto& thisFile : qAsConst(files)) {
     QTreeWidgetItem *item = allPrevItems.value(thisFile);
     if (item != nullptr) { // already in the tree widget
-      if(BACKEND->isDir(thisFile))
+      if (BACKEND->isDir(thisFile))
         dirs.insert(thisFile, item);
       continue;
     }
@@ -1158,7 +1162,7 @@ void mainWin::updateTree() {
     else
       ui->tree_contents->addTopLevelItem(it);
 
-    if(BACKEND->isDir(thisFile))
+    if (BACKEND->isDir(thisFile))
       dirs.insert(thisFile, it);
 
     itemAdded = true;
@@ -1188,9 +1192,9 @@ void mainWin::updateTree() {
     if (itemAdded) {
       ui->tree_contents->expandAll();
       QTimer::singleShot(0, this, [this]() {
-        if(QAbstractItemModel *model = ui->tree_contents->model()) {
+        if (QAbstractItemModel *model = ui->tree_contents->model()) {
           QModelIndex firstIndx = model->index(0, 0);
-          if(firstIndx.isValid())
+          if (firstIndx.isValid())
             ui->tree_contents->selectionModel()->setCurrentIndex(firstIndx, QItemSelectionModel::NoUpdate);
         }
       });

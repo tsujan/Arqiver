@@ -26,7 +26,8 @@
 namespace Arqiver {
 
 class LineEdit : public QLineEdit {
-    Q_OBJECT
+  Q_OBJECT
+
 public:
   LineEdit (QWidget *parent = nullptr) : QLineEdit(parent) {
     setToolTip(tr("You could type inside the main view.\nClear text with the Escape key."));

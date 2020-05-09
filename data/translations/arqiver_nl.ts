@@ -53,7 +53,7 @@ Installeer het om dit soort archieven te kunnen beheren!</translation>
 <context>
     <name>Arqiver::LineEdit</name>
     <message>
-        <location filename="../../lineedit.h" line="32"/>
+        <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
         <translation type="unfinished"></translation>
@@ -275,311 +275,311 @@ binary does not belong to libarchive.</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="155"/>
+        <location filename="../../mainWin.cpp" line="158"/>
         <source>File</source>
         <translation>Bestand</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="155"/>
+        <location filename="../../mainWin.cpp" line="158"/>
         <source>MimeType</source>
         <translation>MimeType</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="155"/>
+        <location filename="../../mainWin.cpp" line="158"/>
         <source>Size</source>
         <translation>Grootte</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="340"/>
-        <location filename="../../mainWin.cpp" line="603"/>
-        <location filename="../../mainWin.cpp" line="644"/>
+        <location filename="../../mainWin.cpp" line="345"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <location filename="../../mainWin.cpp" line="649"/>
         <source>Opening Archive...</source>
         <translation>Bezig met openen van archief...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="414"/>
+        <location filename="../../mainWin.cpp" line="419"/>
         <source>All Types %1</source>
         <translation>Alle soorten %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="424"/>
-        <location filename="../../mainWin.cpp" line="448"/>
+        <location filename="../../mainWin.cpp" line="429"/>
+        <location filename="../../mainWin.cpp" line="453"/>
         <source>Uncompressed Archive (*.tar)</source>
         <translation>Archief zonder compressie (*.tar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="425"/>
-        <location filename="../../mainWin.cpp" line="449"/>
+        <location filename="../../mainWin.cpp" line="430"/>
+        <location filename="../../mainWin.cpp" line="454"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
         <translation>GZip-archief met compressie (*.tar.gz *.tgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="427"/>
-        <location filename="../../mainWin.cpp" line="451"/>
+        <location filename="../../mainWin.cpp" line="432"/>
+        <location filename="../../mainWin.cpp" line="456"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
         <translation>BZip2-archief met compressie (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="428"/>
-        <location filename="../../mainWin.cpp" line="454"/>
+        <location filename="../../mainWin.cpp" line="433"/>
+        <location filename="../../mainWin.cpp" line="459"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
         <translation>LMZA-archief met compressie (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="429"/>
-        <location filename="../../mainWin.cpp" line="453"/>
+        <location filename="../../mainWin.cpp" line="434"/>
+        <location filename="../../mainWin.cpp" line="458"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
         <translation>XZ-archief met compressie (*.tar.xz *.txz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="430"/>
-        <location filename="../../mainWin.cpp" line="455"/>
+        <location filename="../../mainWin.cpp" line="435"/>
+        <location filename="../../mainWin.cpp" line="460"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="431"/>
-        <location filename="../../mainWin.cpp" line="456"/>
+        <location filename="../../mainWin.cpp" line="436"/>
+        <location filename="../../mainWin.cpp" line="461"/>
         <source>CPIO Archive (*.cpio)</source>
         <translation>CPIO-archief (*.cpio)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="433"/>
-        <location filename="../../mainWin.cpp" line="458"/>
+        <location filename="../../mainWin.cpp" line="438"/>
+        <location filename="../../mainWin.cpp" line="463"/>
         <source>AR Archive (*.ar)</source>
         <translation>AR-archief (*.ar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="435"/>
-        <location filename="../../mainWin.cpp" line="460"/>
+        <location filename="../../mainWin.cpp" line="440"/>
+        <location filename="../../mainWin.cpp" line="465"/>
         <source>Zip Archive (*.zip)</source>
         <translation>Zip-archief (*.zip)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="436"/>
-        <location filename="../../mainWin.cpp" line="462"/>
+        <location filename="../../mainWin.cpp" line="441"/>
+        <location filename="../../mainWin.cpp" line="467"/>
         <source>Gzip Archive (*.gz)</source>
         <translation>GZip-archief (*.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="437"/>
-        <location filename="../../mainWin.cpp" line="461"/>
+        <location filename="../../mainWin.cpp" line="442"/>
+        <location filename="../../mainWin.cpp" line="466"/>
         <source>7-Zip Archive (*.7z)</source>
         <translation>7-Zip-archief (*.7z)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="452"/>
+        <location filename="../../mainWin.cpp" line="457"/>
         <source>BZip2 Archive (*.bz2)</source>
         <translation>BZip2-archief (*.bz2)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="463"/>
+        <location filename="../../mainWin.cpp" line="468"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
         <translation>GZip-PDF-document met compressie (*.pdf.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="464"/>
+        <location filename="../../mainWin.cpp" line="469"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
         <translation>ALLEEN-LEZEN: SVG-afbeelding met compressie (*.svgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="465"/>
-        <location filename="../../mainWin.cpp" line="466"/>
+        <location filename="../../mainWin.cpp" line="470"/>
+        <location filename="../../mainWin.cpp" line="471"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
         <translation>ALLEEN-LEZEN: ISO-schijfafbeelding (*.iso *.img)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="467"/>
+        <location filename="../../mainWin.cpp" line="472"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
         <translation>ALLEEN-LEZEN: XAR-archief (*.xar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="468"/>
+        <location filename="../../mainWin.cpp" line="473"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
         <translation>ALLEEN-LEZEN: Java-acrhief (*.jar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="469"/>
+        <location filename="../../mainWin.cpp" line="474"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
         <translation>ALLEEN-LEZEN: Debian-pakket (*.deb)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="470"/>
-        <location filename="../../mainWin.cpp" line="471"/>
+        <location filename="../../mainWin.cpp" line="475"/>
+        <location filename="../../mainWin.cpp" line="476"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
         <translation>ALLEEN-LEZEN: RedHat-pakket (*.rpm)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="472"/>
+        <location filename="../../mainWin.cpp" line="477"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="473"/>
+        <location filename="../../mainWin.cpp" line="478"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="474"/>
+        <location filename="../../mainWin.cpp" line="479"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="475"/>
+        <location filename="../../mainWin.cpp" line="480"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="484"/>
+        <location filename="../../mainWin.cpp" line="489"/>
         <source>All Known Types %1</source>
         <translation>Alle bekende soorten %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="489"/>
+        <location filename="../../mainWin.cpp" line="494"/>
         <source>Show All Files (*)</source>
         <translation>Alle bestanden tonen (*)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="539"/>
+        <location filename="../../mainWin.cpp" line="544"/>
         <source>Create Archive</source>
         <translation>Archief creëren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="565"/>
-        <location filename="../../mainWin.cpp" line="754"/>
-        <location filename="../../mainWin.cpp" line="978"/>
+        <location filename="../../mainWin.cpp" line="570"/>
+        <location filename="../../mainWin.cpp" line="758"/>
+        <location filename="../../mainWin.cpp" line="982"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="566"/>
+        <location filename="../../mainWin.cpp" line="571"/>
         <source>The following archive already exists:</source>
         <translation>Het volgende archief bestaat al:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="568"/>
+        <location filename="../../mainWin.cpp" line="573"/>
         <source>Do you want to replace it?
 </source>
         <translation>Wil je dit vervangen?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="595"/>
+        <location filename="../../mainWin.cpp" line="600"/>
         <source>Open Archive</source>
         <translation>Archief openen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="659"/>
-        <location filename="../../mainWin.cpp" line="667"/>
-        <location filename="../../mainWin.cpp" line="703"/>
+        <location filename="../../mainWin.cpp" line="664"/>
+        <location filename="../../mainWin.cpp" line="671"/>
+        <location filename="../../mainWin.cpp" line="707"/>
         <source>Add to Archive</source>
         <translation>Toevoegen aan archief</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="698"/>
-        <location filename="../../mainWin.cpp" line="729"/>
-        <location filename="../../mainWin.cpp" line="939"/>
-        <location filename="../../mainWin.cpp" line="945"/>
+        <location filename="../../mainWin.cpp" line="702"/>
+        <location filename="../../mainWin.cpp" line="733"/>
+        <location filename="../../mainWin.cpp" line="943"/>
+        <location filename="../../mainWin.cpp" line="949"/>
         <source>Adding Items...</source>
         <translation>Bezig met toevoegen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="755"/>
+        <location filename="../../mainWin.cpp" line="759"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="772"/>
+        <location filename="../../mainWin.cpp" line="776"/>
         <source>Removing Items...</source>
         <translation>Bezig met verwijderen van items...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="786"/>
-        <location filename="../../mainWin.cpp" line="906"/>
-        <location filename="../../mainWin.cpp" line="917"/>
-        <location filename="../../mainWin.cpp" line="991"/>
-        <location filename="../../mainWin.cpp" line="1005"/>
+        <location filename="../../mainWin.cpp" line="790"/>
+        <location filename="../../mainWin.cpp" line="910"/>
+        <location filename="../../mainWin.cpp" line="921"/>
+        <location filename="../../mainWin.cpp" line="995"/>
+        <location filename="../../mainWin.cpp" line="1009"/>
         <source>Extracting...</source>
         <translation>Bezig met uitpakken...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="799"/>
+        <location filename="../../mainWin.cpp" line="803"/>
         <source>View Current Item</source>
         <translation>Huidig item tonen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="810"/>
-        <location filename="../../mainWin.cpp" line="818"/>
+        <location filename="../../mainWin.cpp" line="814"/>
+        <location filename="../../mainWin.cpp" line="822"/>
         <source>Enter Password</source>
         <translation>Voer wachtwoord in</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="822"/>
+        <location filename="../../mainWin.cpp" line="826"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="823"/>
+        <location filename="../../mainWin.cpp" line="827"/>
         <source>OK</source>
         <translation>Oké</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="827"/>
+        <location filename="../../mainWin.cpp" line="831"/>
         <source>Encrypt the file list</source>
         <translation>Bestandslijst versleutelen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="828"/>
+        <location filename="../../mainWin.cpp" line="832"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Dit wordt toegepast na het toevoegen van bestanden/mappen.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="899"/>
-        <location filename="../../mainWin.cpp" line="968"/>
+        <location filename="../../mainWin.cpp" line="903"/>
+        <location filename="../../mainWin.cpp" line="972"/>
         <source>Extract Into Directory</source>
         <translation>Uitpakken naar map</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="979"/>
+        <location filename="../../mainWin.cpp" line="983"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1097"/>
+        <location filename="../../mainWin.cpp" line="1101"/>
         <source>Link To: %1</source>
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1421"/>
+        <location filename="../../mainWin.cpp" line="1425"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1422"/>
+        <location filename="../../mainWin.cpp" line="1426"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1423"/>
+        <location filename="../../mainWin.cpp" line="1427"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1424"/>
+        <location filename="../../mainWin.cpp" line="1428"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1425"/>
-        <location filename="../../mainWin.cpp" line="1426"/>
+        <location filename="../../mainWin.cpp" line="1429"/>
+        <location filename="../../mainWin.cpp" line="1430"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1425"/>
+        <location filename="../../mainWin.cpp" line="1429"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

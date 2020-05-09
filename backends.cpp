@@ -50,7 +50,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
 }
 
 Backend::~Backend() {
-  if(!arqiverDir_.isEmpty())
+  if (!arqiverDir_.isEmpty())
     QDir(arqiverDir_).removeRecursively();
 }
 
@@ -59,7 +59,7 @@ void Backend::setTarCommand(const QString& cmnd) {
   Q_UNUSED(cmnd);
   tarCmnd_ = TAR_CMD;
 #else
-  if(cmnd.isEmpty())
+  if (cmnd.isEmpty())
     tarCmnd_ = TAR_CMD;
   else
     tarCmnd_ = cmnd;
@@ -139,7 +139,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
   else
     fileArgs_ << "-f" << filepath_; // add the actual archive path
-  if(QFile::exists(path))
+  if (QFile::exists(path))
     startList(withPassword);
   else {
     if (is7z_)
@@ -240,7 +240,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
     }
   }
 
-  if(filePaths.isEmpty()) return;
+  if (filePaths.isEmpty()) return;
   /* no path should be repeated */
   filePaths.removeDuplicates();
 
@@ -253,7 +253,7 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
       args << "--to-stdout" << filePaths.at(0);
     tmpProc_.setStandardOutputFile(filepath_);
     tmpProc_.start("gzip", args); // "gzip -c (-f) file > archive.gz"
-    if(tmpProc_.waitForStarted()) {
+    if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
@@ -359,7 +359,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }*/
     emit processStarting();
     QString extName = filepath_.section("/", -1);
-    if(extName.contains(".")) {
+    if (extName.contains(".")) {
       extName = extName.section(".", 0, -2);
     }
     if (extName.isEmpty())
@@ -370,7 +370,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     skipExistingFiles(extName);
     tmpProc_.setStandardOutputFile(extName);
     tmpProc_.start("gzip", QStringList() << "-d" << "--to-stdout" << filepath_); // gzip -d -c archive.gz > file
-    if(tmpProc_.waitForStarted()) {
+    if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
@@ -386,7 +386,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (!filesList.isEmpty())
     filesList.removeDuplicates();
 
-  if(is7z_) { // extract the whole archive; no selective extraction
+  if (is7z_) { // extract the whole archive; no selective extraction
     if (filesList.isEmpty())
       args << "-aou"; // auto-rename: the archive may contain files with identical names
     else if (overwrite)
@@ -429,7 +429,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
     if (!archiveSingleRoot.isEmpty()) {
-      if(QFile::exists(xPath + "/" + archiveSingleRoot)) {
+      if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootExists = true;
         QDir dir (xPath);
         QString subdirName = archiveSingleRoot;
@@ -472,7 +472,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }
   }
 
-  if(is7z_) {
+  if (is7z_) {
     args << "-o" + xPath;
     if (!filesList.isEmpty())
       args << filesList;
@@ -567,7 +567,7 @@ void Backend::startViewFile(const QString& path) {
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
-      if(tmpProc_.waitForStarted()) {
+      if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
@@ -587,7 +587,7 @@ void Backend::startViewFile(const QString& path) {
     emit processStarting();
     tmpProc_.setStandardOutputFile(fileName);
     tmpProc_.start(cmnd, args);
-    if(tmpProc_.waitForStarted()) {
+    if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
@@ -603,7 +603,7 @@ void Backend::startViewFile(const QString& path) {
 
 QString Backend::extractSingleFile(const QString& path) {
   QString parentDir = arqiverDir_;
-  if(!arqiverDir_.isEmpty()){
+  if (!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
     if (path.contains("/")) {
       parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
@@ -636,7 +636,7 @@ QString Backend::extractSingleFile(const QString& path) {
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
-      if(tmpProc_.waitForStarted()) {
+      if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
@@ -652,7 +652,7 @@ QString Backend::extractSingleFile(const QString& path) {
     emit processStarting();
     tmpProc_.setStandardOutputFile(fileName);
     tmpProc_.start(cmnd, args);
-    if(tmpProc_.waitForStarted()) {
+    if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
@@ -724,9 +724,9 @@ void Backend::parseLines (QStringList& lines) {
         }
         if (!file.isEmpty()) {
           if (hasSingleRoot) {
-            if(archiveSingleRoot_.isEmpty()) {
+            if (archiveSingleRoot_.isEmpty()) {
               archiveSingleRoot_ = file.section('/', 0, 0);
-              if(archiveSingleRoot_.isEmpty())
+              if (archiveSingleRoot_.isEmpty())
                 hasSingleRoot = false;
             }
             else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
@@ -768,15 +768,15 @@ void Backend::parseLines (QStringList& lines) {
         /* ZIP archives may not have all the extra information - just file names */
         QString file = lines.at(i).right(lines.at(i).length() - match.capturedLength());
         QString perms;
-        if(file.endsWith("/")) {
+        if (file.endsWith("/")) {
           perms = "d";
           file.chop(1);
         }
         if (file.isEmpty()) continue; // impossible
         if (hasSingleRoot) {
-          if(archiveSingleRoot_.isEmpty()) {
+          if (archiveSingleRoot_.isEmpty()) {
             archiveSingleRoot_ = file.section('/', 0, 0);
-            if(archiveSingleRoot_.isEmpty())
+            if (archiveSingleRoot_.isEmpty())
               hasSingleRoot = false;
           }
           else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
@@ -798,7 +798,7 @@ void Backend::parseLines (QStringList& lines) {
     info << lines.at(i).right(lines.at(i).length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
     QString file = info.at(8);
-    if(file.endsWith("/"))
+    if (file.endsWith("/"))
       file.chop(1);
     if (file.isEmpty()) // possible in rare cases (with "application/x-archive", for example)
       continue;
@@ -812,11 +812,11 @@ void Backend::parseLines (QStringList& lines) {
       /* alternate form of a link within a tar archive (not reflected in perms) */
       linkto = file.section(" link to ", 1, -1);
       file = file.section(" link to ", 0, 0);
-      if(info.at(0).startsWith("-"))
+      if (info.at(0).startsWith("-"))
         info[0].replace(0, 1, "l");
     }
     if (hasSingleRoot) {
-      if(archiveSingleRoot_.isEmpty()) {
+      if (archiveSingleRoot_.isEmpty()) {
           archiveSingleRoot_ = file.section('/', 0, 0);
           if (archiveSingleRoot_.isEmpty())
             hasSingleRoot = false;
@@ -925,7 +925,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       /*if (retcode == 0) {
         QStringList args = proc_.arguments();
         for (int i = 0; i < args.length(); i++) {
-          if(args.at(i).startsWith("-o")) //just extracted to a dir - open it now
+          if (args.at(i).startsWith("-o")) //just extracted to a dir - open it now
             QProcess::startDetached("xdg-open \"" + args.at(i).section("-o", 1, -1) + "\"");
         }
       }*/

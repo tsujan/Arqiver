@@ -39,68 +39,65 @@
 
 namespace Arqiver {
 
-class symbolicIconEngine : public QIconEngine
-{
+class symbolicIconEngine : public QIconEngine {
 public:
-    symbolicIconEngine (const QString &file) : fileName (file) {}
+  symbolicIconEngine(const QString &file) : fileName(file) {}
 
-    ~symbolicIconEngine() override {}
+  ~symbolicIconEngine() override {}
 
-    symbolicIconEngine * clone() const override {
-        return new symbolicIconEngine (fileName);
+  symbolicIconEngine * clone() const override {
+    return new symbolicIconEngine(fileName);
+  }
+
+  void paint(QPainter *painter, const QRect& rect, QIcon::Mode mode, QIcon::State state) override {
+    Q_UNUSED(state)
+
+    QColor col;
+    if (mode == QIcon::Disabled)
+      col = QApplication::palette().color(QPalette::Disabled, QPalette::WindowText);
+    else if (mode == QIcon::Selected)
+      col = QApplication::palette().highlightedText().color();
+    else
+      col = QApplication::palette().windowText().color();
+    QString key = fileName
+                  + "-" + QString::number(rect.width())
+                  + "-" + QString::number(rect.height())
+                  + "-" + col.name();
+    QPixmap pix;
+    if (!QPixmapCache::find(key, &pix)) {
+      pix = QPixmap(rect.width(), rect.height());
+      pix.fill(Qt::transparent);
+      if (!fileName.isEmpty()) {
+        QSvgRenderer renderer;
+        QFile f(fileName);
+        QByteArray bytes;
+        if (f.open(QIODevice::ReadOnly))
+          bytes = f.readAll();
+        if (!bytes.isEmpty())
+          bytes.replace("#000", col.name().toLatin1());
+        renderer.load(bytes);
+        QPainter p(&pix);
+        renderer.render(&p, QRect(0, 0, rect.width(), rect.height()));
+      }
+      QPixmapCache::insert(key, pix);
     }
+    painter->drawPixmap(rect.topLeft(), pix);
+  }
 
-    void paint (QPainter *painter, const QRect& rect, QIcon::Mode mode, QIcon::State state) override {
-        Q_UNUSED (state)
-
-        QColor col;
-        if (mode == QIcon::Disabled)
-            col = QApplication::palette().color (QPalette::Disabled, QPalette::WindowText);
-        else if (mode == QIcon::Selected)
-            col = QApplication::palette().highlightedText().color();
-        else
-            col = QApplication::palette().windowText().color();
-        QString key = fileName
-                      + "-" + QString::number (rect.width())
-                      + "-" + QString::number (rect.height())
-                      + "-" + col.name();
-        QPixmap pix;
-        if (!QPixmapCache::find (key, &pix))
-        {
-            pix = QPixmap (rect.width(), rect.height());
-            pix.fill (Qt::transparent);
-            if (!fileName.isEmpty())
-            {
-                QSvgRenderer renderer;
-                QFile f (fileName);
-                QByteArray bytes;
-                if (f.open (QIODevice::ReadOnly))
-                    bytes = f.readAll();
-                if (!bytes.isEmpty())
-                    bytes.replace ("#000", col.name().toLatin1());
-                renderer.load (bytes);
-                QPainter p (&pix);
-                renderer.render (&p, QRect (0, 0, rect.width(), rect.height()));
-            }
-            QPixmapCache::insert (key, pix);
-        }
-        painter->drawPixmap (rect.topLeft(), pix);
-    }
-
-    QPixmap pixmap (const QSize& size, QIcon::Mode mode, QIcon::State state) override {
-        QPixmap pix (size);
-        pix.fill (Qt::transparent);
-        QPainter painter (&pix);
-        paint (&painter, QRect (QPoint (0, 0), size), mode, state);
-        return pix;
-    }
+  QPixmap pixmap(const QSize& size, QIcon::Mode mode, QIcon::State state) override {
+    QPixmap pix(size);
+    pix.fill(Qt::transparent);
+    QPainter painter(&pix);
+    paint(&painter, QRect (QPoint (0, 0), size), mode, state);
+    return pix;
+  }
 
 private:
-    QString fileName;
+  QString fileName;
 };
 
-QIcon symbolicIcon::icon (const QString& fileName) {
-    return QIcon (new symbolicIconEngine (fileName));
+QIcon symbolicIcon::icon(const QString& fileName) {
+  return QIcon(new symbolicIconEngine(fileName));
 }
 
 }

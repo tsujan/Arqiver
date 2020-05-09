@@ -38,7 +38,8 @@ namespace Ui {
 };
 
 class mainWin : public QMainWindow {
-	Q_OBJECT
+  Q_OBJECT
+
 public:
   mainWin();
   ~mainWin();

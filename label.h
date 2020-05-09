@@ -28,7 +28,7 @@
 namespace Arqiver {
 
 class Label : public QLabel {
-Q_OBJECT
+  Q_OBJECT
 
 public:
   explicit Label(QWidget *parent = 0, Qt::WindowFlags f = Qt::WindowFlags()):

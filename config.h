@@ -26,9 +26,8 @@
 namespace Arqiver {
 
 // Prevent redundant writings! (Why does QSettings write to the config file when no setting is changed?)
-class Settings : public QSettings
-{
-    Q_OBJECT
+class Settings : public QSettings {
+  Q_OBJECT
 public:
   Settings(const QString &organization, const QString &application = QString(), QObject *parent = nullptr)
           : QSettings(organization, application, parent) {}
