@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="873"/>
-        <location filename="../../backends.cpp" line="904"/>
-        <location filename="../../backends.cpp" line="947"/>
+        <location filename="../../backends.cpp" line="885"/>
+        <location filename="../../backends.cpp" line="916"/>
+        <location filename="../../backends.cpp" line="959"/>
         <source>Could not read archive</source>
         <translation>Не удалось прочитать архив</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="907"/>
-        <location filename="../../backends.cpp" line="952"/>
+        <location filename="../../backends.cpp" line="919"/>
+        <location filename="../../backends.cpp" line="964"/>
         <source>Archive Loaded</source>
         <translation>Архив загружен</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="914"/>
-        <location filename="../../backends.cpp" line="1000"/>
+        <location filename="../../backends.cpp" line="926"/>
+        <location filename="../../backends.cpp" line="1012"/>
         <source>Modification Finished</source>
         <translation>Модификация завершена</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="935"/>
-        <location filename="../../backends.cpp" line="969"/>
+        <location filename="../../backends.cpp" line="947"/>
+        <location filename="../../backends.cpp" line="981"/>
         <source>Extraction Finished</source>
         <translation>Распаковка завершена</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="938"/>
-        <location filename="../../backends.cpp" line="988"/>
+        <location filename="../../backends.cpp" line="950"/>
+        <location filename="../../backends.cpp" line="1000"/>
         <source>Extraction Failed</source>
         <translation>Ошибка распаковки</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1080"/>
+        <location filename="../../backends.cpp" line="1104"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 отсутствует в вашей системе.
@@ -555,38 +555,38 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1101"/>
+        <location filename="../../mainWin.cpp" line="1103"/>
         <source>Link To: %1</source>
         <translation>Ссылка на: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1425"/>
+        <location filename="../../mainWin.cpp" line="1435"/>
         <source>A simple Qt archive manager</source>
         <translation>Простой менеджер архивов на Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1426"/>
+        <location filename="../../mainWin.cpp" line="1436"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>основанный на libarchive, gzip и 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1427"/>
+        <location filename="../../mainWin.cpp" line="1437"/>
         <source>Author</source>
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1428"/>
+        <location filename="../../mainWin.cpp" line="1438"/>
         <source>aka.</source>
         <translation>aka.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1429"/>
-        <location filename="../../mainWin.cpp" line="1430"/>
+        <location filename="../../mainWin.cpp" line="1439"/>
+        <location filename="../../mainWin.cpp" line="1440"/>
         <source>About Arqiver</source>
         <translation>О Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1429"/>
+        <location filename="../../mainWin.cpp" line="1439"/>
         <source>Translators</source>
         <translation>Переводчики</translation>
     </message>

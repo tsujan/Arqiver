@@ -1058,7 +1058,9 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
 }
 
 void mainWin::updateTree() {
-  setUpdatesEnabled(false);
+  /* WARNING: Disabling updates can result in an invisible window with some window managers. */
+  //setUpdatesEnabled(false);
+
   QStringList files = BACKEND->hierarchy();
   files.sort();
   bool itemAdded = false;
@@ -1127,7 +1129,11 @@ void mainWin::updateTree() {
       else {
         /* check the parent paths, create their items if not existing,
            and add children to their parents */
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+        QStringList sections = thisFile.split("/", Qt::SkipEmptyParts);
+#else
         QStringList sections = thisFile.split("/", QString::SkipEmptyParts);
+#endif
         if (!sections.isEmpty()) { // can be empty in rare cases (with "application/x-archive", for example)
           sections.removeLast();
           QTreeWidgetItem *parentItem = nullptr;
@@ -1206,7 +1212,7 @@ void mainWin::updateTree() {
   QTimer::singleShot(0, this, [this]() {
     if (scrollToCurrent_)
       ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
-    setUpdatesEnabled(true);
+    //setUpdatesEnabled(true);
     ui->tree_contents->setEnabled(true);
     ui->tree_contents->update(); // sometimes needed
     ui->tree_contents->setFocus();
@@ -1395,7 +1401,11 @@ void mainWin::prefDialog() {
 void mainWin::aboutDialog() {
   class AboutDialog : public QDialog {
   public:
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {
+#else
     explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = 0) : QDialog(parent, f) {
+#endif
       aboutUi.setupUi(this);
       aboutUi.textLabel->setOpenExternalLinks(true);
     }

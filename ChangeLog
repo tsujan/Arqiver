@@ -5,6 +5,8 @@ V0.5.1
  * A workaround for a Qt bug that might give a too small height to rows if the horizontal scrollbar isn't at its minimum value when items are removed.
  * Better names for extraction folders of archives without parent directories.
  * Scroll to the current item when expanding or filtering.
+ * Fixed startup invisibility with some window managers.
+ * Updated the code for Qt 5.15.
 
 V0.5.0
 ---------

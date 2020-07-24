@@ -689,7 +689,11 @@ void Backend::parseLines (QStringList& lines) {
         continue;
       if (LIST) {
         QString file;
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+        QStringList info = lines.at(i).split(" ",Qt::SkipEmptyParts);
+#else
         QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
+#endif
         if (info.size() < 3) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
         if (info.at(2) == "Attr" && info.size() >= 6) { // header
@@ -742,7 +746,11 @@ void Backend::parseLines (QStringList& lines) {
   for (int i = 0; i < lines.length(); i++) {
     if (isGzip_) {
       // lines[i] is:                 <compressed_size>                   <uncompressed_size> -33.3% /x/y/z}
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+      QStringList info = lines.at(i).split(" ",Qt::SkipEmptyParts);
+#else
       QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
+#endif
       if (contents_.isEmpty() && info.size() >= 4) {
         int indx = lines.at(i).indexOf("% ");
         if (indx > -1) {
@@ -794,7 +802,11 @@ void Backend::parseLines (QStringList& lines) {
     if (indx != 0 || match.capturedLength() == lines.at(i).length())
       continue; // invalid line
     QStringList info;
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+    info << lines.at(i).left(match.capturedLength()).split(" ",Qt::SkipEmptyParts);
+#else
     info << lines.at(i).left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
+#endif
     info << lines.at(i).right(lines.at(i).length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
     QString file = info.at(8);
@@ -1022,11 +1034,19 @@ void Backend::processData() {
         encryptedList_ = encrypted_ = true;
       }
       else {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+        const QStringList& items = read.split("\n\n", Qt::SkipEmptyParts);
+#else
         const QStringList& items = read.split("\n\n", QString::SkipEmptyParts);
+#endif
         for (const QString& thisItem : items) {
           if (thisItem.contains("\nEncrypted = +")) {
             /* the archive has an encrypted file but its header isn't encrypted */
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+            QStringList lines = thisItem.split("\n", Qt::SkipEmptyParts);
+#else
             QStringList lines = thisItem.split("\n", QString::SkipEmptyParts);
+#endif
             if (!lines.isEmpty()) {
               QString pathLine;
               if (lines.at(0).startsWith("Path = "))
@@ -1050,7 +1070,11 @@ void Backend::processData() {
     data_ = read.section("\n", -1);
     read = read.section("\n", 0, -2);
   }
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+  QStringList lines = read.split("\n", Qt::SkipEmptyParts);
+#else
   QStringList lines = read.split("\n", QString::SkipEmptyParts);
+#endif
 
   if (isGzip_ && lines.size() == 2) {
     QString last = lines.at(1);
