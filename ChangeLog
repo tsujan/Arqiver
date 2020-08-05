@@ -1,3 +1,7 @@
+V0.6.1
+--------
+ * Added read-only support for RAR archives through 7z.
+
 V0.6.0
 --------
  * Added an option to (not) stretch the first column.

@@ -124,7 +124,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
   else if (mt == "application/x-7z-compressed"
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
-           || mt == "application/vnd.ms-cab-compressed") {
+           || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar") {
     is7z_ = true; isGzip_ = false;
   }
   else {
