@@ -80,7 +80,7 @@ Az Escape billentyűvel törölheti a szöveget.</translation>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Első oszlop illesztése az elérhető szélességhez</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
@@ -436,7 +436,7 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="481"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: RAR archívum (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="490"/>
