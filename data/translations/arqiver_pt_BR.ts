@@ -57,7 +57,7 @@ Por favor, instale-o para este tipo de arquivo!</translation>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
         <translation>Você pode digitar dentro da visualização principal.
-Limpar texto com a tecla Escape.</translation>
+Limpar texto com a tecla Esc.</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@ Limpar texto com a tecla Escape.</translation>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar a primeira coluna na largura disponível</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
@@ -436,7 +436,7 @@ binário não pertencer ao libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="481"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>SOMENTE LEITURA: Arquivo RAR (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="490"/>
