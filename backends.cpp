@@ -383,8 +383,11 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   QStringList args;
   QStringList filesList = files;
   filesList.removeAll(QString());
-  if (!filesList.isEmpty())
+  if (!filesList.isEmpty()) {
     filesList.removeDuplicates();
+    /* the paths may contain newlines, which have been escaped and are restored here */
+    filesList.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+  }
 
   if (is7z_) { // extract the whole archive; no selective extraction
     if (filesList.isEmpty())
@@ -429,6 +432,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
     if (!archiveSingleRoot.isEmpty()) {
+      archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootExists = true;
         QDir dir (xPath);
@@ -530,11 +534,15 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
 }
 
 void Backend::startViewFile(const QString& path) {
+  /* the path may contain newlines, which have been escaped and are restored here */
+  QString realPath(path);
+  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+
   QString parentDir = arqiverDir_;
   if (!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
-    if (path.contains("/")) {
-      parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
+    if (realPath.contains("/")) {
+      parentDir = arqiverDir_ + "/" + realPath.section("/", 0, -2);
       dir.mkpath(parentDir); // also creates "dir" if needed
     }
     else if (!dir.exists())
@@ -542,7 +550,7 @@ void Backend::startViewFile(const QString& path) {
   }
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
                                             : parentDir + "/")
-                     + path.section("/",-1);
+                     + realPath.section("/",-1);
   QFile file(fileName);
   bool fileExists(file.exists());
   if (fileExists && file.size() == static_cast<qint64>(0)) {
@@ -563,7 +571,7 @@ void Backend::startViewFile(const QString& path) {
         args << "-p" + pswrd_;
       args << "x" << fileArgs_ << "-o" + arqiverDir_;
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
-      args << path;
+      args << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
@@ -582,7 +590,7 @@ void Backend::startViewFile(const QString& path) {
     }
     else {
       cmnd = tarCmnd_;
-      args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
+      args << "-x" << fileArgs_ << "--include" << realPath <<"--to-stdout";
     }
     emit processStarting();
     tmpProc_.setStandardOutputFile(fileName);
@@ -602,11 +610,14 @@ void Backend::startViewFile(const QString& path) {
 }
 
 QString Backend::extractSingleFile(const QString& path) {
+  QString realPath(path);
+  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+
   QString parentDir = arqiverDir_;
   if (!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
-    if (path.contains("/")) {
-      parentDir = arqiverDir_ + "/" + path.section("/", 0, -2);
+    if (realPath.contains("/")) {
+      parentDir = arqiverDir_ + "/" + realPath.section("/", 0, -2);
       dir.mkpath(parentDir); // also creates "dir "if needed
     }
     else if (!dir.exists())
@@ -614,7 +625,7 @@ QString Backend::extractSingleFile(const QString& path) {
   }
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
                                           : parentDir + "/")
-                     + path.section("/",-1);
+                     + realPath.section("/",-1);
   QFile file(fileName);
   bool fileExists(file.exists());
   if (fileExists && file.size() == static_cast<qint64>(0)) {
@@ -632,7 +643,7 @@ QString Backend::extractSingleFile(const QString& path) {
       QStringList args;
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << path;
+      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
@@ -647,7 +658,7 @@ QString Backend::extractSingleFile(const QString& path) {
     }
     else {
       cmnd = tarCmnd_;
-      args << "-x" << fileArgs_ << "--include" << path <<"--to-stdout";
+      args << "-x" << fileArgs_ << "--include" << realPath <<"--to-stdout";
     }
     emit processStarting();
     tmpProc_.setStandardOutputFile(fileName);
@@ -1070,6 +1081,9 @@ void Backend::processData() {
     data_ = read.section("\n", -1);
     read = read.section("\n", 0, -2);
   }
+
+  /* NOTE: Because 7x doesn't escape newlines in file names, the archives
+           that contain such files can't be processed correctly. */
 #if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
   QStringList lines = read.split("\n", Qt::SkipEmptyParts);
 #else

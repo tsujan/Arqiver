@@ -33,6 +33,14 @@
 
 namespace Arqiver {
 
+class TreeWidgetItem : public QTreeWidgetItem {
+public:
+  TreeWidgetItem(QTreeWidgetItem *parent = nullptr, int type = QTreeWidgetItem::Type) :
+    QTreeWidgetItem(parent, type) {}
+
+  bool operator<(const QTreeWidgetItem& other) const override;
+};
+
 namespace Ui {
 	class mainWin;
 };

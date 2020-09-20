@@ -41,7 +41,21 @@
 namespace Arqiver {
 
 static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar|zip|tgz|txz|tzst|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
-
+/*************************/
+bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
+  /* exclude identical file extensions for a more intuitive sorting */
+  int column = treeWidget() ? treeWidget()->sortColumn() : 0;
+  const QString txt1 = text(column);
+  const QString txt2 = other.text(column);
+  int leftEnd = txt1.lastIndexOf(QLatin1Char('.'));
+  if (leftEnd > 0) {
+    int rightEnd = txt2.lastIndexOf(QLatin1Char('.'));
+    if (rightEnd > 0 && txt1.mid(leftEnd) == txt2.mid(rightEnd))
+      return QString::localeAwareCompare(txt1.left(leftEnd), txt2.left(rightEnd)) < 0;
+  }
+  return QString::localeAwareCompare(txt1, txt2) < 0;
+}
+/*************************/
 mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
@@ -978,7 +992,10 @@ void mainWin::extractSelection() {
   if (!selList.isEmpty()) {
     selList.sort();
     for (const auto &file : qAsConst(selList)) {
-        if (QFile::exists(dir + "/" + file.section("/",-1))) {
+        /* the path may contain newlines, which have been escaped and are restored here */
+        QString realFile(file);
+        realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+        if (QFile::exists(dir + "/" + realFile.section("/",-1))) {
           QMessageBox::StandardButton btn = QMessageBox::question(this,
                                                                   tr("Question"),
                                                                   tr("Some files will be overwritten.\nDo you want to continue?\n"));
@@ -1082,7 +1099,7 @@ void mainWin::updateTree() {
     QString mime;
     if (!BACKEND->isDir(thisFile))
       mime = BACKEND->getMimeType(thisFile.section("/", -1));
-    QTreeWidgetItem *it = new QTreeWidgetItem();
+    QTreeWidgetItem *it = new TreeWidgetItem(); // for a natural sorting
 
     /* set texts and icons */
     QSize icnSize = ui->tree_contents->iconSize();
