@@ -1,6 +1,5 @@
 V0.7.0
 --------
- * More intuitive sorting of items by excluding identical file extensions.
  * Handle newline in item names as far as possible.
 
 V0.6.1
