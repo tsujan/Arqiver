@@ -22,6 +22,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QCollator>
 #include <QTreeWidgetItem>
 #include <QDropEvent>
 #include <QLabel>
@@ -32,6 +33,19 @@
 #include "config.h"
 
 namespace Arqiver {
+
+class TreeWidgetItem : public QTreeWidgetItem {
+public:
+  TreeWidgetItem(QTreeWidgetItem *parent = nullptr, int type = QTreeWidgetItem::Type) :
+  QTreeWidgetItem(parent, type) {
+    collator_.setNumericMode(true);
+  }
+
+  bool operator<(const QTreeWidgetItem& other) const override;
+
+private:
+  QCollator collator_;
+};
 
 namespace Ui {
 	class mainWin;

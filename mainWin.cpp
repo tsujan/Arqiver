@@ -41,7 +41,21 @@
 namespace Arqiver {
 
 static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar|zip|tgz|txz|tzst|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
-
+/*************************/
+bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
+  /* treat dot as a separator for a more natural sorting */
+  int column = treeWidget() ? treeWidget()->sortColumn() : 0;
+  const QStringList list1 = text(column).split(QLatin1Char('.'));
+  const QStringList list2 = other.text(column).split(QLatin1Char('.'));
+  int n = qMin(list1.size(), list2.size());
+  for (int i = 0; i < n; ++i) {
+    int comp = collator_.compare(list1.at(i), list2.at(i));
+    if (comp != 0)
+      return comp < 0;
+  }
+  return list1.size() < list2.size();
+}
+/*************************/
 mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
@@ -1085,7 +1099,7 @@ void mainWin::updateTree() {
     QString mime;
     if (!BACKEND->isDir(thisFile))
       mime = BACKEND->getMimeType(thisFile.section("/", -1));
-    QTreeWidgetItem *it = new QTreeWidgetItem();
+    QTreeWidgetItem *it = new TreeWidgetItem(); // for a natural sorting
 
     /* set texts and icons */
     QSize icnSize = ui->tree_contents->iconSize();

@@ -1,6 +1,7 @@
 V0.7.0
 --------
  * Handle newline in item names as far as possible.
+ * Natural sorting of items by treating dot as a separator.
 
 V0.6.1
 --------
