@@ -45,15 +45,21 @@ static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar
 bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
   /* treat dot as a separator for a more natural sorting */
   int column = treeWidget() ? treeWidget()->sortColumn() : 0;
-  const QStringList list1 = text(column).split(QLatin1Char('.'));
-  const QStringList list2 = other.text(column).split(QLatin1Char('.'));
-  int n = qMin(list1.size(), list2.size());
-  for (int i = 0; i < n; ++i) {
-    int comp = collator_.compare(list1.at(i), list2.at(i));
+  const QString txt1 = text(column);
+  const QString txt2 = other.text(column);
+  int start1 = 0, start2 = 0;
+  for (;;) {
+    int end1 = txt1.indexOf(QLatin1Char('.'), start1);
+    int end2 = txt2.indexOf(QLatin1Char('.'), start2);
+    int comp = collator_.compare(txt1.mid(start1, end1 - start1),
+                                 txt2.mid(start2, end2 - start2));
     if (comp != 0)
       return comp < 0;
+    if (end1 == -1 || end2 == -1)
+      return end1 < end2;
+    start1 = end1 + 1;
+    start2 = end2 + 1;
   }
-  return list1.size() < list2.size();
 }
 /*************************/
 mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
