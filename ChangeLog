@@ -1,7 +1,8 @@
 V0.7.0
 --------
- * Handle newline in item names as far as possible.
+ * Handle newlines and text tabs in item names as far as possible.
  * Natural sorting of items by treating dot as a separator.
+ * Set the window title to the archive name.
 
 V0.6.1
 --------

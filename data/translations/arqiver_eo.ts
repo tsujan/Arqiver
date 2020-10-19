@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="896"/>
-        <location filename="../../backends.cpp" line="927"/>
-        <location filename="../../backends.cpp" line="970"/>
+        <location filename="../../backends.cpp" line="900"/>
+        <location filename="../../backends.cpp" line="931"/>
+        <location filename="../../backends.cpp" line="974"/>
         <source>Could not read archive</source>
         <translation>La arkivo ne legeblis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="930"/>
-        <location filename="../../backends.cpp" line="975"/>
+        <location filename="../../backends.cpp" line="934"/>
+        <location filename="../../backends.cpp" line="979"/>
         <source>Archive Loaded</source>
         <translation>Arkivo Ŝargita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="937"/>
-        <location filename="../../backends.cpp" line="1023"/>
+        <location filename="../../backends.cpp" line="941"/>
+        <location filename="../../backends.cpp" line="1027"/>
         <source>Modification Finished</source>
         <translation>Modifado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="958"/>
-        <location filename="../../backends.cpp" line="992"/>
+        <location filename="../../backends.cpp" line="962"/>
+        <location filename="../../backends.cpp" line="996"/>
         <source>Extraction Finished</source>
         <translation>Ekstraktado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="961"/>
-        <location filename="../../backends.cpp" line="1011"/>
+        <location filename="../../backends.cpp" line="965"/>
+        <location filename="../../backends.cpp" line="1015"/>
         <source>Extraction Failed</source>
         <translation>Ekstraktado Malsukcesis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1118"/>
+        <location filename="../../backends.cpp" line="1124"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 mankas al via sistemo.
@@ -565,33 +565,33 @@ Do you want to continue?
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1459"/>
+        <location filename="../../mainWin.cpp" line="1461"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1460"/>
+        <location filename="../../mainWin.cpp" line="1462"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1461"/>
+        <location filename="../../mainWin.cpp" line="1463"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1462"/>
+        <location filename="../../mainWin.cpp" line="1464"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1463"/>
-        <location filename="../../mainWin.cpp" line="1464"/>
+        <location filename="../../mainWin.cpp" line="1465"/>
+        <location filename="../../mainWin.cpp" line="1466"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1463"/>
+        <location filename="../../mainWin.cpp" line="1465"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>

@@ -386,7 +386,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (!filesList.isEmpty()) {
     filesList.removeDuplicates();
     /* the paths may contain newlines, which have been escaped and are restored here */
-    filesList.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+    filesList.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+             .replaceInStrings(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
   }
 
   if (is7z_) { // extract the whole archive; no selective extraction
@@ -432,7 +433,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
     if (!archiveSingleRoot.isEmpty()) {
-      archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+      archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+                       .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootExists = true;
         QDir dir (xPath);
@@ -536,7 +538,8 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
 void Backend::startViewFile(const QString& path) {
   /* the path may contain newlines, which have been escaped and are restored here */
   QString realPath(path);
-  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+          .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
 
   QString parentDir = arqiverDir_;
   if (!arqiverDir_.isEmpty()) {
@@ -611,7 +614,8 @@ void Backend::startViewFile(const QString& path) {
 
 QString Backend::extractSingleFile(const QString& path) {
   QString realPath(path);
-  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+          .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
 
   QString parentDir = arqiverDir_;
   if (!arqiverDir_.isEmpty()) {
@@ -674,7 +678,7 @@ QString Backend::extractSingleFile(const QString& path) {
   return fileName;
 }
 
-void Backend::parseLines (QStringList& lines) {
+void Backend::parseLines(QStringList& lines) {
   static bool hasSingleRoot = false;
   if (contents_.isEmpty()) {
     hasSingleRoot = true;
@@ -1090,10 +1094,12 @@ void Backend::processData() {
   QStringList lines = read.split("\n", QString::SkipEmptyParts);
 #endif
 
-  if (isGzip_ && lines.size() == 2) {
-    QString last = lines.at(1);
+  /* Gzip doesn't escape newlines either but that can be worked around */
+  if (isGzip_ && lines.size() >= 2) {
+    lines.removeFirst();
+    QString joined = lines.join('\n');
     lines.clear();
-    lines << last;
+    lines << joined;
   }
 
   if (LIST)

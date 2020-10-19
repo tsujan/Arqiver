@@ -1277,7 +1277,8 @@ void mainWin::procStarting() {
 
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
-  ui->label_archive->setText(BACKEND->currentFile());
+  ui->label_archive->setText(BACKEND->currentFile().replace('\n', ' ').replace('\t', ' '));
+  setWindowTitle(BACKEND->currentFile().section("/",-1));
 
   if (QGuiApplication::overrideCursor() == nullptr)
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -1288,7 +1289,8 @@ void mainWin::procFinished(bool success, const QString& msg) {
 
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
-  ui->label_archive->setText(BACKEND->currentFile());
+  ui->label_archive->setText(BACKEND->currentFile().replace('\n', ' ').replace('\t', ' '));
+  setWindowTitle(BACKEND->currentFile().section("/",-1));
 
   if (updateTree_) {
     if (success)
@@ -1311,7 +1313,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
 
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
-    textLabel_->setText(cur->whatsThis(0));
+    textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
   else
     textLabel_->setText(lastMsg_);
 
@@ -1395,7 +1397,7 @@ void mainWin::selectionChanged() {
   ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
-    textLabel_->setText(cur->whatsThis(0));
+    textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
   else
     textLabel_->setText(lastMsg_);
 }
