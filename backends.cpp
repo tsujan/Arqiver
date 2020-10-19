@@ -20,10 +20,12 @@
 #include "backends.h"
 #include <QFile>
 #include <QDir>
+#include <QUrl>
 #include <QDateTime>
 #include <QCoreApplication>
 #include <QTimer>
 #include <QStandardPaths>
+#include <QDesktopServices>
 #include <QMimeDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -587,7 +589,7 @@ void Backend::startViewFile(const QString& path) {
       emit processFinished(tmpProc_.exitCode() == 0, QString());
       if (tmpProc_.exitCode() == 0) {
         if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
-          QProcess::startDetached("xdg-open", QStringList() << fileName);
+          QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
       }
       return;
     }
@@ -609,7 +611,7 @@ void Backend::startViewFile(const QString& path) {
   else
     emit processFinished(true, QString());
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
-    QProcess::startDetached("xdg-open", QStringList() << fileName);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }
 
 QString Backend::extractSingleFile(const QString& path) {

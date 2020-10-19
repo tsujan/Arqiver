@@ -823,7 +823,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
     QApplication::clipboard()->setText(BACKEND->currentFile());
   });
   menu.addSeparator();
-  action = menu.addAction(symbolicIcon::icon (":icons/document-open.svg"), tr("Open Containing Folder"));
+  action = menu.addAction(symbolicIcon::icon(":icons/document-open.svg"), tr("Open Containing Folder"));
   connect(action, &QAction::triggered, [this] {
     QString folder = BACKEND->currentFile().section("/", 0, -2);
     if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
