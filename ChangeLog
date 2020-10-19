@@ -3,6 +3,7 @@ V0.7.0
  * Handle newlines and text tabs in item names as far as possible.
  * Natural sorting of items by treating dot as a separator.
  * Set the window title to the archive name.
+ * Added context menu to the label that shows archive path.
 
 V0.6.1
 --------

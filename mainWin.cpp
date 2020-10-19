@@ -33,6 +33,7 @@
 #include <QMimeData>
 #include <QRegularExpression>
 //#include <QScreen>
+#include <QDesktopServices>
 #include <QPixmapCache>
 #include <QClipboard>
 
@@ -120,6 +121,9 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
+
+  ui->label_archive->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(ui->label_archive, &QWidget::customContextMenuRequested, this, &mainWin::labelContextMenu);
 
   ui->actionAddFile->setEnabled(false);
   ui->actionRemoveFile->setEnabled(false);
@@ -812,6 +816,22 @@ void mainWin::extractSingleFile(QTreeWidgetItem *it) {
   it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
 }
 
+void mainWin::labelContextMenu(const QPoint& p) {
+  QMenu menu;
+  QAction *action = menu.addAction(symbolicIcon::icon(":icons/edit-copy.svg"), tr("Copy Archive Path"));
+  connect(action, &QAction::triggered, [this] {
+    QApplication::clipboard()->setText(BACKEND->currentFile());
+  });
+  menu.addSeparator();
+  action = menu.addAction(symbolicIcon::icon (":icons/document-open.svg"), tr("Open Containing Folder"));
+  connect(action, &QAction::triggered, [this] {
+    QString folder = BACKEND->currentFile().section("/", 0, -2);
+    if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
+      QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
+  });
+  menu.exec(ui->label_archive->mapToGlobal(p));
+}
+
 void mainWin::listContextMenu(const QPoint& p) {
   QModelIndex index = ui->tree_contents->indexAt(p);
   if (!index.isValid()) return;
@@ -822,7 +842,7 @@ void mainWin::listContextMenu(const QPoint& p) {
   menu.addAction(ui->actionExtractSel);
   if (!isDir) {
     QAction *action = menu.addAction(tr("View Current Item"));
-    connect(action, &QAction::triggered, action, [this, item] {viewFile(item);});
+    connect(action, &QAction::triggered, [this, item] {viewFile(item);});
   }
   if (!isDir || !BACKEND->is7z())
     menu.addSeparator();
