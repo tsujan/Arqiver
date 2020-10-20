@@ -122,8 +122,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
 
-  ui->label_archive->setContextMenuPolicy(Qt::CustomContextMenu);
-  connect(ui->label_archive, &QWidget::customContextMenuRequested, this, &mainWin::labelContextMenu);
+  ui->frame->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(ui->frame, &QWidget::customContextMenuRequested, this, &mainWin::labelContextMenu);
 
   ui->actionAddFile->setEnabled(false);
   ui->actionRemoveFile->setEnabled(false);
@@ -829,7 +829,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
     if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
       QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
   });
-  menu.exec(ui->label_archive->mapToGlobal(p));
+  menu.exec(ui->frame->mapToGlobal(p));
 }
 
 void mainWin::listContextMenu(const QPoint& p) {

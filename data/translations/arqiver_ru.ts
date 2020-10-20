@@ -129,142 +129,142 @@ binary does not belong to libarchive.</source>
 <context>
     <name>Arqiver::mainWin</name>
     <message>
-        <location filename="../../mainWin.ui" line="49"/>
+        <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
         <translation>Архив:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="101"/>
+        <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
         <translation>Фильтр файлов...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="124"/>
+        <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="135"/>
+        <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
         <translation>&amp;Правка</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="148"/>
+        <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="157"/>
+        <location filename="../../mainWin.ui" line="162"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="193"/>
+        <location filename="../../mainWin.ui" line="198"/>
         <source>&amp;Open Archive</source>
         <translation>&amp;Открыть архив</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="196"/>
+        <location filename="../../mainWin.ui" line="201"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="201"/>
+        <location filename="../../mainWin.ui" line="206"/>
         <source>&amp;New Archive</source>
         <translation>&amp;Новый архив</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="204"/>
+        <location filename="../../mainWin.ui" line="209"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="209"/>
+        <location filename="../../mainWin.ui" line="214"/>
         <source>&amp;Quit</source>
         <translation>&amp;Выйти</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="212"/>
+        <location filename="../../mainWin.ui" line="217"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="217"/>
+        <location filename="../../mainWin.ui" line="222"/>
         <source>Add File(s)</source>
         <translation>Добавить файл (-ы)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="222"/>
+        <location filename="../../mainWin.ui" line="227"/>
         <source>Remove File(s)</source>
         <translation>Удалить файл (-ы)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="227"/>
+        <location filename="../../mainWin.ui" line="232"/>
         <source>Extract All</source>
         <translation>Распаковать всё</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="230"/>
+        <location filename="../../mainWin.ui" line="235"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="235"/>
+        <location filename="../../mainWin.ui" line="240"/>
         <source>Add Directory</source>
         <translation>Добавить каталог</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="240"/>
+        <location filename="../../mainWin.ui" line="245"/>
         <source>Extract Selection</source>
         <translation>Распаковать выбранное</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="245"/>
+        <location filename="../../mainWin.ui" line="250"/>
         <source>Set Password</source>
         <translation>Задать пароль</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="250"/>
+        <location filename="../../mainWin.ui" line="255"/>
         <source>E&amp;xpand</source>
         <translation>&amp;Развернуть</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="253"/>
+        <location filename="../../mainWin.ui" line="258"/>
         <source>Ctrl+Shift+Down</source>
         <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="258"/>
+        <location filename="../../mainWin.ui" line="263"/>
         <source>Collap&amp;se</source>
         <translation>Сверну&amp;ть</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="261"/>
+        <location filename="../../mainWin.ui" line="266"/>
         <source>Ctrl+Shift+Up</source>
         <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="266"/>
+        <location filename="../../mainWin.ui" line="271"/>
         <source>&amp;About</source>
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="271"/>
+        <location filename="../../mainWin.ui" line="276"/>
         <source>&amp;Copy Current Path</source>
         <translation>&amp;Копировать текущий путь</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="276"/>
+        <location filename="../../mainWin.ui" line="281"/>
         <source>&amp;Preferences</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="281"/>
+        <location filename="../../mainWin.ui" line="286"/>
         <source>Stop &amp;Process</source>
         <translation>Остановить &amp;процесс</translation>
     </message>
     <message>
-        <location filename="../../mainWin.ui" line="284"/>
+        <location filename="../../mainWin.ui" line="289"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
