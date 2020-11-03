@@ -126,8 +126,23 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
   else if (mt == "application/x-7z-compressed"
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
-           || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar") {
+           || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar"
+           || mt == "application/x-cd-image") {
     is7z_ = true; isGzip_ = false;
+  }
+  else if (mt == "application/x-raw-disk-image") {
+    /* 7z can't open compressed disk images and bsdtar can't handle uncompressed ones */
+    QProcess fileProcess;
+    fileProcess.start("file", QStringList() << path, QIODevice::ReadOnly);
+    fileProcess.waitForFinished();
+    QByteArray stdOutput = fileProcess.readAllStandardOutput();
+    stdOutput.remove(0, path.size());
+    if (stdOutput.contains("cpio") || stdOutput.contains("gzip")) {
+      isGzip_ = is7z_ = false;
+    }
+    else {
+      is7z_ = true; isGzip_ = false;
+    }
   }
   else {
     isGzip_ = is7z_ = false;

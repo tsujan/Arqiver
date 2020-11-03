@@ -4,6 +4,7 @@ V0.7.0
  * Natural sorting of items by treating dot as a separator.
  * Set the window title to the archive name.
  * Added context menu to the archive path bar for copying path and opening containing folder.
+ * Use 7z for uncompressed disk images and bsdtar for compressed ones.
 
 V0.6.1
 --------
