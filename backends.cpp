@@ -132,12 +132,9 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
   else if (mt == "application/x-raw-disk-image") {
     /* 7z can't open compressed disk images and bsdtar can't handle uncompressed ones */
-    QProcess fileProcess;
-    fileProcess.start("file", QStringList() << path, QIODevice::ReadOnly);
-    fileProcess.waitForFinished();
-    QByteArray stdOutput = fileProcess.readAllStandardOutput();
-    stdOutput.remove(0, path.size());
-    if (stdOutput.contains("cpio") || stdOutput.contains("gzip")) {
+    QMimeDatabase mimeDatabase;
+    QString realMt = mimeDatabase.mimeTypeForFile(QFileInfo(path), QMimeDatabase::MatchContent).name();
+    if (realMt == "application/gzip" || realMt == "application/x-cpio") {
       isGzip_ = is7z_ = false;
     }
     else {
