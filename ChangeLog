@@ -5,6 +5,7 @@ V0.7.0
  * Set the window title to the archive name.
  * Added context menu to the archive path bar for copying path and opening containing folder.
  * Use 7z for uncompressed disk images and bsdtar for compressed ones.
+ * Added fallback icons for files and folders.
 
 V0.6.1
 --------

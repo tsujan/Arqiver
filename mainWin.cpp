@@ -101,7 +101,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   /* icons */
   QIcon icn = QIcon::fromTheme("arqiver");
   if (icn.isNull())
-    icn = QIcon (":icons/arqiver.svg");
+    icn = QIcon(":icons/arqiver.svg");
   setWindowIcon(icn);
   ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
   ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
@@ -1082,7 +1082,7 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
   QPixmap pix;
   if (!QPixmapCache::find(iconName + emblemName, &pix)) {
     int pixelRatio = qApp->devicePixelRatio();
-    QPixmap icn = QIcon::fromTheme(iconName).pixmap(icnSize * pixelRatio);
+    QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg")).pixmap(icnSize * pixelRatio);
     int offset = 0;
     QPixmap emblem;
     if (lock) {
@@ -1141,7 +1141,7 @@ void mainWin::updateTree() {
           it->setIcon(0, QIcon(emblemize(mime.replace('/', '-'), icnSize, true)));
         }
         else
-          it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-')));
+          it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-'), symbolicIcon::icon(":icons/unknown.svg")));
       }
       else {
         it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(thisFile)));
@@ -1153,14 +1153,14 @@ void mainWin::updateTree() {
           if (icnSize.width() > 16)
             it->setIcon(0, QIcon(emblemize(targetMime, icnSize, false)));
           else
-            it->setIcon(0, QIcon::fromTheme(targetMime));
+            it->setIcon(0, QIcon::fromTheme(targetMime, symbolicIcon::icon(":icons/unknown.svg")));
         }
         else
           it->setIcon(0, QIcon(":icons/emblem-symbolic-link.svg"));
       }
     }
     else
-      it->setIcon(0, QIcon::fromTheme("folder"));
+      it->setIcon(0, QIcon::fromTheme("folder", symbolicIcon::icon(":icons/document-open.svg")));
 
     it->setWhatsThis(0, thisFile);
     it->setData(2, Qt::UserRole, BACKEND->sizeString(thisFile)); // to track the file size quickly
@@ -1188,7 +1188,7 @@ void mainWin::updateTree() {
             if (!thisParent) {
               QTreeWidgetItem *thisItem = new QTreeWidgetItem();
               thisItem->setText(0, thisSection);
-              thisItem->setIcon(0, QIcon::fromTheme("folder"));
+              thisItem->setIcon(0, QIcon::fromTheme("folder", symbolicIcon::icon(":icons/document-open.svg")));
               thisItem->setWhatsThis(0, theFile);
               thisItem->setData(2, Qt::UserRole, BACKEND->sizeString(theFile));
 
@@ -1475,7 +1475,7 @@ void mainWin::aboutDialog() {
   AboutDialog dialog (this);
   QIcon icn = QIcon::fromTheme("arqiver");
   if (icn.isNull())
-    icn = QIcon (":icons/arqiver.svg");
+    icn = QIcon(":icons/arqiver.svg");
   dialog.setMainIcon(icn);
   dialog.settMainTitle (QString("<center><b><big>%1 %2</big></b></center><br>").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
   dialog.setMainText("<center> " + tr("A simple Qt archive manager") + " </center>\n<center> "
