@@ -570,38 +570,38 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1147"/>
+        <location filename="../../mainWin.cpp" line="1148"/>
         <source>Link To: %1</source>
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1481"/>
+        <location filename="../../mainWin.cpp" line="1482"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1482"/>
+        <location filename="../../mainWin.cpp" line="1483"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1483"/>
+        <location filename="../../mainWin.cpp" line="1484"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1484"/>
+        <location filename="../../mainWin.cpp" line="1485"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
         <location filename="../../mainWin.cpp" line="1486"/>
+        <location filename="../../mainWin.cpp" line="1487"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
+        <location filename="../../mainWin.cpp" line="1486"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>

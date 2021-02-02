@@ -570,38 +570,38 @@ Folytatja?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1147"/>
+        <location filename="../../mainWin.cpp" line="1148"/>
         <source>Link To: %1</source>
         <translation>Link ide: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1481"/>
+        <location filename="../../mainWin.cpp" line="1482"/>
         <source>A simple Qt archive manager</source>
         <translation>Egy egyszerű Qt archívumkezelő</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1482"/>
+        <location filename="../../mainWin.cpp" line="1483"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>amely a libarchive-on a gzipen és a 7z-n alapul</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1483"/>
+        <location filename="../../mainWin.cpp" line="1484"/>
         <source>Author</source>
         <translation>Szerző</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1484"/>
+        <location filename="../../mainWin.cpp" line="1485"/>
         <source>aka.</source>
         <translation>más néven</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
         <location filename="../../mainWin.cpp" line="1486"/>
+        <location filename="../../mainWin.cpp" line="1487"/>
         <source>About Arqiver</source>
         <translation>Arqiver névjegye</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
+        <location filename="../../mainWin.cpp" line="1486"/>
         <source>Translators</source>
         <translation>Fordítók</translation>
     </message>

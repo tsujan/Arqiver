@@ -561,38 +561,38 @@ Do you want to continue?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1147"/>
+        <location filename="../../mainWin.cpp" line="1148"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1481"/>
+        <location filename="../../mainWin.cpp" line="1482"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1482"/>
+        <location filename="../../mainWin.cpp" line="1483"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1483"/>
+        <location filename="../../mainWin.cpp" line="1484"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1484"/>
+        <location filename="../../mainWin.cpp" line="1485"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
         <location filename="../../mainWin.cpp" line="1486"/>
+        <location filename="../../mainWin.cpp" line="1487"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
+        <location filename="../../mainWin.cpp" line="1486"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>

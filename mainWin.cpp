@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2020 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2021 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1081,18 +1081,19 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
   int emblemSize = w <= 32 ? 16 : 24;
   QPixmap pix;
   if (!QPixmapCache::find(iconName + emblemName, &pix)) {
-    int pixelRatio = qApp->devicePixelRatio();
-    QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg")).pixmap(icnSize * pixelRatio);
+    QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg")).pixmap(icnSize);
     int offset = 0;
     QPixmap emblem;
     if (lock) {
-      emblem = QIcon(":icons/emblem-lock.svg").pixmap(emblemSize*pixelRatio, emblemSize*pixelRatio);
-      offset = (w - emblemSize) * pixelRatio;
+      emblem = QIcon(":icons/emblem-lock.svg").pixmap(emblemSize, emblemSize);
+      offset = w - emblemSize;
     }
     else
-      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize*pixelRatio, emblemSize*pixelRatio);
-    pix = QPixmap(icnSize * pixelRatio);
+      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize, emblemSize);
+    qreal pixelRatio = qApp->devicePixelRatio();
+    pix = QPixmap((QSizeF(icnSize) * pixelRatio).toSize());
     pix.fill(Qt::transparent);
+    pix.setDevicePixelRatio(pixelRatio);
     QPainter painter(&pix);
     painter.drawPixmap(0, 0, icn);
     painter.drawPixmap(offset, offset, emblem);
