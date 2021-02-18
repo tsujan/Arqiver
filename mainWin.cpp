@@ -52,8 +52,11 @@ bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
   for (;;) {
     int end1 = txt1.indexOf(QLatin1Char('.'), start1);
     int end2 = txt2.indexOf(QLatin1Char('.'), start2);
-    int comp = collator_.compare(txt1.mid(start1, end1 - start1),
-                                 txt2.mid(start2, end2 - start2));
+    QStringRef part1 = txt1.midRef(start1, end1 - start1);
+    QStringRef part2 = txt2.midRef(start2, end2 - start2);
+    int comp = collator_.compare(part1, part2);
+    if (comp == 0)
+      comp = part1.size() - part2.size(); // a workaround for QCollator's bug
     if (comp != 0)
       return comp < 0;
     if (end1 == -1 || end2 == -1)
