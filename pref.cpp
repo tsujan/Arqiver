@@ -33,7 +33,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   parent_ = parent;
   bool remSize;
   QSize startSize;
-  initialStretchFirstCol_ = true;
+  initialStretchFirstCol_ = false;
   initialExpandTopDirs_ = false;
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     Config config = win->getConfig();

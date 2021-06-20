@@ -25,7 +25,7 @@ Config::Config() :
   remSize_(true),
   isMaxed_(false),
   removalPrompt_(true),
-  stretchFirstColumn_(true),
+  stretchFirstColumn_(false),
   expandTopDirs_(false),
   winSize_(QSize(700, 500)),
   startSize_(QSize(700, 500)),
@@ -55,7 +55,7 @@ void Config::readConfig() {
 
   removalPrompt_ = settings.value("removalPrompt", true).toBool();
 
-  stretchFirstColumn_ = settings.value("stretchFirstColumn", true).toBool();
+  stretchFirstColumn_ = settings.value("stretchFirstColumn", false).toBool();
 
   expandTopDirs_ = settings.value("expandTopDirs", false).toBool();
 
