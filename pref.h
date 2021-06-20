@@ -49,7 +49,7 @@ private:
   QWidget *parent_;
   int initialIconSize_;
   QString initialTar_;
-  bool initialStretchFirstCol_;
+  bool initialStretchFirstCol_, initialExpandTopDirs_;
 };
 
 }

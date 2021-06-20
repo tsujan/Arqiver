@@ -75,6 +75,13 @@ public:
     stretchFirstColumn_ = stretch;
   }
 
+  bool getExpandTopDirs() const {
+      return expandTopDirs_;
+  }
+  void setExpandTopDirs(bool expand) {
+    expandTopDirs_ = expand;
+  }
+
   QSize getWinSize() const {
     return winSize_;
   }
@@ -111,7 +118,7 @@ public:
   }
 
 private:
-  bool remSize_, isMaxed_, removalPrompt_, stretchFirstColumn_;
+  bool remSize_, isMaxed_, removalPrompt_, stretchFirstColumn_, expandTopDirs_;
   QSize winSize_, startSize_;
   int iconSize_;
   QString lastFilter_;

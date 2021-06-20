@@ -34,6 +34,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   bool remSize;
   QSize startSize;
   initialStretchFirstCol_ = true;
+  initialExpandTopDirs_ = false;
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     Config config = win->getConfig();
     initialIconSize_ = config.getIconSize();
@@ -41,6 +42,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     startSize = config.getStartSize();
     initialTar_ = config.getTarBinary();
     initialStretchFirstCol_ = config.getStretchFirstColumn();
+    initialExpandTopDirs_ = config.getExpandTopDirs();
   }
   else {
     initialIconSize_ = 24;
@@ -134,6 +136,14 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
       Config& config = win->getConfig();
       config.setStretchFirstColumn(state == Qt::Checked);
+    }
+  });
+
+  ui->expandAllBox->setChecked(!initialExpandTopDirs_);
+  connect(ui->expandAllBox, &QCheckBox::stateChanged, [this] (int state) {
+    if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+      Config& config = win->getConfig();
+      config.setExpandTopDirs(state != Qt::Checked);
     }
   });
 

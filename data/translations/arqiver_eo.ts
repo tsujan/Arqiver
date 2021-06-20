@@ -84,7 +84,17 @@ Viŝu la tekston per la eskapa klavo.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
-        <location filename="../../pref.ui" line="121"/>
+        <source>If this is unchecked, only the top level directories will be expanded.</source>
+        <translation>Malmarku por ekspansii nur la suprajn dosierujojn.</translation>
+    </message>
+    <message>
+        <location filename="../../pref.ui" line="111"/>
+        <source>Expand all directories when opening archives</source>
+        <translation>Ekspansiu ĉiujn dosierujojn malfermante arkivojn</translation>
+    </message>
+    <message>
+        <location filename="../../pref.ui" line="118"/>
+        <location filename="../../pref.ui" line="131"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -95,7 +105,7 @@ Averto: Arqiver ne funkcius se la
 duumaĵo ne apartenus al libarchive.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="114"/>
+        <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
         <translation>Duumaĵo de libarchive:</translation>
     </message>
@@ -110,18 +120,18 @@ duumaĵo ne apartenus al libarchive.</translation>
         <translation>La grando de vid-ikonoj:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="54"/>
+        <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="216"/>
-        <location filename="../../pref.cpp" line="241"/>
+        <location filename="../../pref.cpp" line="226"/>
+        <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Restartigo de la aplikaĵo necesas por ke la ŝanĝoj efektiviĝu.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="230"/>
+        <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
         <translation>Elekti duumaĵon de libarchive</translation>
     </message>
@@ -575,33 +585,33 @@ Do you want to continue?
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
+        <location filename="../../mainWin.cpp" line="1495"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1486"/>
+        <location filename="../../mainWin.cpp" line="1496"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1487"/>
+        <location filename="../../mainWin.cpp" line="1497"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1488"/>
+        <location filename="../../mainWin.cpp" line="1498"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1489"/>
-        <location filename="../../mainWin.cpp" line="1490"/>
+        <location filename="../../mainWin.cpp" line="1499"/>
+        <location filename="../../mainWin.cpp" line="1500"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1489"/>
+        <location filename="../../mainWin.cpp" line="1499"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>

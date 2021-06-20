@@ -1,3 +1,8 @@
+V0.8.0
+--------
+ * Added a workaround for a problem in QCollator.
+ * Added an option for expanding top level directories when loading archives.
+
 V0.7.0
 --------
  * Handle newlines and text tabs in item names as far as possible.

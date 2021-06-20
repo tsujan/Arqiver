@@ -1093,7 +1093,7 @@ QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lo
     }
     else
       emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize, emblemSize);
-    qreal pixelRatio = qApp->devicePixelRatio();
+    qreal pixelRatio = icn.devicePixelRatio();
     pix = QPixmap((QSizeF(icnSize) * pixelRatio).toSize());
     pix.fill(Qt::transparent);
     pix.setDevicePixelRatio(pixelRatio);
@@ -1244,7 +1244,17 @@ void mainWin::updateTree() {
 
   if (expandAll_) {
     if (itemAdded) {
-      ui->tree_contents->expandAll();
+      if (config_.getExpandTopDirs()) {
+        int tc = ui->tree_contents->topLevelItemCount();
+        for (int i = 0; i < tc; ++i) {
+          QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
+          if (item->text(1).isEmpty()) {
+            ui->tree_contents->expandItem(item);
+          }
+        }
+      }
+      else
+        ui->tree_contents->expandAll();
       QTimer::singleShot(0, this, [this]() {
         if (QAbstractItemModel *model = ui->tree_contents->model()) {
           QModelIndex firstIndx = model->index(0, 0);

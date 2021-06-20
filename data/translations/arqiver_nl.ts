@@ -83,7 +83,17 @@ Clear text with the Escape key.</source>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
-        <location filename="../../pref.ui" line="121"/>
+        <source>If this is unchecked, only the top level directories will be expanded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../pref.ui" line="111"/>
+        <source>Expand all directories when opening archives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../pref.ui" line="118"/>
+        <location filename="../../pref.ui" line="131"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -91,7 +101,7 @@ binary does not belong to libarchive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="114"/>
+        <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -106,18 +116,18 @@ binary does not belong to libarchive.</source>
         <translation>Grootte van weergavepictogrammen:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="54"/>
+        <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="216"/>
-        <location filename="../../pref.cpp" line="241"/>
+        <location filename="../../pref.cpp" line="226"/>
+        <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>De applicatie moet worden herstart om de wijzigingen toe te passen.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="230"/>
+        <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
         <translation type="unfinished"></translation>
     </message>
@@ -568,33 +578,33 @@ Do you want to continue?
         <translation>Link naar: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1485"/>
+        <location filename="../../mainWin.cpp" line="1495"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1486"/>
+        <location filename="../../mainWin.cpp" line="1496"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1487"/>
+        <location filename="../../mainWin.cpp" line="1497"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1488"/>
+        <location filename="../../mainWin.cpp" line="1498"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1489"/>
-        <location filename="../../mainWin.cpp" line="1490"/>
+        <location filename="../../mainWin.cpp" line="1499"/>
+        <location filename="../../mainWin.cpp" line="1500"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1489"/>
+        <location filename="../../mainWin.cpp" line="1499"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

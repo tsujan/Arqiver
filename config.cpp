@@ -26,6 +26,7 @@ Config::Config() :
   isMaxed_(false),
   removalPrompt_(true),
   stretchFirstColumn_(true),
+  expandTopDirs_(false),
   winSize_(QSize(700, 500)),
   startSize_(QSize(700, 500)),
   iconSize_(24) {
@@ -55,6 +56,8 @@ void Config::readConfig() {
   removalPrompt_ = settings.value("removalPrompt", true).toBool();
 
   stretchFirstColumn_ = settings.value("stretchFirstColumn", true).toBool();
+
+  expandTopDirs_ = settings.value("expandTopDirs", false).toBool();
 
   settings.endGroup();
 
@@ -86,6 +89,8 @@ void Config::writeConfig() {
   settings.setValue("removalPrompt", removalPrompt_);
 
   settings.setValue("stretchFirstColumn", stretchFirstColumn_);
+
+  settings.setValue("expandTopDirs", expandTopDirs_);
 
   settings.endGroup();
 
