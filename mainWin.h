@@ -87,7 +87,7 @@ private slots:
   void extractSingleFile(QTreeWidgetItem *it);
   void labelContextMenu(const QPoint& p);
   void listContextMenu(const QPoint& p);
-  void onEpandingItem(QTreeWidgetItem *item);
+  void onExpandingItem(QTreeWidgetItem *item);
 
   void procStarting();
   void procFinished(bool, const QString& msg);

@@ -167,15 +167,15 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
-  connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onEpandingItem);
+  connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
 
   connect(ui->actionExpand, &QAction::triggered, [this] {
     /* WARNING: Contrary to what Qt doc says, QTreeWidget::itemExpanded() is called with expandAll(). */
-    disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onEpandingItem);
+    disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
     ui->tree_contents->expandAll();
     ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
     stretchFirstColumn(config_.getStretchFirstColumn());
-    connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onEpandingItem);
+    connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
   });
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
 
@@ -858,7 +858,7 @@ void mainWin::listContextMenu(const QPoint& p) {
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }
 
-void mainWin::onEpandingItem(QTreeWidgetItem* /*item*/) {
+void mainWin::onExpandingItem(QTreeWidgetItem* /*item*/) {
   stretchFirstColumn(config_.getStretchFirstColumn());
 }
 
@@ -1254,7 +1254,7 @@ void mainWin::updateTree() {
   if (expandAll_) {
     if (itemAdded) {
       /* WARNING: Contrary to what Qt doc says, QTreeWidget::itemExpanded() is called with expandAll(). */
-      disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onEpandingItem);
+      disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
       if (config_.getExpandTopDirs()) {
         int tc = ui->tree_contents->topLevelItemCount();
         for (int i = 0; i < tc; ++i) {
@@ -1266,7 +1266,7 @@ void mainWin::updateTree() {
       }
       else
         ui->tree_contents->expandAll();
-      connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onEpandingItem);
+      connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
 
       QTimer::singleShot(0, this, [this]() {
         if (QAbstractItemModel *model = ui->tree_contents->model()) {
