@@ -4,6 +4,7 @@ V0.8.0
  * Added an option for expanding top level directories when loading archives.
  * Resize columns appropriately on expanding a directory item.
  * Don't stretch the first column by default.
+ * Don't show the header without content.
 
 V0.7.0
 --------

@@ -189,6 +189,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
      be used for putting directory items first and will save the lock info) */
   ui->tree_contents->setHeaderLabels(QStringList() << tr("File") << tr("MimeType") << tr("Size") << QString());
   ui->tree_contents->header()->setSectionHidden(3, true);
+  ui->tree_contents->header()->setVisible(false); // will be shown in procFinished()
 
   /* support file dropping into the window */
   setAcceptDrops(true);
@@ -1340,10 +1341,13 @@ void mainWin::procFinished(bool success, const QString& msg) {
   setWindowTitle(BACKEND->currentFile().section("/",-1));
 
   if (updateTree_) {
-    if (success)
+    if (success) {
+      ui->tree_contents->header()->setVisible(true);
       updateTree();
+    }
     else {
       ui->tree_contents->clear();
+      ui->tree_contents->header()->setVisible(false);
       ui->tree_contents->setEnabled(true);
       ui->tree_contents->setFocus();
       enableActions(true);
@@ -1425,6 +1429,7 @@ void mainWin::openEncryptedList(const QString& path) {
     processIsRunning_ = false; // it's safe to exit
     /* clear contents because nothing is loaded */
     ui->tree_contents->clear();
+    ui->tree_contents->header()->setVisible(false);
     /* also, prevent confusion by disabling actions */
     ui->actionAddFile->setEnabled(false);
     ui->actionRemoveFile->setEnabled(false);
