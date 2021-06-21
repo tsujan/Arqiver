@@ -246,9 +246,11 @@ bool mainWin::eventFilter(QObject *watched, QEvent *event) {
           && (ke->modifiers() == Qt::ControlModifier
               || (ui->lineEdit->text().isEmpty() // first typed
                   && !ui->tree_contents->selectedItems().contains(cur)))) {
+        QModelIndex curIndex = ui->tree_contents->getIndexFromItem(cur);
         ui->tree_contents->selectionModel()
-          ->setCurrentIndex(ui->tree_contents->getIndexFromItem(cur),
+          ->setCurrentIndex(curIndex,
                             QItemSelectionModel::Toggle | QItemSelectionModel::Rows);
+        ui->tree_contents->scrollTo(curIndex);
         return false;
       }
       /* when a text is typed inside the tree, type it inside the filter line-edit */
@@ -1081,16 +1083,18 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
 }
 
 void mainWin::onEnterPressed(QTreeWidgetItem *it) {
+  QModelIndex curIndex = ui->tree_contents->getIndexFromItem(it);
   /* select only the current item */
   if (!ui->tree_contents->selectedItems().contains(it)
       || ui->tree_contents->selectedItems().size() > 1) {
     ui->tree_contents->selectionModel()
-      ->setCurrentIndex(ui->tree_contents->getIndexFromItem(it),
+      ->setCurrentIndex(curIndex,
                         QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
   }
+  ui->tree_contents->scrollTo(curIndex);
   /* expand, collapse or view the current item */
   if (it->text(1).isEmpty()) { // it's a directory item
-    if (ui->tree_contents->isExpanded(ui->tree_contents->getIndexFromItem(it)))
+    if (ui->tree_contents->isExpanded(curIndex))
       ui->tree_contents->collapseItem(it);
     else
       ui->tree_contents->expandItem(it);
