@@ -68,8 +68,8 @@ void TreeWidget::mousePressEvent(QMouseEvent *event) {
 /*************************/
 void TreeWidget::mouseMoveEvent(QMouseEvent *event) {
   if (dragStartPosition_.isNull()) {
-      QTreeWidget::mouseMoveEvent(event);
-      return;
+    event->ignore();
+    return;
   }
   if ((event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance()))
     dragStarted_ = true;
@@ -98,7 +98,7 @@ void TreeWidget::keyReleaseEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
     /* NOTE: If Enter is kept pressed, it will be released and then will be
              pressed again, and so on. So, auto-repeating is ignored here. */
-    if (enterPressedHere_ && !event->isAutoRepeat() && currentItem()) {
+    if (enterPressedHere_ && !event->isAutoRepeat() && currentItem() && !currentItem()->isHidden()) {
       emit enterPressed(currentItem());
       event->accept();
       enterPressedHere_ = false;

@@ -5,6 +5,9 @@ V0.8.0
  * Resize columns appropriately on expanding a directory item.
  * Don't stretch the first column by default.
  * Don't show the header without content.
+ * Select/deselect the current item with Ctrl+Space and also select it when the first Space is typed.
+ * Don't select items by pressing the left mouse button and moving the cursor.
+ * Don't drag items while the middle mouse button is pressed.
 
 V0.7.0
 --------

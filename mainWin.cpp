@@ -163,7 +163,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   });
   connect(ui->actionPassword, &QAction::triggered, [this] {pswrdDialog(true);});
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
-  connect(ui->tree_contents, &TreeWidget::enterPressed, this, &mainWin::expandOrView);
+  connect(ui->tree_contents, &TreeWidget::enterPressed, this, &mainWin::onEnterPressed);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
@@ -238,8 +238,20 @@ mainWin::~mainWin() {
 
 bool mainWin::eventFilter(QObject *watched, QEvent *event) {
   if (watched == ui->tree_contents && event->type() == QEvent::KeyPress) {
-    /* when a text is typed inside the tree, type it inside the filter line-edit */
     if (QKeyEvent *ke = static_cast<QKeyEvent*>(event)) {
+      /* select/deselect the current item with Ctrl+Space and also
+         select it if it isn't selected and the first Space is typed */
+      QTreeWidgetItem *cur = ui->tree_contents->currentItem();
+      if (cur && ke->key() == Qt::Key_Space
+          && (ke->modifiers() == Qt::ControlModifier
+              || (ui->lineEdit->text().isEmpty() // first typed
+                  && !ui->tree_contents->selectedItems().contains(cur)))) {
+        ui->tree_contents->selectionModel()
+          ->setCurrentIndex(ui->tree_contents->getIndexFromItem(cur),
+                            QItemSelectionModel::Toggle | QItemSelectionModel::Rows);
+        return false;
+      }
+      /* when a text is typed inside the tree, type it inside the filter line-edit */
       if (ke->key() != Qt::Key_Return && ke->key() != Qt::Key_Enter
           && ke->key() != Qt::Key_Up && ke->key() != Qt::Key_Down
           && ke->key() != Qt::Key_Home && ke->key() != Qt::Key_End
@@ -1067,7 +1079,15 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
   BACKEND->startViewFile(it->whatsThis(0));
 }
 
-void mainWin::expandOrView(QTreeWidgetItem *it) {
+void mainWin::onEnterPressed(QTreeWidgetItem *it) {
+  /* select only the current item */
+  if (!ui->tree_contents->selectedItems().contains(it)
+      || ui->tree_contents->selectedItems().size() > 1) {
+    ui->tree_contents->selectionModel()
+      ->setCurrentIndex(ui->tree_contents->getIndexFromItem(it),
+                        QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+  }
+  /* expand, collapse or view the current item */
   if (it->text(1).isEmpty()) { // it's a directory item
     if (ui->tree_contents->isExpanded(ui->tree_contents->getIndexFromItem(it)))
       ui->tree_contents->collapseItem(it);
