@@ -499,8 +499,9 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-compressed-tar", tr("GZip Compressed Archive (*.tar.gz *.tgz)"));
     //supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive (*.tar.bz *.tbz)"));
     supported.insert ("application/x-bzip-compressed-tar", tr("BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)"));
-    supported.insert ("application/x-bzip", tr("BZip2 Archive (*.bz2)"));
+    //supported.insert ("application/x-bzip", tr("BZip2 Archive (*.bz2)"));
     supported.insert ("application/x-xz-compressed-tar", tr("XZ Compressed Archive (*.tar.xz *.txz)"));
+    supported.insert ("application/x-xz", tr("XZ archive (*.xz)"));
     supported.insert ("application/x-lzma-compressed-tar", tr("LMZA Compressed Archive (*.tar.lzma *.tlz)"));
     supported.insert ("application/x-zstd-compressed-tar", tr("Zstandard Compressed Archive (*.tar.zst *.tzst)"));
     supported.insert ("application/x-cpio", tr("CPIO Archive (*.cpio)"));
@@ -532,7 +533,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.apk *.rar)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.apk *.rar)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
