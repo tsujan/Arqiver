@@ -57,6 +57,21 @@ TreeWidget::~TreeWidget() {
   }
 }
 /*************************/
+// The default implementation doesn't scroll to a deep nonexpanded item
+// because it doesn't have time to.
+void TreeWidget::scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint) {
+  if (!index.isValid()) return;
+  if (itemsExpandable()) {
+    QModelIndex parent = index.parent();
+    while (parent != rootIndex() && parent.isValid() && state() == QAbstractItemView::NoState) {
+      if (!isExpanded(parent))
+        expand(parent);
+      parent = model()->parent(parent);
+    }
+  }
+  QTreeWidget::scrollTo(index, hint);
+}
+/*************************/
 void TreeWidget::mousePressEvent(QMouseEvent *event) {
   QTreeWidget::mousePressEvent(event);
   if (event->button() == Qt::LeftButton && indexAt(event->pos()).isValid())

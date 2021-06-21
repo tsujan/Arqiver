@@ -43,6 +43,8 @@ public:
     return indexFromItem(item);
   }
 
+  void scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint = QAbstractItemView::EnsureVisible);
+
 signals:
   void dragStarted(QTreeWidgetItem *it);
   void enterPressed(QTreeWidgetItem *it);

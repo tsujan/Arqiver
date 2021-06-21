@@ -9,6 +9,7 @@ V0.8.0
  * Don't select items by pressing the left mouse button and moving the cursor.
  * Don't drag items while the middle mouse button is pressed.
  * Added "application/x-xz" to and removed "application/x-bzip" from the supported extractions.
+ * Added a workaround for Qt's problem with scrolling to deep nonexpanded tree items.
 
 V0.7.0
 --------
