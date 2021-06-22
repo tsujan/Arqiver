@@ -45,6 +45,10 @@ public:
 
   void scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint = QAbstractItemView::EnsureVisible);
 
+  int getSizeHintForColumn(int column) const {
+      return sizeHintForColumn(column);
+  }
+
 signals:
   void dragStarted(QTreeWidgetItem *it);
   void enterPressed(QTreeWidgetItem *it);

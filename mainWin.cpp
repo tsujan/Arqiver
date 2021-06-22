@@ -36,6 +36,7 @@
 #include <QDesktopServices>
 #include <QPixmapCache>
 #include <QClipboard>
+#include <QResizeEvent>
 
 #include <unistd.h> // getuid
 
@@ -80,6 +81,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   reapplyFilter_ = true;
 
   ui->tree_contents->installEventFilter(this);
+  ui->tree_contents->viewport()->installEventFilter(this);
 
   if (getuid() == 0)
     setWindowTitle("Arqiver (" + tr("Root") + ")");
@@ -167,17 +169,28 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
-  connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
+  connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
+  connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
 
   connect(ui->actionExpand, &QAction::triggered, [this] {
     /* WARNING: Contrary to what Qt doc says, QTreeWidget::itemExpanded() is called with expandAll(). */
-    disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
+    disconnect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
+    disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
     ui->tree_contents->expandAll();
     ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
-    adjustColumnSizes(config_.getStretchFirstColumn());
-    connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
+    adjustColumnSizes(config_.getStretchFirstColumn()); /* may not be called by eventFilter()
+                                                           because scrollbars may be transient */
+    connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
+    connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
   });
-  connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
+  connect(ui->actionCollapse, &QAction::triggered, [this] {
+    disconnect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
+    disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
+    ui->tree_contents->collapseAll();
+    adjustColumnSizes(config_.getStretchFirstColumn());
+    connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
+    connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
+  });
 
   connect(ui->lineEdit, &QLineEdit::textChanged, this, &mainWin::filter);
 
@@ -237,7 +250,15 @@ mainWin::~mainWin() {
 }
 
 bool mainWin::eventFilter(QObject *watched, QEvent *event) {
-  if (watched == ui->tree_contents && event->type() == QEvent::KeyPress) {
+  if (watched == ui->tree_contents->viewport()) {
+    if (event->type() == QEvent::Resize) {
+      if (QResizeEvent *re = static_cast<QResizeEvent*>(event)) {
+        if (re->size().width() != re->oldSize().width())
+          adjustColumnSizes(config_.getStretchFirstColumn()); // doesn't affect the viewport's width
+      }
+    }
+  }
+  else if (watched == ui->tree_contents && event->type() == QEvent::KeyPress) {
     if (QKeyEvent *ke = static_cast<QKeyEvent*>(event)) {
       /* select/deselect the current item with Ctrl+Space and also
          select it if it isn't selected and the first Space is typed */
@@ -874,7 +895,7 @@ void mainWin::listContextMenu(const QPoint& p) {
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }
 
-void mainWin::onExpandingItem(QTreeWidgetItem* /*item*/) {
+void mainWin::onChangingExpansion(QTreeWidgetItem* /*item*/) {
   adjustColumnSizes(config_.getStretchFirstColumn());
 }
 
@@ -1258,7 +1279,8 @@ void mainWin::updateTree() {
   }
 
   if (itemAdded) {
-    adjustColumnSizes(config_.getStretchFirstColumn());
+    adjustColumnSizes(config_.getStretchFirstColumn()); /* may not be called by eventFilter()
+                                                           because scrollbars may be transient */
     /* sort items by their names but put directory items first */
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
@@ -1269,7 +1291,8 @@ void mainWin::updateTree() {
   if (expandAll_) {
     if (itemAdded) {
       /* WARNING: Contrary to what Qt doc says, QTreeWidget::itemExpanded() is called with expandAll(). */
-      disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
+      disconnect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
+      disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
       if (config_.getExpandTopDirs()) {
         int tc = ui->tree_contents->topLevelItemCount();
         for (int i = 0; i < tc; ++i) {
@@ -1281,7 +1304,8 @@ void mainWin::updateTree() {
       }
       else
         ui->tree_contents->expandAll();
-      connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
+      connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
+      connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
 
       QTimer::singleShot(0, this, [this]() {
         if (QAbstractItemModel *model = ui->tree_contents->model()) {
@@ -1480,7 +1504,10 @@ void mainWin::adjustColumnSizes(bool stretch) {
   });
   if (!stretch) {
     QTimer::singleShot(0, this, [this]() {
-      ui->tree_contents->resizeColumnToContents(0);
+      ui->tree_contents->setColumnWidth(0, qMax(ui->tree_contents->getSizeHintForColumn(0),
+                                                ui->tree_contents->viewport()->width()
+                                                  - ui->tree_contents->columnWidth(1)
+                                                  - ui->tree_contents->columnWidth(2)));
     });
   }
 }
