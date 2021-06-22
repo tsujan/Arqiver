@@ -139,7 +139,8 @@ void TreeWidget::keyPressEvent(QKeyEvent *event) {
 void TreeWidget::wheelEvent(QWheelEvent *event) {
   /* smooth scrolling */
   if (event->spontaneous()
-      && event->source() == Qt::MouseEventNotSynthesized) {
+      && event->source() == Qt::MouseEventNotSynthesized
+      && event->angleDelta().x() == 0) { // vertical scrolling
     if (QScrollBar* vbar = verticalScrollBar()) {
       /* keep track of the wheel event for smooth scrolling */
       int delta = event->angleDelta().y();
