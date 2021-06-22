@@ -171,7 +171,7 @@ PrefDialog::~PrefDialog() {
 void PrefDialog::closeEvent(QCloseEvent *event) {
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     if (initialStretchFirstCol_ != win->getConfig().getStretchFirstColumn())
-      win->stretchFirstColumn(!initialStretchFirstCol_);
+      win->adjustColumnSizes(!initialStretchFirstCol_);
   }
   event->accept();
 }

@@ -174,7 +174,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
     ui->tree_contents->expandAll();
     ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
-    stretchFirstColumn(config_.getStretchFirstColumn());
+    adjustColumnSizes(config_.getStretchFirstColumn());
     connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onExpandingItem);
   });
   connect(ui->actionCollapse, &QAction::triggered, [this] {ui->tree_contents->collapseAll();});
@@ -196,7 +196,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* apply the configuration */
   config_.readConfig();
-  stretchFirstColumn(config_.getStretchFirstColumn());
+  adjustColumnSizes(config_.getStretchFirstColumn());
   BACKEND->setTarCommand(config_.getTarBinary());
   if (config_.getRemSize()) {
     resize(config_.getWinSize());
@@ -875,7 +875,7 @@ void mainWin::listContextMenu(const QPoint& p) {
 }
 
 void mainWin::onExpandingItem(QTreeWidgetItem* /*item*/) {
-  stretchFirstColumn(config_.getStretchFirstColumn());
+  adjustColumnSizes(config_.getStretchFirstColumn());
 }
 
 bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
@@ -1258,18 +1258,7 @@ void mainWin::updateTree() {
   }
 
   if (itemAdded) {
-    /* adjust column sizes */
-    QTimer::singleShot(0, this, [this]() {
-      ui->tree_contents->resizeColumnToContents(2);
-    });
-    QTimer::singleShot(0, this, [this]() {
-      ui->tree_contents->resizeColumnToContents(1);
-    });
-    if (!config_.getStretchFirstColumn()) {
-      QTimer::singleShot(0, this, [this]() {
-        ui->tree_contents->resizeColumnToContents(0);
-      });
-    }
+    adjustColumnSizes(config_.getStretchFirstColumn());
     /* sort items by their names but put directory items first */
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
@@ -1479,7 +1468,7 @@ void mainWin::selectionChanged() {
     textLabel_->setText(lastMsg_);
 }
 
-void mainWin::stretchFirstColumn(bool stretch) {
+void mainWin::adjustColumnSizes(bool stretch) {
   ui->tree_contents->header()->setSectionResizeMode(0, stretch
                                                        ? QHeaderView::Stretch
                                                        : QHeaderView::Interactive);
