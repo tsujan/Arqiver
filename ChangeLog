@@ -11,6 +11,7 @@ V0.8.0
  * Added "application/x-xz" to and removed "application/x-bzip" from the supported extractions.
  * Added a workaround for Qt's problem with scrolling to deep nonexpanded tree items.
  * Always expand the first header column to fill the available width.
+ * Added cmake support (in addition to qmake).
 
 V0.7.0
 --------

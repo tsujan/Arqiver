@@ -32,6 +32,8 @@ And, finally, in OpenSUSE:
 
 In addition, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
 
+With qmake
+==========
 Then, open a terminal inside this folder and issue the following commands:
 
 	qmake && make
@@ -40,6 +42,15 @@ Then, open a terminal inside this folder and issue the following commands:
 Afterward, you could use this command to clean the source directory:
 
 	make distclean
+
+With cmake
+==========
+If you prefer cmake, use these commands instead:
+
+	mkdir build && cd build
+	cmake ..
+	make
+	sudo make install
 
 **********************************
 *   Translation (Localization)   *
