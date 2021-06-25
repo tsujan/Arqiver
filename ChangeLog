@@ -12,6 +12,7 @@ V0.8.0
  * Added a workaround for Qt's problem with scrolling to deep nonexpanded tree items.
  * Always expand the first header column to fill the available width.
  * Added cmake support (in addition to qmake).
+ * Allow dragging of all selected items, including probable directories.
 
 V0.7.0
 --------

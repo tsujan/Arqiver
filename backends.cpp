@@ -166,7 +166,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
 }
 
-bool Backend::canModify() {
+bool Backend::canModify() const {
   static QStringList validEXT;
   if (validEXT.isEmpty()) {
     validEXT << ".zip" << ".tar.gz" << ".pdf.gz" << ".svgz" << ".tgz" << ".tar.xz" << ".txz" << ".tar.bz" << ".tbz" << ".tar.bz2" << ".tbz2" << ".tar" << ".tar.lzma" << ".tar.zst" << ".tzst" << ".tlz" << ".cpio" << /*".pax" <<*/ ".ar" << /*".shar" <<*/ ".gz" << ".7z";
@@ -178,31 +178,31 @@ bool Backend::canModify() {
   return false;
 }
 
-QString Backend::currentFile() {
+QString Backend::currentFile() const {
   return filepath_;
 }
 
-QStringList Backend::hierarchy() {
+QStringList Backend::hierarchy() const {
   return contents_.keys();
 }
 
-QString Backend::singleRoot() {
+QString Backend::singleRoot() const {
   return archiveSingleRoot_;
 }
 
-QString Backend::sizeString(const QString& file) {
+QString Backend::sizeString(const QString& file) const {
   if (contents_.contains(file))
     return contents_.value(file).at(1);
   return QString();
 }
 
-double Backend::size(const QString& file) {
+double Backend::size(const QString& file) const {
   if (!contents_.contains(file))
     return -1;
   return contents_.value(file).at(1).toDouble();
 }
 
-double Backend::csize(const QString& file) {
+double Backend::csize(const QString& file) const {
   if (!contents_.contains(file))
     return -1;
   if (is7z_)
@@ -210,7 +210,7 @@ double Backend::csize(const QString& file) {
   return contents_.value(file).at(1).toDouble();
 }
 
-bool Backend::isDir(const QString& file) {
+bool Backend::isDir(const QString& file) const {
   if (!contents_.contains(file))
     return false;
   if (is7z_)
@@ -218,13 +218,13 @@ bool Backend::isDir(const QString& file) {
   return contents_.value(file).at(0).startsWith("d");
 }
 
-bool Backend::isLink(const QString& file) {
+bool Backend::isLink(const QString& file) const {
   if (!contents_.contains(file))
     return false;
   return contents_.value(file).at(0).startsWith("l");
 }
 
-QString Backend::linkTo(const QString& file) {
+QString Backend::linkTo(const QString& file) const {
   if (!contents_.contains(file))
     return QString();
   return contents_.value(file).at(2);
@@ -405,7 +405,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
              .replaceInStrings(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
   }
 
-  if (is7z_) { // extract the whole archive; no selective extraction
+  if (is7z_) {
     if (filesList.isEmpty())
       args << "-aou"; // auto-rename: the archive may contain files with identical names
     else if (overwrite)
@@ -427,7 +427,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
         /* If a file comes after its containing folder in the command line,
            bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
         filesList.sort();
-        int N = files.length();
+        int N = filesList.length();
         for (int i = 0; i < N; i++) {
           if (filesList[N - 1 - i].simplified().isEmpty())
             continue;
@@ -446,8 +446,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (filesList.isEmpty()) {
     QString archiveSingleRoot = archiveSingleRoot_;
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
-      archiveSingleRoot.remove(0, 1); // no hidden extraction folder (with rpm)
-    if (!archiveSingleRoot.isEmpty()) {
+      archiveSingleRoot.remove(0, 1); // no hidden extraction folder
+    if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives
       archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
                        .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
@@ -473,7 +473,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       QString subdirName = filepath_.section("/", -1);
       if (subdirName.contains(".")) {
         subdirName = subdirName.section(".", 0, -2);
-      if (subdirName.endsWith(".tar"))
+        if (subdirName.endsWith(".tar"))
           subdirName = subdirName.section(".", 0, -2);
       }
       if (subdirName.isEmpty())
@@ -514,7 +514,29 @@ bool Backend::isEncryptedPath(const QString& path) const {
 }
 
 bool Backend::isSingleExtracted(const QString& archivePath) const {
-  return (!arqiverDir_.isEmpty() && QFile::exists(arqiverDir_ + "/" + archivePath));
+  if (arqiverDir_.isEmpty()) return false;
+  QString str = archivePath;
+  if (str.startsWith("./")) // as with some rpm archives
+    str.remove(0, 2);
+  return (!str.isEmpty() && QFile::exists(arqiverDir_ + "/" + str));
+}
+
+bool Backend::allChildrenExyracted(const QString& parent) const {
+  if (arqiverDir_.isEmpty()) return false;
+  const QStringList files = contents_.keys();
+  if (isDir(parent) || !files.contains(parent)) {
+    QString p = parent + "/";
+    for (const auto &file : files) {
+      if (file != p && file.startsWith(p)) {
+        QString str = file;
+        if (str.startsWith("./")) // as with some rpm archives
+          str.remove(0, 2);
+        if (!QFile::exists(arqiverDir_ + "/" + str))
+          return false;
+      }
+    }
+  }
+  return true;
 }
 
 static inline bool removeDir(const QString &dirName)
@@ -583,7 +605,6 @@ void Backend::startViewFile(const QString& path) {
       args << "-d" << "--to-stdout" << filepath_;
     }
     else if (is7z_) {
-      QStringList args;
       args << "-aou"; // the archive may contain files with identical names
       if (encrypted_)
         args << "-p" + pswrd_;
@@ -627,42 +648,81 @@ void Backend::startViewFile(const QString& path) {
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }
 
-QString Backend::extractSingleFile(const QString& path) {
-  QString realPath(path);
-  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-          .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+void Backend::extractTempFiles(const QStringList& paths) {
+  QStringList realPaths(paths);
+  realPaths.removeAll(QString());
+  if (!realPaths.isEmpty()) {
+    realPaths.removeDuplicates();
+    realPaths.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+             .replaceInStrings(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+  }
+  else { // should never happen in practice
+    emit processFinished(true, QString());
+    emit tempFilesExtracted(QStringList());
+  }
 
-  QString parentDir = arqiverDir_;
+  QStringList tempFileNames;
   if (!arqiverDir_.isEmpty()) {
     QDir dir(arqiverDir_);
-    if (realPath.contains("/")) {
-      parentDir = arqiverDir_ + "/" + realPath.section("/", 0, -2);
-      dir.mkpath(parentDir); // also creates "dir "if needed
-    }
-    else if (!dir.exists())
+    if (!dir.exists())
       dir.mkpath(arqiverDir_);
-  }
-  QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
-                                            : parentDir + "/")
-                     + realPath.section("/",-1);
-  QFile file(fileName);
-  bool fileExists(file.exists());
-  if (fileExists && file.size() == static_cast<qint64>(0)) {
-    file.remove();
-    fileExists = false;
-  }
-  if (!fileExists) {
-    QString cmnd;
-    QStringList args;
-    if (isGzip_) {
-      cmnd = "gzip";
-      args << "-d" << "--to-stdout" << filepath_;
+    QList<QString>::iterator it = realPaths.begin();
+    while (it != realPaths.end()) {
+      QString realPath = *it;
+      if (realPath.simplified().isEmpty()) {
+        it = realPaths.erase(it);
+        continue;
+      }
+      if (realPath.startsWith("./") || realPath == ".") { // as with some rpm archives
+        realPath.remove(0, 2);
+        if (realPath.isEmpty()) {
+          it = realPaths.erase(it);
+          continue;
+        }
+      }
+      QString parentDir;
+      if (realPath.contains("/")) {
+        parentDir = arqiverDir_ + "/" + realPath.section("/", 0, -2);
+        dir.mkpath(parentDir);
+      }
+      else
+        parentDir = arqiverDir_; // top-level
+      QString fileName = parentDir + "/" + realPath.section("/",-1);
+      tempFileNames << fileName;
+      /* check whether it's already extracted (FIXME: this doesn't cover all symlinks) */
+      if (QFile::exists(fileName)
+          && allChildrenExyracted(*it)) { // realPath may have changed above
+        it = realPaths.erase(it);
+      }
+      else ++it;
     }
-    else if (is7z_) {
-      QStringList args;
+  }
+
+  if (!realPaths.isEmpty()) {
+    QStringList args;
+    /* Gzip */
+    if (isGzip_) {
+      if (tempFileNames.size() == 1) {
+        args << "-d" << "--to-stdout" << filepath_;
+        emit processStarting();
+        tmpProc_.setStandardOutputFile(tempFileNames.at(0));
+        tmpProc_.start("gzip", args);
+        if (tmpProc_.waitForStarted()) {
+          while (!tmpProc_.waitForFinished(500))
+            QCoreApplication::processEvents();
+        }
+        emit processFinished(tmpProc_.exitCode() == 0, QString());
+        emit tempFilesExtracted(tempFileNames);
+      }
+      return;
+    }
+
+    /* 7z */
+    if (is7z_) {
+      args << "-aos"; // skip extraction of existing files
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << realPath;
+      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
@@ -673,24 +733,35 @@ QString Backend::extractSingleFile(const QString& path) {
       if (tmpProc_.exitCode() != 0)
         pswrd_ = QString();
       emit processFinished(tmpProc_.exitCode() == 0, QString());
-      return fileName;
+      emit tempFilesExtracted(tempFileNames);
+      return;
     }
-    else {
-      cmnd = tarCmnd_;
-      args << "-x" << fileArgs_ << "--include" << realPath <<"--to-stdout";
-    }
+
+    /* bsdtar */
+    args << "-x" << "--no-same-owner" << "-k" << fileArgs_;
+
+    /* If a file comes after its containing folder in the command line,
+       bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
+    realPaths.sort();
+    int N = realPaths.length();
+    for (int i = 0; i < N; i++)
+      args << "--include" << realPaths[N - 1 - i];
+
+    args << "-C" << arqiverDir_;
     emit processStarting();
-    tmpProc_.setStandardOutputFile(fileName);
-    tmpProc_.start(cmnd, args);
+    tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+    tmpProc_.start(tarCmnd_, args);
     if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
         QCoreApplication::processEvents();
     }
     emit processFinished(tmpProc_.exitCode() == 0, QString());
+    emit tempFilesExtracted(tempFileNames);
   }
-  else
+  else { // all paths are already extracted
     emit processFinished(true, QString());
-  return fileName;
+    emit tempFilesExtracted(tempFileNames);
+  }
 }
 
 void Backend::parseLines(QStringList& lines) {

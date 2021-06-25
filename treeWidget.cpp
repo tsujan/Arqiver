@@ -20,8 +20,6 @@
 #include "treeWidget.h"
 #include <QUrl>
 #include <QScrollBar>
-#include <QPointer>
-#include <QDrag>
 #include <QMimeData>
 #include <QIcon>
 #include <QApplication>
@@ -86,25 +84,13 @@ void TreeWidget::mouseMoveEvent(QMouseEvent *event) {
     event->ignore();
     return;
   }
-  if ((event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance()))
-    dragStarted_ = true;
 
-  if ((event->buttons() & Qt::LeftButton) && dragStarted_) {
-    //dragStarted_ = false;
-    QTreeWidgetItem *it = currentItem();
-    if (it && !it->text(1).isEmpty()) { // not a directory item
-      emit dragStarted(it);
-      QPointer<QDrag> drag = new QDrag(this);
-      QMimeData *mimeData = new QMimeData;
-      //mimeData->setData("application/arqiver-item", QByteArray());
-      mimeData->setUrls(QList<QUrl>() << QUrl::fromLocalFile(it->data(0, Qt::UserRole).toString()));
-      drag->setMimeData(mimeData);
-      QPixmap px = it->icon(0).pixmap(22, 22);
-      drag->setPixmap(px);
-      drag->setHotSpot(QPoint(px.width()/2, px.height()));
-      if (drag->exec (Qt::CopyAction) == Qt::IgnoreAction)
-          drag->deleteLater();
-    }
+  if (!dragStarted_
+      && (event->buttons() & Qt::LeftButton)
+      && (event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance())) {
+    dragStarted_ = true;
+    if (!selectedItems().isEmpty())
+      emit dragStarted();
     event->accept();
   }
 }
@@ -129,7 +115,9 @@ void TreeWidget::keyPressEvent(QKeyEvent *event) {
     enterPressedHere_ = true; // to know if it's pressed here and, e.g., not inside a modal dialog
   else if (event->key() != Qt::Key_Up && event->key() != Qt::Key_Down
            && event->key() != Qt::Key_Home && event->key() != Qt::Key_End
-           && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown) { // ignore typing
+           && event->key() != Qt::Key_PageUp && event->key() != Qt::Key_PageDown
+           && !(event->modifiers() == Qt::ControlModifier && event->key() == Qt::Key_A)) {
+    /* ignore typing */
     event->accept();
     return;
   }

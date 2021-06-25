@@ -50,7 +50,7 @@ public:
   }
 
 signals:
-  void dragStarted(QTreeWidgetItem *it);
+  void dragStarted();
   void enterPressed(QTreeWidgetItem *it);
 
 protected:

@@ -35,18 +35,18 @@ public:
 
   QString getMimeType(const QString &fname);
   void loadFile(const QString& path, bool withPassword = false);
-  bool canModify();
+  bool canModify() const;
 
-  QString currentFile();
+  QString currentFile() const;
 
-  QStringList hierarchy();
-  QString singleRoot();
-  QString sizeString(const QString& file);
-  double size(const QString& file);
-  double csize(const QString& file);
-  bool isDir(const QString& file);
-  bool isLink(const QString& file);
-  QString linkTo(const QString& file);
+  QStringList hierarchy() const;
+  QString singleRoot() const;
+  QString sizeString(const QString& file) const;
+  double size(const QString& file) const;
+  double csize(const QString& file) const;
+  bool isDir(const QString& file) const;
+  bool isLink(const QString& file) const;
+  QString linkTo(const QString& file) const;
 
   void startAdd(const QStringList& paths, bool absolutePaths = false);
   void startRemove(const QStringList& paths);
@@ -54,7 +54,7 @@ public:
   void startExtract(const QString& path, const QStringList& files, bool overwrite = true, bool preservePaths = true);
 
   void startViewFile(const QString& path);
-  QString extractSingleFile(const QString& path);
+  void extractTempFiles(const QStringList& paths);
 
   void setTarCommand(const QString& cmnd);
 
@@ -99,6 +99,7 @@ signals:
   void archivingSuccessful();
   void encryptedList(const QString& path);
   void errorMsg(const QString& msg);
+  void tempFilesExtracted(const QStringList& files);
 
 private slots:
   void startInsertFromQueue() {
@@ -110,6 +111,7 @@ private slots:
   void onError(QProcess::ProcessError error);
 
 private:
+  bool allChildrenExyracted(const QString& parent) const;
   void parseLines(QStringList& lines);
 
   QString tarCmnd_;

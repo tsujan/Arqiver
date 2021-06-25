@@ -37,6 +37,8 @@
 #include <QPixmapCache>
 #include <QClipboard>
 #include <QResizeEvent>
+#include <QPointer>
+#include <QDrag>
 
 #include <unistd.h> // getuid
 
@@ -167,7 +169,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
   connect(ui->tree_contents, &TreeWidget::enterPressed, this, &mainWin::onEnterPressed);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
-  connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractSingleFile);
+  connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractDraggedItems);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
   connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
   connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
@@ -278,7 +280,8 @@ bool mainWin::eventFilter(QObject *watched, QEvent *event) {
       if (ke->key() != Qt::Key_Return && ke->key() != Qt::Key_Enter
           && ke->key() != Qt::Key_Up && ke->key() != Qt::Key_Down
           && ke->key() != Qt::Key_Home && ke->key() != Qt::Key_End
-          && ke->key() != Qt::Key_PageUp && ke->key() != Qt::Key_PageDown) {
+          && ke->key() != Qt::Key_PageUp && ke->key() != Qt::Key_PageDown
+          && !(ke->modifiers() == Qt::ControlModifier && ke->key() == Qt::Key_A)) {
         ui->lineEdit->pressKey(ke);
         return false;
       }
@@ -847,18 +850,38 @@ void mainWin::removeFiles() {
   BACKEND->startRemove(items);
 }
 
-void mainWin::extractSingleFile(QTreeWidgetItem *it) {
-  if (it->text(1).isEmpty()) return; // it's a directory item
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
-      && BACKEND->isEncryptedPath(it->whatsThis(0))
-      && !BACKEND->isSingleExtracted(it->whatsThis(0))
-      && !pswrdDialog()) {
-    return;
+void mainWin::extractDraggedItems() {
+  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  if (sel.isEmpty()) return;
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
+    for (const auto &it : sel) {
+      if (subTreeIsEncrypted(it)
+          && !BACKEND->isSingleExtracted(it->whatsThis(0))) {
+        if (!pswrdDialog()) return;
+        break; // if the next password is different, we should wait for the extraction failure
+      }
+    }
   }
   updateTree_ = false;
-  reapplyFilter_ = false;
-  textLabel_->setText(tr("Extracting..."));
-  it->setData(0, Qt::UserRole, BACKEND->extractSingleFile(it->whatsThis(0)));
+
+  QPointer<QDrag> drag = new QDrag(this);
+  QMimeData* mimeData = new QMimeData;
+  drag->setMimeData(mimeData);
+  connect(BACKEND, &Backend::tempFilesExtracted, drag, [drag](const QStringList &files) {
+    QList<QUrl> urlList;
+    for (const auto &file : files) {
+      urlList << QUrl::fromLocalFile(file);
+    }
+    drag->mimeData()->setUrls(urlList);
+    if (drag && drag->exec(Qt::CopyAction) == Qt::IgnoreAction)
+      drag->deleteLater();
+  });
+
+  QStringList paths;
+  for (const auto &it : sel) {
+    paths << it->whatsThis(0);
+  }
+  BACKEND->extractTempFiles(paths);
 }
 
 void mainWin::labelContextMenu(const QPoint& p) {
@@ -1041,12 +1064,15 @@ void mainWin::simpleArchivetFiles() {
 }
 
 void mainWin::extractSelection() {
-  QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
+  const QList<QTreeWidgetItem*> sel = ui->tree_contents->selectedItems();
   if (sel.isEmpty()) return;
-
   if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()) {
-    /* not needed because there's no selective extraction for 7z */
-    if (!pswrdDialog()) return;
+    for (const auto &it : sel) {
+      if (subTreeIsEncrypted(it)) {
+        if (!pswrdDialog()) return;
+        break; // if the next password is different, we should wait for the extraction failure
+      }
+    }
   }
 
   QStringList selList;
