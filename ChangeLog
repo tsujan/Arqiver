@@ -13,6 +13,7 @@ V0.8.0
  * Always expand the first header column to fill the available width.
  * Added cmake support (in addition to qmake).
  * Allow dragging of all selected items, including probable directories.
+ * Add milliseconds to the name of the cache folder that's used for temporary extraction because multiple archives may be loaded almost simultaneously.
 
 V0.7.0
 --------

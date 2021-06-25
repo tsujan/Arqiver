@@ -91,7 +91,7 @@ QString Backend::getMimeType(const QString &fname) {
 void Backend::loadFile(const QString& path, bool withPassword) {
   /* check if the file extraction directory can be made
      but don't create it until a file is viewed */
-  const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
+  const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz");
   if (!arqiverDir_.isEmpty())
     QDir(arqiverDir_).removeRecursively();
   QString cache = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
@@ -588,7 +588,7 @@ void Backend::startViewFile(const QString& path) {
     else if (!dir.exists())
       dir.mkpath(arqiverDir_);
   }
-  QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmss")
+  QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz")
                                             : parentDir + "/")
                      + realPath.section("/",-1);
   QFile file(fileName);
