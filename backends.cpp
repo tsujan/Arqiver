@@ -131,7 +131,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
            || mt == "application/x-xz"
            || mt == "application/zstd"
            || mt == "application/x-ace"
-           || mt == "application/x-bzip" || mt == "application/x-bzpdf") {
+           || mt == "application/x-bzip" || mt == "application/x-bzpdf" || mt == "application/x-xzpdf") {
     is7z_ = true; isGzip_ = false;
   }
   else if (mt == "application/x-raw-disk-image") {
@@ -821,8 +821,11 @@ void Backend::parseLines(QStringList& lines) {
           file = lines.at(i).right(lineSize - nameIndex);
           if (info.size() == 2) { // only Attr and name (as with "application/x-bzip" )
             archiveSingleRoot_ = file.section('/', 0, 0);
-            QString size;
-            if (i < lines.length() - 2) {
+            QString size, cSize;
+            if (i < lines.length() - 2
+                && lines.at(i+1).startsWith("---") // next line is end of table
+                && attrIndex + 5 < lines.at(i+2).size()
+                && lines.at(i+2).left(attrIndex + 6).simplified().isEmpty()) { // no Attr and nothing before it
 #if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
               QStringList infoNext = lines.at(i+2).split(" ",Qt::SkipEmptyParts);
 #else
@@ -830,11 +833,12 @@ void Backend::parseLines(QStringList& lines) {
 #endif
               if (!infoNext.isEmpty())
                 size = infoNext.at(0);
+              if (infoNext.size() > 2 && !lines.at(i+2).at(cSizeIndex - 1).isSpace())
+                cSize = infoNext.at(1);
             }
-            contents_.insert(file,
-                             QStringList() << attrStr
-                                           << (size.isEmpty() ? QString::number(0) : size)
-                                           << QString::number(0));
+            if (size.isEmpty()) size = QString::number(0);
+            if (cSize.isEmpty()) cSize = QString::number(0);
+            contents_.insert(file, QStringList() << attrStr << size << cSize);
             return;
           }
           else {

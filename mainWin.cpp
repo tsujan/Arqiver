@@ -529,6 +529,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-bzpdf", tr("READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)"));
     supported.insert ("application/x-xz-compressed-tar", tr("XZ Compressed Archive (*.tar.xz *.txz)"));
     supported.insert ("application/x-xz", tr("READ-ONLY: XZ archive (*.xz)"));
+    supported.insert ("application/x-xzpdf", tr("READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)"));
     supported.insert ("application/x-lzma-compressed-tar", tr("LMZA Compressed Archive (*.tar.lzma *.tlz)"));
     supported.insert ("application/x-zstd-compressed-tar", tr("Zstandard Compressed Archive (*.tar.zst *.tzst)"));
     supported.insert ("application/zstd", tr("READ-ONLY: Zstandard archive (*.zst)"));
