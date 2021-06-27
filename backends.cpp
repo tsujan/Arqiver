@@ -128,7 +128,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
            || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar"
            || mt == "application/x-cd-image" || mt == "application/x-xz"
-           || mt == "application/x-ace") {
+           || mt == "application/x-ace" || mt == "application/x-bzip") {
     is7z_ = true; isGzip_ = false;
   }
   else if (mt == "application/x-raw-disk-image") {
@@ -795,9 +795,9 @@ void Backend::parseLines(QStringList& lines) {
 #else
         QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
 #endif
-        if (info.size() < 3) continue; // invalid line
+        if (info.size() < 2) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
-        if (info.at(2) == "Attr" && info.size() >= 6) { // header
+        if (info.size() >= 6 && info.at(2) == "Attr") { // header
           attrIndex = lines.at(i).indexOf(info.at(2));
           cSizeIndex = lines.at(i).indexOf(info.at(4)) + info.at(4).size();
           nameIndex = lines.at(i).indexOf(info.at(5));
@@ -816,15 +816,41 @@ void Backend::parseLines(QStringList& lines) {
         if (info.size() < 5) {
           if (!info.at(0).contains(".")) continue; // should start with Attr (no Date and Time)
           file = lines.at(i).right(lineSize - nameIndex);
-          contents_.insert(file, QStringList() << attrStr << info.at(1) << (hasCSize ? info.at(2) : QString::number(0)));
+          if (info.size() == 2) { // only Attr and name (as with "application/x-bzip" )
+            archiveSingleRoot_ = file.section('/', 0, 0);
+            QString size;
+            if (i < lines.length() - 2) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+              QStringList infoNext = lines.at(i+2).split(" ",Qt::SkipEmptyParts);
+#else
+              QStringList infoNext = lines.at(i+2).split(" ",QString::SkipEmptyParts);
+#endif
+              if (!infoNext.isEmpty())
+                size = infoNext.at(0);
+            }
+            contents_.insert(file,
+                             QStringList() << attrStr
+                                           << (size.isEmpty() ? QString::number(0) : size)
+                                           << QString::number(0));
+            return;
+          }
+          else {
+            contents_.insert(file,
+                             QStringList() << attrStr << info.at(1)
+                                           << (hasCSize ? info.at(2) : QString::number(0)));
+          }
         }
         else {
           file = lines.at(i).right(lineSize - nameIndex);
           if (info.at(0).contains(".")) { // starts with Attr (no Date and Time)
-            contents_.insert(file, QStringList() << attrStr << info.at(1) << (hasCSize ? info.at(2) : QString::number(0)));
+            contents_.insert(file,
+                             QStringList() << attrStr << info.at(1)
+                                           << (hasCSize ? info.at(2) : QString::number(0)));
           }
           else {
-            contents_.insert(file, QStringList() << attrStr << info.at(3) << (hasCSize ? info.at(4) : QString::number(0)));
+            contents_.insert(file,
+                             QStringList() << attrStr << info.at(3)
+                                           << (hasCSize ? info.at(4) : QString::number(0)));
           }
         }
         if (!file.isEmpty()) {

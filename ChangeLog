@@ -8,7 +8,7 @@ V0.8.0
  * Select/deselect the current item with Ctrl+Space and also select it when the first Space is typed.
  * Don't select items by pressing the left mouse button and moving the cursor.
  * Don't drag items while the middle mouse button is pressed.
- * Added "application/x-xz" to and removed "application/x-bzip" from the supported extractions.
+ * Added "application/x-xz" to the supported extractions by using 7z.
  * Added a workaround for Qt's problem with scrolling to deep nonexpanded tree items.
  * Always expand the first header column to fill the available width.
  * Added cmake support (in addition to qmake).

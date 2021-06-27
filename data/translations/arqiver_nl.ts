@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="986"/>
-        <location filename="../../backends.cpp" line="1017"/>
-        <location filename="../../backends.cpp" line="1060"/>
+        <location filename="../../backends.cpp" line="1012"/>
+        <location filename="../../backends.cpp" line="1043"/>
+        <location filename="../../backends.cpp" line="1086"/>
         <source>Could not read archive</source>
         <translation>Kan archief niet uitlezen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1020"/>
-        <location filename="../../backends.cpp" line="1065"/>
+        <location filename="../../backends.cpp" line="1046"/>
+        <location filename="../../backends.cpp" line="1091"/>
         <source>Archive Loaded</source>
         <translation>Archief geladen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1027"/>
-        <location filename="../../backends.cpp" line="1113"/>
+        <location filename="../../backends.cpp" line="1053"/>
+        <location filename="../../backends.cpp" line="1139"/>
         <source>Modification Finished</source>
         <translation>Bewerking voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1048"/>
-        <location filename="../../backends.cpp" line="1082"/>
+        <location filename="../../backends.cpp" line="1074"/>
+        <location filename="../../backends.cpp" line="1108"/>
         <source>Extraction Finished</source>
         <translation>Uitpakken voltooid</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1051"/>
-        <location filename="../../backends.cpp" line="1101"/>
+        <location filename="../../backends.cpp" line="1077"/>
+        <location filename="../../backends.cpp" line="1127"/>
         <source>Extraction Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1210"/>
+        <location filename="../../backends.cpp" line="1236"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 is niet geïnstalleerd.
@@ -378,9 +378,14 @@ binary does not belong to libarchive.</source>
         <translation>7-Zip-archief (*.7z)</translation>
     </message>
     <message>
+        <location filename="../../mainWin.cpp" line="528"/>
+        <source>BZip2 Archive (*.bz2)</source>
+        <translation>BZip2-archief (*.bz2)</translation>
+    </message>
+    <message>
         <location filename="../../mainWin.cpp" line="530"/>
         <source>XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>XZ archief (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="540"/>
