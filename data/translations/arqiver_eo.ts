@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="1019"/>
-        <location filename="../../backends.cpp" line="1050"/>
-        <location filename="../../backends.cpp" line="1093"/>
+        <location filename="../../backends.cpp" line="1027"/>
+        <location filename="../../backends.cpp" line="1058"/>
+        <location filename="../../backends.cpp" line="1101"/>
         <source>Could not read archive</source>
         <translation>La arkivo ne legeblis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1053"/>
-        <location filename="../../backends.cpp" line="1098"/>
+        <location filename="../../backends.cpp" line="1061"/>
+        <location filename="../../backends.cpp" line="1106"/>
         <source>Archive Loaded</source>
         <translation>Arkivo Ŝargita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1060"/>
-        <location filename="../../backends.cpp" line="1146"/>
+        <location filename="../../backends.cpp" line="1068"/>
+        <location filename="../../backends.cpp" line="1154"/>
         <source>Modification Finished</source>
         <translation>Modifado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1081"/>
-        <location filename="../../backends.cpp" line="1115"/>
+        <location filename="../../backends.cpp" line="1089"/>
+        <location filename="../../backends.cpp" line="1123"/>
         <source>Extraction Finished</source>
         <translation>Ekstraktado Farita</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1084"/>
-        <location filename="../../backends.cpp" line="1134"/>
+        <location filename="../../backends.cpp" line="1092"/>
+        <location filename="../../backends.cpp" line="1142"/>
         <source>Extraction Failed</source>
         <translation>Ekstraktado Malsukcesis</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1243"/>
+        <location filename="../../backends.cpp" line="1251"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 mankas al via sistemo.
@@ -599,38 +599,38 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1236"/>
+        <location filename="../../mainWin.cpp" line="1246"/>
         <source>Link To: %1</source>
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1583"/>
+        <location filename="../../mainWin.cpp" line="1593"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1584"/>
+        <location filename="../../mainWin.cpp" line="1594"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1585"/>
+        <location filename="../../mainWin.cpp" line="1595"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1586"/>
+        <location filename="../../mainWin.cpp" line="1596"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1587"/>
-        <location filename="../../mainWin.cpp" line="1588"/>
+        <location filename="../../mainWin.cpp" line="1597"/>
+        <location filename="../../mainWin.cpp" line="1598"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1587"/>
+        <location filename="../../mainWin.cpp" line="1597"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>

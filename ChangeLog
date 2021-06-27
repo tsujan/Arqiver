@@ -14,6 +14,7 @@ V0.8.0
  * Added cmake support (in addition to qmake).
  * Allow dragging of all selected items, including probable directories.
  * Add milliseconds to the name of the cache folder that's used for temporary extraction because multiple archives may be loaded almost simultaneously.
+ * Show the compressed size prefixed by "≥" if the file size is missing.
 
 V0.7.0
 --------

@@ -1223,7 +1223,17 @@ void mainWin::updateTree() {
       it->setText(3, "0"); // to put it after directory items
       if (!BACKEND->isLink(thisFile)) {
         it->setText(1, mime);
-        it->setText(2, displaySize(BACKEND->size(thisFile)));
+
+        bool useCSize = false;
+        auto s = BACKEND->size(thisFile);
+        if (s == static_cast<double>(0)) {
+          auto cs = BACKEND->csize(thisFile);
+          if (cs > static_cast<double>(0)) {
+            useCSize = true;
+            s = cs;
+          }
+        }
+        it->setText(2, (useCSize ? "≥ " : QString()) + displaySize(s));
 
         if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile)) {
           it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()

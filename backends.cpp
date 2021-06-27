@@ -821,7 +821,7 @@ void Backend::parseLines(QStringList& lines) {
           file = lines.at(i).right(lineSize - nameIndex);
           if (info.size() == 2) { // only Attr and name (as with "application/x-bzip" )
             archiveSingleRoot_ = file.section('/', 0, 0);
-            QString size, cSize;
+            QString s, cs;
             if (i < lines.length() - 2
                 && lines.at(i+1).startsWith("---") // next line is end of table
                 && attrIndex + 5 < lines.at(i+2).size()
@@ -831,14 +831,22 @@ void Backend::parseLines(QStringList& lines) {
 #else
               QStringList infoNext = lines.at(i+2).split(" ",QString::SkipEmptyParts);
 #endif
-              if (!infoNext.isEmpty())
-                size = infoNext.at(0);
-              if (infoNext.size() > 2 && !lines.at(i+2).at(cSizeIndex - 1).isSpace())
-                cSize = infoNext.at(1);
+              // Format of infoNext: [Size(?), Compressed, Number(=1), "files"]
+              if (!infoNext.isEmpty()) {
+                if (cSizeIndex < lines.at(i+2).size() && !lines.at(i+2).at(cSizeIndex - 1).isSpace()) {
+                  if (infoNext.size() == 3) {
+                    cs = infoNext.at(0);
+                    s = QString::number(0); // size is missing
+                  }
+                  else if (infoNext.size() == 4)
+                    cs = infoNext.at(1);
+                }
+                if (s.isEmpty()) s = infoNext.at(0);
+              }
             }
-            if (size.isEmpty()) size = QString::number(0);
-            if (cSize.isEmpty()) cSize = QString::number(0);
-            contents_.insert(file, QStringList() << attrStr << size << cSize);
+            if (s.isEmpty()) s = QString::number(0);
+            if (cs.isEmpty()) cs = QString::number(0);
+            contents_.insert(file, QStringList() << attrStr << s << cs);
             return;
           }
           else {
