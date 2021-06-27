@@ -127,8 +127,10 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   else if (mt == "application/x-7z-compressed"
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
            || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar"
-           || mt == "application/x-cd-image" || mt == "application/x-xz"
-           || mt == "application/x-ace" || mt == "application/x-bzip") {
+           || mt == "application/x-cd-image"
+           || mt == "application/x-xz"
+           || mt == "application/x-ace"
+           || mt == "application/x-bzip" || mt == "application/x-bzpdf") {
     is7z_ = true; isGzip_ = false;
   }
   else if (mt == "application/x-raw-disk-image") {
