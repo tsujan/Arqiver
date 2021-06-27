@@ -552,6 +552,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-ms-dos-executable", tr("READ-ONLY: MS Windows Executable (*.exe *.com)"));
     supported.insert ("application/x-msi", tr("READ-ONLY: MS Windows Installer Package (*.msi)"));
     supported.insert ("application/vnd.ms-cab-compressed", tr("READ-ONLY: MS Windows Cabinet Archive (*.cab)"));
+    supported.insert ("application/x-ace", tr("READ-ONLY: ACE archive (*.ace)"));
     supported.insert ("application/vnd.android.package-archive", tr("READ-ONLY: Android Package (*.apk)"));
     supported.insert ("application/vnd.rar", tr("READ-ONLY: RAR Archive (*.rar)"));
   }
@@ -562,7 +563,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.apk *.rar)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
