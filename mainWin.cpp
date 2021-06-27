@@ -1224,16 +1224,16 @@ void mainWin::updateTree() {
       if (!BACKEND->isLink(thisFile)) {
         it->setText(1, mime);
 
-        bool useCSize = false;
         auto s = BACKEND->size(thisFile);
-        if (s == static_cast<double>(0)) {
+        if (s <= static_cast<double>(0) && files.size() == 1) { // as with "application/x-bzip"
           auto cs = BACKEND->csize(thisFile);
-          if (cs > static_cast<double>(0)) {
-            useCSize = true;
-            s = cs;
-          }
+          if (cs > static_cast<double>(0))
+            it->setText(2, "≥ " + displaySize(cs));
+          else
+            it->setText(2, displaySize(s));
         }
-        it->setText(2, (useCSize ? "≥ " : QString()) + displaySize(s));
+        else
+          it->setText(2, displaySize(s));
 
         if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile)) {
           it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()

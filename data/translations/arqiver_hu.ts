@@ -12,38 +12,38 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="1027"/>
-        <location filename="../../backends.cpp" line="1058"/>
-        <location filename="../../backends.cpp" line="1101"/>
+        <location filename="../../backends.cpp" line="1026"/>
+        <location filename="../../backends.cpp" line="1057"/>
+        <location filename="../../backends.cpp" line="1100"/>
         <source>Could not read archive</source>
         <translation>Nem sikerült olvasni az archívumot</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1061"/>
-        <location filename="../../backends.cpp" line="1106"/>
+        <location filename="../../backends.cpp" line="1060"/>
+        <location filename="../../backends.cpp" line="1105"/>
         <source>Archive Loaded</source>
         <translation>Archívum betöltve</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1068"/>
-        <location filename="../../backends.cpp" line="1154"/>
+        <location filename="../../backends.cpp" line="1067"/>
+        <location filename="../../backends.cpp" line="1153"/>
         <source>Modification Finished</source>
         <translation>A módosítás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1089"/>
-        <location filename="../../backends.cpp" line="1123"/>
+        <location filename="../../backends.cpp" line="1088"/>
+        <location filename="../../backends.cpp" line="1122"/>
         <source>Extraction Finished</source>
         <translation>A kibontás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1092"/>
-        <location filename="../../backends.cpp" line="1142"/>
+        <location filename="../../backends.cpp" line="1091"/>
+        <location filename="../../backends.cpp" line="1141"/>
         <source>Extraction Failed</source>
         <translation>A kibontás sikertelen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1251"/>
+        <location filename="../../backends.cpp" line="1250"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 hiányzik a rendszeréből.

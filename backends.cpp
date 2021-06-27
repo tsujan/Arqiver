@@ -819,7 +819,9 @@ void Backend::parseLines(QStringList& lines) {
         if (info.size() < 5) {
           if (!info.at(0).contains(".")) continue; // should start with Attr (no Date and Time)
           file = lines.at(i).right(lineSize - nameIndex);
-          if (info.size() == 2) { // only Attr and name (as with "application/x-bzip" )
+          if (file.isEmpty()) continue;
+          if (info.size() == 2) { // only Attr and name (as with "application/x-bzip")
+            if (!contents_.isEmpty()) continue; // invalid line
             archiveSingleRoot_ = file.section('/', 0, 0);
             QString s, cs;
             if (i < lines.length() - 2
@@ -849,14 +851,13 @@ void Backend::parseLines(QStringList& lines) {
             contents_.insert(file, QStringList() << attrStr << s << cs);
             return;
           }
-          else {
-            contents_.insert(file,
-                             QStringList() << attrStr << info.at(1)
-                                           << (hasCSize ? info.at(2) : QString::number(0)));
-          }
+          contents_.insert(file,
+                           QStringList() << attrStr << info.at(1)
+                                         << (hasCSize ? info.at(2) : QString::number(0)));
         }
         else {
           file = lines.at(i).right(lineSize - nameIndex);
+          if (file.isEmpty()) continue;
           if (info.at(0).contains(".")) { // starts with Attr (no Date and Time)
             contents_.insert(file,
                              QStringList() << attrStr << info.at(1)
@@ -868,17 +869,15 @@ void Backend::parseLines(QStringList& lines) {
                                            << (hasCSize ? info.at(4) : QString::number(0)));
           }
         }
-        if (!file.isEmpty()) {
-          if (hasSingleRoot) {
-            if (archiveSingleRoot_.isEmpty()) {
-              archiveSingleRoot_ = file.section('/', 0, 0);
-              if (archiveSingleRoot_.isEmpty())
-                hasSingleRoot = false;
-            }
-            else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
+        if (hasSingleRoot) {
+          if (archiveSingleRoot_.isEmpty()) {
+            archiveSingleRoot_ = file.section('/', 0, 0);
+            if (archiveSingleRoot_.isEmpty())
               hasSingleRoot = false;
-              archiveSingleRoot_ = QString();
-            }
+          }
+          else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
+            hasSingleRoot = false;
+            archiveSingleRoot_ = QString();
           }
         }
       }
