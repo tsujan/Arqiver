@@ -1480,7 +1480,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
     ui->actionExtractSel->setEnabled(hasSelection);
     ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
     ui->actionAddDir->setEnabled(canmodify_ && !BACKEND->isGzip());
-    ui->actionPassword->setEnabled(BACKEND->is7z());
+    ui->actionPassword->setEnabled(BACKEND->is7z() && canmodify_);
   }
 
   if (!(updateTree_ && success) // otherwise, the cursor will be restored in updateTree()
