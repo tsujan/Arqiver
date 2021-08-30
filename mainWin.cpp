@@ -335,11 +335,11 @@ void mainWin::hideChildlessDir(QTreeWidgetItem *item) {
     if (child->isHidden()) continue;
     hideChildlessDir(child);
     if (!child->isHidden()) {
-      child->setHidden(false);
+      item->setHidden(false);
       return;
     }
   }
-  item->setHidden(true);
+  item->setHidden(!item->text(0).contains(ui->lineEdit->text(), Qt::CaseInsensitive));
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {

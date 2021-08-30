@@ -1,3 +1,7 @@
+V0.8.1
+--------
+ * Show childless directories whose names contain the filtering string.
+
 V0.8.0
 --------
  * Added a workaround for a problem in QCollator.
