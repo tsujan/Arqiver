@@ -1,6 +1,7 @@
-V0.8.1
+V0.9.0
 --------
  * Show childless directories whose names contain the filtering string.
+ * Fixed viewing/single-extracting of files with regex characters in their names with bsdtar (by escaping the string that comes after "--include" because it's a file path in the archive).
 
 V0.8.0
 --------

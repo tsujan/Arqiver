@@ -432,7 +432,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
         for (int i = 0; i < N; i++) {
           if (filesList[N - 1 - i].simplified().isEmpty())
             continue;
-          args << "--include" << filesList[N - 1 - i]
+          args << "--include" << QRegularExpression::escape(filesList[N - 1 - i])
                << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
         }
     }
@@ -630,7 +630,7 @@ void Backend::startViewFile(const QString& path) {
     }
     else {
       cmnd = tarCmnd_;
-      args << "-x" << fileArgs_ << "--include" << realPath <<"--to-stdout";
+      args << "-x" << fileArgs_ << "--include" << QRegularExpression::escape(realPath) <<"--to-stdout";
     }
     emit processStarting();
     tmpProc_.setStandardOutputFile(fileName);
@@ -746,7 +746,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
     realPaths.sort();
     int N = realPaths.length();
     for (int i = 0; i < N; i++)
-      args << "--include" << realPaths[N - 1 - i];
+      args << "--include" << QRegularExpression::escape(realPaths[N - 1 - i]);
 
     args << "-C" << arqiverDir_;
     emit processStarting();
