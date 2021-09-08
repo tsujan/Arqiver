@@ -129,28 +129,47 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
   if (event->spontaneous()
       && event->source() == Qt::MouseEventNotSynthesized
       && event->angleDelta().x() == 0) { // vertical scrolling
-    if (QScrollBar* vbar = verticalScrollBar()) {
+    QScrollBar *vbar = verticalScrollBar();
+    if (vbar && vbar->isVisible()) {
       /* keep track of the wheel event for smooth scrolling */
       int delta = event->angleDelta().y();
-      if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
-        delta /= QApplication::wheelScrollLines(); // row-by-row scrolling
-      }
       if ((delta > 0 && vbar->value() == vbar->minimum())
           || (delta < 0 && vbar->value() == vbar->maximum())) {
         return; // the scrollbar can't move
       }
+      if (QApplication::wheelScrollLines() > 1) {
+        if ((QApplication::keyboardModifiers() & Qt::ShiftModifier)
+            || qAbs(delta) < 120) { // touchpad
+          if (qAbs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
+            delta /= QApplication::wheelScrollLines(); // row-by-row scrolling
+        }
+        else if (QApplication::wheelScrollLines() > 2
+                 && iconSize().height() >= 48
+                 && qAbs(delta * 2) >= scrollAnimFrames * QApplication::wheelScrollLines()) {
+          /* 2 rows per wheel turn with large icons */
+          delta = delta * 2 / QApplication::wheelScrollLines();
+        }
+      }
+
+      /* wait until the angle delta reaches an acceptable value */
+      static int _delta = 0;
+      _delta += delta;
+      if (abs(_delta) < scrollAnimFrames)
+        return;
 
       if (smoothScrollTimer_ == nullptr) {
-          smoothScrollTimer_ = new QTimer();
-          connect(smoothScrollTimer_, &QTimer::timeout, this, &TreeWidget::scrollSmoothly);
+        smoothScrollTimer_ = new QTimer();
+        connect(smoothScrollTimer_, &QTimer::timeout, this, &TreeWidget::scrollSmoothly);
       }
 
       /* set the data for smooth scrolling */
       scrollData data;
-      data.delta = delta;
+      data.delta = _delta;
       data.leftFrames = scrollAnimFrames;
       queuedScrollSteps_.append(data);
-      smoothScrollTimer_->start(1000 / SCROLL_FRAMES_PER_SEC);
+      if (!smoothScrollTimer_->isActive())
+        smoothScrollTimer_->start(1000 / SCROLL_FRAMES_PER_SEC);
+      _delta = 0;
       return;
     }
   }
@@ -159,14 +178,19 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
 }
 /*************************/
 void TreeWidget::scrollSmoothly() {
-  if (!verticalScrollBar()) // impossible
+  if (!verticalScrollBar() || !verticalScrollBar()->isVisible()) {
+    queuedScrollSteps_.clear();
+    smoothScrollTimer_->stop();
     return;
+  }
 
   int totalDelta = 0;
   QList<scrollData>::iterator it = queuedScrollSteps_.begin();
   while (it != queuedScrollSteps_.end()) {
     int delta = qRound(static_cast<qreal>(it->delta) / static_cast<qreal>(scrollAnimFrames));
     int remainingDelta = it->delta - (scrollAnimFrames - it->leftFrames) * delta;
+    if ((delta >= 0 && remainingDelta < 0) || (delta < 0 && remainingDelta >= 0))
+      remainingDelta = 0;
     if (qAbs(delta) >= qAbs(remainingDelta)) {
       /* this is the last frame or, due to rounding, there can be no more frame */
       totalDelta += remainingDelta;
@@ -199,9 +223,8 @@ void TreeWidget::scrollSmoothly() {
     QApplication::sendEvent(verticalScrollBar(), &e);
   }
 
-  if (queuedScrollSteps_.empty()) {
-      smoothScrollTimer_->stop();
-  }
+  if (queuedScrollSteps_.empty())
+    smoothScrollTimer_->stop();
 }
 
 }
