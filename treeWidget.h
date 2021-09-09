@@ -71,6 +71,7 @@ private:
   struct scrollData {
     int delta;
     int leftFrames;
+    bool vertical;
   };
   QList<scrollData> queuedScrollSteps_;
   QTimer *smoothScrollTimer_;

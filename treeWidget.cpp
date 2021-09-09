@@ -126,19 +126,23 @@ void TreeWidget::keyPressEvent(QKeyEvent *event) {
 /*************************/
 void TreeWidget::wheelEvent(QWheelEvent *event) {
   /* smooth scrolling */
+  QPoint deltaPoint = event->angleDelta();
+  bool horizontal(qAbs(deltaPoint.x()) > qAbs(deltaPoint.y()));
   if (event->spontaneous()
-      && event->source() == Qt::MouseEventNotSynthesized
-      && event->angleDelta().x() == 0) { // vertical scrolling
-    QScrollBar *vbar = verticalScrollBar();
-    if (vbar && vbar->isVisible()) {
+      && event->source() == Qt::MouseEventNotSynthesized) {
+    QScrollBar *sbar = horizontal ? horizontalScrollBar()
+                                  : verticalScrollBar();
+    if (sbar && sbar->isVisible()) {
       /* keep track of the wheel event for smooth scrolling */
-      int delta = event->angleDelta().y();
-      if ((delta > 0 && vbar->value() == vbar->minimum())
-          || (delta < 0 && vbar->value() == vbar->maximum())) {
+      int delta = horizontal ? deltaPoint.x() : deltaPoint.y();
+      if ((delta > 0 && sbar->value() == sbar->minimum())
+          || (delta < 0 && sbar->value() == sbar->maximum())) {
         return; // the scrollbar can't move
       }
+
       if (QApplication::wheelScrollLines() > 1) {
-        if ((QApplication::keyboardModifiers() & Qt::ShiftModifier)
+        if (horizontal
+            || (QApplication::keyboardModifiers() & Qt::ShiftModifier)
             || qAbs(delta) < 120) { // touchpad
           if (qAbs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
             delta /= QApplication::wheelScrollLines(); // row-by-row scrolling
@@ -166,6 +170,7 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
       scrollData data;
       data.delta = _delta;
       data.leftFrames = scrollAnimFrames;
+      data.vertical = !horizontal;
       queuedScrollSteps_.append(data);
       if (!smoothScrollTimer_->isActive())
         smoothScrollTimer_->start(1000 / SCROLL_FRAMES_PER_SEC);
@@ -178,13 +183,7 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
 }
 /*************************/
 void TreeWidget::scrollSmoothly() {
-  if (!verticalScrollBar() || !verticalScrollBar()->isVisible()) {
-    queuedScrollSteps_.clear();
-    smoothScrollTimer_->stop();
-    return;
-  }
-
-  int totalDelta = 0;
+  int totalDeltaH = 0, totalDeltaV = 0;
   QList<scrollData>::iterator it = queuedScrollSteps_.begin();
   while (it != queuedScrollSteps_.end()) {
     int delta = qRound(static_cast<qreal>(it->delta) / static_cast<qreal>(scrollAnimFrames));
@@ -193,34 +192,49 @@ void TreeWidget::scrollSmoothly() {
       remainingDelta = 0;
     if (qAbs(delta) >= qAbs(remainingDelta)) {
       /* this is the last frame or, due to rounding, there can be no more frame */
-      totalDelta += remainingDelta;
+      if (it->vertical)
+        totalDeltaV += remainingDelta;
+      else
+        totalDeltaH += remainingDelta;
       it = queuedScrollSteps_.erase(it);
     }
     else {
-      totalDelta += delta;
+      if (it->vertical)
+        totalDeltaV += delta;
+      else
+        totalDeltaH += delta;
       -- it->leftFrames;
       ++it;
     }
   }
-  if (totalDelta != 0) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-    QWheelEvent e(QPointF(),
-                  QPointF(),
-                  QPoint(),
-                  QPoint(0, totalDelta),
-                  Qt::NoButton,
-                  Qt::NoModifier,
-                  Qt::NoScrollPhase,
-                  false);
-#else
-    QWheelEvent e(QPointF(),
-                  QPointF(),
-                  totalDelta,
-                  Qt::NoButton,
-                  Qt::NoModifier,
-                  Qt::Vertical);
-#endif
-    QApplication::sendEvent(verticalScrollBar(), &e);
+
+  if (totalDeltaH != 0) {
+    QScrollBar *hbar = horizontalScrollBar();
+    if (hbar && hbar->isVisible()) {
+      QWheelEvent e(QPointF(),
+                    QPointF(),
+                    QPoint(),
+                    QPoint(totalDeltaH, 0),
+                    Qt::NoButton,
+                    Qt::NoModifier,
+                    Qt::NoScrollPhase,
+                    false);
+      QApplication::sendEvent(hbar, &e);
+    }
+  }
+  if (totalDeltaV != 0) {
+    QScrollBar *vbar = verticalScrollBar();
+    if (vbar && vbar->isVisible()) {
+      QWheelEvent e(QPointF(),
+                    QPointF(),
+                    QPoint(),
+                    QPoint(0, totalDeltaV),
+                    Qt::NoButton,
+                    Qt::NoModifier,
+                    Qt::NoScrollPhase,
+                    false);
+      QApplication::sendEvent(vbar, &e);
+    }
   }
 
   if (queuedScrollSteps_.empty())

@@ -2,7 +2,7 @@ V0.9.0
 --------
  * Show childless directories whose names contain the filtering string.
  * Fixed viewing of files that have wildcard characters in their names with bsdtar (by escaping some wildcard characters that come after "--include").
- * Better smooth scrolling from inside the view with touchpad
+ * Better smooth scrolling from inside the view with (especially with touchpad).
 
 V0.8.0
 --------
