@@ -142,10 +142,10 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
 
       if (QApplication::wheelScrollLines() > 1) {
         if (horizontal
-            || (QApplication::keyboardModifiers() & Qt::ShiftModifier)
+            || (event->modifiers() & Qt::ShiftModifier)
             || qAbs(delta) < 120) { // touchpad
           if (qAbs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
-            delta /= QApplication::wheelScrollLines(); // row-by-row scrolling
+            delta /= QApplication::wheelScrollLines(); // scrolling with minimum speed
         }
         else if (QApplication::wheelScrollLines() > 2
                  && iconSize().height() >= 48
@@ -211,29 +211,29 @@ void TreeWidget::scrollSmoothly() {
   if (totalDeltaH != 0) {
     QScrollBar *hbar = horizontalScrollBar();
     if (hbar && hbar->isVisible()) {
-      QWheelEvent e(QPointF(),
-                    QPointF(),
-                    QPoint(),
-                    QPoint(totalDeltaH, 0),
-                    Qt::NoButton,
-                    Qt::NoModifier,
-                    Qt::NoScrollPhase,
-                    false);
-      QApplication::sendEvent(hbar, &e);
+      QWheelEvent eventH(QPointF(),
+                         QPointF(),
+                         QPoint(),
+                         QPoint(0, totalDeltaH),
+                         Qt::NoButton,
+                         Qt::NoModifier,
+                         Qt::NoScrollPhase,
+                         false);
+      QApplication::sendEvent(hbar, &eventH);
     }
   }
   if (totalDeltaV != 0) {
     QScrollBar *vbar = verticalScrollBar();
     if (vbar && vbar->isVisible()) {
-      QWheelEvent e(QPointF(),
-                    QPointF(),
-                    QPoint(),
-                    QPoint(0, totalDeltaV),
-                    Qt::NoButton,
-                    Qt::NoModifier,
-                    Qt::NoScrollPhase,
-                    false);
-      QApplication::sendEvent(vbar, &e);
+      QWheelEvent eventV(QPointF(),
+                         QPointF(),
+                         QPoint(),
+                         QPoint(0, totalDeltaV),
+                         Qt::NoButton,
+                         Qt::NoModifier,
+                         Qt::NoScrollPhase,
+                         false);
+      QApplication::sendEvent(vbar, &eventV);
     }
   }
 
