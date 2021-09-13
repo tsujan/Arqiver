@@ -126,10 +126,10 @@ void TreeWidget::keyPressEvent(QKeyEvent *event) {
 /*************************/
 void TreeWidget::wheelEvent(QWheelEvent *event) {
   /* smooth scrolling */
-  QPoint deltaPoint = event->angleDelta();
-  bool horizontal(qAbs(deltaPoint.x()) > qAbs(deltaPoint.y()));
   if (event->spontaneous()
       && event->source() == Qt::MouseEventNotSynthesized) {
+    QPoint deltaPoint = event->angleDelta();
+    bool horizontal(qAbs(deltaPoint.x()) > qAbs(deltaPoint.y()));
     QScrollBar *sbar = horizontal ? horizontalScrollBar()
                                   : verticalScrollBar();
     if (sbar && sbar->isVisible()) {
