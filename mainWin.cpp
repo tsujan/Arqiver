@@ -555,6 +555,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-ace", tr("READ-ONLY: ACE archive (*.ace)"));
     supported.insert ("application/vnd.android.package-archive", tr("READ-ONLY: Android Package (*.apk)"));
     supported.insert ("application/vnd.rar", tr("READ-ONLY: RAR Archive (*.rar)"));
+    supported.insert ("application/vnd.appimage", tr("READ-ONLY: AppImage application bundle (*.appimage)"));
   }
   return supported;
 }
@@ -563,7 +564,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar *.appimage)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();

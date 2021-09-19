@@ -127,7 +127,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   else if (mt == "application/x-7z-compressed"
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
            || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar"
-           || mt == "application/x-cd-image"
+           || mt == "application/x-cd-image" || mt == "application/vnd.appimage"
            || mt == "application/x-xz"
            || mt == "application/zstd"
            || mt == "application/x-ace"
