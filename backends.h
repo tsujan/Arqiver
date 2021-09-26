@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2020 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2021 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -53,7 +53,7 @@ public:
   void startExtract(const QString& path, const QString& file = QString(), bool overwrite = true, bool preservePaths = true);
   void startExtract(const QString& path, const QStringList& files, bool overwrite = true, bool preservePaths = true);
 
-  void startViewFile(const QString& path);
+  bool startViewFile(const QString& path);
   void extractTempFiles(const QStringList& paths);
 
   void setTarCommand(const QString& cmnd);
@@ -72,6 +72,10 @@ public:
   }
   void setPswrd(const QString& pswrd) {
     pswrd_ = pswrd;
+  }
+
+  bool hasList() const {
+    return !contents_.isEmpty();
   }
 
   bool hasEncryptedList() const {

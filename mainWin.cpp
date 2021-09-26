@@ -1032,8 +1032,12 @@ void mainWin::extractFiles() {
 void mainWin::autoextractFiles() {
   QString dir = BACKEND->currentFile().section("/",0,-2);
   if (dir.isEmpty()) return;
-  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty() && !pswrdDialog())
+  if (BACKEND->isEncrypted() && BACKEND->getPswrd().isEmpty()
+      && (!BACKEND->hasEncryptedList()
+          || BACKEND->hasList()) // pswrdDialog() has already been called by openEncryptedList()
+      && !pswrdDialog()) {
     return;
+  }
   updateTree_ = false;
   reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
@@ -1131,7 +1135,14 @@ void mainWin::viewFile(QTreeWidgetItem *it) {
   updateTree_ = false;
   reapplyFilter_ = false;
   textLabel_->setText(tr("Extracting..."));
-  BACKEND->startViewFile(it->whatsThis(0));
+  if (!BACKEND->startViewFile(it->whatsThis(0))) {
+    /* The password was nonempty and wrong. Try again after returning! */
+    QTimer::singleShot(0, this, [this]() {
+      QTreeWidgetItem *cur = ui->tree_contents->currentItem();
+      if (cur && ui->tree_contents->selectedItems().contains(cur))
+        viewFile(cur);
+    });
+  }
 }
 
 void mainWin::onEnterPressed(QTreeWidgetItem *it) {

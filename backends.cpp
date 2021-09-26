@@ -455,7 +455,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     QString archiveSingleRoot = archiveSingleRoot_;
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder
-    if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives
+    if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives or when an encrypted list isn't known yet
       archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
                        .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
@@ -580,7 +580,8 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
   }
 }
 
-void Backend::startViewFile(const QString& path) {
+// Returns false only when a password is needed but it's nonempty and wrong.
+bool Backend::startViewFile(const QString& path) {
   /* the path may contain newlines, which have been escaped and are restored here */
   QString realPath(path);
   realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
@@ -626,14 +627,15 @@ void Backend::startViewFile(const QString& path) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
-      if (tmpProc_.exitCode() != 0)
+      bool res(tmpProc_.exitCode() == 0 || pswrd_.isEmpty());
+      if (!res)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit processFinished(tmpProc_.exitCode() == 0, QString());
       if (tmpProc_.exitCode() == 0) {
         if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
           QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
       }
-      return;
+      return res;
     }
     else {
       cmnd = tarCmnd_;
@@ -648,12 +650,13 @@ void Backend::startViewFile(const QString& path) {
     }
     emit processFinished(tmpProc_.exitCode() == 0, QString());
     if (tmpProc_.exitCode() != 0)
-      return;
+      return true;
   }
   else
     emit processFinished(true, QString());
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+  return true;
 }
 
 void Backend::extractTempFiles(const QStringList& paths) {
