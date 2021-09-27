@@ -360,7 +360,7 @@ void Backend::startRemove(const QStringList& paths) {
   skipExistingFiles(tmpfilepath_); // practically not required
   args.replaceInStrings(filepath_, tmpfilepath_);
   for (int i = 0; i < filePaths.length(); i++) {
-    args << "--exclude" << filePaths.at(i);
+    args << "--exclude" << escapedWildCard(filePaths.at(i));
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
