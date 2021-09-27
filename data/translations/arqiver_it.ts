@@ -476,7 +476,7 @@ l&apos;eseguibile non è incluso in libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>SOLO IN LETTURA: Bundle Appimage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
