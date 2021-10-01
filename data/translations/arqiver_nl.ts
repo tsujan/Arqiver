@@ -16,31 +16,31 @@
         <location filename="../../backends.cpp" line="1065"/>
         <location filename="../../backends.cpp" line="1108"/>
         <source>Could not read archive</source>
-        <translation>Kan archief niet uitlezen</translation>
+        <translation>Het archief kan niet worden uitgelezen</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1068"/>
         <location filename="../../backends.cpp" line="1113"/>
         <source>Archive Loaded</source>
-        <translation>Archief geladen</translation>
+        <translation>Het archief is geladen</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1075"/>
         <location filename="../../backends.cpp" line="1161"/>
         <source>Modification Finished</source>
-        <translation>Bewerking voltooid</translation>
+        <translation>De bewerking is voltooid</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1096"/>
         <location filename="../../backends.cpp" line="1130"/>
         <source>Extraction Finished</source>
-        <translation>Uitpakken voltooid</translation>
+        <translation>Het uitpakken is voltooid</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1099"/>
         <location filename="../../backends.cpp" line="1149"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Het uitpakken is mislukt</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1258"/>
@@ -56,7 +56,8 @@ Installeer het om dit soort archieven te kunnen beheren!</translation>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je kunt typen in de weergave en
+tekst wissen met de escapetoets.</translation>
     </message>
 </context>
 <context>
@@ -64,32 +65,32 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation>Voorkeuren</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation>Opstarten met deze afmetingen:</translation>
+        <translation>Standaardafmetingen:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Om bevestiging vragen bij verwijderen van meerdere items</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Eerste kolom aanpassen aan beschikbare breedte</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel uit om alleen mappen op het bovenste niveau uit te klappen.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle mappen uitklappen na openen van een archief</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -98,17 +99,20 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Laat leeg om de standaardwaarde te gebruiken.
+
+Waarschuwing: Arqiver werkt niet als het uitvoerbare
+bestand niet bij libarchive hoor.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive - uitvoerbaar bestand:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation>Ven&amp;sterafmetingen onthouden bij sluiten</translation>
+        <translation>Ven&amp;sterafmetingen bewaren na afsluiten</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
@@ -124,12 +128,12 @@ binary does not belong to libarchive.</source>
         <location filename="../../pref.cpp" line="226"/>
         <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>De applicatie moet worden herstart om de wijzigingen toe te passen.</translation>
+        <translation>Herstart Arqiver om de wijzigingen toe te passen.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies het libarchive-bestand</translation>
     </message>
 </context>
 <context>
@@ -142,7 +146,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestanden filteren…</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -232,7 +236,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="255"/>
         <source>E&amp;xpand</source>
-        <translation>U&amp;itvouwen</translation>
+        <translation>U&amp;itklappen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="258"/>
@@ -257,22 +261,22 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="276"/>
         <source>&amp;Copy Current Path</source>
-        <translation>Huidig pad &amp;kopiëren</translation>
+        <translation>Huidige lo&amp;catie kopiëren</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="281"/>
         <source>&amp;Preferences</source>
-        <translation>&amp;Voorkeuren</translation>
+        <translation>&amp;Instellingen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="286"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Proces afbreken</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="289"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="89"/>
@@ -282,7 +286,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation>Foutmelding</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
@@ -292,7 +296,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>MimeType</source>
-        <translation>MimeType</translation>
+        <translation>Mimetype</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
@@ -304,7 +308,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="686"/>
         <location filename="../../mainWin.cpp" line="727"/>
         <source>Opening Archive...</source>
-        <translation>Bezig met openen van archief...</translation>
+        <translation>Bezig met openen van archief…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="490"/>
@@ -345,7 +349,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="506"/>
         <location filename="../../mainWin.cpp" line="534"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zstandard-archief met compressie (*.tar.zst *.tzst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="507"/>
@@ -380,27 +384,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: BZip2-archief (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: BZip2-PDF-document met compressie (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: XZ-archief (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: XZ-PDF-document met compressie (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: Zstandard-archief (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
@@ -416,7 +420,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="545"/>
         <location filename="../../mainWin.cpp" line="546"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>ALLEEN-LEZEN: ISO-schijfafbeelding (*.iso *.img)</translation>
+        <translation>ALLEEN-LEZEN: ISO-schijfkopie (*.iso *.img)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="547"/>
@@ -426,7 +430,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="548"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>ALLEEN-LEZEN: Java-acrhief (*.jar)</translation>
+        <translation>ALLEEN-LEZEN: Java-archief (*.jar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="549"/>
@@ -442,37 +446,37 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="552"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: MS Windows uitvoerbaar bestand (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: MS Windows-installatiepakket (*.msi)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="554"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: MS Windows-cabinetarchief (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: ACE-archief (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: Android-pakket (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="557"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: RAR-archief (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>ALLEEN-LEZEN: AppImage-programmabundel (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
@@ -487,7 +491,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="622"/>
         <source>Create Archive</source>
-        <translation>Archief creëren</translation>
+        <translation>Archief samenstellen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="648"/>
@@ -526,18 +530,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1065"/>
         <location filename="../../mainWin.cpp" line="1071"/>
         <source>Adding Items...</source>
-        <translation>Bezig met toevoegen van items...</translation>
+        <translation>Bezig met toevoegen van items…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="837"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Wil je de geselecteerde items verwijderen?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="854"/>
         <source>Removing Items...</source>
-        <translation>Bezig met verwijderen van items...</translation>
+        <translation>Bezig met verwijderen van items…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
@@ -545,28 +550,28 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1123"/>
         <location filename="../../mainWin.cpp" line="1137"/>
         <source>Extracting...</source>
-        <translation>Bezig met uitpakken...</translation>
+        <translation>Bezig met uitpakken…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Archieflocatie kopiëren</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Bijbehorende map openen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>
         <source>View Current Item</source>
-        <translation>Huidig item tonen</translation>
+        <translation>Huidig item bekijken</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="932"/>
         <location filename="../../mainWin.cpp" line="940"/>
         <source>Enter Password</source>
-        <translation>Voer wachtwoord in</translation>
+        <translation>Voer het wachtwoord in</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="944"/>
@@ -586,7 +591,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="950"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation>Dit wordt toegepast na het toevoegen van bestanden/mappen.</translation>
+        <translation>Dit wordt toegepast ná het toevoegen van bestanden/mappen.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1021"/>
@@ -599,12 +604,14 @@ binary does not belong to libarchive.</source>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Enkele bestanden worden overschreven.
+Weet je zeker dat je wilt doorgaan?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1259"/>
         <source>Link To: %1</source>
-        <translation>Link naar: %1</translation>
+        <translation>Link naar %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1606"/>
@@ -624,7 +631,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1609"/>
         <source>aka.</source>
-        <translation>ook bekend als</translation>
+        <translation>ook wel bekend als</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1610"/>
