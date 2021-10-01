@@ -80,17 +80,17 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Подогнать первый столбец к доступной ширине</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Если этот флажок не установлен, будут развернуты только каталоги верхнего уровня.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Разворачивать все каталоги при открытии архивов</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -281,7 +281,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="89"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Корень</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
@@ -384,27 +384,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив BZip2 (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: PDF документ с сжатием BZip2 (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив XZ (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: PDF документ с сжатием XZ (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив Zstandard (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
@@ -446,37 +446,37 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="552"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: исполняемый файл MS Windows (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: установочный пакет MS Windows (*.msi)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="554"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив MS Windows Cabinet (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив ACE (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: пакет Android (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="557"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: архив RAR (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>Только для чтения: пакет приложений AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
@@ -555,12 +555,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Скопировать путь к архиву</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть папку с архивом</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>

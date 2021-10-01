@@ -34,20 +34,20 @@
         <location filename="../../backends.cpp" line="1096"/>
         <location filename="../../backends.cpp" line="1130"/>
         <source>Extraction Finished</source>
-        <translation>Видобуток завершено</translation>
+        <translation>Видобування завершено</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1099"/>
         <location filename="../../backends.cpp" line="1149"/>
         <source>Extraction Failed</source>
-        <translation>Видобуток невдалий</translation>
+        <translation>Не вдалося видобути</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1258"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 відсутній у вашій системі.
-Будь ласка, встановіть його для цього типу архіву!</translation>
+Установіть його для цього типу архіву!</translation>
     </message>
 </context>
 <context>
@@ -57,7 +57,7 @@ Please install it for this kind of archive!</source>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
         <translation>Ви можете друкувати всередині основного вікна.
-Очищення тексту за допомогою клавіші Escape.</translation>
+Очищуйте тексту клавішею Escape.</translation>
     </message>
 </context>
 <context>
@@ -75,7 +75,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation>Запитувати при видаленні елементів</translation>
+        <translation>Запитувати при вилученні елементів</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
@@ -112,7 +112,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation>Пам&apos;ятати розмір вікна при закритті</translation>
+        <translation>Запам&apos;ятовувати &amp;розмір вікна при закритті</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
@@ -206,7 +206,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="227"/>
         <source>Remove File(s)</source>
-        <translation>Видалити файл(и)</translation>
+        <translation>Вилучити файл(и)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="232"/>
@@ -296,7 +296,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>MimeType</source>
-        <translation>MIME тип</translation>
+        <translation>Тип MIME</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
@@ -476,12 +476,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>ЛИШЕ-ЧИТАННЯ: пакунок додатків AppImage (*.appimage)</translation>
+        <translation>ЛИШЕ-ЧИТАННЯ: пакунок застосунків AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
         <source>All Known Types %1</source>
-        <translation>Всі відомі типи %1</translation>
+        <translation>Усі відомі типи %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
@@ -536,13 +536,13 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="837"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>Видалити вибрані елементи?
+        <translation>Вилучити вибрані елементи?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="854"/>
         <source>Removing Items...</source>
-        <translation>Видалення елементів...</translation>
+        <translation>Вилучення елементів...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
