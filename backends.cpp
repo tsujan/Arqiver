@@ -607,13 +607,8 @@ bool Backend::startViewFile(const QString& path) {
     fileExists = false;
   }
   if (!fileExists) {
-    QString cmnd;
     QStringList args;
-    if (isGzip_) {
-      cmnd = "gzip";
-      args << "-d" << "--to-stdout" << filepath_;
-    }
-    else if (is7z_) {
+    if (is7z_) {
       args << "-aou"; // the archive may contain files with identical names
       if (encrypted_)
         args << "-p" + pswrd_;
@@ -632,17 +627,31 @@ bool Backend::startViewFile(const QString& path) {
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit processFinished(tmpProc_.exitCode() == 0, QString());
       if (tmpProc_.exitCode() == 0) {
-        if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+        if (!QFileInfo::exists(fileName)) { // handle links
+          errorMsg(tr("This file is a link but its target does not exist."));
+        }
+        else if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
           QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
       }
       return res;
     }
-    else {
-      cmnd = tarCmnd_;
-      args << "-x" << fileArgs_ << "--include" << escapedWildCard(realPath) <<"--to-stdout";
+    QString cmnd;
+    if (isGzip_) {
+      cmnd = "gzip";
+      args << "-d" << "--to-stdout" << filepath_;
+      emit processStarting();
+      tmpProc_.setStandardOutputFile(fileName);
     }
-    emit processStarting();
-    tmpProc_.setStandardOutputFile(fileName);
+    else { // bsdtar
+      cmnd = tarCmnd_;
+      args << "-x" << "--no-same-owner" << "-k" << fileArgs_
+           << "--include" << escapedWildCard(realPath) << "-C" << arqiverDir_;
+      /* NOTE: The following arguments were also possible with "fileName" as the standard output
+               (as with Gzip) but symlinks couldn't be handled in that way. */
+      //args << "-x" << fileArgs_ << "--include" << escapedWildCard(realPath) << "--to-stdout";
+      emit processStarting();
+      tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+    }
     tmpProc_.start(cmnd, args);
     if (tmpProc_.waitForStarted()) {
       while (!tmpProc_.waitForFinished(500))
@@ -651,6 +660,10 @@ bool Backend::startViewFile(const QString& path) {
     emit processFinished(tmpProc_.exitCode() == 0, QString());
     if (tmpProc_.exitCode() != 0)
       return true;
+    if (!QFileInfo::exists(fileName)) { // handle links
+      errorMsg(tr("This file is a link but its target does not exist."));
+      return true;
+    }
   }
   else
     emit processFinished(true, QString());
