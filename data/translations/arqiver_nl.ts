@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit bestand is een snelkoppeling, maar het doel bestaat niet.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
