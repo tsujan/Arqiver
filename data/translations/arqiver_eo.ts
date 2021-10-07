@@ -277,7 +277,7 @@ duumaĵo ne apartenus al libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="286"/>
         <source>Stop &amp;Process</source>
-        <translation>&amp;Haltigu Procezon</translation>
+        <translation>Haltigi &amp;Procezon</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="289"/>
