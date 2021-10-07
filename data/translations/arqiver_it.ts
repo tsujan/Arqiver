@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo file è un collegamento a un altro file inesistente.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
