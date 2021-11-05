@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="128"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
 </context>
 <context>
@@ -15,44 +15,45 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento soubor je odkaz, ale jeho cíl neexistuje.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
         <location filename="../../backends.cpp" line="1078"/>
         <location filename="../../backends.cpp" line="1121"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv se nedaří číst</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1081"/>
         <location filename="../../backends.cpp" line="1126"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv načten</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1088"/>
         <location filename="../../backends.cpp" line="1174"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Změny dokončeny</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1109"/>
         <location filename="../../backends.cpp" line="1143"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalení dokončeno</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1112"/>
         <location filename="../../backends.cpp" line="1162"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalení se nezdařilo</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1271"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>Na vámi využívaném systému chybí %1.
+Nainstalujte ho, pokud chcete pracovat s tímto druhem archivu!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Můžete psát do hlavního zobrazení.
+Text odstraníte klávesou Esc.</translation>
     </message>
 </context>
 <context>
@@ -69,32 +71,32 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Předvolby</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit v této velikosti:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Při odebírání položek zobrazit výzvu k potvrzení</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Přizpůsobit první sloupec šířce, která je k dispozici</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud toto není zaškrtnuto, bude rozevřen seznam pouze po složky, nacházející se na nejvyšší úrovni stromu.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Při otevírání archivů rozevřít seznam pro všechny složky</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -103,38 +105,41 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud chcete použít výchozí, nevyplňujte.
+
+Varování: Arqiver nebude fungovat, pokud
+spustitelný soubor nenáleží k libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>spustitelný soubor s libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Při zavírání &amp;si zapamatovat velikost okna</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost ikon zobrazení:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="226"/>
         <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aby se změny projevily, je třeba aplikaci zrestartovat.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte spustitelný soubor s libarchive</translation>
     </message>
 </context>
 <context>
@@ -142,387 +147,388 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovat soubory…</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Soubor</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Upravit</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zobrazit</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="162"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nápověda</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="198"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otevřít archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="201"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="206"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nový archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="209"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="214"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukončit</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="217"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="222"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat soubor(y)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="227"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Odebrat soubor(y)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="232"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit vše</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="235"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="240"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat složku</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="245"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit označené</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="250"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit heslo</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="255"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rozevřít</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="258"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Šipka dolů</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="263"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sbalit</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="266"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Šipka nahoru</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="271"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>O &amp;aplikaci</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="276"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zkopírovat stávající popis umístění</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="281"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Předvolby</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="286"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit &amp;proces</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="289"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="89"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Kořen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MIME typ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="416"/>
         <location filename="../../mainWin.cpp" line="686"/>
         <location filename="../../mainWin.cpp" line="727"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevírání archivu…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="490"/>
         <source>All Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Veškeré typy %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="500"/>
         <location filename="../../mainWin.cpp" line="524"/>
         <source>Uncompressed Archive (*.tar)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekomprimovaný archiv (*.tar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="501"/>
         <location filename="../../mainWin.cpp" line="525"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv komprimovaný GZip (*.tar.gz *.tgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="503"/>
         <location filename="../../mainWin.cpp" line="527"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv komprimovaný BZip2 (*.tar.bz2 *.tbz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="504"/>
         <location filename="../../mainWin.cpp" line="533"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv komprimovaný LMZA (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="505"/>
         <location filename="../../mainWin.cpp" line="530"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv komprimovaný XZ (*.tar.xz *.txz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="506"/>
         <location filename="../../mainWin.cpp" line="534"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv komprimovaný Zstandard (*.tar.zst *.tzst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="507"/>
         <location filename="../../mainWin.cpp" line="536"/>
         <source>CPIO Archive (*.cpio)</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO archiv (*.cpio)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="509"/>
         <location filename="../../mainWin.cpp" line="538"/>
         <source>AR Archive (*.ar)</source>
-        <translation type="unfinished"></translation>
+        <translation>AR Archiv (*.ar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="511"/>
         <location filename="../../mainWin.cpp" line="540"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip archiv (*.zip)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="512"/>
         <location filename="../../mainWin.cpp" line="542"/>
         <source>Gzip Archive (*.gz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv Gzip (*.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="513"/>
         <location filename="../../mainWin.cpp" line="541"/>
         <source>7-Zip Archive (*.7z)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv 7-Zip (*.7z)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: Archiv BZip2 (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: BZip2 komprimovaný dokument PDF (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: Archiv XZ (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: XZ komprimovaný dokument PDF (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: Archiv Zstandard (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip komprimovaný dokument PDF (*.pdf.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="544"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE PRO ČTENÍ: Komprimovaný obrázek SVG (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="545"/>
         <location filename="../../mainWin.cpp" line="546"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Obrázek ISO (*.iso *.img)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="547"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Archiv XAR (*.xar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="548"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Archiv Java (*.jar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="549"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Balíček Debian (*.deb)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="550"/>
         <location filename="../../mainWin.cpp" line="551"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Balíček RedHat (*.rpm)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="552"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Spustitelný soubor MS Windows (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Balíček Instalační služby MS Windows (*.msi)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="554"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: kompresní algoritmus pro instalační balíčky MS Windows (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Archiv ACE (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Balíček Android (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="557"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Archiv RAR (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>JEN PRO ČTENÍ: Balíček aplikace AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
         <source>All Known Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny známé typy %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
         <source>Show All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit všechny soubory (*)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="622"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="648"/>
         <location filename="../../mainWin.cpp" line="836"/>
         <location filename="../../mainWin.cpp" line="1110"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>Následující archiv již existuje:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Chceš to vyměnit?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="742"/>
         <location filename="../../mainWin.cpp" line="749"/>
         <location filename="../../mainWin.cpp" line="785"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat do archivu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="780"/>
@@ -530,18 +536,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1065"/>
         <location filename="../../mainWin.cpp" line="1071"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidávání položek...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="837"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete vybrané položky smazat?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="854"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Odebírání položek...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
@@ -549,97 +556,99 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1123"/>
         <location filename="../../mainWin.cpp" line="1137"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrakce...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat cestu k archivu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít složku, ve které se nachází</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit aktuální položku</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="932"/>
         <location filename="../../mainWin.cpp" line="940"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte heslo</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="944"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Storno</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="945"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="949"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zašifrovat seznam souborů</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="950"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>To se projeví po přidání souborů/složek.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1021"/>
         <location filename="../../mainWin.cpp" line="1097"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahovat do adresáře</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1111"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Některé soubory budou přepsány.
+Chceš pokračovat?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1259"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz na: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1606"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Jednoduchý správce archivů</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1607"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>založeno na libarchive, gzip a 7z</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1608"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1609"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>alias</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1610"/>
         <location filename="../../mainWin.cpp" line="1611"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>O Arqiver</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1610"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Překladatelé</translation>
     </message>
 </context>
 </TS>
