@@ -379,64 +379,64 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <location filename="../../mainWin.cpp" line="512"/>
         <location filename="../../mainWin.cpp" line="542"/>
         <source>Gzip Archive (*.gz)</source>
-        <translation>Archiv Gzip (*.gz)</translation>
+        <translation>Gzip archiv (*.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="513"/>
         <location filename="../../mainWin.cpp" line="541"/>
         <source>7-Zip Archive (*.7z)</source>
-        <translation>Archiv 7-Zip (*.7z)</translation>
+        <translation>7-Zip archiv (*.7z)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>POUZE PRO ČTENÍ: Archiv BZip2 (*.bz2)</translation>
+        <translation>JEN PRO ČTENÍ: BZip2 archiv (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>POUZE PRO ČTENÍ: BZip2 komprimovaný dokument PDF (*.pdf.bz2)</translation>
+        <translation>JEN PRO ČTENÍ: BZip2 komprimovaný dokument PDF (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>POUZE PRO ČTENÍ: Archiv XZ (*.xz)</translation>
+        <translation>JEN PRO ČTENÍ: XZ archiv (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>POUZE PRO ČTENÍ: XZ komprimovaný dokument PDF (*.pdf.xz)</translation>
+        <translation>JEN PRO ČTENÍ: XZ komprimovaný PDF dokument (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>POUZE PRO ČTENÍ: Archiv Zstandard (*.zst)</translation>
+        <translation>JEN PRO ČTENÍ: Zstandard archiv (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation>Gzip komprimovaný dokument PDF (*.pdf.gz)</translation>
+        <translation>Gzip komprimovaný PDF dokument (*.pdf.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="544"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>POUZE PRO ČTENÍ: Komprimovaný obrázek SVG (*.svgz)</translation>
+        <translation>JEN PRO ČTENÍ: Komprimovaný SVG obrázek (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="545"/>
         <location filename="../../mainWin.cpp" line="546"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>JEN PRO ČTENÍ: Obrázek ISO (*.iso *.img)</translation>
+        <translation>JEN PRO ČTENÍ: ISO obraz (*.iso *.img)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="547"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>JEN PRO ČTENÍ: Archiv XAR (*.xar)</translation>
+        <translation>JEN PRO ČTENÍ: XAR archiv (*.xar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="548"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>JEN PRO ČTENÍ: Archiv Java (*.jar)</translation>
+        <translation>JEN PRO ČTENÍ: Java archiv (*.jar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="549"/>
@@ -467,7 +467,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>JEN PRO ČTENÍ: Archiv ACE (*.ace)</translation>
+        <translation>JEN PRO ČTENÍ: ACE archiv (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
@@ -477,12 +477,12 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="557"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation>JEN PRO ČTENÍ: Archiv RAR (*.rar)</translation>
+        <translation>JEN PRO ČTENÍ: RAR archiv (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>JEN PRO ČTENÍ: Balíček aplikace AppImage (*.appimage)</translation>
+        <translation>JEN PRO ČTENÍ: Balíček s aplikací ve formátu AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
@@ -509,13 +509,13 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <source>The following archive already exists:</source>
-        <translation>Následující archiv již existuje:</translation>
+        <translation>Následující archiv už existuje:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <source>Do you want to replace it?
 </source>
-        <translation>Chceš to vyměnit?
+        <translation>Chcete ho nahradit?
 </translation>
     </message>
     <message>
@@ -536,7 +536,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <location filename="../../mainWin.cpp" line="1065"/>
         <location filename="../../mainWin.cpp" line="1071"/>
         <source>Adding Items...</source>
-        <translation>Přidávání položek...</translation>
+        <translation>Přidávání položek…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="837"/>
@@ -548,7 +548,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="854"/>
         <source>Removing Items...</source>
-        <translation>Odebírání položek...</translation>
+        <translation>Odebírání položek…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
@@ -556,12 +556,12 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <location filename="../../mainWin.cpp" line="1123"/>
         <location filename="../../mainWin.cpp" line="1137"/>
         <source>Extracting...</source>
-        <translation>Extrakce...</translation>
+        <translation>Rozbalování…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation>Kopírovat cestu k archivu</translation>
+        <translation>Zkopírovat popis umístění archivu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
@@ -597,13 +597,13 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="950"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation>To se projeví po přidání souborů/složek.</translation>
+        <translation>Toto se projeví po přidání souborů/složek.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1021"/>
         <location filename="../../mainWin.cpp" line="1097"/>
         <source>Extract Into Directory</source>
-        <translation>Extrahovat do adresáře</translation>
+        <translation>Rozbalit do složky</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1111"/>
@@ -611,7 +611,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
 Do you want to continue?
 </source>
         <translation>Některé soubory budou přepsány.
-Chceš pokračovat?
+Chcete pokračovat?
 </translation>
     </message>
     <message>
@@ -622,7 +622,7 @@ Chceš pokračovat?
     <message>
         <location filename="../../mainWin.cpp" line="1606"/>
         <source>A simple Qt archive manager</source>
-        <translation>Jednoduchý správce archivů</translation>
+        <translation>Jednoduchý správce archivů, založený na Qt</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1607"/>

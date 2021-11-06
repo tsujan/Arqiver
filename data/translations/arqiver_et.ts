@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="128"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Litsents</translation>
     </message>
 </context>
 <context>
@@ -15,38 +15,38 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>See fail on tegelikult link, mille algset faili ei leidu.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
         <location filename="../../backends.cpp" line="1078"/>
         <location filename="../../backends.cpp" line="1121"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arhiivi lugemine ei õnnestu</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1081"/>
         <location filename="../../backends.cpp" line="1126"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Arhiiv on laaditud</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1088"/>
         <location filename="../../backends.cpp" line="1174"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisu on muudetud</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1109"/>
         <location filename="../../backends.cpp" line="1143"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisu on lahti pakitud</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1112"/>
         <location filename="../../backends.cpp" line="1162"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Lahtipakkimine ei õnnestunud</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1271"/>
@@ -69,7 +69,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Eelistused</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>

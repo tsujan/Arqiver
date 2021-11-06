@@ -420,7 +420,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="544"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>Только для чтения: изображение с сжатием SVG (*.svgz)</translation>
+        <translation>Только для чтения: изображение со сжатием SVG (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="545"/>
