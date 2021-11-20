@@ -76,7 +76,7 @@ Text odstraníte klávesou Esc.</translation>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation>Spustit v této velikosti:</translation>
+        <translation>Spustit s touto velikostí:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
@@ -571,7 +571,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>
         <source>View Current Item</source>
-        <translation>Zobrazit aktuální položku</translation>
+        <translation>Zobrazit stávající položku</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="932"/>
