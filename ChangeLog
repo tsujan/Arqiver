@@ -1,7 +1,3 @@
-V0.9.1
---------
- * Consider the special case, where the value of "wheel scroll lines" is zero.
-
 V0.9.0
 --------
  * Show childless directories whose names contain the filtering string.
