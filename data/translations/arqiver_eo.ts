@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="128"/>
+        <location filename="../../about.ui" line="134"/>
         <source>License</source>
         <translation>Licenco</translation>
     </message>

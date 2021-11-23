@@ -126,7 +126,8 @@ void TreeWidget::keyPressEvent(QKeyEvent *event) {
 /*************************/
 void TreeWidget::wheelEvent(QWheelEvent *event) {
   /* smooth scrolling */
-  if (event->spontaneous()
+  int wsl = QApplication::wheelScrollLines();
+  if (wsl > 0 && event->spontaneous()
       && event->source() == Qt::MouseEventNotSynthesized) {
     QPoint deltaPoint = event->angleDelta();
     bool horizontal(qAbs(deltaPoint.x()) > qAbs(deltaPoint.y()));
@@ -140,18 +141,18 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
         return; // the scrollbar can't move
       }
 
-      if (QApplication::wheelScrollLines() > 1) {
+      if (wsl > 1) {
         if (horizontal
             || (event->modifiers() & Qt::ShiftModifier)
             || qAbs(delta) < 120) { // touchpad
-          if (qAbs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
-            delta /= QApplication::wheelScrollLines(); // scrolling with minimum speed
+          if (qAbs(delta) >= scrollAnimFrames * wsl)
+            delta /= wsl; // scrolling with minimum speed
         }
-        else if (QApplication::wheelScrollLines() > 2
+        else if (wsl > 2
                  && iconSize().height() >= 48
-                 && qAbs(delta * 2) >= scrollAnimFrames * QApplication::wheelScrollLines()) {
+                 && qAbs(delta * 2) >= scrollAnimFrames * wsl) {
           /* 2 rows per wheel turn with large icons */
-          delta = delta * 2 / QApplication::wheelScrollLines();
+          delta = delta * 2 / wsl;
         }
       }
 
