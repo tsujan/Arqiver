@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez a fájl egy link, de a célfájlja nem létezik.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
@@ -91,12 +91,12 @@ Az Escape billentyűvel törölheti a szöveget.</translation>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha ez nincs bejelölve, csak a felsőszintű könyvtárak lesznek kinyitva.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes könyvtár kinyitása archívumok megnyitásakor</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -390,27 +390,27 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: BZip2 archívum (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: BZip2-vel tömörített PDF dokumentum (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: XZ archívum (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: XZ-vel tömörített PDF dokumentum (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: Zstandard archívum (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
@@ -467,7 +467,7 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: ACE archívum (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
@@ -482,7 +482,7 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSAK OLVASHATÓ: AppImage alkalmazáscsomag (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
@@ -561,12 +561,12 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Archívum útvonalának másolása</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalmazó mappa megnyitása</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>
