@@ -15,38 +15,38 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>이 파일은 링크이지만 대상이 없습니다.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
         <location filename="../../backends.cpp" line="1078"/>
         <location filename="../../backends.cpp" line="1121"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일을 읽을 수 없습니다</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1081"/>
         <location filename="../../backends.cpp" line="1126"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일이 불러오기되었습니다</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1088"/>
         <location filename="../../backends.cpp" line="1174"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>수정이 완료되었습니다</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1109"/>
         <location filename="../../backends.cpp" line="1143"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>압축풀기가 완료되었습니다</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1112"/>
         <location filename="../../backends.cpp" line="1162"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>압축을 풀지 못했습니다</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1271"/>
@@ -69,22 +69,22 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 설정</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>이 크기로 시작:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>항목 제거 시 프롬프트 표시</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>사용 가능한 너비에 첫 번째 열 맞추기</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
@@ -103,7 +103,10 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>기본값은 비워 둡니다.
+
+경고: 바이너리가 libarchive에 속하지
+않으면 Arqiver가 작동하지 않습니다.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
@@ -123,7 +126,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="226"/>
@@ -147,82 +150,82 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 필터링...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>파일(&amp;F)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>편집(&amp;E)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>보기(&amp;V)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="162"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>도움말(&amp;H)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="198"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일 열기(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="201"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="206"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>새 압축파일 만들기(&amp;N)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="209"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="214"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>종료(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="217"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="222"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 추가</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="227"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 제거</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="232"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>모두 추출</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="235"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="240"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>디렉터리 추가</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="245"/>
@@ -232,7 +235,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="250"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>비밀번호 설정</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="255"/>
@@ -570,7 +573,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="932"/>
         <location filename="../../mainWin.cpp" line="940"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>비밀번호 입력</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="944"/>
