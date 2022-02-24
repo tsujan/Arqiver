@@ -52,7 +52,8 @@
         <location filename="../../backends.cpp" line="1271"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1이(가) 시스템에 없습니다.
+이런 종류의 압축파일을 위해 설치하십시오!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 보기 내부에 입력할 수 있습니다.
+Esc 키를 사용하여 텍스트를 지우십시오.</translation>
     </message>
 </context>
 <context>
@@ -89,12 +91,12 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>선택하지 않으면, 최상위 디렉토리만 펼쳐집니다.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일을 열 때 모든 디렉토리 펼치기</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -111,17 +113,17 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive 바이너리:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>닫을 때 창 크기 기억</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>보기 아이콘 크기:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
@@ -132,12 +134,12 @@ binary does not belong to libarchive.</source>
         <location filename="../../pref.cpp" line="226"/>
         <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>변경사항을 적용하려면 응용 프로그램을 다시 시작해야 합니다.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>라이브러리 바이너리 선택</translation>
     </message>
 </context>
 <context>
@@ -145,7 +147,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
@@ -230,7 +232,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="245"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>선택 항목 추출</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="250"/>
@@ -240,62 +242,62 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="255"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>추출(&amp;X)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="258"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="263"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>접기</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="266"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="271"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>정보(&amp;A)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="276"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 경로 복사(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="281"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 설정(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="286"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>프로세스 중지(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="289"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="89"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>루트</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>오류</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>파일</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
@@ -305,105 +307,105 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>크기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="416"/>
         <location filename="../../mainWin.cpp" line="686"/>
         <location filename="../../mainWin.cpp" line="727"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일 여는 중...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="490"/>
         <source>All Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 유형 %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="500"/>
         <location filename="../../mainWin.cpp" line="524"/>
         <source>Uncompressed Archive (*.tar)</source>
-        <translation type="unfinished"></translation>
+        <translation>압축되지 않은 압축파일 (*.tar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="501"/>
         <location filename="../../mainWin.cpp" line="525"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation type="unfinished"></translation>
+        <translation>GZip 압축된 압축파일 (*.tar.gz *.tgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="503"/>
         <location filename="../../mainWin.cpp" line="527"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation type="unfinished"></translation>
+        <translation>BZip2 압축된 압축파일 (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="504"/>
         <location filename="../../mainWin.cpp" line="533"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation type="unfinished"></translation>
+        <translation>LMZA 압축된 압축파일 (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="505"/>
         <location filename="../../mainWin.cpp" line="530"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation type="unfinished"></translation>
+        <translation>XZ 압축된 압축파일 (*.tar.xz *.txz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="506"/>
         <location filename="../../mainWin.cpp" line="534"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zstandard 압축된 압축파일 (*.tar.zst *.tzst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="507"/>
         <location filename="../../mainWin.cpp" line="536"/>
         <source>CPIO Archive (*.cpio)</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO 압축파일(*.cpio)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="509"/>
         <location filename="../../mainWin.cpp" line="538"/>
         <source>AR Archive (*.ar)</source>
-        <translation type="unfinished"></translation>
+        <translation>AR 압축파일 (*.ar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="511"/>
         <location filename="../../mainWin.cpp" line="540"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip 압축파일 (*.zip)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="512"/>
         <location filename="../../mainWin.cpp" line="542"/>
         <source>Gzip Archive (*.gz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip 압축파일 (*.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="513"/>
         <location filename="../../mainWin.cpp" line="541"/>
         <source>7-Zip Archive (*.7z)</source>
-        <translation type="unfinished"></translation>
+        <translation>7-Zip 압축파일 (*.7z)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="528"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기 전용: BZip2 압축파일 (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="529"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: BZip2 압축된 PDF 문서 (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="531"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: XZ 압축파일 (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="532"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: XZ 압축된 PDF 문서 (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
