@@ -217,7 +217,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="232"/>
         <source>Extract All</source>
-        <translation>모두 추출</translation>
+        <translation>모두 압축풀기</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="235"/>
@@ -232,7 +232,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="245"/>
         <source>Extract Selection</source>
-        <translation>선택 항목 추출</translation>
+        <translation>선택 항목 압축풀기</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="250"/>
@@ -242,7 +242,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="255"/>
         <source>E&amp;xpand</source>
-        <translation>추출(&amp;X)</translation>
+        <translation>펼치기(&amp;X)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="258"/>
@@ -302,7 +302,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MIME유형</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="205"/>
@@ -410,124 +410,125 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="535"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: Zstandard 압축파일 (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="543"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip 압축된 PDF 문서 (*.pdf.gz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="544"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: 압축된 SVG 이미지 (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="545"/>
         <location filename="../../mainWin.cpp" line="546"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: ISO 이미지 (*.iso *.img)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="547"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: XAR 압축파일 (*.xar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="548"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: Java 압축파일 (*.jar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="549"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: 데비안 패키지 (*.deb)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="550"/>
         <location filename="../../mainWin.cpp" line="551"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: 레드햇 패키지 (*.rpm)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="552"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: MS Windows 실행파일 (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: MS Windows 설치도구 패키지 (*.msi)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="554"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: MS Windows 캐비닛 압축파일 (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="555"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: ACE 압축파일 (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="556"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: Android 패키지 (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="557"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: RAR 압축파일 (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="558"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: AppImage 응용프로그램 번들 (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="567"/>
         <source>All Known Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 알려진 유형 %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
         <source>Show All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 파일 표시 (*)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="622"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일 만들기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="648"/>
         <location filename="../../mainWin.cpp" line="836"/>
         <location filename="../../mainWin.cpp" line="1110"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>질문</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>다음 압축파일이 이미 존재합니다:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>교체하시겠습니까?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일 열기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="742"/>
         <location filename="../../mainWin.cpp" line="749"/>
         <location filename="../../mainWin.cpp" line="785"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일에 추가</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="780"/>
@@ -535,18 +536,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1065"/>
         <location filename="../../mainWin.cpp" line="1071"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>항목 추가 중...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="837"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>선택한 항목을 제거하시겠습니까?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="854"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>항목 제거 중...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
@@ -554,22 +556,22 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1123"/>
         <location filename="../../mainWin.cpp" line="1137"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>압축 푸는 중...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="894"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>압축파일 경로 복사</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>포함하는 폴더 열기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="917"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 항목 보기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="932"/>
@@ -580,71 +582,73 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="944"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="945"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>확인</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="949"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 목록 암호화</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="950"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>이것은 파일/폴더가 추가된 후에 적용됩니다.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1021"/>
         <location filename="../../mainWin.cpp" line="1097"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>디렉터리에 압축풀기</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1111"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>일부 파일을 덮어씁니다.
+계속하시겠습니까?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1259"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>링크 대상: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1606"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>단순한 Qt 압축파일 관리자</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1607"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive, gzip 및 7z 기반함</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1608"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>개발자</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1609"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>일명.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1610"/>
         <location filename="../../mainWin.cpp" line="1611"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Arqiver 정보</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1610"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>번역자</translation>
     </message>
 </context>
 </TS>
