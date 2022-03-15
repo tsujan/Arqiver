@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="134"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>लाइसेंस</translation>
     </message>
 </context>
 <context>
@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="631"/>
         <location filename="../../backends.cpp" line="664"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>यह फ़ाइल एक लिंक है लेकिन इसका लक्ष्य मौजूद नहीं है.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
