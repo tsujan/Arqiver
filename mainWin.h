@@ -39,12 +39,27 @@ public:
   TreeWidgetItem(QTreeWidgetItem *parent = nullptr, int type = QTreeWidgetItem::Type) :
   QTreeWidgetItem(parent, type) {
     collator_.setNumericMode(true);
+    iconSize_ = QSize(16, 16);
+    backend_ = nullptr;
   }
 
+  QVariant data(int column, int role) const override;
   bool operator<(const QTreeWidgetItem& other) const override;
 
+  void setBackend(Backend* B) {
+      backend_ = B;
+  }
+  void setIconSize(const QSize& size) {
+      iconSize_ = size;
+  }
+
 private:
+  QPixmap emblemizedPixmap(const QString icon, const QSize& icnSize,
+                           bool selected, bool lock) const;
+
   QCollator collator_;
+  QSize iconSize_;
+  Backend *backend_;
 };
 
 namespace Ui {
@@ -116,7 +131,6 @@ private:
   QString openingTypes();
   QString filterToExtension(const QString& filter);
   bool pswrdDialog(bool listEncryptionBox = false, bool forceListEncryption = false);
-  QPixmap emblemize(const QString icon, const QSize& icnSize, bool lock);
   void enableActions(bool enable);
   bool subTreeIsEncrypted(QTreeWidgetItem *item);
   void hideChildlessDir(QTreeWidgetItem *item);

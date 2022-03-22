@@ -46,6 +46,28 @@ namespace Arqiver {
 
 static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar|zip|tgz|txz|tzst|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
 /*************************/
+QVariant TreeWidgetItem::data(int column, int role) const {
+  if (backend_ != nullptr && column == 0
+      && role == Qt::DecorationRole
+      && columnCount() > 1 && !text(1).isEmpty()) { // not a folder
+    if (columnCount() > 3 && data(3, Qt::UserRole).toString() == "lock") { // encrypted path
+      return emblemizedPixmap(text(1).replace('/', '-'), iconSize_, isSelected(), true);
+    }
+    if (columnCount() > 2 && text(2).isEmpty()) { // a link
+      auto file = whatsThis(0);
+      if (!file.isEmpty()) {
+        const QString targetMime = backend_->getMimeType(backend_->linkTo(file)
+                                                        .section("/",-1))
+                                   .replace('/', '-');
+        if (!targetMime.isEmpty()) {
+          return emblemizedPixmap(targetMime, iconSize_, isSelected(), false);
+        }
+      }
+    }
+  }
+  return QTreeWidgetItem::data(column, role);
+}
+
 bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
   /* treat dot as a separator for a more natural sorting */
   int column = treeWidget() ? treeWidget()->sortColumn() : 0;
@@ -67,6 +89,36 @@ bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
     start1 = end1 + 1;
     start2 = end2 + 1;
   }
+}
+
+QPixmap TreeWidgetItem::emblemizedPixmap(const QString iconName, const QSize& icnSize,
+                                         bool selected, bool lock) const {
+  QString emblemName = lock ? ".lock" : ".link";
+  int w = icnSize.width();
+  int emblemSize = w <= 32 ? 16 : 24;
+  QString key = iconName + emblemName + (selected ? "1" : "0");
+  QPixmap pix;
+  if (!QPixmapCache::find(key, &pix)) {
+    QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg"))
+                  .pixmap(icnSize, selected ? QIcon::Selected : QIcon::Normal);
+    int offset = 0;
+    QPixmap emblem;
+    if (lock) {
+      emblem = QIcon(":icons/emblem-lock.svg").pixmap(emblemSize, emblemSize);
+      offset = w - emblemSize;
+    }
+    else
+      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize, emblemSize);
+    qreal pixelRatio = icn.devicePixelRatio();
+    pix = QPixmap((QSizeF(icnSize) * pixelRatio).toSize());
+    pix.fill(Qt::transparent);
+    pix.setDevicePixelRatio(pixelRatio);
+    QPainter painter(&pix);
+    painter.drawPixmap(0, 0, icn);
+    painter.drawPixmap(offset, offset, emblem);
+    QPixmapCache::insert(key, pix);
+  }
+  return pix;
 }
 /*************************/
 mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
@@ -1176,33 +1228,6 @@ static inline QString displaySize(const qint64 size) {
   return (QString::number(qRound(displaySize)) + labels.at(i));
 }
 
-QPixmap mainWin::emblemize(const QString iconName, const QSize& icnSize, bool lock) {
-  QString emblemName = lock ? ".lock" : ".link";
-  int w = icnSize.width();
-  int emblemSize = w <= 32 ? 16 : 24;
-  QPixmap pix;
-  if (!QPixmapCache::find(iconName + emblemName, &pix)) {
-    QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg")).pixmap(icnSize);
-    int offset = 0;
-    QPixmap emblem;
-    if (lock) {
-      emblem = QIcon(":icons/emblem-lock.svg").pixmap(emblemSize, emblemSize);
-      offset = w - emblemSize;
-    }
-    else
-      emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize, emblemSize);
-    qreal pixelRatio = icn.devicePixelRatio();
-    pix = QPixmap((QSizeF(icnSize) * pixelRatio).toSize());
-    pix.fill(Qt::transparent);
-    pix.setDevicePixelRatio(pixelRatio);
-    QPainter painter(&pix);
-    painter.drawPixmap(0, 0, icn);
-    painter.drawPixmap(offset, offset, emblem);
-    QPixmapCache::insert(iconName + emblemName, pix);
-  }
-  return pix;
-}
-
 void mainWin::updateTree() {
   /* WARNING: Disabling updates can result in an invisible window with some window managers. */
   //setUpdatesEnabled(false);
@@ -1224,13 +1249,17 @@ void mainWin::updateTree() {
       continue;
     }
 
+    QSize icnSize = ui->tree_contents->iconSize();
+
     QString mime;
     if (!BACKEND->isDir(thisFile))
       mime = BACKEND->getMimeType(thisFile.section("/", -1));
-    QTreeWidgetItem *it = new TreeWidgetItem(); // for a natural sorting
+    auto it = new TreeWidgetItem(); // for a natural sorting
+    it->setBackend(BACKEND);
+    it->setIconSize(icnSize);
 
-    /* set texts and icons */
-    QSize icnSize = ui->tree_contents->iconSize();
+    /* set texts and icons
+       (the emblemized icons are set by TreeWidgetItem::data) */
     it->setText(0, thisFile.section("/", -1));
     if (!mime.isEmpty()) {
       it->setText(3, "0"); // to put it after directory items
@@ -1248,10 +1277,8 @@ void mainWin::updateTree() {
         else
           it->setText(2, displaySize(s));
 
-        if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile)) {
-          it->setData(3, Qt::UserRole, "lock"); // to be used in cleanTree()
-          it->setIcon(0, QIcon(emblemize(mime.replace('/', '-'), icnSize, true)));
-        }
+        if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile))
+          it->setData(3, Qt::UserRole, "lock"); // to be used in TreeWidgetItem::data() and cleanTree()
         else
           it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-'), symbolicIcon::icon(":icons/unknown.svg")));
       }
@@ -1260,11 +1287,9 @@ void mainWin::updateTree() {
 
         const QString targetMime = BACKEND->getMimeType(BACKEND->linkTo(thisFile)
                                                         .section("/",-1))
-                                  .replace('/', '-');
+                                   .replace('/', '-');
         if (!targetMime.isEmpty()) {
-          if (icnSize.width() > 16)
-            it->setIcon(0, QIcon(emblemize(targetMime, icnSize, false)));
-          else
+          if (icnSize.width() <= 16)
             it->setIcon(0, QIcon::fromTheme(targetMime, symbolicIcon::icon(":icons/unknown.svg")));
         }
         else
@@ -1573,10 +1598,11 @@ void mainWin::aboutDialog() {
   class AboutDialog : public QDialog {
   public:
 #if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
-    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {
+    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f)
 #else
-    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = 0) : QDialog(parent, f) {
+    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = 0) : QDialog(parent, f)
 #endif
+    {
       aboutUi.setupUi(this);
       aboutUi.textLabel->setOpenExternalLinks(true);
     }

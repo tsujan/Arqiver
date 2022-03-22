@@ -38,6 +38,9 @@
 
 namespace Arqiver {
 
+static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
+static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
+
 Backend::Backend(QObject *parent) : QObject(parent) {
   tarCmnd_ = TAR_CMD;
   proc_.setProcessChannelMode(QProcess::MergedChannels);
@@ -409,8 +412,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (!filesList.isEmpty()) {
     filesList.removeDuplicates();
     /* the paths may contain newlines, which have been escaped and are restored here */
-    filesList.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-             .replaceInStrings(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+    filesList.replaceInStrings(newlineExp, "\n").replaceInStrings(tabExp, "\t");
   }
 
   if (is7z_) {
@@ -456,8 +458,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder
     if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives or when an encrypted list isn't known yet
-      archiveSingleRoot.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-                       .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+      archiveSingleRoot.replace(newlineExp, "\n").replace(tabExp, "\t");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootExists = true;
         QDir dir (xPath);
@@ -584,8 +585,7 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
 bool Backend::startViewFile(const QString& path) {
   /* the path may contain newlines, which have been escaped and are restored here */
   QString realPath(path);
-  realPath.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-          .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+  realPath.replace(newlineExp, "\n").replace(tabExp, "\t");
 
   QString parentDir = arqiverDir_;
   if (!arqiverDir_.isEmpty()) {
@@ -677,8 +677,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
   realPaths.removeAll(QString());
   if (!realPaths.isEmpty()) {
     realPaths.removeDuplicates();
-    realPaths.replaceInStrings(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-             .replaceInStrings(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+    realPaths.replaceInStrings(newlineExp, "\n").replaceInStrings(tabExp, "\t");
   }
   else { // should never happen in practice
     emit processFinished(true, QString());
