@@ -47,21 +47,21 @@ namespace Arqiver {
 static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar|zip|tgz|txz|tzst|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
 /*************************/
 QVariant TreeWidgetItem::data(int column, int role) const {
-  if (backend_ != nullptr && column == 0
-      && role == Qt::DecorationRole
-      && columnCount() > 1 && !text(1).isEmpty()) { // not a folder
-    if (columnCount() > 3 && data(3, Qt::UserRole).toString() == "lock") { // encrypted path
+  if (backend_ != nullptr
+      && column == 0
+      && role == Qt::DecorationRole && iconSize_.width() > 16
+      // not a folder
+      && columnCount() > 1 && !text(1).isEmpty()) {
+    if (columnCount() > 3 && data(3, Qt::UserRole).toString() == "lock") // encrypted path
       return emblemizedPixmap(text(1).replace('/', '-'), iconSize_, isSelected(), true);
-    }
     if (columnCount() > 2 && text(2).isEmpty()) { // a link
       auto file = whatsThis(0);
       if (!file.isEmpty()) {
         const QString targetMime = backend_->getMimeType(backend_->linkTo(file)
-                                                        .section("/",-1))
+                                                         .section("/",-1))
                                    .replace('/', '-');
-        if (!targetMime.isEmpty()) {
+        if (!targetMime.isEmpty())
           return emblemizedPixmap(targetMime, iconSize_, isSelected(), false);
-        }
       }
     }
   }
