@@ -57,11 +57,9 @@ QVariant TreeWidgetItem::data(int column, int role) const {
     if (columnCount() > 2 && text(2).isEmpty()) { // a link
       auto file = whatsThis(0);
       if (!file.isEmpty()) {
-        const QString targetMime = backend_->getMimeType(backend_->linkTo(file)
-                                                         .section("/",-1))
-                                   .replace('/', '-');
-        if (!targetMime.isEmpty())
-          return emblemizedPixmap(targetMime, iconSize_, isSelected(), false);
+        auto mime = backend_->getMimeType(file.section("/", -1));
+        if (!mime.isEmpty())
+          return emblemizedPixmap(mime.replace('/', '-'), iconSize_, isSelected(), false);
       }
     }
   }
@@ -1284,16 +1282,8 @@ void mainWin::updateTree() {
       }
       else {
         it->setText(1, tr("Link To: %1").arg(BACKEND->linkTo(thisFile)));
-
-        const QString targetMime = BACKEND->getMimeType(BACKEND->linkTo(thisFile)
-                                                        .section("/",-1))
-                                   .replace('/', '-');
-        if (!targetMime.isEmpty()) {
-          if (icnSize.width() <= 16)
-            it->setIcon(0, QIcon::fromTheme(targetMime, symbolicIcon::icon(":icons/unknown.svg")));
-        }
-        else
-          it->setIcon(0, QIcon(":icons/emblem-symbolic-link.svg"));
+        if (icnSize.width() <= 16) // too small to have an emblem
+          it->setIcon(0, QIcon::fromTheme(mime.replace('/', '-'), symbolicIcon::icon(":icons/unknown.svg")));
       }
     }
     else

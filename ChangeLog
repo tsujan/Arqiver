@@ -1,6 +1,7 @@
 V0.10.0
 --------
  * Considered the modes of emblemized icons. This is especially relevant to Qt icon engines that colorize selected symbolic icons.
+ * Get the mimetypes of symlinks directly, without consulting their targets (because their targets may be symlinks themselves and so, they aren't reliable).
 
 V0.9.0
 --------
