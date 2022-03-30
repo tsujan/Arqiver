@@ -92,13 +92,13 @@ bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
 QPixmap TreeWidgetItem::emblemizedPixmap(const QString iconName, const QSize& icnSize,
                                          bool selected, bool lock) const {
   QString emblemName = lock ? ".lock" : ".link";
-  int w = icnSize.width();
-  int emblemSize = w <= 32 ? 16 : 24;
   QString key = iconName + emblemName + (selected ? "1" : "0");
   QPixmap pix;
   if (!QPixmapCache::find(key, &pix)) {
     QPixmap icn = QIcon::fromTheme(iconName, symbolicIcon::icon(":icons/unknown.svg"))
                   .pixmap(icnSize, selected ? QIcon::Selected : QIcon::Normal);
+    int w = icnSize.width();
+    int emblemSize = w <= 32 ? 16 : 24;
     int offset = 0;
     QPixmap emblem;
     if (lock) {

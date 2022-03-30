@@ -1,14 +1,4 @@
-<svg width="16" version="1.0" xmlns="http://www.w3.org/2000/svg" height="16" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs id="defs8">
-<linearGradient id="ButtonColor-6" y1="21" x1="10.31979" y2="1" x2="10.31979" gradientUnits="userSpaceOnUse">
-<stop offset="0" style="stop-color:#c8c8c8" id="stop2"/>
-<stop offset="1" style="stop-color:#e6e6e6" id="stop4"/>
-</linearGradient>
-<linearGradient gradientTransform="matrix(0.1904762,0,0,0.1904762,-1.1428572,-1.1428572)" xlink:href="#ButtonColor-6" id="linearGradient3023" y1="90" x1="48" y2="5.9877172" x2="48"/>
-</defs>
-<path style="opacity:.7;fill:url(#linearGradient3023)" id="path10" d="m 3,1 h 10 c 1.108,0 2,0.892 2,2 v 10 c 0,1.108 -0.892,2 -2,2 H 3 C 1.892,15 1,14.108 1,13 V 3 C 1,1.892 1.892,1 3,1 Z"/>
-<g style="fill:#333;fill-rule:evenodd" id="g10">
-<path id="path12" d="M 2.8691,3 V 7.80078 H 4.46871 V 5.73047 l 2.0684,2.0703 1.1309,-1.1328 -2.0684,-2.0684 H 7.66797 V 3 Z"/>
-<path id="path864" d="m 10.4,6.8 c -1.97909,0 -3.6,1.62091 -3.6,3.6 0,1.97909 1.62091,3.6 3.6,3.6 1.97909,0 3.6,-1.62091 3.6,-3.6 0,-1.97909 -1.62091,-3.6 -3.6,-3.6 z  m 0,1.5764 c 1.12656,0 2.0217,0.897099 2.0217,2.02366 0,1.12656 -0.895146,2.0217 -2.0217,2.0217 -1.12656,0 -2.02366,-0.895146 -2.02366,-2.0217 0,-1.12656 0.897099,-2.02366 2.02366,-2.02366 z "/>
-</g>
+<svg width="16" version="1.0" xmlns="http://www.w3.org/2000/svg" height="16">
+<path style="opacity:.7;fill:#e5e5e5" d="m 2,0 h 10 c 1.108,0 2,0.892 2,2 v 10 c 0,1.108 -0.892,2 -2,2 H 2 C 0.892,14 0,13.108 0,12 V 2 C 0,0.892 0.892,0 2,0 Z"/>
+<path d="m 2,2 v 6 l 2,0 v -2.5875 l 4.3639,4.3661 1.4137,-1.4156 -4.3643,-4.3634 2.5867,0 -0,-2 z "/>
 </svg>
