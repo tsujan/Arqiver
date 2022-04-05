@@ -9,7 +9,7 @@ else {
   }
 }
 
-QT += core gui widgets svg
+QT += core gui widgets svg dbus
 
 TEMPLATE = app
 TARGET = arqiver

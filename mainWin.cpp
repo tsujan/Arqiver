@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2022 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -39,6 +39,8 @@
 #include <QResizeEvent>
 #include <QPointer>
 #include <QDrag>
+#include <QDBusConnection>
+#include <QDBusMessage>
 
 #include <unistd.h> // getuid
 
@@ -135,8 +137,11 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->tree_contents->installEventFilter(this);
   ui->tree_contents->viewport()->installEventFilter(this);
 
-  if (getuid() == 0)
+  if (getuid() == 0) {
     setWindowTitle("Arqiver (" + tr("Root") + ")");
+    isRoot_ = true;
+  }
+  else isRoot_ = false;
 
   /* status bar */
   iconLabel_ = new QLabel();
@@ -945,13 +950,27 @@ void mainWin::labelContextMenu(const QPoint& p) {
   connect(action, &QAction::triggered, [this] {
     QApplication::clipboard()->setText(BACKEND->currentFile());
   });
-  menu.addSeparator();
-  action = menu.addAction(symbolicIcon::icon(":icons/document-open.svg"), tr("Open Containing Folder"));
-  connect(action, &QAction::triggered, [this] {
-    QString folder = BACKEND->currentFile().section("/", 0, -2);
-    if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
-      QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
-  });
+  if (!isRoot_) {
+    menu.addSeparator();
+    action = menu.addAction(symbolicIcon::icon(":icons/document-open.svg"), tr("Open Containing Folder"));
+    connect(action, &QAction::triggered, [this] {
+      QDBusMessage methodCall =
+      QDBusMessage::createMethodCall("org.freedesktop.FileManager1",
+                                     "/org/freedesktop/FileManager1",
+                                     "",
+                                     "ShowItems");
+      QList<QVariant> args;
+      args.append(QStringList() << BACKEND->currentFile());
+      args.append("0");
+      methodCall.setArguments(args);
+      QDBusMessage response = QDBusConnection::sessionBus().call(methodCall, QDBus::Block, 1000);
+      if (response.type() == QDBusMessage::ErrorMessage) {
+        QString folder = BACKEND->currentFile().section("/", 0, -2);
+        if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
+          QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
+      }
+    });
+  }
   menu.exec(ui->frame->mapToGlobal(p));
 }
 

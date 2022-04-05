@@ -2,6 +2,8 @@ V0.10.0
 --------
  * Considered the modes of emblemized icons. This is especially relevant to Qt icon engines that colorize selected symbolic icons.
  * Get the mimetypes of symlinks directly, without consulting their targets (because their targets may be symlinks themselves and so, they aren't reliable).
+ * First try the file manager DBus interface when opening the containing folder.
+ * Removed the action for opening the containing folder when running as root (because there are DBus complications with most file managers).
 
 V0.9.0
 --------

@@ -285,328 +285,328 @@ Figyelmeztetés: Az Arqiver nem fog működni,
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="139"/>
+        <location filename="../../mainWin.cpp" line="141"/>
         <source>Root</source>
         <translation>Root</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="198"/>
+        <location filename="../../mainWin.cpp" line="203"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="255"/>
+        <location filename="../../mainWin.cpp" line="260"/>
         <source>File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="255"/>
+        <location filename="../../mainWin.cpp" line="260"/>
         <source>MimeType</source>
         <translation>Mime típus</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="255"/>
+        <location filename="../../mainWin.cpp" line="260"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="466"/>
-        <location filename="../../mainWin.cpp" line="736"/>
-        <location filename="../../mainWin.cpp" line="777"/>
+        <location filename="../../mainWin.cpp" line="471"/>
+        <location filename="../../mainWin.cpp" line="741"/>
+        <location filename="../../mainWin.cpp" line="782"/>
         <source>Opening Archive...</source>
         <translation>Archívum megnyitása...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="540"/>
+        <location filename="../../mainWin.cpp" line="545"/>
         <source>All Types %1</source>
         <translation>Összes típus %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="550"/>
-        <location filename="../../mainWin.cpp" line="574"/>
+        <location filename="../../mainWin.cpp" line="555"/>
+        <location filename="../../mainWin.cpp" line="579"/>
         <source>Uncompressed Archive (*.tar)</source>
         <translation>Tömörítetlen archívum (*tar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="551"/>
-        <location filename="../../mainWin.cpp" line="575"/>
+        <location filename="../../mainWin.cpp" line="556"/>
+        <location filename="../../mainWin.cpp" line="580"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
         <translation>GZippel tömörített archívum (*.tar.gz *.tgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="553"/>
-        <location filename="../../mainWin.cpp" line="577"/>
+        <location filename="../../mainWin.cpp" line="558"/>
+        <location filename="../../mainWin.cpp" line="582"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
         <translation>BZip2-vel tömörített archívum (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="554"/>
-        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="559"/>
+        <location filename="../../mainWin.cpp" line="588"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
         <translation>LMZA-val tömörített archívum (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="555"/>
-        <location filename="../../mainWin.cpp" line="580"/>
+        <location filename="../../mainWin.cpp" line="560"/>
+        <location filename="../../mainWin.cpp" line="585"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
         <translation>XZ-vel tömörített archívum (*.tar.xz *.txz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="556"/>
-        <location filename="../../mainWin.cpp" line="584"/>
+        <location filename="../../mainWin.cpp" line="561"/>
+        <location filename="../../mainWin.cpp" line="589"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
         <translation>Zstandarddal tömörített archívum (*.tar.zst *.tzst)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="557"/>
-        <location filename="../../mainWin.cpp" line="586"/>
+        <location filename="../../mainWin.cpp" line="562"/>
+        <location filename="../../mainWin.cpp" line="591"/>
         <source>CPIO Archive (*.cpio)</source>
         <translation>CPIO archívum (*.cpio)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="559"/>
-        <location filename="../../mainWin.cpp" line="588"/>
+        <location filename="../../mainWin.cpp" line="564"/>
+        <location filename="../../mainWin.cpp" line="593"/>
         <source>AR Archive (*.ar)</source>
         <translation>AR archívum (*.ar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="561"/>
-        <location filename="../../mainWin.cpp" line="590"/>
+        <location filename="../../mainWin.cpp" line="566"/>
+        <location filename="../../mainWin.cpp" line="595"/>
         <source>Zip Archive (*.zip)</source>
         <translation>Zip archívum (*.zip)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <location filename="../../mainWin.cpp" line="592"/>
+        <location filename="../../mainWin.cpp" line="567"/>
+        <location filename="../../mainWin.cpp" line="597"/>
         <source>Gzip Archive (*.gz)</source>
         <translation>Gzip archívum (*.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="563"/>
-        <location filename="../../mainWin.cpp" line="591"/>
+        <location filename="../../mainWin.cpp" line="568"/>
+        <location filename="../../mainWin.cpp" line="596"/>
         <source>7-Zip Archive (*.7z)</source>
         <translation>7-Zip archívum (*.7z)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="578"/>
+        <location filename="../../mainWin.cpp" line="583"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
         <translation>CSAK OLVASHATÓ: BZip2 archívum (*.bz2)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="584"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
         <translation>CSAK OLVASHATÓ: BZip2-vel tömörített PDF dokumentum (*.pdf.bz2)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="586"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
         <translation>CSAK OLVASHATÓ: XZ archívum (*.xz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="582"/>
+        <location filename="../../mainWin.cpp" line="587"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
         <translation>CSAK OLVASHATÓ: XZ-vel tömörített PDF dokumentum (*.pdf.xz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="590"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
         <translation>CSAK OLVASHATÓ: Zstandard archívum (*.zst)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="593"/>
+        <location filename="../../mainWin.cpp" line="598"/>
         <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
         <translation>GZippel tömörített PDF dokumentum (*.pdf.gz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="594"/>
+        <location filename="../../mainWin.cpp" line="599"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
         <translation>CSAK OLVASHATÓ: tömörített SVG kép (*.svgz)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="595"/>
-        <location filename="../../mainWin.cpp" line="596"/>
+        <location filename="../../mainWin.cpp" line="600"/>
+        <location filename="../../mainWin.cpp" line="601"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
         <translation>CSAK OLVASHATÓ: ISO kép (*.iso *.img)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="597"/>
+        <location filename="../../mainWin.cpp" line="602"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
         <translation>CSAK OLVASHATÓ: XAR archívum (*.xar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="598"/>
+        <location filename="../../mainWin.cpp" line="603"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
         <translation>CSAK OLVASHATÓ: Java archívum (*.jar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="599"/>
+        <location filename="../../mainWin.cpp" line="604"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
         <translation>CSAK OLVASHATÓ: Debian csomag (*.deb)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="600"/>
-        <location filename="../../mainWin.cpp" line="601"/>
+        <location filename="../../mainWin.cpp" line="605"/>
+        <location filename="../../mainWin.cpp" line="606"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
         <translation>CSAK OLVASHATÓ: RedHat csomag (*.rpm)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="602"/>
+        <location filename="../../mainWin.cpp" line="607"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
         <translation>CSAK OLVASHATÓ: MS Windows futtatható állomány (*.exe *.com)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="603"/>
+        <location filename="../../mainWin.cpp" line="608"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
         <translation>CSAK OLVASHATÓ: MS Windows telepítőcsomag (*.msi)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="604"/>
+        <location filename="../../mainWin.cpp" line="609"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
         <translation>CSAK OLVASHATÓ: MS Windows Cabinet archívum (*.cab)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="605"/>
+        <location filename="../../mainWin.cpp" line="610"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
         <translation>CSAK OLVASHATÓ: ACE archívum (*.ace)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="606"/>
+        <location filename="../../mainWin.cpp" line="611"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
         <translation>CSAK OLVASHATÓ: Android csomag (*.apk)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="607"/>
+        <location filename="../../mainWin.cpp" line="612"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
         <translation>CSAK OLVASHATÓ: RAR archívum (*.rar)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="608"/>
+        <location filename="../../mainWin.cpp" line="613"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
         <translation>CSAK OLVASHATÓ: AppImage alkalmazáscsomag (*.appimage)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="617"/>
+        <location filename="../../mainWin.cpp" line="622"/>
         <source>All Known Types %1</source>
         <translation>Összes ismert típus %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="627"/>
         <source>Show All Files (*)</source>
         <translation>Összes fájl megjelenítése (*)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="672"/>
+        <location filename="../../mainWin.cpp" line="677"/>
         <source>Create Archive</source>
         <translation>Archívum létrehozása</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="698"/>
-        <location filename="../../mainWin.cpp" line="886"/>
-        <location filename="../../mainWin.cpp" line="1160"/>
+        <location filename="../../mainWin.cpp" line="703"/>
+        <location filename="../../mainWin.cpp" line="891"/>
+        <location filename="../../mainWin.cpp" line="1179"/>
         <source>Question</source>
         <translation>Kérdés</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="699"/>
+        <location filename="../../mainWin.cpp" line="704"/>
         <source>The following archive already exists:</source>
         <translation>A következő archívum már létezik :</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="701"/>
+        <location filename="../../mainWin.cpp" line="706"/>
         <source>Do you want to replace it?
 </source>
         <translation>Cserélni szeretné?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="728"/>
+        <location filename="../../mainWin.cpp" line="733"/>
         <source>Open Archive</source>
         <translation>Archívum megnyitása</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="792"/>
-        <location filename="../../mainWin.cpp" line="799"/>
-        <location filename="../../mainWin.cpp" line="835"/>
+        <location filename="../../mainWin.cpp" line="797"/>
+        <location filename="../../mainWin.cpp" line="804"/>
+        <location filename="../../mainWin.cpp" line="840"/>
         <source>Add to Archive</source>
         <translation>Hozzáadás archívumhoz</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="830"/>
-        <location filename="../../mainWin.cpp" line="861"/>
-        <location filename="../../mainWin.cpp" line="1115"/>
-        <location filename="../../mainWin.cpp" line="1121"/>
+        <location filename="../../mainWin.cpp" line="835"/>
+        <location filename="../../mainWin.cpp" line="866"/>
+        <location filename="../../mainWin.cpp" line="1134"/>
+        <location filename="../../mainWin.cpp" line="1140"/>
         <source>Adding Items...</source>
         <translation>Elemek hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="887"/>
+        <location filename="../../mainWin.cpp" line="892"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Törölni szeretné a kijelölt elemeket?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="904"/>
+        <location filename="../../mainWin.cpp" line="909"/>
         <source>Removing Items...</source>
         <translation>Elemek törlése...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1078"/>
-        <location filename="../../mainWin.cpp" line="1093"/>
-        <location filename="../../mainWin.cpp" line="1173"/>
-        <location filename="../../mainWin.cpp" line="1187"/>
+        <location filename="../../mainWin.cpp" line="1097"/>
+        <location filename="../../mainWin.cpp" line="1112"/>
+        <location filename="../../mainWin.cpp" line="1192"/>
+        <location filename="../../mainWin.cpp" line="1206"/>
         <source>Extracting...</source>
         <translation>Kibontás...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="944"/>
+        <location filename="../../mainWin.cpp" line="949"/>
         <source>Copy Archive Path</source>
         <translation>Archívum útvonalának másolása</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="949"/>
+        <location filename="../../mainWin.cpp" line="955"/>
         <source>Open Containing Folder</source>
         <translation>Tartalmazó mappa megnyitása</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="967"/>
+        <location filename="../../mainWin.cpp" line="986"/>
         <source>View Current Item</source>
         <translation>Jelenlegi elem megtekintése</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="982"/>
-        <location filename="../../mainWin.cpp" line="990"/>
+        <location filename="../../mainWin.cpp" line="1001"/>
+        <location filename="../../mainWin.cpp" line="1009"/>
         <source>Enter Password</source>
         <translation>Adja meg a jelszót</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="994"/>
+        <location filename="../../mainWin.cpp" line="1013"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="995"/>
+        <location filename="../../mainWin.cpp" line="1014"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="999"/>
+        <location filename="../../mainWin.cpp" line="1018"/>
         <source>Encrypt the file list</source>
         <translation>Fájllista titkosítása</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1000"/>
+        <location filename="../../mainWin.cpp" line="1019"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Ez a fájlok/mappák hozzáadása után lép érvénybe.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1071"/>
-        <location filename="../../mainWin.cpp" line="1147"/>
+        <location filename="../../mainWin.cpp" line="1090"/>
+        <location filename="../../mainWin.cpp" line="1166"/>
         <source>Extract Into Directory</source>
         <translation>Kibontás könyvtárba</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1161"/>
+        <location filename="../../mainWin.cpp" line="1180"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -615,38 +615,38 @@ Folytatja?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1284"/>
+        <location filename="../../mainWin.cpp" line="1303"/>
         <source>Link To: %1</source>
         <translation>Link ide: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1622"/>
+        <location filename="../../mainWin.cpp" line="1641"/>
         <source>A simple Qt archive manager</source>
         <translation>Egy egyszerű Qt archívumkezelő</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1623"/>
+        <location filename="../../mainWin.cpp" line="1642"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>amely a libarchive-on a gzipen és a 7z-n alapul</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1624"/>
+        <location filename="../../mainWin.cpp" line="1643"/>
         <source>Author</source>
         <translation>Szerző</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1625"/>
+        <location filename="../../mainWin.cpp" line="1644"/>
         <source>aka.</source>
         <translation>más néven</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1626"/>
-        <location filename="../../mainWin.cpp" line="1627"/>
+        <location filename="../../mainWin.cpp" line="1645"/>
+        <location filename="../../mainWin.cpp" line="1646"/>
         <source>About Arqiver</source>
         <translation>Arqiver névjegye</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1626"/>
+        <location filename="../../mainWin.cpp" line="1645"/>
         <source>Translators</source>
         <translation>Fordítók</translation>
     </message>

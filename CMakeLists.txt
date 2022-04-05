@@ -13,6 +13,7 @@ find_package(Qt5Core "${QT_MINIMUM_VERSION}" REQUIRED)
 find_package(Qt5Gui "${QT_MINIMUM_VERSION}" REQUIRED)
 find_package(Qt5Widgets "${QT_MINIMUM_VERSION}" REQUIRED)
 find_package(Qt5Svg "${QT_MINIMUM_VERSION}" REQUIRED)
+find_package(Qt5DBus "${QT_MINIMUM_VERSION}" REQUIRED)
 
 # optional localization
 find_package(Qt5LinguistTools QUIET)
@@ -26,7 +27,8 @@ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
                     ${Qt5Core_INCLUDE_DIRS}
                     ${Qt5Gui_INCLUDE_DIRS}
                     ${Qt5Widgets_INCLUDE_DIRS}
-                    ${Qt5Svg_INCLUDE_DIRS})
+                    ${Qt5Svg_INCLUDE_DIRS}
+                    ${Qt5DBus_INCLUDE_DIRS})
 
 add_definitions(-DDATADIR="${CMAKE_INSTALL_PREFIX}/share")
 
@@ -62,7 +64,8 @@ endif(Qt5LinguistTools_FOUND)
 target_link_libraries(arqiver ${Qt5Core_LIBRARIES}
                               ${Qt5Gui_LIBRARIES}
                               ${Qt5Widgets_LIBRARIES}
-                              ${Qt5Svg_LIBRARIES})
+                              ${Qt5Svg_LIBRARIES}
+                              ${Qt5DBus_LIBRARIES})
 
 # installation
 install(TARGETS arqiver RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
