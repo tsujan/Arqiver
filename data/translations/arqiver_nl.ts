@@ -311,8 +311,8 @@ bestand niet bij libarchive hoor.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="471"/>
-        <location filename="../../mainWin.cpp" line="741"/>
-        <location filename="../../mainWin.cpp" line="782"/>
+        <location filename="../../mainWin.cpp" line="742"/>
+        <location filename="../../mainWin.cpp" line="783"/>
         <source>Opening Archive...</source>
         <translation>Bezig met openen van archief…</translation>
     </message>
@@ -485,128 +485,133 @@ bestand niet bij libarchive hoor.</translation>
         <translation>ALLEEN-LEZEN: AppImage-programmabundel (*.appimage)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="614"/>
+        <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="623"/>
         <source>All Known Types %1</source>
         <translation>Alle bekende soorten %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="627"/>
+        <location filename="../../mainWin.cpp" line="628"/>
         <source>Show All Files (*)</source>
         <translation>Alle bestanden tonen (*)</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="677"/>
+        <location filename="../../mainWin.cpp" line="678"/>
         <source>Create Archive</source>
         <translation>Archief samenstellen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="703"/>
-        <location filename="../../mainWin.cpp" line="891"/>
-        <location filename="../../mainWin.cpp" line="1180"/>
+        <location filename="../../mainWin.cpp" line="704"/>
+        <location filename="../../mainWin.cpp" line="892"/>
+        <location filename="../../mainWin.cpp" line="1181"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="704"/>
+        <location filename="../../mainWin.cpp" line="705"/>
         <source>The following archive already exists:</source>
         <translation>Het volgende archief bestaat al:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="706"/>
+        <location filename="../../mainWin.cpp" line="707"/>
         <source>Do you want to replace it?
 </source>
         <translation>Wil je dit vervangen?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="733"/>
+        <location filename="../../mainWin.cpp" line="734"/>
         <source>Open Archive</source>
         <translation>Archief openen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="797"/>
-        <location filename="../../mainWin.cpp" line="804"/>
-        <location filename="../../mainWin.cpp" line="840"/>
+        <location filename="../../mainWin.cpp" line="798"/>
+        <location filename="../../mainWin.cpp" line="805"/>
+        <location filename="../../mainWin.cpp" line="841"/>
         <source>Add to Archive</source>
         <translation>Toevoegen aan archief</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="835"/>
-        <location filename="../../mainWin.cpp" line="866"/>
-        <location filename="../../mainWin.cpp" line="1135"/>
-        <location filename="../../mainWin.cpp" line="1141"/>
+        <location filename="../../mainWin.cpp" line="836"/>
+        <location filename="../../mainWin.cpp" line="867"/>
+        <location filename="../../mainWin.cpp" line="1136"/>
+        <location filename="../../mainWin.cpp" line="1142"/>
         <source>Adding Items...</source>
         <translation>Bezig met toevoegen van items…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="892"/>
+        <location filename="../../mainWin.cpp" line="893"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Wil je de geselecteerde items verwijderen?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="909"/>
+        <location filename="../../mainWin.cpp" line="910"/>
         <source>Removing Items...</source>
         <translation>Bezig met verwijderen van items…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1098"/>
-        <location filename="../../mainWin.cpp" line="1113"/>
-        <location filename="../../mainWin.cpp" line="1193"/>
-        <location filename="../../mainWin.cpp" line="1207"/>
+        <location filename="../../mainWin.cpp" line="1099"/>
+        <location filename="../../mainWin.cpp" line="1114"/>
+        <location filename="../../mainWin.cpp" line="1194"/>
+        <location filename="../../mainWin.cpp" line="1208"/>
         <source>Extracting...</source>
         <translation>Bezig met uitpakken…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="949"/>
+        <location filename="../../mainWin.cpp" line="950"/>
         <source>Copy Archive Path</source>
         <translation>Archieflocatie kopiëren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="955"/>
+        <location filename="../../mainWin.cpp" line="956"/>
         <source>Open Containing Folder</source>
         <translation>Bijbehorende map openen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="987"/>
+        <location filename="../../mainWin.cpp" line="988"/>
         <source>View Current Item</source>
         <translation>Huidig item bekijken</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1002"/>
-        <location filename="../../mainWin.cpp" line="1010"/>
+        <location filename="../../mainWin.cpp" line="1003"/>
+        <location filename="../../mainWin.cpp" line="1011"/>
         <source>Enter Password</source>
         <translation>Voer het wachtwoord in</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1014"/>
+        <location filename="../../mainWin.cpp" line="1015"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1015"/>
+        <location filename="../../mainWin.cpp" line="1016"/>
         <source>OK</source>
         <translation>Oké</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1019"/>
+        <location filename="../../mainWin.cpp" line="1020"/>
         <source>Encrypt the file list</source>
         <translation>Bestandslijst versleutelen</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1020"/>
+        <location filename="../../mainWin.cpp" line="1021"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Dit wordt toegepast ná het toevoegen van bestanden/mappen.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1091"/>
-        <location filename="../../mainWin.cpp" line="1167"/>
+        <location filename="../../mainWin.cpp" line="1092"/>
+        <location filename="../../mainWin.cpp" line="1168"/>
         <source>Extract Into Directory</source>
         <translation>Uitpakken naar map</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1181"/>
+        <location filename="../../mainWin.cpp" line="1182"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -615,38 +620,38 @@ Weet je zeker dat je wilt doorgaan?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1304"/>
+        <location filename="../../mainWin.cpp" line="1305"/>
         <source>Link To: %1</source>
         <translation>Link naar %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1642"/>
+        <location filename="../../mainWin.cpp" line="1643"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1643"/>
+        <location filename="../../mainWin.cpp" line="1644"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1644"/>
+        <location filename="../../mainWin.cpp" line="1645"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1645"/>
+        <location filename="../../mainWin.cpp" line="1646"/>
         <source>aka.</source>
         <translation>ook wel bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1646"/>
         <location filename="../../mainWin.cpp" line="1647"/>
+        <location filename="../../mainWin.cpp" line="1648"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1646"/>
+        <location filename="../../mainWin.cpp" line="1647"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>
