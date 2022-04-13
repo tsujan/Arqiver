@@ -959,6 +959,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
                                      "/org/freedesktop/FileManager1",
                                      "",
                                      "ShowItems");
+      methodCall.setAutoStartService (false); // needed for switching to QProcess
       QList<QVariant> args;
       args.append(QStringList() << BACKEND->currentFile());
       args.append("0");

@@ -497,7 +497,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="703"/>
         <location filename="../../mainWin.cpp" line="891"/>
-        <location filename="../../mainWin.cpp" line="1179"/>
+        <location filename="../../mainWin.cpp" line="1180"/>
         <source>Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -527,8 +527,8 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="835"/>
         <location filename="../../mainWin.cpp" line="866"/>
-        <location filename="../../mainWin.cpp" line="1134"/>
-        <location filename="../../mainWin.cpp" line="1140"/>
+        <location filename="../../mainWin.cpp" line="1135"/>
+        <location filename="../../mainWin.cpp" line="1141"/>
         <source>Adding Items...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -544,10 +544,10 @@ binary does not belong to libarchive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1097"/>
-        <location filename="../../mainWin.cpp" line="1112"/>
-        <location filename="../../mainWin.cpp" line="1192"/>
-        <location filename="../../mainWin.cpp" line="1206"/>
+        <location filename="../../mainWin.cpp" line="1098"/>
+        <location filename="../../mainWin.cpp" line="1113"/>
+        <location filename="../../mainWin.cpp" line="1193"/>
+        <location filename="../../mainWin.cpp" line="1207"/>
         <source>Extracting...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -562,82 +562,82 @@ binary does not belong to libarchive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="986"/>
+        <location filename="../../mainWin.cpp" line="987"/>
         <source>View Current Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1001"/>
-        <location filename="../../mainWin.cpp" line="1009"/>
+        <location filename="../../mainWin.cpp" line="1002"/>
+        <location filename="../../mainWin.cpp" line="1010"/>
         <source>Enter Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1013"/>
+        <location filename="../../mainWin.cpp" line="1014"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1014"/>
+        <location filename="../../mainWin.cpp" line="1015"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1018"/>
+        <location filename="../../mainWin.cpp" line="1019"/>
         <source>Encrypt the file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1019"/>
+        <location filename="../../mainWin.cpp" line="1020"/>
         <source>This will take effect after files/folders are added.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1090"/>
-        <location filename="../../mainWin.cpp" line="1166"/>
+        <location filename="../../mainWin.cpp" line="1091"/>
+        <location filename="../../mainWin.cpp" line="1167"/>
         <source>Extract Into Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1180"/>
+        <location filename="../../mainWin.cpp" line="1181"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1303"/>
+        <location filename="../../mainWin.cpp" line="1304"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1641"/>
+        <location filename="../../mainWin.cpp" line="1642"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1642"/>
+        <location filename="../../mainWin.cpp" line="1643"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1643"/>
+        <location filename="../../mainWin.cpp" line="1644"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1644"/>
+        <location filename="../../mainWin.cpp" line="1645"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1645"/>
         <location filename="../../mainWin.cpp" line="1646"/>
+        <location filename="../../mainWin.cpp" line="1647"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1645"/>
+        <location filename="../../mainWin.cpp" line="1646"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>
