@@ -487,7 +487,7 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>AINULT-LUGEMISEKS: VirtualBox Extension Pack (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
