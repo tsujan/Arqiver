@@ -487,7 +487,7 @@ binário não pertencer ao libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>APENAS-LEITURA: VirtualBox Extension Pack (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
