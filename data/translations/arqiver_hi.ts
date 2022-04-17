@@ -22,37 +22,38 @@
         <location filename="../../backends.cpp" line="1077"/>
         <location filename="../../backends.cpp" line="1120"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>पुरालेख नहीं पढ़ सका</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1080"/>
         <location filename="../../backends.cpp" line="1125"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>पुरालेख लोड किया गया</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1087"/>
         <location filename="../../backends.cpp" line="1173"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>संशोधन संपन्न हुआ</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1108"/>
         <location filename="../../backends.cpp" line="1142"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>निष्कर्षण संपन्न हुआ</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1111"/>
         <location filename="../../backends.cpp" line="1161"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>निष्कर्षण विफल</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1270"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>आपके सिस्टम से %1 गायब है.
+कृपया इसे इस तरह के संग्रह के लिए स्थापित करें!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>आप मुख्य दृश्य के अंदर टाइप कर सकते हैं.
+एस्केप कुंजी के साथ टेक्स्ट साफ़ करें.</translation>
     </message>
 </context>
 <context>
@@ -69,27 +71,27 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>वरीयताएँ</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>इस आकार से प्रारंभ करें :</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>आइटम हटाने पर संकेत दिखाएं</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>पहले कॉलम को उपलब्ध चौड़ाई में फ़िट करें</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>यदि यह अचिह्नित है, तो केवल शीर्ष स्तरीय डायरेक्टरी का विस्तार किया जाएगा.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
