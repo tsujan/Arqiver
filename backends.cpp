@@ -1191,7 +1191,7 @@ void Backend::processData() {
   if (is7z_ && !encryptionQueried_) {
     if (!encryptedList_) {
       QString read = proc_.readAllStandardOutput();
-      if (read.contains("\nERROR: ")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
+      if (read.contains("\nERROR: ") && read.contains("encrypted")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
         encryptedList_ = encrypted_ = true;
       }
       else {

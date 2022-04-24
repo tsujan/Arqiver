@@ -5,6 +5,7 @@ V0.10.0
  * First try the file manager DBus interface when opening the containing folder.
  * Removed the action for opening the containing folder when running as root (because there are DBus complications with most file managers).
  * Added read-only support for VirtualBox Extension Pack.
+ * With 7z, don't show password prompt when the archive can't be read and there's no mention of encryption.
 
 V0.9.0
 --------
