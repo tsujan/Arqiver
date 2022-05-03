@@ -71,7 +71,7 @@ tekst wissen met de escapetoets.</translation>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation>Instellingen</translation>
+        <translation>Alle instellingen</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
