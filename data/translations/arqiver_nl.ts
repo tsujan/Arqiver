@@ -53,7 +53,7 @@
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 is niet geïnstalleerd.
-Installeer het om dit soort archieven te kunnen beheren!</translation>
+Installeer dit pakket om dit soort archieven te kunnen beheren!</translation>
     </message>
 </context>
 <context>
@@ -62,7 +62,7 @@ Installeer het om dit soort archieven te kunnen beheren!</translation>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation>Je kunt typen in de weergave en
+        <translation>U kunt typen in de weergave en
 tekst wissen met de escapetoets.</translation>
     </message>
 </context>
@@ -76,7 +76,7 @@ tekst wissen met de escapetoets.</translation>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation>Standaardafmetingen:</translation>
+        <translation>Vaste vensterafmetingen:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
@@ -108,17 +108,17 @@ binary does not belong to libarchive.</source>
         <translation>Laat leeg om de standaardwaarde te gebruiken.
 
 Waarschuwing: Arqiver werkt niet als het uitvoerbare
-bestand niet bij libarchive hoor.</translation>
+bestand niet van libarchive is.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation>libarchive - uitvoerbaar bestand:</translation>
+        <translation>libarchive-bestand:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation>Ven&amp;sterafmetingen bewaren na afsluiten</translation>
+        <translation>Ven&amp;sterafmetingen onthouden</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
@@ -177,7 +177,7 @@ bestand niet bij libarchive hoor.</translation>
     <message>
         <location filename="../../mainWin.ui" line="198"/>
         <source>&amp;Open Archive</source>
-        <translation>Archief &amp;openen</translation>
+        <translation>&amp;Openen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="201"/>
@@ -520,7 +520,7 @@ bestand niet bij libarchive hoor.</translation>
         <location filename="../../mainWin.cpp" line="707"/>
         <source>Do you want to replace it?
 </source>
-        <translation>Wil je dit vervangen?
+        <translation>Wilt u dit vervangen?
 </translation>
     </message>
     <message>
@@ -547,7 +547,7 @@ bestand niet bij libarchive hoor.</translation>
         <location filename="../../mainWin.cpp" line="893"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>Wil je de geselecteerde items verwijderen?
+        <translation>Wilt u de geselecteerde items verwijderen?
 </translation>
     </message>
     <message>
@@ -616,7 +616,7 @@ bestand niet bij libarchive hoor.</translation>
 Do you want to continue?
 </source>
         <translation>Enkele bestanden worden overschreven.
-Weet je zeker dat je wilt doorgaan?
+Weet u zeker dat u wilt doorgaan?
 </translation>
     </message>
     <message>
@@ -642,7 +642,7 @@ Weet je zeker dat je wilt doorgaan?
     <message>
         <location filename="../../mainWin.cpp" line="1646"/>
         <source>aka.</source>
-        <translation>ook wel bekend als</translation>
+        <translation>ook bekend als</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1647"/>
