@@ -487,7 +487,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기전용: VirtualBox 확장 팩 (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
