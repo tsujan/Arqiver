@@ -487,7 +487,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>POUZE-PRO-ČTENÍ: VirtualBox Extension Pack (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
