@@ -96,7 +96,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>अभिलेखागार खोलते समय सभी डायरेक्टरी का विस्तारित रूप दिखाएं</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -105,17 +105,20 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>डिफ़ॉल्ट के लिए खाली छोड़ दें.
+
+चेतावनी: Arqiver काम नहीं करेगा यदि
+बाइनरी libarchive से संबंधित नहीं है.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive बाइनरी :</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>बंद होने पर विंडो का &amp;आकार याद रखें</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="83"/>
