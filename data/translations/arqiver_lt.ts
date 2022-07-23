@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="140"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencija</translation>
     </message>
 </context>
 <context>
@@ -22,13 +22,13 @@
         <location filename="../../backends.cpp" line="1077"/>
         <location filename="../../backends.cpp" line="1120"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko perskaityti archyvo</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1080"/>
         <location filename="../../backends.cpp" line="1125"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Archyvas įkeltas</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1087"/>
@@ -69,7 +69,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuostatos</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="45"/>
