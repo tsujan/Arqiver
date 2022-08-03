@@ -77,8 +77,15 @@ bool TreeWidgetItem::operator<(const QTreeWidgetItem& other) const {
   for (;;) {
     int end1 = txt1.indexOf(QLatin1Char('.'), start1);
     int end2 = txt2.indexOf(QLatin1Char('.'), start2);
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     QStringRef part1 = txt1.midRef(start1, end1 - start1);
     QStringRef part2 = txt2.midRef(start2, end2 - start2);
+#else
+    QString part1 = end1 == -1 ? txt1.sliced(start1, txt1.size() - start1)
+                               : txt1.sliced(start1, end1 - start1);
+    QString part2 = end2 == -1 ? txt2.sliced(start2, txt2.size() - start2)
+                               : txt2.sliced(start2, end2 - start2);
+#endif
     int comp = collator_.compare(part1, part2);
     if (comp == 0)
       comp = part1.size() - part2.size(); // a workaround for QCollator's bug
@@ -1258,7 +1265,11 @@ void mainWin::updateTree() {
   /* NOTE: With big archives, QHash is much faster than finding items. */
   /* remove items that aren't in the archive and get the remaining items */
   QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files.size() > 10000 ? QStringList() : files);
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
   QHash<const QString&, QTreeWidgetItem*> dirs; // keep track of directory items
+#else
+  QHash<const QString, QTreeWidgetItem*> dirs;
+#endif
 
   for (const auto& thisFile : qAsConst(files)) {
     QTreeWidgetItem *item = allPrevItems.value(thisFile);

@@ -21,6 +21,7 @@
 #define BACKENDS_H
 
 #include <QProcess>
+#include <QHash>
 #include <QString>
 #include <QStringList>
 

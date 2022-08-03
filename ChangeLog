@@ -6,6 +6,7 @@ V0.10.0
  * Removed the action for opening the containing folder when running as root (because there are DBus complications with most file managers).
  * Added read-only support for VirtualBox Extension Pack.
  * With 7z, don't show password prompt when the archive can't be read and there's no mention of encryption.
+ * Enabled compilation against Qt6. With cmake, "ENABLE_QT5" should be set to "OFF" (as in `cmake .. -DENABLE_QT5=OFF`) — it's "ON" by default.
 
 V0.9.0
 --------

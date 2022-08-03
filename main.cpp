@@ -74,7 +74,9 @@ int main(int argc, char **argv) {
   a.setApplicationVersion(version);
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
 
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
   a.setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
 
   QStringList langs(QLocale::system().uiLanguages());
   QString lang;
@@ -82,17 +84,25 @@ int main(int argc, char **argv) {
     lang = langs.first().replace('-', '_');
 
   QTranslator qtTranslator;
-  if (!qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
-    if (!langs.isEmpty()) {
-      lang = langs.first().split(QLatin1Char('_')).first();
-      qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    }
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+  if (qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+#else
+  if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+#endif
+    a.installTranslator(&qtTranslator);
+  else if (!langs.isEmpty()) {
+    lang = langs.first().split(QLatin1Char('_')).first();
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+    if (qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+#else
+    if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+#endif
+      a.installTranslator(&qtTranslator);
   }
-  a.installTranslator(&qtTranslator);
 
   QTranslator ArqTranslator;
-  ArqTranslator.load("arqiver_" + lang, DATADIR "/arqiver/translations");
-  a.installTranslator(&ArqTranslator);
+  if (ArqTranslator.load("arqiver_" + lang, DATADIR "/arqiver/translations"))
+    a.installTranslator(&ArqTranslator);
 
   QStringList args;
   for (int i = 1; i < argc; i++)

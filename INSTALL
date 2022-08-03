@@ -34,7 +34,7 @@ In addition, you need to have libarchive (bsdtar), gzip and 7z installed because
 
 With qmake
 ==========
-Then, open a terminal inside this folder and issue the following commands:
+Then, if you prefer qmake, open a terminal inside this folder and issue the following commands:
 
 	qmake && make
 	sudo make install
@@ -45,12 +45,14 @@ Afterward, you could use this command to clean the source directory:
 
 With cmake
 ==========
-If you prefer cmake, use these commands instead:
+With cmake, use these commands instead:
 
 	mkdir build && cd build
 	cmake ..
 	make
 	sudo make install
+
+NOTE: Experimental compilation against Qt6 can be done with `cmake .. -DENABLE_QT5=OFF`. When Qt6 becomes the default version of Qt in some distros, that compilation option will be set to `OFF` by default.
 
 **********************************
 *   Translation (Localization)   *
