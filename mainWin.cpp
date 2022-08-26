@@ -180,6 +180,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionRemoveFile->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
   ui->actionExtractAll->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
   ui->actionExtractSel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
+  ui->actionView->setIcon(symbolicIcon::icon(":icons/view.svg"));
   ui->actionPassword->setIcon(symbolicIcon::icon(":icons/locked.svg"));
   ui->actionExpand->setIcon(symbolicIcon::icon(":icons/expand.svg"));
   ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
@@ -199,6 +200,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionExtractAll->setEnabled(false);
   ui->actionAddDir->setEnabled(false);
   ui->actionExtractSel->setEnabled(false);
+  ui->actionView->setEnabled(false);
   ui->actionPassword->setEnabled(false);
 
   BACKEND = new Backend(this);
@@ -222,6 +224,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
   connect(ui->actionExtractAll, &QAction::triggered, this, &mainWin::extractFiles);
   connect(ui->actionExtractSel, &QAction::triggered, this, &mainWin::extractSelection);
+  connect(ui->actionView, &QAction::triggered, [this] {
+    if (QTreeWidgetItem *cur = ui->tree_contents->currentItem())
+      viewFile(cur);
+  });
   connect(ui->actionAddDir, &QAction::triggered, this, &mainWin::addDirs);
   connect(ui->actionCopy, &QAction::triggered, [this] {
     if (QTreeWidgetItem *cur = ui->tree_contents->currentItem())
@@ -231,6 +237,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->tree_contents, &QTreeWidget::itemDoubleClicked, this, &mainWin::viewFile);
   connect(ui->tree_contents, &TreeWidget::enterPressed, this, &mainWin::onEnterPressed);
   connect(ui->tree_contents, &QTreeWidget::itemSelectionChanged, this, &mainWin::selectionChanged);
+  connect(ui->tree_contents, &QTreeWidget::currentItemChanged,
+          [this] (QTreeWidgetItem *cur, QTreeWidgetItem*) {
+    ui->actionView->setEnabled(cur && cur->isSelected() && !cur->text(1).isEmpty());
+  });
   connect(ui->tree_contents, &TreeWidget::dragStarted, this, &mainWin::extractDraggedItems);
   connect(ui->tree_contents, &QWidget::customContextMenuRequested, this, &mainWin::listContextMenu);
   connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
@@ -991,10 +1001,8 @@ void mainWin::listContextMenu(const QPoint& p) {
 
   QMenu menu;
   menu.addAction(ui->actionExtractSel);
-  if (!isDir) {
-    QAction *action = menu.addAction(tr("View Current Item"));
-    connect(action, &QAction::triggered, [this, item] {viewFile(item);});
-  }
+  if (!isDir)
+    menu.addAction(ui->actionView);
   if (!isDir || !BACKEND->is7z())
     menu.addSeparator();
   menu.addAction(ui->actionCopy);
@@ -1439,6 +1447,7 @@ void mainWin::enableActions(bool enable) {
   ui->actionExtractAll->setEnabled(enable);
   ui->actionAddDir->setEnabled(enable);
   ui->actionExtractSel->setEnabled(enable);
+  ui->actionView->setEnabled(enable);
   ui->actionPassword->setEnabled(enable);
   ui->actionExpand->setEnabled(enable);
   ui->actionCollapse->setEnabled(enable);
@@ -1500,8 +1509,12 @@ void mainWin::procFinished(bool success, const QString& msg) {
   lastMsg_ = msg;
 
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
+  bool curSelected = false;
   if (cur && ui->tree_contents->selectedItems().contains(cur))
+  {
+    curSelected = true;
     textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
+  }
   else
     textLabel_->setText(lastMsg_);
 
@@ -1524,6 +1537,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
     ui->actionRemoveFile->setEnabled(false);
     ui->actionExtractAll->setEnabled(false);
     ui->actionExtractSel->setEnabled(false);
+    ui->actionView->setEnabled(false);
     ui->actionAddDir->setEnabled(false);
     ui->actionPassword->setEnabled(false);
   }
@@ -1538,6 +1552,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
     bool hasSelection = info.exists() && !ui->tree_contents->selectedItems().isEmpty();
     ui->actionExtractSel->setEnabled(hasSelection);
     ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
+    ui->actionView->setEnabled(curSelected && !cur->text(1).isEmpty());
     ui->actionAddDir->setEnabled(canmodify_ && !BACKEND->isGzip());
     ui->actionPassword->setEnabled(BACKEND->is7z() && canmodify_);
   }
@@ -1573,6 +1588,7 @@ void mainWin::openEncryptedList(const QString& path) {
     ui->actionExtractAll->setEnabled(false);
     ui->actionAddDir->setEnabled(false);
     ui->actionExtractSel->setEnabled(false);
+    ui->actionView->setEnabled(false);
     ui->actionPassword->setEnabled(false);
     return;
   }
@@ -1586,9 +1602,15 @@ void mainWin::selectionChanged() {
   ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
+  {
+    ui->actionView->setEnabled(!cur->text(1).isEmpty());
     textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
+  }
   else
+  {
+    ui->actionView->setEnabled(false);
     textLabel_->setText(lastMsg_);
+  }
 }
 
 void mainWin::adjustColumnSizes(bool stretch) {

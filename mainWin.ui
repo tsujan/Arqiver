@@ -155,6 +155,8 @@
     <addaction name="actionExpand"/>
     <addaction name="actionCollapse"/>
     <addaction name="separator"/>
+    <addaction name="actionView"/>
+    <addaction name="separator"/>
     <addaction name="actionStop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -287,6 +289,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionView">
+   <property name="text">
+    <string>View Current Item</string>
    </property>
   </action>
  </widget>
