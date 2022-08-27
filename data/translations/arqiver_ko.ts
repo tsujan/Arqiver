@@ -507,7 +507,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="721"/>
         <location filename="../../mainWin.cpp" line="909"/>
-        <location filename="../../mainWin.cpp" line="1196"/>
+        <location filename="../../mainWin.cpp" line="1194"/>
         <source>Question</source>
         <translation>질문</translation>
     </message>
@@ -538,8 +538,8 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="853"/>
         <location filename="../../mainWin.cpp" line="884"/>
-        <location filename="../../mainWin.cpp" line="1151"/>
-        <location filename="../../mainWin.cpp" line="1157"/>
+        <location filename="../../mainWin.cpp" line="1149"/>
+        <location filename="../../mainWin.cpp" line="1155"/>
         <source>Adding Items...</source>
         <translation>항목 추가 중...</translation>
     </message>
@@ -556,10 +556,10 @@ binary does not belong to libarchive.</source>
         <translation>항목 제거 중...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1114"/>
-        <location filename="../../mainWin.cpp" line="1129"/>
-        <location filename="../../mainWin.cpp" line="1209"/>
-        <location filename="../../mainWin.cpp" line="1223"/>
+        <location filename="../../mainWin.cpp" line="1112"/>
+        <location filename="../../mainWin.cpp" line="1127"/>
+        <location filename="../../mainWin.cpp" line="1207"/>
+        <location filename="../../mainWin.cpp" line="1221"/>
         <source>Extracting...</source>
         <translation>압축 푸는 중...</translation>
     </message>
@@ -579,39 +579,39 @@ binary does not belong to libarchive.</source>
         <translation>현재 항목 보기</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1018"/>
-        <location filename="../../mainWin.cpp" line="1026"/>
+        <location filename="../../mainWin.cpp" line="1016"/>
+        <location filename="../../mainWin.cpp" line="1024"/>
         <source>Enter Password</source>
         <translation>비밀번호 입력</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1030"/>
+        <location filename="../../mainWin.cpp" line="1028"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1031"/>
+        <location filename="../../mainWin.cpp" line="1029"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1035"/>
+        <location filename="../../mainWin.cpp" line="1033"/>
         <source>Encrypt the file list</source>
         <translation>파일 목록 암호화</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1036"/>
+        <location filename="../../mainWin.cpp" line="1034"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>이것은 파일/폴더가 추가된 후에 적용됩니다.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1107"/>
-        <location filename="../../mainWin.cpp" line="1183"/>
+        <location filename="../../mainWin.cpp" line="1105"/>
+        <location filename="../../mainWin.cpp" line="1181"/>
         <source>Extract Into Directory</source>
         <translation>디렉터리에 압축풀기</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1197"/>
+        <location filename="../../mainWin.cpp" line="1195"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -620,38 +620,38 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1324"/>
+        <location filename="../../mainWin.cpp" line="1322"/>
         <source>Link To: %1</source>
         <translation>링크 대상: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>A simple Qt archive manager</source>
         <translation>단순한 Qt 압축파일 관리자</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>libarchive, gzip 및 7z 기반함</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1676"/>
         <source>Author</source>
         <translation>개발자</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1677"/>
         <source>aka.</source>
         <translation>일명.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1680"/>
-        <location filename="../../mainWin.cpp" line="1681"/>
+        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1679"/>
         <source>About Arqiver</source>
         <translation>Arqiver 정보</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1680"/>
+        <location filename="../../mainWin.cpp" line="1678"/>
         <source>Translators</source>
         <translation>번역자</translation>
     </message>

@@ -997,14 +997,12 @@ void mainWin::listContextMenu(const QPoint& p) {
   QModelIndex index = ui->tree_contents->indexAt(p);
   if (!index.isValid()) return;
   QTreeWidgetItem *item = ui->tree_contents->getItemFromIndex(index);
-  bool isDir(item->text(1).isEmpty());
 
   QMenu menu;
   menu.addAction(ui->actionExtractSel);
-  if (!isDir)
+  if (item && !item->text(1).isEmpty())
     menu.addAction(ui->actionView);
-  if (!isDir || !BACKEND->is7z())
-    menu.addSeparator();
+  menu.addSeparator();
   menu.addAction(ui->actionCopy);
   menu.exec(ui->tree_contents->viewport()->mapToGlobal(p));
 }

@@ -507,7 +507,7 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="721"/>
         <location filename="../../mainWin.cpp" line="909"/>
-        <location filename="../../mainWin.cpp" line="1196"/>
+        <location filename="../../mainWin.cpp" line="1194"/>
         <source>Question</source>
         <translation>Küsimus</translation>
     </message>
@@ -538,8 +538,8 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="853"/>
         <location filename="../../mainWin.cpp" line="884"/>
-        <location filename="../../mainWin.cpp" line="1151"/>
-        <location filename="../../mainWin.cpp" line="1157"/>
+        <location filename="../../mainWin.cpp" line="1149"/>
+        <location filename="../../mainWin.cpp" line="1155"/>
         <source>Adding Items...</source>
         <translation>Lisan kirjeid...</translation>
     </message>
@@ -556,10 +556,10 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
         <translation>Eemaldan kirjed...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1114"/>
-        <location filename="../../mainWin.cpp" line="1129"/>
-        <location filename="../../mainWin.cpp" line="1209"/>
-        <location filename="../../mainWin.cpp" line="1223"/>
+        <location filename="../../mainWin.cpp" line="1112"/>
+        <location filename="../../mainWin.cpp" line="1127"/>
+        <location filename="../../mainWin.cpp" line="1207"/>
+        <location filename="../../mainWin.cpp" line="1221"/>
         <source>Extracting...</source>
         <translation>Pakin lahti...</translation>
     </message>
@@ -579,39 +579,39 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
         <translation>Vaata seda kirjet</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1018"/>
-        <location filename="../../mainWin.cpp" line="1026"/>
+        <location filename="../../mainWin.cpp" line="1016"/>
+        <location filename="../../mainWin.cpp" line="1024"/>
         <source>Enter Password</source>
         <translation>Sisesta salasõna</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1030"/>
+        <location filename="../../mainWin.cpp" line="1028"/>
         <source>Cancel</source>
         <translation>Katkesta</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1031"/>
+        <location filename="../../mainWin.cpp" line="1029"/>
         <source>OK</source>
         <translation>Sobib</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1035"/>
+        <location filename="../../mainWin.cpp" line="1033"/>
         <source>Encrypt the file list</source>
         <translation>Krüpti failide loend</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1036"/>
+        <location filename="../../mainWin.cpp" line="1034"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Muudatus jõustub peale failide või kaustade lisamist.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1107"/>
-        <location filename="../../mainWin.cpp" line="1183"/>
+        <location filename="../../mainWin.cpp" line="1105"/>
+        <location filename="../../mainWin.cpp" line="1181"/>
         <source>Extract Into Directory</source>
         <translation>Paki lahti kausta</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1197"/>
+        <location filename="../../mainWin.cpp" line="1195"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -620,38 +620,38 @@ Kas sa soovid jätkata?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1324"/>
+        <location filename="../../mainWin.cpp" line="1322"/>
         <source>Link To: %1</source>
         <translation>Viide failile: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>A simple Qt archive manager</source>
         <translation>Lihtne Qt-põhine arhiivide ja pakitud failide haldur</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>põhineb libarchive, gzip ja 7z teekidel</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1676"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1677"/>
         <source>aka.</source>
         <translation>tuntud ka kui</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1680"/>
-        <location filename="../../mainWin.cpp" line="1681"/>
+        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1679"/>
         <source>About Arqiver</source>
         <translation>Rakenduse teave</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1680"/>
+        <location filename="../../mainWin.cpp" line="1678"/>
         <source>Translators</source>
         <translation>Tõlkijad</translation>
     </message>
