@@ -287,34 +287,34 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="212"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MIME tipas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dydis</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="488"/>
         <location filename="../../mainWin.cpp" line="759"/>
         <location filename="../../mainWin.cpp" line="800"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atveriamas archyvas...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="562"/>
         <source>All Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi tipai %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
@@ -487,47 +487,48 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
         <source>All Known Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi žinomi tipai %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <source>Show All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti visus failus (*)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Sukurti archyvą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="721"/>
         <location filename="../../mainWin.cpp" line="909"/>
         <location filename="../../mainWin.cpp" line="1194"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="722"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis archyvas jau yra:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="724"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ar norite jį pakeisti?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="751"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverti archyvą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="815"/>
         <location filename="../../mainWin.cpp" line="822"/>
         <location filename="../../mainWin.cpp" line="858"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti į archyvą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="853"/>
@@ -535,7 +536,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1149"/>
         <location filename="../../mainWin.cpp" line="1155"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridedami elementai...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="910"/>
@@ -546,7 +547,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="927"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinami elementai...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1112"/>
@@ -559,12 +560,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="967"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopijuoti archyvo kelią</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="973"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverti vidinį aplanką</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="296"/>
@@ -580,22 +581,22 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1029"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1033"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Šifruoti failų sąrašą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1034"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tai įsigalios po to, kai bus pridėti failai/aplankai.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1105"/>
@@ -608,7 +609,9 @@ binary does not belong to libarchive.</source>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kai kurie failai bus perrašyti.
+Ar norite tęsti?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1322"/>
@@ -628,7 +631,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1676"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorius</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1677"/>
@@ -644,7 +647,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1678"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertėjai</translation>
     </message>
 </context>
 </TS>
