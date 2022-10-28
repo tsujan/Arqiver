@@ -487,7 +487,7 @@ l&apos;eseguibile non è incluso in libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="631"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>SOLA LETTURA: Pacchetto di estensioni VirtualBox (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
