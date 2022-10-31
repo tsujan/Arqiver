@@ -53,7 +53,7 @@
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 est manquant dans votre système.
-Veuillez l&apos;installer pour ce genre d&apos;archive&#xa0;!</translation>
+Veuillez l&apos;installer pour ce genre d&apos;archive !</translation>
     </message>
 </context>
 <context>
@@ -76,7 +76,7 @@ Effacez le texte avec la touche Echap.</translation>
     <message>
         <location filename="../../pref.ui" line="45"/>
         <source>Start with this size:</source>
-        <translation>Commencer par cette taille&#xa0;:</translation>
+        <translation>Commencer par cette taille :</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="94"/>
@@ -107,13 +107,13 @@ Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
         <translation>Laissez vide pour la valeur par défaut.
 
-Attention&#xa0;: Arqiver ne fonctionnera pas si le
+Attention : Arqiver ne fonctionnera pas si le
 binaire n&apos;appartient pas à libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation>binaire libarchive&#xa0;:</translation>
+        <translation>binaire libarchive :</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -123,7 +123,7 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../pref.ui" line="83"/>
         <source>Size of view icons:</source>
-        <translation>Taille des icônes de vue&#xa0;:</translation>
+        <translation>Taille des icônes de vue :</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
@@ -147,7 +147,7 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation>Archive&#xa0;:</translation>
+        <translation>Archive :</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
@@ -252,7 +252,7 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="265"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished">Effond&amp;rer</translation>
+        <translation>Effond&amp;rer</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="268"/>
@@ -302,7 +302,7 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>MimeType</source>
-        <translation type="unfinished">TypeMime</translation>
+        <translation>MimeType</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
@@ -390,27 +390,27 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="600"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>LECTURE SEULE&#xa0;: Archive BZip2 (*.bz2)</translation>
+        <translation>LECTURE SEULE : Archive BZip2 (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="601"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>LECTURE SEULE&#xa0;: Document PDF compressé BZip2 (*.pdf.bz2)</translation>
+        <translation>LECTURE SEULE : Document PDF compressé BZip2 (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="603"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>LECTURE SEULE&#xa0;: archive XZ (*.xz)</translation>
+        <translation>LECTURE SEULE : archive XZ (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="604"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>LECTURE SEULE&#xa0;: Document PDF compressé XZ (*.pdf.xz)</translation>
+        <translation>LECTURE SEULE : Document PDF compressé XZ (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="607"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>LECTURE SEULE&#xa0;: archive Zstandard (*.zst)</translation>
+        <translation>LECTURE SEULE : archive Zstandard (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="615"/>
@@ -420,39 +420,39 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="616"/>
         <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>LECTURE SEULE&#xa0;: Image SVG compressée (*.svgz)</translation>
+        <translation>LECTURE SEULE : Image SVG compressée (*.svgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="617"/>
         <location filename="../../mainWin.cpp" line="618"/>
         <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>LECTURE SEULE&#xa0;: Image ISO (*.iso *.img)</translation>
+        <translation>LECTURE SEULE : Image ISO (*.iso *.img)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="619"/>
         <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>LECTURE SEULE&#xa0;: Archive XAR (*.xar)</translation>
+        <translation>LECTURE SEULE : Archive XAR (*.xar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="620"/>
         <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>LECTURE SEULE&#xa0;: Archive Java (*.jar)</translation>
+        <translation>LECTURE SEULE : Archive Java (*.jar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="621"/>
         <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation>LECTURE SEULE&#xa0;: Paquet Debian (*.deb)</translation>
+        <translation>LECTURE SEULE : Paquet Debian (*.deb)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="622"/>
         <location filename="../../mainWin.cpp" line="623"/>
         <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation>LECTURE SEULE&#xa0;: Paquet RedHat (*.rpm)</translation>
+        <translation>LECTURE SEULE : Paquet RedHat (*.rpm)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="624"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation>LECTURE SEULE&#xa0;: exécutable MS Windows (*.exe *.com)</translation>
+        <translation>LECTURE SEULE : exécutable MS Windows (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="625"/>
@@ -462,17 +462,17 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="626"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation>LECTURE SEULE&#xa0;: Archive MS Windows Cabinet (*.cab)</translation>
+        <translation>LECTURE SEULE : Archive MS Windows Cabinet (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>LECTURE SEULE&#xa0;: archive ACE (*.ace)</translation>
+        <translation>LECTURE SEULE : archive ACE (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation>LECTURE SEULE&#xa0;: Package Android (*.apk)</translation>
+        <translation>LECTURE SEULE : Package Android (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="629"/>
@@ -482,12 +482,12 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="630"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>LECTURE SEULE&#xa0;: Ensemble d&apos;applications AppImage (*.appimage)</translation>
+        <translation>LECTURE SEULE : Ensemble d&apos;applications AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="631"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation>LECTURE-SEULE&#xa0;: Pack d&apos;extension VirtualBox (*.vbox-extpack)</translation>
+        <translation>LECTURE-SEULE : Pack d&apos;extension VirtualBox (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
@@ -514,13 +514,13 @@ binaire n&apos;appartient pas à libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="722"/>
         <source>The following archive already exists:</source>
-        <translation>L&apos;archive suivante existe déjà&#xa0;:</translation>
+        <translation>L&apos;archive suivante existe déjà :</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="724"/>
         <source>Do you want to replace it?
 </source>
-        <translation>Voulez-vous le remplacer&#xa0;?
+        <translation>Voulez-vous le remplacer ?
 </translation>
     </message>
     <message>
@@ -547,7 +547,7 @@ binaire n&apos;appartient pas à libarchive.</translation>
         <location filename="../../mainWin.cpp" line="910"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>Voulez-vous supprimer le ou les éléments sélectionnés&#xa0;?
+        <translation>Voulez-vous supprimer le ou les éléments sélectionnés ?
 </translation>
     </message>
     <message>
@@ -616,13 +616,13 @@ binaire n&apos;appartient pas à libarchive.</translation>
 Do you want to continue?
 </source>
         <translation>Certains fichiers seront écrasés.
-Voulez-vous continuer&#xa0;?
+Voulez-vous continuer ?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1322"/>
         <source>Link To: %1</source>
-        <translation>Lien vers&#xa0;: %1</translation>
+        <translation>Lien vers : %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1674"/>
