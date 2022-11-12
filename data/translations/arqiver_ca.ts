@@ -34,7 +34,7 @@
         <location filename="../../backends.cpp" line="1087"/>
         <location filename="../../backends.cpp" line="1173"/>
         <source>Modification Finished</source>
-        <translation>Modificacions fetes</translation>
+        <translation>Modificació finalitzada</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1108"/>
@@ -85,7 +85,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="101"/>
         <source>Fit first column into available width</source>
-        <translation type="unfinished"></translation>
+        <translation>Adapta la primera columna a l&apos;amplada disponible</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="108"/>
