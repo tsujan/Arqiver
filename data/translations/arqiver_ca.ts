@@ -90,12 +90,12 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="108"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si no està marcada, només s&apos;expandiran els directoris de nivell superior.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="111"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandeix tots els directoris en obrir arxius</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -119,7 +119,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="83"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mida de les icones de visualització</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
