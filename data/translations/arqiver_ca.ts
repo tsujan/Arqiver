@@ -119,23 +119,23 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="83"/>
         <source>Size of view icons:</source>
-        <translation>Mida de les icones de visualització</translation>
+        <translation>Mida de les icones de visualització:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="226"/>
         <location filename="../../pref.cpp" line="251"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinicieu l&apos;aplicació perquè s&apos;apliquin els canvis.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="240"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona el binari de libarchive</translation>
     </message>
 </context>
 <context>
@@ -243,7 +243,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="260"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Maj+Baix</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="265"/>
@@ -253,7 +253,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="268"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Maj+Amunt</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="273"/>
@@ -263,7 +263,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="278"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copia el camí actual</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="283"/>
@@ -273,7 +273,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Interromp el &amp;procés</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="291"/>
@@ -315,7 +315,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="562"/>
         <source>All Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tots els tipus %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
@@ -522,7 +522,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="751"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Obre l&apos;arxiu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="815"/>
