@@ -62,7 +62,8 @@ Instal·leu-lo per treballar amb aquest tipus d&apos;arxius.</translation>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podeu escriure dins de la vista principal.
+Esborra el text amb la tecla d&apos;escapament.</translation>
     </message>
 </context>
 <context>
@@ -80,7 +81,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="94"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra la pregunta en eliminar elements</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="101"/>
@@ -104,12 +105,15 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deixeu-ho buit per defecte.
+
+Avís: Arqiver no funcionarà si 
+el binari no pertany a la libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="124"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>binari libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -298,7 +302,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipus MIME</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
@@ -458,7 +462,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="626"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>NOMÉS LECTURA: Arxiu del Cabinet MS Windows (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
@@ -478,7 +482,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="630"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>NOMÉS LECTURA: paquet d&apos;aplicacions AppImage (*.appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="631"/>
@@ -572,13 +576,13 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="296"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualitza l&apos;element actual</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1016"/>
         <location filename="../../mainWin.cpp" line="1024"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Inseriu la contrasenya</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1028"/>
@@ -598,13 +602,13 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1034"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tindrà efecte després d&apos;afegir fitxers/carpetes.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1105"/>
         <location filename="../../mainWin.cpp" line="1181"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Extreu en la carpeta</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1195"/>
@@ -618,7 +622,7 @@ Voleu continuar?
     <message>
         <location filename="../../mainWin.cpp" line="1322"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Enllaç a: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1674"/>
