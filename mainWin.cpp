@@ -963,7 +963,7 @@ void mainWin::extractDraggedItems() {
 }
 
 void mainWin::labelContextMenu(const QPoint& p) {
-  QMenu menu;
+  QMenu menu(this); // "this" is for Wayland, when the window isn't active
   QAction *action = menu.addAction(symbolicIcon::icon(":icons/edit-copy.svg"), tr("Copy Archive Path"));
   connect(action, &QAction::triggered, [this] {
     QApplication::clipboard()->setText(BACKEND->currentFile());
@@ -998,7 +998,7 @@ void mainWin::listContextMenu(const QPoint& p) {
   if (!index.isValid()) return;
   QTreeWidgetItem *item = ui->tree_contents->getItemFromIndex(index);
 
-  QMenu menu;
+  QMenu menu(this); // "this" is for Wayland, when the window isn't active;
   menu.addAction(ui->actionExtractSel);
   if (item && !item->text(1).isEmpty())
     menu.addAction(ui->actionView);
