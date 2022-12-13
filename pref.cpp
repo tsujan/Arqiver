@@ -33,7 +33,6 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   parent_ = parent;
   bool remSize;
   QSize startSize;
-  initialStretchFirstCol_ = false;
   initialExpandTopDirs_ = false;
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     Config config = win->getConfig();
@@ -41,7 +40,6 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     remSize = config.getRemSize();
     startSize = config.getStartSize();
     initialTar_ = config.getTarBinary();
-    initialStretchFirstCol_ = config.getStretchFirstColumn();
     initialExpandTopDirs_ = config.getExpandTopDirs();
   }
   else {
@@ -131,14 +129,6 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     }
   });
 
-  ui->stretchBox->setChecked(initialStretchFirstCol_);
-  connect(ui->stretchBox, &QCheckBox::stateChanged, [this] (int state) {
-    if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
-      Config& config = win->getConfig();
-      config.setStretchFirstColumn(state == Qt::Checked);
-    }
-  });
-
   ui->expandAllBox->setChecked(!initialExpandTopDirs_);
   connect(ui->expandAllBox, &QCheckBox::stateChanged, [this] (int state) {
     if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
@@ -166,14 +156,6 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
 
 PrefDialog::~PrefDialog() {
   delete ui; ui = nullptr;;
-}
-
-void PrefDialog::closeEvent(QCloseEvent *event) {
-  if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
-    if (initialStretchFirstCol_ != win->getConfig().getStretchFirstColumn())
-      win->adjustColumnSizes(!initialStretchFirstCol_);
-  }
-  event->accept();
 }
 
 void PrefDialog::showPrompt(const QString& str) {

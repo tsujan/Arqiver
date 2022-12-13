@@ -74,33 +74,28 @@ tekst wissen met de escapetoets.</translation>
         <translation>Alle instellingen</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="45"/>
+        <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
         <translation>Vaste vensterafmetingen:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="94"/>
+        <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
         <translation>Om bevestiging vragen bij verwijderen van meerdere items</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="101"/>
-        <source>Fit first column into available width</source>
-        <translation>Eerste kolom aanpassen aan beschikbare breedte</translation>
-    </message>
-    <message>
-        <location filename="../../pref.ui" line="108"/>
+        <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
         <translation>Schakel uit om alleen mappen op het bovenste niveau uit te klappen.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="111"/>
+        <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
         <translation>Alle mappen uitklappen na openen van een archief</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="118"/>
-        <location filename="../../pref.ui" line="131"/>
+        <location filename="../../pref.ui" line="140"/>
+        <location filename="../../pref.ui" line="153"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -111,7 +106,7 @@ Waarschuwing: Arqiver werkt niet als het uitvoerbare
 bestand niet van libarchive is.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="124"/>
+        <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
         <translation>libarchive-bestand:</translation>
     </message>
@@ -121,23 +116,23 @@ bestand niet van libarchive is.</translation>
         <translation>Ven&amp;sterafmetingen onthouden</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="83"/>
+        <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
         <translation>Grootte van weergavepictogrammen:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="226"/>
-        <location filename="../../pref.cpp" line="251"/>
+        <location filename="../../pref.cpp" line="208"/>
+        <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Herstart Arqiver om de wijzigingen toe te passen.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="240"/>
+        <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
         <translation>Kies het libarchive-bestand</translation>
     </message>
@@ -625,33 +620,33 @@ Weet u zeker dat u wilt doorgaan?
         <translation>Link naar %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1670"/>
         <source>A simple Qt archive manager</source>
         <translation>Een eenvoudige Qt-archiefbeheerder</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1675"/>
+        <location filename="../../mainWin.cpp" line="1671"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>gebaseerd op libarchive, gzip en 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1672"/>
         <source>Author</source>
         <translation>Maker</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1673"/>
         <source>aka.</source>
         <translation>ook bekend als</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>About Arqiver</source>
         <translation>Over Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>Translators</source>
         <translation>Vertalers</translation>
     </message>

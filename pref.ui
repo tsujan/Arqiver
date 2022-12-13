@@ -16,7 +16,10 @@
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>5</number>
+   </property>
    <property name="leftMargin">
     <number>5</number>
    </property>
@@ -29,80 +32,94 @@
    <property name="bottomMargin">
     <number>5</number>
    </property>
-   <property name="spacing">
-    <number>5</number>
-   </property>
-   <item row="0" column="0" colspan="5">
+   <item>
     <widget class="QCheckBox" name="winSizeBox">
      <property name="text">
       <string>Remember window &amp;size on closing</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="startSizeLabel">
-     <property name="text">
-      <string>Start with this size:</string>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>5</number>
      </property>
-    </widget>
+     <item>
+      <widget class="QLabel" name="startSizeLabel">
+       <property name="text">
+        <string>Start with this size:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinX"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string notr="true">x</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinY"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>5</width>
+         <height>5</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
-   <item row="1" column="1">
-    <widget class="QSpinBox" name="spinX">
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string notr="true">x</string>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>5</number>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
+     <item>
+      <widget class="QLabel" name="iconSizeLabel">
+       <property name="text">
+        <string>Size of view icons:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="iconSizeCombo"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>5</width>
+         <height>5</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
-   <item row="1" column="3">
-    <widget class="QSpinBox" name="spinY">
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>5</width>
-       <height>5</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="iconSizeLabel">
-     <property name="text">
-      <string>Size of view icons:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" colspan="3">
-    <widget class="QComboBox" name="iconSizeCombo">
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="5">
+   <item>
     <widget class="QCheckBox" name="promptBox">
      <property name="text">
       <string>Show prompt on removing items</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="5">
-    <widget class="QCheckBox" name="stretchBox">
-     <property name="text">
-      <string>Fit first column into available width</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="5">
+   <item>
     <widget class="QCheckBox" name="expandAllBox">
      <property name="toolTip">
       <string>If this is unchecked, only the top level directories will be expanded.</string>
@@ -112,40 +129,47 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="tarLabel">
-     <property name="toolTip">
-      <string>Leave empty for the default.
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="tarLabel">
+       <property name="toolTip">
+        <string>Leave empty for the default.
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</string>
-     </property>
-     <property name="text">
-      <string>libarchive binary:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1" colspan="3">
-    <widget class="QLineEdit" name="tarLineEdit">
-     <property name="toolTip">
-      <string>Leave empty for the default.
+       </property>
+       <property name="text">
+        <string>libarchive binary:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="tarLineEdit">
+       <property name="toolTip">
+        <string>Leave empty for the default.
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</string>
-     </property>
-     <property name="clearButtonEnabled">
-      <bool>true</bool>
-     </property>
-    </widget>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="tarButton">
+       <property name="text">
+        <string notr="true">...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="6" column="4">
-    <widget class="QToolButton" name="tarButton">
-     <property name="text">
-      <string notr="true">...</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -158,10 +182,10 @@ binary does not belong to libarchive.</string>
      </property>
     </spacer>
    </item>
-   <item row="8" column="0" colspan="5">
+   <item>
     <widget class="QLabel" name="promptLabel"/>
    </item>
-   <item row="9" column="0" colspan="5">
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Close</set>

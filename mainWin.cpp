@@ -252,8 +252,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
     ui->tree_contents->expandAll();
     ui->tree_contents->scrollTo(ui->tree_contents->currentIndex());
-    adjustColumnSizes(config_.getStretchFirstColumn()); /* may not be called by eventFilter()
-                                                           because scrollbars may be transient */
+    adjustColumnSizes(); /* may not be called by eventFilter()
+                            because scrollbars may be transient */
     connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
     connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
   });
@@ -261,7 +261,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     disconnect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
     disconnect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
     ui->tree_contents->collapseAll();
-    adjustColumnSizes(config_.getStretchFirstColumn());
+    adjustColumnSizes();
     connect(ui->tree_contents, &QTreeWidget::itemExpanded, this, &mainWin::onChangingExpansion);
     connect(ui->tree_contents, &QTreeWidget::itemCollapsed, this, &mainWin::onChangingExpansion);
   });
@@ -283,7 +283,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   /* apply the configuration */
   config_.readConfig();
-  adjustColumnSizes(config_.getStretchFirstColumn());
+  adjustColumnSizes();
   BACKEND->setTarCommand(config_.getTarBinary());
   if (config_.getRemSize()) {
     resize(config_.getWinSize());
@@ -328,7 +328,7 @@ bool mainWin::eventFilter(QObject *watched, QEvent *event) {
     if (event->type() == QEvent::Resize) {
       if (QResizeEvent *re = static_cast<QResizeEvent*>(event)) {
         if (re->size().width() != re->oldSize().width())
-          adjustColumnSizes(config_.getStretchFirstColumn()); // doesn't affect the viewport's width
+          adjustColumnSizes(); // doesn't affect the viewport's width
       }
     }
   }
@@ -1008,7 +1008,7 @@ void mainWin::listContextMenu(const QPoint& p) {
 }
 
 void mainWin::onChangingExpansion(QTreeWidgetItem* /*item*/) {
-  adjustColumnSizes(config_.getStretchFirstColumn());
+  adjustColumnSizes();
 }
 
 bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
@@ -1384,8 +1384,8 @@ void mainWin::updateTree() {
   }
 
   if (itemAdded) {
-    adjustColumnSizes(config_.getStretchFirstColumn()); /* may not be called by eventFilter()
-                                                           because scrollbars may be transient */
+    adjustColumnSizes(); /* may not be called by eventFilter()
+                            because scrollbars may be transient */
     /* sort items by their names but put directory items first */
     QTimer::singleShot(0, this, [this]() {
       ui->tree_contents->sortItems(0, Qt::AscendingOrder);
@@ -1611,24 +1611,20 @@ void mainWin::selectionChanged() {
   }
 }
 
-void mainWin::adjustColumnSizes(bool stretch) {
-  ui->tree_contents->header()->setSectionResizeMode(0, stretch
-                                                       ? QHeaderView::Stretch
-                                                       : QHeaderView::Interactive);
+void mainWin::adjustColumnSizes() {
+  ui->tree_contents->header()->setSectionResizeMode(0, QHeaderView::Interactive);
   QTimer::singleShot(0, this, [this]() {
     ui->tree_contents->resizeColumnToContents(2);
   });
   QTimer::singleShot(0, this, [this]() {
     ui->tree_contents->resizeColumnToContents(1);
   });
-  if (!stretch) {
-    QTimer::singleShot(0, this, [this]() {
-      ui->tree_contents->setColumnWidth(0, qMax(ui->tree_contents->getSizeHintForColumn(0),
-                                                ui->tree_contents->viewport()->width()
-                                                  - ui->tree_contents->columnWidth(1)
-                                                  - ui->tree_contents->columnWidth(2)));
-    });
-  }
+  QTimer::singleShot(0, this, [this]() {
+    ui->tree_contents->setColumnWidth(0, qMax(ui->tree_contents->getSizeHintForColumn(0),
+                                              ui->tree_contents->viewport()->width()
+                                                - ui->tree_contents->columnWidth(1)
+                                                - ui->tree_contents->columnWidth(2)));
+  });
 }
 
 void mainWin::prefDialog() {

@@ -74,33 +74,28 @@ Esc 키를 사용하여 텍스트를 지우십시오.</translation>
         <translation>기본 설정</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="45"/>
+        <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
         <translation>이 크기로 시작:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="94"/>
+        <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
         <translation>항목 제거 시 프롬프트 표시</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="101"/>
-        <source>Fit first column into available width</source>
-        <translation>사용 가능한 너비에 첫 번째 열 맞추기</translation>
-    </message>
-    <message>
-        <location filename="../../pref.ui" line="108"/>
+        <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
         <translation>선택하지 않으면, 최상위 디렉토리만 펼쳐집니다.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="111"/>
+        <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
         <translation>압축파일을 열 때 모든 디렉토리 펼치기</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="118"/>
-        <location filename="../../pref.ui" line="131"/>
+        <location filename="../../pref.ui" line="140"/>
+        <location filename="../../pref.ui" line="153"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -111,7 +106,7 @@ binary does not belong to libarchive.</source>
 않으면 Arqiver가 작동하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="124"/>
+        <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
         <translation>libarchive 바이너리:</translation>
     </message>
@@ -121,23 +116,23 @@ binary does not belong to libarchive.</source>
         <translation>닫을 때 창 크기 기억</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="83"/>
+        <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
         <translation>보기 아이콘 크기:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="226"/>
-        <location filename="../../pref.cpp" line="251"/>
+        <location filename="../../pref.cpp" line="208"/>
+        <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>변경사항을 적용하려면 응용 프로그램을 다시 시작해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="240"/>
+        <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
         <translation>라이브러리 바이너리 선택</translation>
     </message>
@@ -625,33 +620,33 @@ Do you want to continue?
         <translation>링크 대상: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1670"/>
         <source>A simple Qt archive manager</source>
         <translation>단순한 Qt 압축파일 관리자</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1675"/>
+        <location filename="../../mainWin.cpp" line="1671"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>libarchive, gzip 및 7z 기반함</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1672"/>
         <source>Author</source>
         <translation>개발자</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1673"/>
         <source>aka.</source>
         <translation>일명.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>About Arqiver</source>
         <translation>Arqiver 정보</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>Translators</source>
         <translation>번역자</translation>
     </message>

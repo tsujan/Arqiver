@@ -74,33 +74,28 @@ Viŝu la tekston per la eskapa klavo.</translation>
         <translation>Agordoj</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="45"/>
+        <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
         <translation>Startu kun ĉi tiu grando:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="94"/>
+        <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
         <translation>Avertu antaŭ ol forigi erojn</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="101"/>
-        <source>Fit first column into available width</source>
-        <translation>Adaptu la unuan kolumnon al la disponebla larĝo</translation>
-    </message>
-    <message>
-        <location filename="../../pref.ui" line="108"/>
+        <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
         <translation>Malmarku por ekspansii nur la suprajn dosierujojn.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="111"/>
+        <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
         <translation>Ekspansiu ĉiujn dosierujojn malfermante arkivojn</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="118"/>
-        <location filename="../../pref.ui" line="131"/>
+        <location filename="../../pref.ui" line="140"/>
+        <location filename="../../pref.ui" line="153"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -111,7 +106,7 @@ Averto: Arqiver ne funkcius se la
 duumaĵo ne apartenus al libarchive.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="124"/>
+        <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
         <translation>Duumaĵo de libarchive:</translation>
     </message>
@@ -121,23 +116,23 @@ duumaĵo ne apartenus al libarchive.</translation>
         <translation>Memoru la &amp;grandon de la fenestro</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="83"/>
+        <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
         <translation>La grando de vid-ikonoj:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="226"/>
-        <location filename="../../pref.cpp" line="251"/>
+        <location filename="../../pref.cpp" line="208"/>
+        <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Restartigo de la aplikaĵo necesas por ke la ŝanĝoj efektiviĝu.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="240"/>
+        <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
         <translation>Elekti duumaĵon de libarchive</translation>
     </message>
@@ -625,33 +620,33 @@ Do you want to continue?
         <translation>Ligilo Al %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1670"/>
         <source>A simple Qt archive manager</source>
         <translation>Simpla Qt-Arkivilo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1675"/>
+        <location filename="../../mainWin.cpp" line="1671"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>bazita sur libarchive, gzip kaj 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1672"/>
         <source>Author</source>
         <translation>Verkinto</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1673"/>
         <source>aka.</source>
         <translation>akk.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>About Arqiver</source>
         <translation>Pri Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>Translators</source>
         <translation>Tradukintoj</translation>
     </message>

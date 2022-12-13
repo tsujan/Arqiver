@@ -74,33 +74,28 @@ Text odstraníte klávesou Esc.</translation>
         <translation>Předvolby</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="45"/>
+        <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
         <translation>Spustit s touto velikostí:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="94"/>
+        <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
         <translation>Při odebírání položek zobrazit výzvu k potvrzení</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="101"/>
-        <source>Fit first column into available width</source>
-        <translation>Přizpůsobit první sloupec šířce, která je k dispozici</translation>
-    </message>
-    <message>
-        <location filename="../../pref.ui" line="108"/>
+        <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
         <translation>Pokud toto není zaškrtnuto, bude rozevřen seznam pouze po složky, nacházející se na nejvyšší úrovni stromu.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="111"/>
+        <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
         <translation>Při otevírání archivů rozevřít seznam pro všechny složky</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="118"/>
-        <location filename="../../pref.ui" line="131"/>
+        <location filename="../../pref.ui" line="140"/>
+        <location filename="../../pref.ui" line="153"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -111,7 +106,7 @@ Varování: Arqiver nebude fungovat, pokud
 spustitelný soubor nenáleží k libarchive.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="124"/>
+        <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
         <translation>spustitelný soubor s libarchive:</translation>
     </message>
@@ -121,23 +116,23 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Při zavírání &amp;si zapamatovat velikost okna</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="83"/>
+        <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
         <translation>Velikost ikon zobrazení:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="226"/>
-        <location filename="../../pref.cpp" line="251"/>
+        <location filename="../../pref.cpp" line="208"/>
+        <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Aby se změny projevily, je třeba aplikaci zrestartovat.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="240"/>
+        <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
         <translation>Vyberte spustitelný soubor s libarchive</translation>
     </message>
@@ -625,33 +620,33 @@ Chcete pokračovat?
         <translation>Odkaz na: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1670"/>
         <source>A simple Qt archive manager</source>
         <translation>Jednoduchý správce archivů, založený na Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1675"/>
+        <location filename="../../mainWin.cpp" line="1671"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>založeno na libarchive, gzip a 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1672"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1673"/>
         <source>aka.</source>
         <translation>alias</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>About Arqiver</source>
         <translation>O Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>Translators</source>
         <translation>Překladatelé</translation>
     </message>

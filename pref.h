@@ -42,14 +42,13 @@ private slots:
   void addTarBinary();
 
 private:
-  void closeEvent(QCloseEvent *event);
   void showPrompt(const QString& str = QString());
 
   Ui::PrefDialog *ui;
   QWidget *parent_;
   int initialIconSize_;
   QString initialTar_;
-  bool initialStretchFirstCol_, initialExpandTopDirs_;
+  bool initialExpandTopDirs_;
 };
 
 }

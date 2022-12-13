@@ -74,33 +74,28 @@ Effacez le texte avec la touche Echap.</translation>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="45"/>
+        <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
         <translation>Commencer par cette taille&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="94"/>
+        <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
         <translation>Afficher l&apos;invite lors de la suppression d&apos;éléments</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="101"/>
-        <source>Fit first column into available width</source>
-        <translation>Adapter la première colonne à la largeur disponible</translation>
-    </message>
-    <message>
-        <location filename="../../pref.ui" line="108"/>
+        <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
         <translation>Si cette option n&apos;est pas cochée, seuls les répertoires de niveau supérieur seront développés.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="111"/>
+        <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
         <translation>Développer tous les répertoires lors de l&apos;ouverture des archives</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="118"/>
-        <location filename="../../pref.ui" line="131"/>
+        <location filename="../../pref.ui" line="140"/>
+        <location filename="../../pref.ui" line="153"/>
         <source>Leave empty for the default.
 
 Warning: Arqiver will not work if the
@@ -111,7 +106,7 @@ Attention&#xa0;: Arqiver ne fonctionnera pas si le
 binaire n&apos;appartient pas à libarchive.</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="124"/>
+        <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
         <translation>binaire libarchive&#xa0;:</translation>
     </message>
@@ -121,23 +116,23 @@ binaire n&apos;appartient pas à libarchive.</translation>
         <translation>Se souvenir de la &amp;taille de la fenêtre à la fermeture</translation>
     </message>
     <message>
-        <location filename="../../pref.ui" line="83"/>
+        <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
         <translation>Taille des icônes de vue&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="226"/>
-        <location filename="../../pref.cpp" line="251"/>
+        <location filename="../../pref.cpp" line="208"/>
+        <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Le redémarrage de l&apos;application est nécessaire pour que les modifications prennent effet.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="240"/>
+        <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
         <translation>Sélectionner le binaire libarchive</translation>
     </message>
@@ -625,33 +620,33 @@ Voulez-vous continuer&#xa0;?
         <translation>Lien vers&#xa0;: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1670"/>
         <source>A simple Qt archive manager</source>
         <translation>Un simple gestionnaire d&apos;archives Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1675"/>
+        <location filename="../../mainWin.cpp" line="1671"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>basé sur libarchive, gzip et 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1676"/>
+        <location filename="../../mainWin.cpp" line="1672"/>
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1677"/>
+        <location filename="../../mainWin.cpp" line="1673"/>
         <source>aka.</source>
         <translation>alias.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
-        <location filename="../../mainWin.cpp" line="1679"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
+        <location filename="../../mainWin.cpp" line="1675"/>
         <source>About Arqiver</source>
         <translation>À propos d&apos;Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1678"/>
+        <location filename="../../mainWin.cpp" line="1674"/>
         <source>Translators</source>
         <translation>Traducteurs</translation>
     </message>

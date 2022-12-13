@@ -79,8 +79,6 @@ public:
     return config_;
   }
 
-  void adjustColumnSizes(bool stretch);
-
 protected:
   bool eventFilter(QObject *watched, QEvent *event);
 
@@ -134,6 +132,7 @@ private:
   void enableActions(bool enable);
   bool subTreeIsEncrypted(QTreeWidgetItem *item);
   void hideChildlessDir(QTreeWidgetItem *item);
+  void adjustColumnSizes();
 
   QLabel *iconLabel_;
   Label *textLabel_;

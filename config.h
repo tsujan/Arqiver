@@ -68,13 +68,6 @@ public:
     removalPrompt_ = prompt;
   }
 
-  bool getStretchFirstColumn() const {
-      return stretchFirstColumn_;
-  }
-  void setStretchFirstColumn(bool stretch) {
-    stretchFirstColumn_ = stretch;
-  }
-
   bool getExpandTopDirs() const {
       return expandTopDirs_;
   }
@@ -118,7 +111,7 @@ public:
   }
 
 private:
-  bool remSize_, isMaxed_, removalPrompt_, stretchFirstColumn_, expandTopDirs_;
+  bool remSize_, isMaxed_, removalPrompt_, expandTopDirs_;
   QSize winSize_, startSize_;
   int iconSize_;
   QString lastFilter_;

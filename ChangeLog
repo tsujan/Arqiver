@@ -1,8 +1,9 @@
-V0.10.1
+V0.11.0
 --------
  * Added "View current item" to the "Vew" menu.
  * Simplified finding of Qt modules with cmake.
  * Corrected context menus on Wayland, by specifying their parent widget.
+ * Removed the option about fitting the first column (because it could make the first column almost invisible).
 
 V0.10.0
 --------
