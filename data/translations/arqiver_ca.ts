@@ -86,12 +86,12 @@ Esborra el text amb la tecla d&apos;escapament.</translation>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation>Si no està marcada, només s&apos;expandiran els directoris de nivell superior.</translation>
+        <translation>Si no la marqueu, només s&apos;expandiran les carpetes pare.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
-        <translation>Expandeix tots els directoris en obrir arxius</translation>
+        <translation>En obrir un arxiu, expandeix totes les carpetes</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="140"/>
@@ -108,7 +108,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation>binari libarchive:</translation>
+        <translation>biblioteca libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -123,13 +123,13 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
-        <translation>px</translation>
+        <translation>píxels</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="208"/>
         <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>Reinicieu l&apos;aplicació perquè s&apos;apliquin els canvis.</translation>
+        <translation>Cal reiniciar l&apos;aplicació perquè els canvis tinguin efecte.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="222"/>
@@ -521,7 +521,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="751"/>
         <source>Open Archive</source>
-        <translation>Obre l&apos;arxiu</translation>
+        <translation>Obre un arxiu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="815"/>
@@ -597,7 +597,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1034"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation>Tindrà efecte després d&apos;afegir fitxers/carpetes.</translation>
+        <translation>Tindrà efecte després que els fitxers/carpetes s&apos;hagin afegit.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1105"/>
@@ -610,7 +610,7 @@ el binari no pertany a la libarchive.</translation>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation>Es sobreescriuran alguns fitxers.
+        <translation>Es sobreesciuran alguns fitxers.
 Voleu continuar?
 </translation>
     </message>
