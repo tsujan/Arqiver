@@ -297,7 +297,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>MimeType</source>
-        <translation>Tipus MIME</translation>
+        <translation>MimeType</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
