@@ -637,7 +637,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar *.appimage *.vbox-extpack)");
+    types << tr("All Known Types %1").arg("(*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar *.appimage *.vbox-extpack *.dmg)");
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
