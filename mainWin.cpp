@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2023 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -769,13 +769,15 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
     event->ignore();
     return;
   }
+  static const QStringList unadvertisedMimeTypes {"application/x-apple-diskimage"};
   if (event->mimeData()->hasUrls()) {
     const QList<QUrl> urlList = event->mimeData()->urls();
     if (!urlList.isEmpty()) {
       QString file = urlList.at(0).toLocalFile();
       if (!file.isEmpty()) {
         QString mime = BACKEND->getMimeType(file);
-        if (!supportedMimeTypes().contains(mime)) {
+        if (!supportedMimeTypes().contains(mime)
+            && !unadvertisedMimeTypes.contains(mime)) {
           event->ignore();
           return;
         }

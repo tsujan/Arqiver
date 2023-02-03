@@ -4,6 +4,7 @@ V0.11.0
  * Simplified finding of Qt modules with cmake.
  * Corrected context menus on Wayland, by specifying their parent widget.
  * Removed the option about fitting the first column (because it could make the first column almost invisible).
+ * Allow opening of `dmg` files by drag-and-drop without advertising it.
 
 V0.10.0
 --------
