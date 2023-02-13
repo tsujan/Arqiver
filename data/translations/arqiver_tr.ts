@@ -15,44 +15,45 @@
         <location filename="../../backends.cpp" line="632"/>
         <location filename="../../backends.cpp" line="665"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu dosya bir bağlantı ancak hedefi mevcut değil.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
         <location filename="../../backends.cpp" line="1078"/>
         <location filename="../../backends.cpp" line="1121"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv okunamadı</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1081"/>
         <location filename="../../backends.cpp" line="1126"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv Yüklendi</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1088"/>
         <location filename="../../backends.cpp" line="1174"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişiklik Tamamlandı</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1109"/>
         <location filename="../../backends.cpp" line="1143"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkarma İşlemi Tamamlandı</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1112"/>
         <location filename="../../backends.cpp" line="1162"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkarma Başarısız</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1271"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 sisteminizde eksik.
+Lütfen bu tür bir arşiv için yükleyin!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana görünümün içine yazabilirsiniz.
+Escape tuşu ile metni temizleyin.</translation>
     </message>
 </context>
 <context>
@@ -69,7 +71,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Tercihler</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
@@ -79,7 +81,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Ögeleri kaldırırken uyarı göster</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="125"/>
@@ -89,7 +91,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşivleri açarken tüm dizinleri genişlet</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="140"/>
@@ -103,7 +105,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive ikili dosyası:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -113,7 +115,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Görünüm simgelerinin boyutu:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="54"/>
@@ -124,7 +126,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../pref.cpp" line="208"/>
         <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişikliklerin etkili olması için uygulamanın yeniden başlatılması gerekir.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="222"/>
@@ -137,7 +139,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
@@ -147,7 +149,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
@@ -157,7 +159,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Görünüm</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="164"/>
@@ -167,7 +169,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="200"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşivi &amp;Aç</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="203"/>
@@ -177,7 +179,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="208"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Yeni Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="211"/>
@@ -187,72 +189,72 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="216"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Çık</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="219"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="224"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya Ekle</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="229"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya Kaldır</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="234"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tümünü Çıkart</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="237"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="242"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dizin Ekle</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="247"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçimi Çıkart</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="252"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Parola Ayarla</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="257"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Genişlet</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="260"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Aşağı</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="265"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Daralt</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="268"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Yukarı</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="273"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hakkında</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="278"/>
@@ -262,7 +264,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="283"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tercihler</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
