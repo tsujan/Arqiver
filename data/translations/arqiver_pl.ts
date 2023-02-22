@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="632"/>
         <location filename="../../backends.cpp" line="665"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten plik jest łączem, ale jego element docelowy nie istnieje.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1047"/>
@@ -46,7 +46,7 @@
         <location filename="../../backends.cpp" line="1112"/>
         <location filename="../../backends.cpp" line="1162"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd przy rozpakowywaniu</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1271"/>
@@ -62,7 +62,8 @@ Zainstaluj ten pakiet, aby obsługiwać ten rodzaj archiwów!</translation>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Możesz pisać wewnątrz widoku głównego.
+Wyczyść tekst używając przycisku Escape.</translation>
     </message>
 </context>
 <context>
@@ -80,17 +81,17 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż komunikat przy usuwaniu plików</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli ta opcja nie jest zaznaczona, zostaną rozwinięte tylko katalogi najwyższego poziomu.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozszerz wszystkie katalogi podczas otwierania</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="140"/>
@@ -99,12 +100,15 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozostaw puste, aby zostawić wartość domyślną.
+
+Ostrzeżenie: Arqiver nie będzie działać, jeśli
+plik binarny nie należy do libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>plik binarny libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -114,7 +118,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar ikon:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="54"/>
@@ -130,7 +134,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik binarny libarchive</translation>
     </message>
 </context>
 <context>
@@ -143,7 +147,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj pliki...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -268,12 +272,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj %proces</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="291"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
@@ -346,7 +350,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="578"/>
         <location filename="../../mainWin.cpp" line="606"/>
         <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiwum skompresowane Zstandard (*.tar.zst *.tzst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="579"/>
@@ -381,27 +385,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="600"/>
         <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum BZip2 (*.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="601"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Dokument PDF skompresowany BZip2 (*.pdf.bz2)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="603"/>
         <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum XZ (*.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="604"/>
         <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Dokument PDF skompresowany XZ (*.pdf.xz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="607"/>
         <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum Zstandard (*.zst)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="615"/>
@@ -443,42 +447,42 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="624"/>
         <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Plik wykonywalny Windows (*.exe *.com)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="625"/>
         <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Pakiet instalacyjny Windows (*.msi)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="626"/>
         <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum Windows Cabinet (*.cab)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
         <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum ACE (*.ace)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
         <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Pakiet Android (*.apk)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="629"/>
         <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Archiwum RAR (*.rar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="630"/>
         <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Aplikacja AppImage (*appimage)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="631"/>
         <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
+        <translation>TYLKO DO ODCZYTU: Paczka roszerzeń VirtualBox (*.vbox-extpack)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
@@ -538,7 +542,8 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="912"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz usunąć wybrane elementy?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="929"/>
@@ -556,12 +561,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj ścieżkę archiwum</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz folder, w którym się znajduje</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="296"/>
@@ -605,7 +610,9 @@ binary does not belong to libarchive.</source>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Niektóre pliki zostaną nadpisane.
+Czy chcesz kontynuować?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1324"/>
