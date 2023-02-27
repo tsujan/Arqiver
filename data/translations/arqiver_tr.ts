@@ -76,7 +76,7 @@ Escape tuşu ile metni temizleyin.</translation>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Şu boyutla başlayın:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -86,7 +86,7 @@ Escape tuşu ile metni temizleyin.</translation>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu işaretlenmezse, yalnızca üst düzey dizinler genişletilir.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="128"/>
@@ -100,7 +100,10 @@ Escape tuşu ile metni temizleyin.</translation>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Varsayılan için boş bırakın.
+
+ Uyarı: Arqiver şu durumlarda çalışmayacaktır:
+ ikili, libarchive&apos;e ait değil.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="146"/>
@@ -110,7 +113,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapatırken pencere &amp;boyutunu hatırla</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
@@ -120,7 +123,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>nk</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="208"/>
@@ -131,7 +134,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>libarşiv ikili seçin</translation>
     </message>
 </context>
 <context>
@@ -144,7 +147,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyaları Filtrele...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -154,7 +157,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Düzenle</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
@@ -164,7 +167,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="164"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="200"/>
@@ -174,7 +177,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="203"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="208"/>
@@ -184,7 +187,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="211"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="216"/>
@@ -259,7 +262,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="278"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Geçerli Yolu Kopyala</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="283"/>
@@ -269,27 +272,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Süreci Durdur</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="291"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Kök</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="212"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
@@ -299,49 +302,49 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Boyut</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="488"/>
         <location filename="../../mainWin.cpp" line="759"/>
         <location filename="../../mainWin.cpp" line="802"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv Açılıyor...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="562"/>
         <source>All Types %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm Türler %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
         <location filename="../../mainWin.cpp" line="596"/>
         <source>Uncompressed Archive (*.tar)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıkıştırılmamış Arşiv (*.tar)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="573"/>
         <location filename="../../mainWin.cpp" line="597"/>
         <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation type="unfinished"></translation>
+        <translation>GZip Sıkıştırılmış Arşiv (*.tar.gz *.tgz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="575"/>
         <location filename="../../mainWin.cpp" line="599"/>
         <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation type="unfinished"></translation>
+        <translation>BZip2 Sıkıştırılmış Arşiv (*.tar.bz2 *.tbz2 *.tbz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="576"/>
         <location filename="../../mainWin.cpp" line="605"/>
         <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation type="unfinished"></translation>
+        <translation>LZMA Sıkıştırılmış Arşiv (*.tar.lzma *.tlz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="577"/>
         <location filename="../../mainWin.cpp" line="602"/>
         <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation type="unfinished"></translation>
+        <translation>XZ Sıkıştırılmış Arşiv (*.tar.xz *.txz)</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="578"/>
