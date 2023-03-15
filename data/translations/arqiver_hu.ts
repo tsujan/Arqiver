@@ -312,189 +312,6 @@ Figyelmeztetés: Az Arqiver nem fog működni,
         <translation>Archívum megnyitása...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <source>All Types %1</source>
-        <translation>Összes típus %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="572"/>
-        <location filename="../../mainWin.cpp" line="596"/>
-        <source>Uncompressed Archive (*.tar)</source>
-        <translation>Tömörítetlen archívum (*tar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="573"/>
-        <location filename="../../mainWin.cpp" line="597"/>
-        <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation>GZippel tömörített archívum (*.tar.gz *.tgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="575"/>
-        <location filename="../../mainWin.cpp" line="599"/>
-        <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation>BZip2-vel tömörített archívum (*.tar.bz2 *.tbz2 *.tbz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="576"/>
-        <location filename="../../mainWin.cpp" line="605"/>
-        <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation>LMZA-val tömörített archívum (*.tar.lzma *.tlz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="577"/>
-        <location filename="../../mainWin.cpp" line="602"/>
-        <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation>XZ-vel tömörített archívum (*.tar.xz *.txz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="578"/>
-        <location filename="../../mainWin.cpp" line="606"/>
-        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation>Zstandarddal tömörített archívum (*.tar.zst *.tzst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="579"/>
-        <location filename="../../mainWin.cpp" line="608"/>
-        <source>CPIO Archive (*.cpio)</source>
-        <translation>CPIO archívum (*.cpio)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="581"/>
-        <location filename="../../mainWin.cpp" line="610"/>
-        <source>AR Archive (*.ar)</source>
-        <translation>AR archívum (*.ar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="583"/>
-        <location filename="../../mainWin.cpp" line="612"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Zip archívum (*.zip)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="584"/>
-        <location filename="../../mainWin.cpp" line="614"/>
-        <source>Gzip Archive (*.gz)</source>
-        <translation>Gzip archívum (*.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="585"/>
-        <location filename="../../mainWin.cpp" line="613"/>
-        <source>7-Zip Archive (*.7z)</source>
-        <translation>7-Zip archívum (*.7z)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="600"/>
-        <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>CSAK OLVASHATÓ: BZip2 archívum (*.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="601"/>
-        <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>CSAK OLVASHATÓ: BZip2-vel tömörített PDF dokumentum (*.pdf.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="603"/>
-        <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>CSAK OLVASHATÓ: XZ archívum (*.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="604"/>
-        <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>CSAK OLVASHATÓ: XZ-vel tömörített PDF dokumentum (*.pdf.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="607"/>
-        <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>CSAK OLVASHATÓ: Zstandard archívum (*.zst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="615"/>
-        <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation>GZippel tömörített PDF dokumentum (*.pdf.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="616"/>
-        <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>CSAK OLVASHATÓ: tömörített SVG kép (*.svgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="617"/>
-        <location filename="../../mainWin.cpp" line="618"/>
-        <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>CSAK OLVASHATÓ: ISO kép (*.iso *.img)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="619"/>
-        <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>CSAK OLVASHATÓ: XAR archívum (*.xar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="620"/>
-        <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>CSAK OLVASHATÓ: Java archívum (*.jar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="621"/>
-        <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation>CSAK OLVASHATÓ: Debian csomag (*.deb)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="622"/>
-        <location filename="../../mainWin.cpp" line="623"/>
-        <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation>CSAK OLVASHATÓ: RedHat csomag (*.rpm)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="624"/>
-        <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation>CSAK OLVASHATÓ: MS Windows futtatható állomány (*.exe *.com)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="625"/>
-        <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation>CSAK OLVASHATÓ: MS Windows telepítőcsomag (*.msi)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="626"/>
-        <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation>CSAK OLVASHATÓ: MS Windows Cabinet archívum (*.cab)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="627"/>
-        <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>CSAK OLVASHATÓ: ACE archívum (*.ace)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="628"/>
-        <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation>CSAK OLVASHATÓ: Android csomag (*.apk)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="629"/>
-        <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation>CSAK OLVASHATÓ: RAR archívum (*.rar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="630"/>
-        <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>CSAK OLVASHATÓ: AppImage alkalmazáscsomag (*.appimage)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="631"/>
-        <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <source>All Known Types %1</source>
-        <translation>Összes ismert típus %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="645"/>
-        <source>Show All Files (*)</source>
-        <translation>Összes fájl megjelenítése (*)</translation>
-    </message>
-    <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
         <translation>Archívum létrehozása</translation>
@@ -562,6 +379,189 @@ Figyelmeztetés: Az Arqiver nem fog működni,
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
         <translation>Archívum útvonalának másolása</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="562"/>
+        <source>All Types</source>
+        <translation>Összes típus</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="572"/>
+        <location filename="../../mainWin.cpp" line="596"/>
+        <source>Uncompressed Archive</source>
+        <translation>Tömörítetlen archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="573"/>
+        <location filename="../../mainWin.cpp" line="597"/>
+        <source>GZip Compressed Archive</source>
+        <translation>GZippel tömörített archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="575"/>
+        <location filename="../../mainWin.cpp" line="599"/>
+        <source>BZip2 Compressed Archive</source>
+        <translation>BZip2-vel tömörített archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="576"/>
+        <location filename="../../mainWin.cpp" line="605"/>
+        <source>LMZA Compressed Archive</source>
+        <translation>LMZA-val tömörített archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="577"/>
+        <location filename="../../mainWin.cpp" line="602"/>
+        <source>XZ Compressed Archive</source>
+        <translation>XZ-vel tömörített archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="578"/>
+        <location filename="../../mainWin.cpp" line="606"/>
+        <source>Zstandard Compressed Archive</source>
+        <translation>Zstandarddal tömörített archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <source>CPIO Archive</source>
+        <translation>CPIO archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="610"/>
+        <source>AR Archive</source>
+        <translation>AR archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="612"/>
+        <source>Zip Archive</source>
+        <translation>Zip archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="584"/>
+        <location filename="../../mainWin.cpp" line="614"/>
+        <source>Gzip Archive</source>
+        <translation>Gzip archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="613"/>
+        <source>7-Zip Archive</source>
+        <translation>7-Zip archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="600"/>
+        <source>READ-ONLY: BZip2 Archive</source>
+        <translation>CSAK OLVASHATÓ: BZip2 archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="601"/>
+        <source>READ-ONLY: BZip2 Compressed PDF Document</source>
+        <translation>CSAK OLVASHATÓ: BZip2-vel tömörített PDF dokumentum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="603"/>
+        <source>READ-ONLY: XZ archive</source>
+        <translation>CSAK OLVASHATÓ: XZ archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="604"/>
+        <source>READ-ONLY: XZ Compressed PDF Document</source>
+        <translation>CSAK OLVASHATÓ: XZ-vel tömörített PDF dokumentum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="607"/>
+        <source>READ-ONLY: Zstandard archive</source>
+        <translation>CSAK OLVASHATÓ: Zstandard archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="615"/>
+        <source>Gzip Compressed PDF Document</source>
+        <translation>GZippel tömörített PDF dokumentum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="616"/>
+        <source>READ-ONLY: Compressed SVG Image</source>
+        <translation>CSAK OLVASHATÓ: tömörített SVG kép</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="617"/>
+        <location filename="../../mainWin.cpp" line="618"/>
+        <source>READ-ONLY: ISO Image</source>
+        <translation>CSAK OLVASHATÓ: ISO kép</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="619"/>
+        <source>READ-ONLY: XAR Archive</source>
+        <translation>CSAK OLVASHATÓ: XAR archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="620"/>
+        <source>READ-ONLY: Java Archive</source>
+        <translation>CSAK OLVASHATÓ: Java archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="621"/>
+        <source>READ-ONLY: Debian Package</source>
+        <translation>CSAK OLVASHATÓ: Debian csomag</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="623"/>
+        <source>READ-ONLY: RedHat Package</source>
+        <translation>CSAK OLVASHATÓ: RedHat csomag</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="624"/>
+        <source>READ-ONLY: MS Windows Executable</source>
+        <translation>CSAK OLVASHATÓ: MS Windows futtatható állomány</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="625"/>
+        <source>READ-ONLY: MS Windows Installer Package</source>
+        <translation>CSAK OLVASHATÓ: MS Windows telepítőcsomag</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="626"/>
+        <source>READ-ONLY: MS Windows Cabinet Archive</source>
+        <translation>CSAK OLVASHATÓ: MS Windows Cabinet archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="627"/>
+        <source>READ-ONLY: ACE archive</source>
+        <translation>CSAK OLVASHATÓ: ACE archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="628"/>
+        <source>READ-ONLY: Android Package</source>
+        <translation>CSAK OLVASHATÓ: Android csomag</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="629"/>
+        <source>READ-ONLY: RAR Archive</source>
+        <translation>CSAK OLVASHATÓ: RAR archívum</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="630"/>
+        <source>READ-ONLY: AppImage application bundle</source>
+        <translation>CSAK OLVASHATÓ: AppImage alkalmazáscsomag</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="631"/>
+        <source>READ-ONLY: VirtualBox Extension Pack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <source>All Known Types</source>
+        <translation>Összes ismert típus</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="645"/>
+        <source>Show All Files</source>
+        <translation>Összes fájl megjelenítése</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>

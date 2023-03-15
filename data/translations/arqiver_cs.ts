@@ -312,189 +312,6 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Otevírání archivu…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <source>All Types %1</source>
-        <translation>Veškeré typy %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="572"/>
-        <location filename="../../mainWin.cpp" line="596"/>
-        <source>Uncompressed Archive (*.tar)</source>
-        <translation>Nekomprimovaný archiv (*.tar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="573"/>
-        <location filename="../../mainWin.cpp" line="597"/>
-        <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation>Archiv komprimovaný GZip (*.tar.gz *.tgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="575"/>
-        <location filename="../../mainWin.cpp" line="599"/>
-        <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation>Archiv komprimovaný BZip2 (*.tar.bz2 *.tbz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="576"/>
-        <location filename="../../mainWin.cpp" line="605"/>
-        <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation>Archiv komprimovaný LMZA (*.tar.lzma *.tlz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="577"/>
-        <location filename="../../mainWin.cpp" line="602"/>
-        <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation>Archiv komprimovaný XZ (*.tar.xz *.txz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="578"/>
-        <location filename="../../mainWin.cpp" line="606"/>
-        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation>Archiv komprimovaný Zstandard (*.tar.zst *.tzst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="579"/>
-        <location filename="../../mainWin.cpp" line="608"/>
-        <source>CPIO Archive (*.cpio)</source>
-        <translation>CPIO archiv (*.cpio)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="581"/>
-        <location filename="../../mainWin.cpp" line="610"/>
-        <source>AR Archive (*.ar)</source>
-        <translation>AR Archiv (*.ar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="583"/>
-        <location filename="../../mainWin.cpp" line="612"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Zip archiv (*.zip)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="584"/>
-        <location filename="../../mainWin.cpp" line="614"/>
-        <source>Gzip Archive (*.gz)</source>
-        <translation>Gzip archiv (*.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="585"/>
-        <location filename="../../mainWin.cpp" line="613"/>
-        <source>7-Zip Archive (*.7z)</source>
-        <translation>7-Zip archiv (*.7z)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="600"/>
-        <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>JEN PRO ČTENÍ: BZip2 archiv (*.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="601"/>
-        <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>JEN PRO ČTENÍ: BZip2 komprimovaný dokument PDF (*.pdf.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="603"/>
-        <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>JEN PRO ČTENÍ: XZ archiv (*.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="604"/>
-        <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>JEN PRO ČTENÍ: XZ komprimovaný PDF dokument (*.pdf.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="607"/>
-        <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>JEN PRO ČTENÍ: Zstandard archiv (*.zst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="615"/>
-        <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation>Gzip komprimovaný PDF dokument (*.pdf.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="616"/>
-        <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>JEN PRO ČTENÍ: Komprimovaný SVG obrázek (*.svgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="617"/>
-        <location filename="../../mainWin.cpp" line="618"/>
-        <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>JEN PRO ČTENÍ: ISO obraz (*.iso *.img)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="619"/>
-        <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>JEN PRO ČTENÍ: XAR archiv (*.xar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="620"/>
-        <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>JEN PRO ČTENÍ: Java archiv (*.jar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="621"/>
-        <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation>JEN PRO ČTENÍ: Balíček Debian (*.deb)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="622"/>
-        <location filename="../../mainWin.cpp" line="623"/>
-        <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation>JEN PRO ČTENÍ: Balíček RedHat (*.rpm)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="624"/>
-        <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation>JEN PRO ČTENÍ: Spustitelný soubor MS Windows (*.exe *.com)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="625"/>
-        <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation>JEN PRO ČTENÍ: Balíček Instalační služby MS Windows (*.msi)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="626"/>
-        <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation>JEN PRO ČTENÍ: kompresní algoritmus pro instalační balíčky MS Windows (*.cab)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="627"/>
-        <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>JEN PRO ČTENÍ: ACE archiv (*.ace)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="628"/>
-        <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation>JEN PRO ČTENÍ: Balíček Android (*.apk)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="629"/>
-        <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation>JEN PRO ČTENÍ: RAR archiv (*.rar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="630"/>
-        <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>JEN PRO ČTENÍ: Balíček s aplikací ve formátu AppImage (*.appimage)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="631"/>
-        <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation>POUZE-PRO-ČTENÍ: VirtualBox Extension Pack (*.vbox-extpack)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <source>All Known Types %1</source>
-        <translation>Všechny známé typy %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="645"/>
-        <source>Show All Files (*)</source>
-        <translation>Zobrazit všechny soubory (*)</translation>
-    </message>
-    <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
         <translation>Vytvořit archiv</translation>
@@ -562,6 +379,189 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
         <translation>Zkopírovat popis umístění archivu</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="562"/>
+        <source>All Types</source>
+        <translation>Veškeré typy</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="572"/>
+        <location filename="../../mainWin.cpp" line="596"/>
+        <source>Uncompressed Archive</source>
+        <translation>Nekomprimovaný archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="573"/>
+        <location filename="../../mainWin.cpp" line="597"/>
+        <source>GZip Compressed Archive</source>
+        <translation>Archiv komprimovaný GZip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="575"/>
+        <location filename="../../mainWin.cpp" line="599"/>
+        <source>BZip2 Compressed Archive</source>
+        <translation>Archiv komprimovaný BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="576"/>
+        <location filename="../../mainWin.cpp" line="605"/>
+        <source>LMZA Compressed Archive</source>
+        <translation>Archiv komprimovaný LMZA</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="577"/>
+        <location filename="../../mainWin.cpp" line="602"/>
+        <source>XZ Compressed Archive</source>
+        <translation>Archiv komprimovaný XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="578"/>
+        <location filename="../../mainWin.cpp" line="606"/>
+        <source>Zstandard Compressed Archive</source>
+        <translation>Archiv komprimovaný Zstandard</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <source>CPIO Archive</source>
+        <translation>CPIO archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="610"/>
+        <source>AR Archive</source>
+        <translation>AR Archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="612"/>
+        <source>Zip Archive</source>
+        <translation>Zip archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="584"/>
+        <location filename="../../mainWin.cpp" line="614"/>
+        <source>Gzip Archive</source>
+        <translation>Gzip archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="613"/>
+        <source>7-Zip Archive</source>
+        <translation>7-Zip archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="600"/>
+        <source>READ-ONLY: BZip2 Archive</source>
+        <translation>JEN PRO ČTENÍ: BZip2 archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="601"/>
+        <source>READ-ONLY: BZip2 Compressed PDF Document</source>
+        <translation>JEN PRO ČTENÍ: BZip2 komprimovaný dokument PDF</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="603"/>
+        <source>READ-ONLY: XZ archive</source>
+        <translation>JEN PRO ČTENÍ: XZ archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="604"/>
+        <source>READ-ONLY: XZ Compressed PDF Document</source>
+        <translation>JEN PRO ČTENÍ: XZ komprimovaný PDF dokument</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="607"/>
+        <source>READ-ONLY: Zstandard archive</source>
+        <translation>JEN PRO ČTENÍ: Zstandard archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="615"/>
+        <source>Gzip Compressed PDF Document</source>
+        <translation>Gzip komprimovaný PDF dokument</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="616"/>
+        <source>READ-ONLY: Compressed SVG Image</source>
+        <translation>JEN PRO ČTENÍ: Komprimovaný SVG obrázek</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="617"/>
+        <location filename="../../mainWin.cpp" line="618"/>
+        <source>READ-ONLY: ISO Image</source>
+        <translation>JEN PRO ČTENÍ: ISO obraz</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="619"/>
+        <source>READ-ONLY: XAR Archive</source>
+        <translation>JEN PRO ČTENÍ: XAR archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="620"/>
+        <source>READ-ONLY: Java Archive</source>
+        <translation>JEN PRO ČTENÍ: Java archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="621"/>
+        <source>READ-ONLY: Debian Package</source>
+        <translation>JEN PRO ČTENÍ: Balíček Debian</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="623"/>
+        <source>READ-ONLY: RedHat Package</source>
+        <translation>JEN PRO ČTENÍ: Balíček RedHat</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="624"/>
+        <source>READ-ONLY: MS Windows Executable</source>
+        <translation>JEN PRO ČTENÍ: Spustitelný soubor MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="625"/>
+        <source>READ-ONLY: MS Windows Installer Package</source>
+        <translation>JEN PRO ČTENÍ: Balíček Instalační služby MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="626"/>
+        <source>READ-ONLY: MS Windows Cabinet Archive</source>
+        <translation>JEN PRO ČTENÍ: kompresní algoritmus pro instalační balíčky MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="627"/>
+        <source>READ-ONLY: ACE archive</source>
+        <translation>JEN PRO ČTENÍ: ACE archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="628"/>
+        <source>READ-ONLY: Android Package</source>
+        <translation>JEN PRO ČTENÍ: Balíček Android</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="629"/>
+        <source>READ-ONLY: RAR Archive</source>
+        <translation>JEN PRO ČTENÍ: RAR archiv</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="630"/>
+        <source>READ-ONLY: AppImage application bundle</source>
+        <translation>JEN PRO ČTENÍ: Balíček s aplikací ve formátu AppImage</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="631"/>
+        <source>READ-ONLY: VirtualBox Extension Pack</source>
+        <translation>POUZE-PRO-ČTENÍ: VirtualBox Extension Pack</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <source>All Known Types</source>
+        <translation>Všechny známé typy</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="645"/>
+        <source>Show All Files</source>
+        <translation>Zobrazit všechny soubory</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>

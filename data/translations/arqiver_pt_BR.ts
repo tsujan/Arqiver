@@ -312,189 +312,6 @@ binário não pertencer ao libarchive.</translation>
         <translation>Abrindo Arquivo...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <source>All Types %1</source>
-        <translation>Todos os Tipos %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="572"/>
-        <location filename="../../mainWin.cpp" line="596"/>
-        <source>Uncompressed Archive (*.tar)</source>
-        <translation>Arquivo não Compactado (*.tar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="573"/>
-        <location filename="../../mainWin.cpp" line="597"/>
-        <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation>Arquivo Compactado GZip (*.tar.gz *.tgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="575"/>
-        <location filename="../../mainWin.cpp" line="599"/>
-        <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation>Arquivo Compactado BZip2 (*.tar.bz2 *.tbz2 *.tbz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="576"/>
-        <location filename="../../mainWin.cpp" line="605"/>
-        <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation>Arquivo Compactado LMZA (*.tar.lzma *.tlz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="577"/>
-        <location filename="../../mainWin.cpp" line="602"/>
-        <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation>Arquivo Compactado XZ (*.tar.xz *.txz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="578"/>
-        <location filename="../../mainWin.cpp" line="606"/>
-        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation>Arquivo Compactado Zstandard (*.tar.zst *.tzst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="579"/>
-        <location filename="../../mainWin.cpp" line="608"/>
-        <source>CPIO Archive (*.cpio)</source>
-        <translation>Arquivo CPIO (*.cpio)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="581"/>
-        <location filename="../../mainWin.cpp" line="610"/>
-        <source>AR Archive (*.ar)</source>
-        <translation>Arquivo AR (*.ar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="583"/>
-        <location filename="../../mainWin.cpp" line="612"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Arquivo Zip (*.zip)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="584"/>
-        <location filename="../../mainWin.cpp" line="614"/>
-        <source>Gzip Archive (*.gz)</source>
-        <translation>Arquivo Gzip (*.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="585"/>
-        <location filename="../../mainWin.cpp" line="613"/>
-        <source>7-Zip Archive (*.7z)</source>
-        <translation>Arquivo 7-Zip (*.7z)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="600"/>
-        <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>SOMENTE-LEITURA: Arquivo BZip2 (*.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="601"/>
-        <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>SOMENTE-LEITURA: Documento PDF Compactado BZip2 (*.pdf.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="603"/>
-        <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>SOMENTE-LEITURA: Arquivo XZ (*.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="604"/>
-        <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>SOMENTE-LEITURA: Documento PDF Compactado XZ (*.pdf.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="607"/>
-        <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>SOMENTE-LEITURA: Arquivo Zstandard (*.zst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="615"/>
-        <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation>Documento PDF Compactado Gzip (*.pdf.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="616"/>
-        <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>SOMENTE LEITURA: Imagem SVG Compactada (*.svgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="617"/>
-        <location filename="../../mainWin.cpp" line="618"/>
-        <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>SOMENTE LEITURA: Imagem ISO (*.iso *.img)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="619"/>
-        <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>SOMENTE LEITURA: Arquivo XAR (*.xar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="620"/>
-        <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>SOMENTE LEITURA: Arquivo Java (*.jar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="621"/>
-        <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation>SOMENTE LEITURA: Pacote Debian (*.deb)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="622"/>
-        <location filename="../../mainWin.cpp" line="623"/>
-        <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation>SOMENTE LEITURA: Pacote RedHat (*.rpm)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="624"/>
-        <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation>SOMENTE LEITURA: Executável MS Windows (*.exe *.com)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="625"/>
-        <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation>SOMENTE LEITURA: Pacote Instalador MS Windows (*.msi)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="626"/>
-        <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation>SOMENTE LEITURA: Arquivo Cabinet MS Windows (*.cab)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="627"/>
-        <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>SOMENTE-LEITURA: Arquivo ACE (*.ace)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="628"/>
-        <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation>SOMENTE LEITURA: Pacote Android (*.apk)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="629"/>
-        <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation>SOMENTE LEITURA: Arquivo RAR (*.rar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="630"/>
-        <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>SOMENTE-LEITURA: Pacote de Aplicativos AppImage (*.appimage)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="631"/>
-        <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <source>All Known Types %1</source>
-        <translation>Todos os Tipos Conhecidos %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="645"/>
-        <source>Show All Files (*)</source>
-        <translation>Exibir Todos os Arquivos (*)</translation>
-    </message>
-    <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
         <translation>Criar Arquivo</translation>
@@ -562,6 +379,189 @@ binário não pertencer ao libarchive.</translation>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
         <translation>Copiar Caminho do Arquivo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="562"/>
+        <source>All Types</source>
+        <translation>Todos os Tipos</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="572"/>
+        <location filename="../../mainWin.cpp" line="596"/>
+        <source>Uncompressed Archive</source>
+        <translation>Arquivo não Compactado</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="573"/>
+        <location filename="../../mainWin.cpp" line="597"/>
+        <source>GZip Compressed Archive</source>
+        <translation>Arquivo Compactado GZip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="575"/>
+        <location filename="../../mainWin.cpp" line="599"/>
+        <source>BZip2 Compressed Archive</source>
+        <translation>Arquivo Compactado BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="576"/>
+        <location filename="../../mainWin.cpp" line="605"/>
+        <source>LMZA Compressed Archive</source>
+        <translation>Arquivo Compactado LMZA</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="577"/>
+        <location filename="../../mainWin.cpp" line="602"/>
+        <source>XZ Compressed Archive</source>
+        <translation>Arquivo Compactado XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="578"/>
+        <location filename="../../mainWin.cpp" line="606"/>
+        <source>Zstandard Compressed Archive</source>
+        <translation>Arquivo Compactado Zstandard</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <source>CPIO Archive</source>
+        <translation>Arquivo CPIO</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="610"/>
+        <source>AR Archive</source>
+        <translation>Arquivo AR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="612"/>
+        <source>Zip Archive</source>
+        <translation>Arquivo Zip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="584"/>
+        <location filename="../../mainWin.cpp" line="614"/>
+        <source>Gzip Archive</source>
+        <translation>Arquivo Gzip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="613"/>
+        <source>7-Zip Archive</source>
+        <translation>Arquivo 7-Zip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="600"/>
+        <source>READ-ONLY: BZip2 Archive</source>
+        <translation>SOMENTE-LEITURA: Arquivo BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="601"/>
+        <source>READ-ONLY: BZip2 Compressed PDF Document</source>
+        <translation>SOMENTE-LEITURA: Documento PDF Compactado BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="603"/>
+        <source>READ-ONLY: XZ archive</source>
+        <translation>SOMENTE-LEITURA: Arquivo XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="604"/>
+        <source>READ-ONLY: XZ Compressed PDF Document</source>
+        <translation>SOMENTE-LEITURA: Documento PDF Compactado XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="607"/>
+        <source>READ-ONLY: Zstandard archive</source>
+        <translation>SOMENTE-LEITURA: Arquivo Zstandard</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="615"/>
+        <source>Gzip Compressed PDF Document</source>
+        <translation>Documento PDF Compactado Gzip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="616"/>
+        <source>READ-ONLY: Compressed SVG Image</source>
+        <translation>SOMENTE LEITURA: Imagem SVG Compactada</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="617"/>
+        <location filename="../../mainWin.cpp" line="618"/>
+        <source>READ-ONLY: ISO Image</source>
+        <translation>SOMENTE LEITURA: Imagem ISO</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="619"/>
+        <source>READ-ONLY: XAR Archive</source>
+        <translation>SOMENTE LEITURA: Arquivo XAR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="620"/>
+        <source>READ-ONLY: Java Archive</source>
+        <translation>SOMENTE LEITURA: Arquivo Java</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="621"/>
+        <source>READ-ONLY: Debian Package</source>
+        <translation>SOMENTE LEITURA: Pacote Debian</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="623"/>
+        <source>READ-ONLY: RedHat Package</source>
+        <translation>SOMENTE LEITURA: Pacote RedHat</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="624"/>
+        <source>READ-ONLY: MS Windows Executable</source>
+        <translation>SOMENTE LEITURA: Executável MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="625"/>
+        <source>READ-ONLY: MS Windows Installer Package</source>
+        <translation>SOMENTE LEITURA: Pacote Instalador MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="626"/>
+        <source>READ-ONLY: MS Windows Cabinet Archive</source>
+        <translation>SOMENTE LEITURA: Arquivo Cabinet MS Windows</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="627"/>
+        <source>READ-ONLY: ACE archive</source>
+        <translation>SOMENTE-LEITURA: Arquivo ACE</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="628"/>
+        <source>READ-ONLY: Android Package</source>
+        <translation>SOMENTE LEITURA: Pacote Android</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="629"/>
+        <source>READ-ONLY: RAR Archive</source>
+        <translation>SOMENTE LEITURA: Arquivo RAR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="630"/>
+        <source>READ-ONLY: AppImage application bundle</source>
+        <translation>SOMENTE-LEITURA: Pacote de Aplicativos AppImage</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="631"/>
+        <source>READ-ONLY: VirtualBox Extension Pack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <source>All Known Types</source>
+        <translation>Todos os Tipos Conhecidos</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="645"/>
+        <source>Show All Files</source>
+        <translation>Exibir Todos os Arquivos</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>

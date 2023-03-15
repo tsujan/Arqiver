@@ -312,189 +312,6 @@ duumaĵo ne apartenus al libarchive.</translation>
         <translation>Malfermadi Arkivon...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="562"/>
-        <source>All Types %1</source>
-        <translation>Ĉiuj Tipoj %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="572"/>
-        <location filename="../../mainWin.cpp" line="596"/>
-        <source>Uncompressed Archive (*.tar)</source>
-        <translation>Nekompaktigita Arkivo (*.tar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="573"/>
-        <location filename="../../mainWin.cpp" line="597"/>
-        <source>GZip Compressed Archive (*.tar.gz *.tgz)</source>
-        <translation>GZip-Kompaktigita Arkivo (*.tar.gz *.tgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="575"/>
-        <location filename="../../mainWin.cpp" line="599"/>
-        <source>BZip2 Compressed Archive (*.tar.bz2 *.tbz2 *.tbz)</source>
-        <translation>BZip2-Kompaktigita Arkivo (*.tar.bz2 *.tbz2 *.tbz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="576"/>
-        <location filename="../../mainWin.cpp" line="605"/>
-        <source>LMZA Compressed Archive (*.tar.lzma *.tlz)</source>
-        <translation>LMZA-Kompaktigita Arkivo (*.tar.lzma *.tlz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="577"/>
-        <location filename="../../mainWin.cpp" line="602"/>
-        <source>XZ Compressed Archive (*.tar.xz *.txz)</source>
-        <translation>XZ-Kompaktigita Arkivo Archive (*.tar.xz *.txz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="578"/>
-        <location filename="../../mainWin.cpp" line="606"/>
-        <source>Zstandard Compressed Archive (*.tar.zst *.tzst)</source>
-        <translation>Zstandard-Kompaktigita Arkivo (*.tar.zst *.tzst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="579"/>
-        <location filename="../../mainWin.cpp" line="608"/>
-        <source>CPIO Archive (*.cpio)</source>
-        <translation>Arkivo de CPIO (*.cpio)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="581"/>
-        <location filename="../../mainWin.cpp" line="610"/>
-        <source>AR Archive (*.ar)</source>
-        <translation>Arkivo de AR (*.ar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="583"/>
-        <location filename="../../mainWin.cpp" line="612"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Arkivo de Zip (*.zip)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="584"/>
-        <location filename="../../mainWin.cpp" line="614"/>
-        <source>Gzip Archive (*.gz)</source>
-        <translation>Arkivo de Gzip (*.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="585"/>
-        <location filename="../../mainWin.cpp" line="613"/>
-        <source>7-Zip Archive (*.7z)</source>
-        <translation>Arkivo de 7-Zip (*.7z)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="600"/>
-        <source>READ-ONLY: BZip2 Archive (*.bz2)</source>
-        <translation>NURLEGA: Arkivo de BZip2 (*.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="601"/>
-        <source>READ-ONLY: BZip2 Compressed PDF Document (*.pdf.bz2)</source>
-        <translation>NURLEGA: BZip2-Kompaktigita PDF-Dokumento (*.pdf.bz2)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="603"/>
-        <source>READ-ONLY: XZ archive (*.xz)</source>
-        <translation>NURLEGA: XZ-Arkivo (*.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="604"/>
-        <source>READ-ONLY: XZ Compressed PDF Document (*.pdf.xz)</source>
-        <translation>XZ-Kompaktigita PDF-Dokumento (*.pdf.xz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="607"/>
-        <source>READ-ONLY: Zstandard archive (*.zst)</source>
-        <translation>NURLEGA: Zstandard-Arkivo (*.zst)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="615"/>
-        <source>Gzip Compressed PDF Document (*.pdf.gz)</source>
-        <translation>Gzip-Kompaktigita PDF-Dokumento (*.pdf.gz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="616"/>
-        <source>READ-ONLY: Compressed SVG Image (*.svgz)</source>
-        <translation>NURLEGA: Kompaktigita SVG-Bildo (*.svgz)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="617"/>
-        <location filename="../../mainWin.cpp" line="618"/>
-        <source>READ-ONLY: ISO Image (*.iso *.img)</source>
-        <translation>NURLEGA: ISO-Kopio (*.iso *.img)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="619"/>
-        <source>READ-ONLY: XAR Archive (*.xar)</source>
-        <translation>NURLEGA: Arkivo de XAR (*.xar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="620"/>
-        <source>READ-ONLY: Java Archive (*.jar)</source>
-        <translation>NURLEGA: Arkivo de Java (*.jar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="621"/>
-        <source>READ-ONLY: Debian Package (*.deb)</source>
-        <translation>NURLEGA: Pakaĵo de Debian (*.deb)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="622"/>
-        <location filename="../../mainWin.cpp" line="623"/>
-        <source>READ-ONLY: RedHat Package (*.rpm)</source>
-        <translation>NURLEGA: Pakaĵo de RedHat (*.rpm)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="624"/>
-        <source>READ-ONLY: MS Windows Executable (*.exe *.com)</source>
-        <translation>NURLEGA: MS-Vindoza Ekzekveblaĵo (*.exe *.com)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="625"/>
-        <source>READ-ONLY: MS Windows Installer Package (*.msi)</source>
-        <translation>NURLEGA: MS-Vindoza Instala Pakaĵo (*.msi)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="626"/>
-        <source>READ-ONLY: MS Windows Cabinet Archive (*.cab)</source>
-        <translation>NURLEGA: MS-Vindoza Kabineta Arkivo (*.cab)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="627"/>
-        <source>READ-ONLY: ACE archive (*.ace)</source>
-        <translation>NURLEGA: Arkivo de ACE (*.ace)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="628"/>
-        <source>READ-ONLY: Android Package (*.apk)</source>
-        <translation>NURLEGA: Pakaĵo de Android (*.apk)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="629"/>
-        <source>READ-ONLY: RAR Archive (*.rar)</source>
-        <translation>NURLEGA: Arkivo de RAR (*.rar)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="630"/>
-        <source>READ-ONLY: AppImage application bundle (*.appimage)</source>
-        <translation>NURLEGA: Aplikaĵa Pakaĵo de AppImage (*.appimage)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="631"/>
-        <source>READ-ONLY: VirtualBox Extension Pack (*.vbox-extpack)</source>
-        <translation>NURLEGA: Kromprograma Pakaĵo de VirtualBox (*.vbox-extpack)</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <source>All Known Types %1</source>
-        <translation>Ĉiuj Konitaj tipoj %1</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="645"/>
-        <source>Show All Files (*)</source>
-        <translation>Montri Ĉiujn Dosierojn (*)</translation>
-    </message>
-    <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
         <translation>Estigi Arkivon</translation>
@@ -562,6 +379,189 @@ duumaĵo ne apartenus al libarchive.</translation>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
         <translation>Kopiu la Arkivpadon</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="562"/>
+        <source>All Types</source>
+        <translation>Ĉiuj Tipoj</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="572"/>
+        <location filename="../../mainWin.cpp" line="596"/>
+        <source>Uncompressed Archive</source>
+        <translation>Nekompaktigita Arkivo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="573"/>
+        <location filename="../../mainWin.cpp" line="597"/>
+        <source>GZip Compressed Archive</source>
+        <translation>Kompaktigita Arkivo de GZip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="575"/>
+        <location filename="../../mainWin.cpp" line="599"/>
+        <source>BZip2 Compressed Archive</source>
+        <translation>Kompaktigita Arkivo de BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="576"/>
+        <location filename="../../mainWin.cpp" line="605"/>
+        <source>LMZA Compressed Archive</source>
+        <translation>Kompaktigita Arkivo de LMZA</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="577"/>
+        <location filename="../../mainWin.cpp" line="602"/>
+        <source>XZ Compressed Archive</source>
+        <translation>Kompaktigita Arkivo de XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="578"/>
+        <location filename="../../mainWin.cpp" line="606"/>
+        <source>Zstandard Compressed Archive</source>
+        <translation>Kompaktigita Arkivo de Zstandard</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="579"/>
+        <location filename="../../mainWin.cpp" line="608"/>
+        <source>CPIO Archive</source>
+        <translation>Arkivo de CPIO</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="581"/>
+        <location filename="../../mainWin.cpp" line="610"/>
+        <source>AR Archive</source>
+        <translation>Arkivo de AR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="583"/>
+        <location filename="../../mainWin.cpp" line="612"/>
+        <source>Zip Archive</source>
+        <translation>Arkivo de Zip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="584"/>
+        <location filename="../../mainWin.cpp" line="614"/>
+        <source>Gzip Archive</source>
+        <translation>Arkivo de Gzip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="585"/>
+        <location filename="../../mainWin.cpp" line="613"/>
+        <source>7-Zip Archive</source>
+        <translation>Arkivo de 7-Zip</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="600"/>
+        <source>READ-ONLY: BZip2 Archive</source>
+        <translation>NURLEGA: Arkivo de BZip2</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="601"/>
+        <source>READ-ONLY: BZip2 Compressed PDF Document</source>
+        <translation>NURLEGA: BZip2-Kompaktigita PDF-Dokumento</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="603"/>
+        <source>READ-ONLY: XZ archive</source>
+        <translation>NURLEGA: Arkivo de XZ</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="604"/>
+        <source>READ-ONLY: XZ Compressed PDF Document</source>
+        <translation>NURLEGA: XZ-Kompaktigita PDF-Dokumento</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="607"/>
+        <source>READ-ONLY: Zstandard archive</source>
+        <translation>NURLEGA: Arkivo de Zstandard</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="615"/>
+        <source>Gzip Compressed PDF Document</source>
+        <translation>Gzip-Kompaktigita PDF-Dokumento</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="616"/>
+        <source>READ-ONLY: Compressed SVG Image</source>
+        <translation>NURLEGA: Kompaktigita SVG-Bildo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="617"/>
+        <location filename="../../mainWin.cpp" line="618"/>
+        <source>READ-ONLY: ISO Image</source>
+        <translation>NURLEGA: ISO-Kopio</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="619"/>
+        <source>READ-ONLY: XAR Archive</source>
+        <translation>NURLEGA: Arkivo de XAR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="620"/>
+        <source>READ-ONLY: Java Archive</source>
+        <translation>NURLEGA: Arkivo de Java</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="621"/>
+        <source>READ-ONLY: Debian Package</source>
+        <translation>NURLEGA: Pakaĵo de Debian</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="622"/>
+        <location filename="../../mainWin.cpp" line="623"/>
+        <source>READ-ONLY: RedHat Package</source>
+        <translation>NURLEGA: Pakaĵo de RedHat</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="624"/>
+        <source>READ-ONLY: MS Windows Executable</source>
+        <translation>NURLEGA: MS-Vindoza Ekzekveblaĵo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="625"/>
+        <source>READ-ONLY: MS Windows Installer Package</source>
+        <translation>NURLEGA: MS-Vindoza Instala Pakaĵo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="626"/>
+        <source>READ-ONLY: MS Windows Cabinet Archive</source>
+        <translation>NURLEGA: MS-Vindoza Kabineta Arkivo</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="627"/>
+        <source>READ-ONLY: ACE archive</source>
+        <translation>NURLEGA: Arkivo de ACE</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="628"/>
+        <source>READ-ONLY: Android Package</source>
+        <translation>NURLEGA: Pakaĵo de Android</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="629"/>
+        <source>READ-ONLY: RAR Archive</source>
+        <translation>NURLEGA: Arkivo de RAR</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="630"/>
+        <source>READ-ONLY: AppImage application bundle</source>
+        <translation>NURLEGA: Aplikaĵa Pakaĵo de AppImage</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="631"/>
+        <source>READ-ONLY: VirtualBox Extension Pack</source>
+        <translation>NURLEGA: Kromprograma Pakaĵo de VirtualBox</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <source>All Known Types</source>
+        <translation>Ĉiuj Konitaj tipoj</translation>
+    </message>
+    <message>
+        <location filename="../../mainWin.cpp" line="645"/>
+        <source>Show All Files</source>
+        <translation>Montri Ĉiujn Dosierojn</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>

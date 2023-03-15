@@ -5,6 +5,7 @@ V0.11.0
  * Corrected context menus on Wayland, by specifying their parent widget.
  * Removed the option about fitting the first column (because it could make the first column almost invisible).
  * Allow opening of `dmg` files by drag-and-drop without advertising it.
+ * Protect the file type filters of file dialogs from bad translations.
 
 V0.10.0
 --------
