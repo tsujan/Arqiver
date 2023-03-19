@@ -318,7 +318,13 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
     }
   }
   args << "-c" << "-a";
-  args << fileArgs_;
+  bool fileExists(QFile::exists(filepath_));
+  if (fileExists) { // use a temporary file to append to the existing archive
+    skipExistingFiles(tmpfilepath_); // practically not required
+    args << "-f" << tmpfilepath_;
+  }
+  else
+    args << fileArgs_;
   /* now, setup the parent dir */
   if (!absolutePaths) {
     for (int i = 0; i < filePaths.length(); i++) {
@@ -331,11 +337,8 @@ void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
   else
     args << "-C" << "/";
   args << filePaths;
-  if (QFile::exists(filepath_)) { // append to the existing archive
-    skipExistingFiles(tmpfilepath_); // practically not required
-    args.replaceInStrings(filepath_, tmpfilepath_);
+  if (fileExists) // append to the existing archive
     args << "@" + filepath_;
-  }
   keyArgs_ << "-c" << "-a" << "-C";
   proc_.start(tarCmnd_, args);
 }
@@ -360,9 +363,8 @@ void Backend::startRemove(const QStringList& paths) {
     return;
   }
   args << "-c" << "-a";
-  args << fileArgs_;
   skipExistingFiles(tmpfilepath_); // practically not required
-  args.replaceInStrings(filepath_, tmpfilepath_);
+  args << "-f" << tmpfilepath_;
   for (int i = 0; i < filePaths.length(); i++) {
     args << "--exclude" << escapedWildCard(filePaths.at(i));
   }

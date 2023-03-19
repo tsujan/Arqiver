@@ -12,44 +12,44 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="632"/>
-        <location filename="../../backends.cpp" line="665"/>
+        <location filename="../../backends.cpp" line="634"/>
+        <location filename="../../backends.cpp" line="667"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Bu dosya bir bağlantı ancak hedefi mevcut değil.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1047"/>
-        <location filename="../../backends.cpp" line="1078"/>
-        <location filename="../../backends.cpp" line="1121"/>
+        <location filename="../../backends.cpp" line="1049"/>
+        <location filename="../../backends.cpp" line="1080"/>
+        <location filename="../../backends.cpp" line="1123"/>
         <source>Could not read archive</source>
         <translation>Arşiv okunamadı</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1081"/>
-        <location filename="../../backends.cpp" line="1126"/>
+        <location filename="../../backends.cpp" line="1083"/>
+        <location filename="../../backends.cpp" line="1128"/>
         <source>Archive Loaded</source>
         <translation>Arşiv Yüklendi</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1088"/>
-        <location filename="../../backends.cpp" line="1174"/>
+        <location filename="../../backends.cpp" line="1090"/>
+        <location filename="../../backends.cpp" line="1176"/>
         <source>Modification Finished</source>
         <translation>Değişiklik Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1109"/>
-        <location filename="../../backends.cpp" line="1143"/>
+        <location filename="../../backends.cpp" line="1111"/>
+        <location filename="../../backends.cpp" line="1145"/>
         <source>Extraction Finished</source>
         <translation>Çıkarma İşlemi Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1112"/>
-        <location filename="../../backends.cpp" line="1162"/>
+        <location filename="../../backends.cpp" line="1114"/>
+        <location filename="../../backends.cpp" line="1164"/>
         <source>Extraction Failed</source>
         <translation>Çıkarma Başarısız</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1271"/>
+        <location filename="../../backends.cpp" line="1273"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 sisteminizde eksik.
