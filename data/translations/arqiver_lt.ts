@@ -15,7 +15,7 @@
         <location filename="../../backends.cpp" line="634"/>
         <location filename="../../backends.cpp" line="667"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis failas yra nuoroda, bet jo paskirties nėra.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1049"/>
@@ -34,19 +34,19 @@
         <location filename="../../backends.cpp" line="1090"/>
         <location filename="../../backends.cpp" line="1176"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifikavimas baigtas</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1111"/>
         <location filename="../../backends.cpp" line="1145"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Išskleidimas baigtas</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1114"/>
         <location filename="../../backends.cpp" line="1164"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko išskleisti</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1273"/>
