@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="144"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisenssi</translation>
     </message>
 </context>
 <context>
@@ -22,7 +22,7 @@
         <location filename="../../backends.cpp" line="1080"/>
         <location filename="../../backends.cpp" line="1123"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkistoa ei voi lukea</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1083"/>
@@ -34,7 +34,7 @@
         <location filename="../../backends.cpp" line="1090"/>
         <location filename="../../backends.cpp" line="1176"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Muokkaaminen valmis</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1111"/>
@@ -46,7 +46,7 @@
         <location filename="../../backends.cpp" line="1114"/>
         <location filename="../../backends.cpp" line="1164"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Purku epäonnistui</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1273"/>
@@ -61,7 +61,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit kirjoittaa päänäkymän sisällä.
+Pyyhi teksti Escape-näppäimellä.</translation>
     </message>
 </context>
 <context>
@@ -74,7 +75,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloituskoko:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -89,7 +90,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Laajenna kaikki hakemistot avattaessa arkistoja</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="140"/>
@@ -98,38 +99,41 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä oletusta jättämällä tämä tyhjäksi.
+
+Varoitus: Arqiver ei toimi jos annettu
+ohjelma ei kuulu libarchive-kirjastoon.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive-kirjasto:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Muista ikkunan &amp;koko lopetettaessa</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Katselukuvakekoko:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="208"/>
         <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaaditaan ohjelman uudelleenkäynnistys muutosten toimeen tulemiseksi.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse libarchive-kirjasto</translation>
     </message>
 </context>
 <context>
@@ -137,27 +141,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkisto:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Suodata tiedostoja...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tiedosto</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Muokkaa</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Näytä</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="164"/>
