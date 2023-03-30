@@ -314,37 +314,38 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv Oluştur</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="721"/>
         <location filename="../../mainWin.cpp" line="911"/>
         <location filename="../../mainWin.cpp" line="1196"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Soru</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="722"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aşağıdaki arşivler zaten var:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="724"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Değiştirmek istiyor musunuz?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="751"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşivi Aç</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="817"/>
         <location filename="../../mainWin.cpp" line="824"/>
         <location filename="../../mainWin.cpp" line="860"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşive Ekle</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="855"/>
@@ -352,18 +353,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1151"/>
         <location filename="../../mainWin.cpp" line="1157"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ögeler Ekleniyor...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="912"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Seçili öge(ler)i silmek istiyor musunuz?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="929"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ögeler Siliniyor...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1114"/>
@@ -371,12 +373,12 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1209"/>
         <location filename="../../mainWin.cpp" line="1223"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkartılıyor...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşiv Yolunu Kopyala</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="562"/>
@@ -417,42 +419,42 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="578"/>
         <location filename="../../mainWin.cpp" line="606"/>
         <source>Zstandard Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zstandart Sıkıştırılmış Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="579"/>
         <location filename="../../mainWin.cpp" line="608"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="581"/>
         <location filename="../../mainWin.cpp" line="610"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>AR Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="583"/>
         <location filename="../../mainWin.cpp" line="612"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="584"/>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="585"/>
         <location filename="../../mainWin.cpp" line="613"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>7-Zip Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="600"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: BZip2 Arşiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="601"/>
