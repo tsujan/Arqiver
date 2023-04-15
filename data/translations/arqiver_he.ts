@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="144"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>רישיון</translation>
     </message>
 </context>
 <context>
@@ -15,44 +15,45 @@
         <location filename="../../backends.cpp" line="634"/>
         <location filename="../../backends.cpp" line="667"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>הקובץ הזה הוא קישור אבל היעד שלו לא קיים.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1049"/>
         <location filename="../../backends.cpp" line="1080"/>
         <location filename="../../backends.cpp" line="1123"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לא ניתן לקרוא ארכיון</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1083"/>
         <location filename="../../backends.cpp" line="1128"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>הארכיון נטען</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1090"/>
         <location filename="../../backends.cpp" line="1176"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>השינוי הסתיים</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1111"/>
         <location filename="../../backends.cpp" line="1145"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>החילוץ הושלם</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1114"/>
         <location filename="../../backends.cpp" line="1164"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>החילוץ נכשל</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1273"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 לא קיים במערכת שלך.
+נא להתקין אותו לסוג כזה של ארכיון!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>אפשר להקליד בחלון הראשי.
+מחיקה אפשרית עם מקש Esc.</translation>
     </message>
 </context>
 <context>
@@ -69,27 +71,27 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>העדפות</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>התחלה עם הגודל הזה:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>הצגת הודעה עם הסרת פריטים</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>אם התיבה לא מסומנת, רק התיקיות מהרמה העליונה יורחבו.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="128"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>להרחיב את כל התיקיות בעת פתיחת ארכיונים</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="140"/>
@@ -98,38 +100,41 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>להשאיר ריק לברירת מחדל.
+
+אזהרה: Arqiver לא יעבוד אם הקובץ
+הבינרי לא שייך ל־libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>קובץ בינרי של libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>לשמור על &amp;גודל החלון עם הסגירה</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל סמלי התצוגה:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="54"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>פיקסלים</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="208"/>
         <location filename="../../pref.cpp" line="233"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>כדי להחיל את השינויים יש להפעיל את היישום מחדש.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="222"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>נא לבחור ארכיון libarchive</translation>
     </message>
 </context>
 <context>
@@ -137,209 +142,210 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>סינון קבצים…</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;קובץ</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;עריכה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="153"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;תצוגה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="164"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>ע&amp;זרה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="200"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;פתיחת ארכיון</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="203"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="208"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון &amp;חדש</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="211"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="216"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>י&amp;ציאה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="219"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="224"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>הוספת קבצים</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="229"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>הסרת קבצים</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="234"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>חילוץ של הכול</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="237"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="242"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>הוספת תיקייה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="247"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>חילוץ הבחירה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="252"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדרת סיסמה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="257"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>הר&amp;חבה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="260"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="265"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;צמצום</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="268"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="273"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>על &amp;אודות</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="278"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת ה&amp;נתיב הנוכחי</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="283"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>ה&amp;עדפות</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;עצירת התהליך</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="291"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="148"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>שורש</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="212"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>קובץ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>טיפוס Mime</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="277"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="488"/>
         <location filename="../../mainWin.cpp" line="759"/>
         <location filename="../../mainWin.cpp" line="802"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>הארכיון נפתח…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>יצירת ארכיון</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="721"/>
         <location filename="../../mainWin.cpp" line="911"/>
         <location filename="../../mainWin.cpp" line="1196"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="722"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>הארכיון הבא כבר קיים:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="724"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>להחליף אותו?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="751"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>פתיחת ארכיון</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="817"/>
         <location filename="../../mainWin.cpp" line="824"/>
         <location filename="../../mainWin.cpp" line="860"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>הוספה לארכיון</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="855"/>
@@ -347,18 +353,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1151"/>
         <location filename="../../mainWin.cpp" line="1157"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>נוספים פריטים…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="912"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>להסיר את הפריטים הנבחרים?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="929"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>הפריטים נמחקים…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1114"/>
@@ -366,280 +373,282 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1209"/>
         <location filename="../../mainWin.cpp" line="1223"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>מתבצע חילוץ…</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="969"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת נתיב הארכיון</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="562"/>
         <source>All Types</source>
-        <translation type="unfinished"></translation>
+        <translation>כל הסוגים</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="572"/>
         <location filename="../../mainWin.cpp" line="596"/>
         <source>Uncompressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון לא דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="573"/>
         <location filename="../../mainWin.cpp" line="597"/>
         <source>GZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון GZip דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="575"/>
         <location filename="../../mainWin.cpp" line="599"/>
         <source>BZip2 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון BZip2 דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="576"/>
         <location filename="../../mainWin.cpp" line="605"/>
         <source>LMZA Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון LZMA דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="577"/>
         <location filename="../../mainWin.cpp" line="602"/>
         <source>XZ Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון XZ דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="578"/>
         <location filename="../../mainWin.cpp" line="606"/>
         <source>Zstandard Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון Zstandard דחוס</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="579"/>
         <location filename="../../mainWin.cpp" line="608"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון CPIO</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="581"/>
         <location filename="../../mainWin.cpp" line="610"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון AR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="583"/>
         <location filename="../../mainWin.cpp" line="612"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="584"/>
         <location filename="../../mainWin.cpp" line="614"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון Gzip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="585"/>
         <location filename="../../mainWin.cpp" line="613"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ארכיון ‎7-Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="600"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון BZip2</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="601"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: מסמך PDF בדחיסת BZip2</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="603"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון XZ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="604"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: מסמך PDF בדחיסת XZ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="607"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון Zstandard</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="615"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>מסמך PDF בדחיסת Gzip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="616"/>
         <source>READ-ONLY: Compressed SVG Image</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: תמונת SVG דחוסה</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="617"/>
         <location filename="../../mainWin.cpp" line="618"/>
         <source>READ-ONLY: ISO Image</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: דמות ISO</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="619"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון XAR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="620"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון Java</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="621"/>
         <source>READ-ONLY: Debian Package</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: חבילת דביאן</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="622"/>
         <location filename="../../mainWin.cpp" line="623"/>
         <source>READ-ONLY: RedHat Package</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: חבילת RedHat</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="624"/>
         <source>READ-ONLY: MS Windows Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: קובץ הפעלה של MS Windows</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="625"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: חבילת התקנה של MS Windows</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="626"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון Cabinet של MS Windows</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
         <source>READ-ONLY: ACE archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון ACE</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
         <source>READ-ONLY: Android Package</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: חבילת Android</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="629"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: ארכיון RAR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="630"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: מאגד יישום AppImage</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="631"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
-        <translation type="unfinished"></translation>
+        <translation>לקריאה בלבד: חבילת הרחבה ל־VirtualBox</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
         <source>All Known Types</source>
-        <translation type="unfinished"></translation>
+        <translation>כל הסוגים הידועים</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <source>Show All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>הצגה של כל הקבצים</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="975"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>פתיחת התיקייה המכילה</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="296"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>הצגת הפריט הנוכחי</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1018"/>
         <location filename="../../mainWin.cpp" line="1026"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>נא למלא סיסמה</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1030"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>ביטול</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1031"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>אישור</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1035"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>הצפנת רשימת הקבצים</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1036"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>יחול לאחר הוספת קבצים/תיקיות.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1107"/>
         <location filename="../../mainWin.cpp" line="1183"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>חילוץ לתיקייה</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1197"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>חלק מהקבצים ישוכתבו.
+להמשיך?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1324"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>קישור אל: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1672"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>מנהל ארכיונים פשוט מבוסס Qt</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1673"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>מבוסס על libarchive,‏ gzip ו־7z</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1674"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>יוצר</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1675"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>גם בשם</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1676"/>
         <location filename="../../mainWin.cpp" line="1677"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>על Arqiver</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1676"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>מתרגמים</translation>
     </message>
 </context>
 </TS>
