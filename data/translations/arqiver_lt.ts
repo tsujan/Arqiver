@@ -52,7 +52,8 @@
         <location filename="../../backends.cpp" line="1273"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūsų sistemoje trūksta %1.
+Įdiekite, norėdami apdoroti šį archyvo tipą!</translation>
     </message>
 </context>
 <context>
