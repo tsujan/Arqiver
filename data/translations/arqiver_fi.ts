@@ -267,7 +267,7 @@ ohjelma ei kuulu libarchive-kirjastoon.</translation>
     <message>
         <location filename="../../mainWin.ui" line="283"/>
         <source>&amp;Preferences</source>
-        <translation>&amp;Asetukset</translation>
+        <translation>A&amp;setukset</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="288"/>
