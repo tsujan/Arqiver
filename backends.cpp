@@ -29,6 +29,7 @@
 #include <QMimeDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QDirIterator>
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
@@ -52,6 +53,13 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   LIST = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
+
+  watcher_ = new QFileSystemWatcher(this);
+  connect(watcher_, &QFileSystemWatcher::fileChanged, [this](const QString& path) {
+    emit fileModified(true);
+    if (!changedFiles_.contains(path))
+      changedFiles_ << path;
+  });
 }
 
 Backend::~Backend() {
@@ -95,8 +103,12 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   /* check if the file extraction directory can be made
      but don't create it until a file is viewed */
   const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz");
-  if (!arqiverDir_.isEmpty())
+  if (!arqiverDir_.isEmpty()) {
+    watcher_->removePaths(watcher_->files());
+    changedFiles_.clear();
+    emit fileModified(false);
     QDir(arqiverDir_).removeRecursively();
+  }
   QString cache = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
   if (!cache.isEmpty()) {
     QDir cacheDir(cache);
@@ -252,7 +264,54 @@ static inline QString escapedWildCard(const QString& str)
   return newStr;
 }
 
-void Backend::startAdd(const QStringList& paths, bool absolutePaths) {
+void Backend::updateArchive() {
+  if (is7z_ // 7z doesn't update files/folders inside the archive
+      || arqiverDir_.isEmpty() || changedFiles_.isEmpty()
+      || !QFile::exists(filepath_)) {
+    return;
+  }
+  if (!QDir(arqiverDir_).exists()) return;
+
+  emit fileModified(false);
+
+    // "startAdd" can handle Gzip
+  if (isGzip_) {
+    startAdd(changedFiles_);
+    return;
+  }
+
+  // first remove the files from the archive, waiting until the process is finished...
+  keyArgs_.clear();
+  emit processStarting();
+  QStringList args;
+  args << "-c" << "-a";
+  skipExistingFiles(tmpfilepath_); // practically not required
+  args << "-f" << tmpfilepath_;
+  for (const QString &str : qAsConst(changedFiles_))
+    args << "--exclude" << escapedWildCard(str.section('/', 3));
+  args << "@" + filepath_;
+  tmpProc_.start(tarCmnd_, args);
+  if (tmpProc_.waitForStarted()) {
+    while (!tmpProc_.waitForFinished(500))
+      QCoreApplication::processEvents();
+  }
+  if (QFile::exists(tmpfilepath_)) {
+    if (tmpProc_.exitCode() == 0) {
+      QFile::remove(filepath_);
+      QFile::rename(tmpfilepath_, filepath_);
+    }
+    else
+      QFile::remove(tmpfilepath_);
+  }
+  emit processFinished(tmpProc_.exitCode() == 0, QString());
+  if (tmpProc_.exitCode() != 0)
+    return;
+
+  // ... then add the modified files to the archive with a proper parent path
+  startAdd(changedFiles_, arqiverDir_);
+}
+
+void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool absolutePaths) {
   keyArgs_.clear();
   QStringList filePaths = paths;
   /* exclude the archive itself */
@@ -308,13 +367,16 @@ void Backend::startAdd(const QStringList& paths, bool absolutePaths) {
     return;
   }
   /* NOTE: All paths should have the same parent directory.
-           Check that and put the wrong paths into insertQueue_. */
-  QString parent = filePaths.at(0).section("/", 0, -2);
+           Check that and put the wrong paths into insertQueue_.
+           (For now, "parentPath" is used only in "updateArchive".) */
+  const QString parent = parentPath.isEmpty() ? filePaths.at(0).section("/", 0, -2) : parentPath;
   insertQueue_.clear();
-  for (int i = 1; i < filePaths.length(); i++) {
-    if (filePaths.at(i).section("/", 0, -2) != parent) {
-      insertQueue_ << filePaths.takeAt(i);
-      i--;
+  if (parentPath.isEmpty()) {
+    for (int i = 1; i < filePaths.length(); i++) {
+      if (filePaths.at(i).section("/", 0, -2) != parent) {
+        insertQueue_ << filePaths.takeAt(i);
+        i--;
+      }
     }
   }
   args << "-c" << "-a";
@@ -344,6 +406,8 @@ void Backend::startAdd(const QStringList& paths, bool absolutePaths) {
 }
 
 void Backend::startRemove(const QStringList& paths) {
+  if (!QFile::exists(filepath_)) return;
+
   keyArgs_.clear();
   if (isGzip_) return;
   QStringList filePaths = paths;
@@ -352,6 +416,15 @@ void Backend::startRemove(const QStringList& paths) {
   if (contents_.isEmpty() || filePaths.isEmpty() || !QFile::exists(filepath_))
     return; // invalid
   filePaths.removeDuplicates();
+
+  // a modified file may be removed
+  if (!changedFiles_.isEmpty()) {
+    for (const QString &str : qAsConst(filePaths))
+      changedFiles_.removeOne(arqiverDir_ + "/" + str);
+    if (changedFiles_.isEmpty())
+      emit fileModified(false);
+  }
+
   QStringList args;
   if (is7z_) {
     if (encrypted_)
@@ -378,6 +451,8 @@ void Backend::startExtract(const QString& path, const QString& file, bool overwr
 }
 
 void Backend::startExtract(const QString& path, const QStringList& files, bool overwrite, bool preservePaths) {
+  if (!QFile::exists(filepath_)) return;
+
   keyArgs_.clear();
   if (isGzip_) {
     /* if the extraction takes place in the same directory, we could do it
@@ -586,6 +661,9 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
 
 // Returns false only when a password is needed but it's nonempty and wrong.
 bool Backend::startViewFile(const QString& path) {
+  if (!QFile::exists(filepath_))
+    return true; // "false" is reserved for password of 7z
+
   /* the path may contain newlines, which have been escaped and are restored here */
   QString realPath(path);
   realPath.replace(newlineExp, "\n").replace(tabExp, "\t");
@@ -670,12 +748,28 @@ bool Backend::startViewFile(const QString& path) {
   }
   else
     emit processFinished(true, QString());
+
+  // Since the file may be inside a directory extracted by "extractTempFiles()",
+  // we may need to add it to the watch list also when it already exists.
+  QFileInfo info(fileName);
+  if (!info.isDir()) {
+    const QString finalTarget = info.canonicalFilePath();
+    if (finalTarget == fileName || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/')))
+      watcher_->addPath(finalTarget);
+  }
+
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
   return true;
 }
 
 void Backend::extractTempFiles(const QStringList& paths) {
+  if (!QFile::exists(filepath_)) {
+    emit processFinished(true, QString());
+    emit tempFilesExtracted(QStringList()); // needed with drag-and-drop
+    return;
+  }
+
   QStringList realPaths(paths);
   realPaths.removeAll(QString());
   if (!realPaths.isEmpty()) {
@@ -739,6 +833,9 @@ void Backend::extractTempFiles(const QStringList& paths) {
         }
         emit processFinished(tmpProc_.exitCode() == 0, QString());
         emit tempFilesExtracted(tempFileNames);
+
+        if (tmpProc_.exitCode() == 0)
+          watcher_->addPath(tempFileNames.at(0));
       }
       return;
     }
@@ -783,10 +880,21 @@ void Backend::extractTempFiles(const QStringList& paths) {
     }
     emit processFinished(tmpProc_.exitCode() == 0, QString());
     emit tempFilesExtracted(tempFileNames);
+    if (tmpProc_.exitCode() != 0) return;
   }
   else { // all paths are already extracted
     emit processFinished(true, QString());
     emit tempFilesExtracted(tempFileNames);
+  }
+
+  // files may be edited also by drag-and-drop
+  for (const QString &str : qAsConst(tempFileNames)) {
+    QFileInfo info(str);
+    if (!info.isDir()) {
+      const QString finalTarget = info.canonicalFilePath();
+      if (finalTarget == str || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/')))
+        watcher_->addPath(finalTarget);
+    }
   }
 }
 

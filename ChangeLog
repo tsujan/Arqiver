@@ -1,5 +1,11 @@
 V0.11.0
 --------
+ * Added the ability to modify files inside archives (archives handled by 7z are excluded for now).
+ * Made sure that "No" is the default button of question dialogs (Qt may have a minor problem in this regard).
+ * Don't start extraction if the archive is removed.
+
+V0.11.0
+--------
  * Added "View current item" to the "View" menu.
  * Simplified finding of Qt modules with cmake.
  * Corrected context menus on Wayland, by specifying their parent widget.

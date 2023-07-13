@@ -175,6 +175,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
   ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
   ui->actionQuit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
+  ui->actionUpdate->setIcon(symbolicIcon::icon(":icons/update.svg"));
   ui->actionAddFile->setIcon(symbolicIcon::icon(":icons/archive-insert.svg"));
   ui->actionAddDir->setIcon(symbolicIcon::icon(":icons/archive-insert-directory.svg"));
   ui->actionRemoveFile->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
@@ -195,6 +196,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->frame->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(ui->frame, &QWidget::customContextMenuRequested, this, &mainWin::labelContextMenu);
 
+  ui->actionUpdate->setEnabled(false);
   ui->actionAddFile->setEnabled(false);
   ui->actionRemoveFile->setEnabled(false);
   ui->actionExtractAll->setEnabled(false);
@@ -211,15 +213,21 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(BACKEND, &Backend::errorMsg, this, [this](const QString& msg) {
     QMessageBox::critical(this, tr("Error"), msg);
   });
+  connect(BACKEND, &Backend::fileModified, this, [this](bool modified) {
+    bool reallyModified(modified && !BACKEND->is7z() && canmodify_);
+    ui->actionUpdate->setEnabled(reallyModified);
+    setWindowModified(reallyModified);
+  });
   connect(ui->actionStop, &QAction::triggered, [this] {BACKEND->killProc();});
 
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  ui->toolBar->insertWidget(ui->actionAddFile, spacer);
+  ui->toolBar->insertWidget(ui->actionUpdate, spacer);
 
   connect(ui->actionNew, &QAction::triggered, this, &mainWin::newArchive);
   connect(ui->actionOpen, &QAction::triggered, this, &mainWin::openArchive);
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
+  connect(ui->actionUpdate, &QAction::triggered, BACKEND, &Backend::updateArchive);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
   connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
   connect(ui->actionExtractAll, &QAction::triggered, this, &mainWin::extractFiles);
@@ -414,10 +422,29 @@ void mainWin::hideChildlessDir(QTreeWidgetItem *item) {
   item->setHidden(!item->text(0).contains(ui->lineEdit->text(), Qt::CaseInsensitive));
 }
 
+bool mainWin::ignoreChanges() {
+  if (QMessageBox::question(this, tr("Question"),
+                            tr("Some files have been modified.")
+                              + "\n" + tr("Do you want to ignore the changes?\n"),
+                            QMessageBox::Yes | QMessageBox::No,
+                            QMessageBox::No)
+      == QMessageBox::No) {
+    return false;
+  }
+  return true;
+}
+
 void mainWin::closeEvent(QCloseEvent *event) {
   if (processIsRunning_)
     event->ignore();
   else {
+    if (ui->actionUpdate->isEnabled()) {
+      if (!ignoreChanges()) {
+        event->ignore();
+        return;
+      }
+    }
+
     if (config_.getRemSize() && windowState() == Qt::WindowNoState)
       config_.setWinSize(size());
     config_.setLastFilter(lastFilter_);
@@ -721,7 +748,9 @@ void mainWin::newArchive() {
                                                                 tr("Question"),
                                                                 tr("The following archive already exists:")
                                                                 + QString("\n\n%1\n\n").arg(file)
-                                                                + tr("Do you want to replace it?\n"));
+                                                                + tr("Do you want to replace it?\n"),
+                                                                QMessageBox::Yes | QMessageBox::No,
+                                                                QMessageBox::No);
         if (btn == QMessageBox::No)
           path = file;
         else {
@@ -747,6 +776,11 @@ void mainWin::newArchive() {
 }
 
 void mainWin::openArchive() {
+  if (ui->actionUpdate->isEnabled()) {
+    if (!ignoreChanges())
+      return;
+  }
+
   QString file;
   QFileDialog dlg(this, tr("Open Archive"), lastPath_, openingTypes());
   dlg.setAcceptMode(QFileDialog::AcceptOpen);
@@ -909,7 +943,9 @@ void mainWin::removeFiles() {
   if (config_.getRemovalPrompt()) {
     if (QMessageBox::question(this,
                               tr("Question"),
-                              tr("Do you want to remove the selected item(s)?\n"))
+                              tr("Do you want to remove the selected item(s)?\n"),
+                              QMessageBox::Yes | QMessageBox::No,
+                              QMessageBox::No)
         == QMessageBox::No) {
       return;
     }
@@ -1194,7 +1230,9 @@ void mainWin::extractSelection() {
         if (QFile::exists(dir + "/" + realFile.section("/",-1))) {
           QMessageBox::StandardButton btn = QMessageBox::question(this,
                                                                   tr("Question"),
-                                                                  tr("Some files will be overwritten.\nDo you want to continue?\n"));
+                                                                  tr("Some files will be overwritten.\nDo you want to continue?\n"),
+                                                                  QMessageBox::Yes | QMessageBox::No,
+                                                                  QMessageBox::No);
           if (btn == QMessageBox::No)
             return;
           overwrite = true;
@@ -1472,7 +1510,7 @@ void mainWin::procStarting() {
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile().replace('\n', ' ').replace('\t', ' '));
-  setWindowTitle(BACKEND->currentFile().section("/",-1));
+  setWindowTitle(QString ("[*]%1").arg(BACKEND->currentFile().section("/",-1)));
 
   if (QGuiApplication::overrideCursor() == nullptr)
     QGuiApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -1484,7 +1522,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   ui->label->setVisible(true);
   ui->label_archive->setVisible(true);
   ui->label_archive->setText(BACKEND->currentFile().replace('\n', ' ').replace('\t', ' '));
-  setWindowTitle(BACKEND->currentFile().section("/",-1));
+  setWindowTitle(QString ("[*]%1").arg(BACKEND->currentFile().section("/",-1)));
 
   if (updateTree_) {
     if (success) {

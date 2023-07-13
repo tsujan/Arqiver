@@ -146,6 +146,8 @@
     <addaction name="actionExtractAll"/>
     <addaction name="actionExtractSel"/>
     <addaction name="separator"/>
+    <addaction name="actionUpdate"/>
+    <addaction name="separator"/>
     <addaction name="actionPassword"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -188,6 +190,8 @@
    <addaction name="actionOpen"/>
    <addaction name="separator"/>
    <addaction name="actionStop"/>
+   <addaction name="actionUpdate"/>
+   <addaction name="separator"/>
    <addaction name="actionAddFile"/>
    <addaction name="actionAddDir"/>
    <addaction name="actionRemoveFile"/>
@@ -294,6 +298,11 @@
   <action name="actionView">
    <property name="text">
     <string>View Current Item</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Update Archive</string>
    </property>
   </action>
  </widget>

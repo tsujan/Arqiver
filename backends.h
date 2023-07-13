@@ -24,6 +24,7 @@
 #include <QHash>
 #include <QString>
 #include <QStringList>
+#include <QFileSystemWatcher>
 
 namespace Arqiver {
 
@@ -49,7 +50,7 @@ public:
   bool isLink(const QString& file) const;
   QString linkTo(const QString& file) const;
 
-  void startAdd(const QStringList& paths, bool absolutePaths = false);
+  void startAdd(const QStringList& paths, const QString& parentPath = QString(), bool absolutePaths = false);
   void startRemove(const QStringList& paths);
   void startExtract(const QString& path, const QString& file = QString(), bool overwrite = true, bool preservePaths = true);
   void startExtract(const QString& path, const QStringList& files, bool overwrite = true, bool preservePaths = true);
@@ -105,6 +106,10 @@ signals:
   void encryptedList(const QString& path);
   void errorMsg(const QString& msg);
   void tempFilesExtracted(const QStringList& files);
+  void fileModified(bool modified);
+
+public slots:
+  void updateArchive();
 
 private slots:
   void startInsertFromQueue() {
@@ -149,6 +154,9 @@ private:
   QString data_; // used when processing data
 
   bool isKilled_;
+
+  QFileSystemWatcher *watcher_;
+  QStringList changedFiles_;
 };
 
 }

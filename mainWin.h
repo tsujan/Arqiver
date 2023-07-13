@@ -133,6 +133,7 @@ private:
   bool subTreeIsEncrypted(QTreeWidgetItem *item);
   void hideChildlessDir(QTreeWidgetItem *item);
   void adjustColumnSizes();
+  bool ignoreChanges();
 
   QLabel *iconLabel_;
   Label *textLabel_;
