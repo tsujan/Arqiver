@@ -1,4 +1,4 @@
-V0.11.0
+V0.12.0
 --------
  * Added the ability to modify files inside archives (archives handled by 7z are excluded for now).
  * Made sure that "No" is the default button of question dialogs (Qt may have a minor problem in this regard).
