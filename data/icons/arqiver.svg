@@ -1,26 +1,27 @@
 <svg width="48" version="1.1" xmlns="http://www.w3.org/2000/svg" height="48">
 <g style="fill-rule:evenodd">
-<path style="paint-order:normal;fill:#c19761" id="rect837" d="m 5,3 h 38 c 1.108,0 2,0.892 2,2 v 38 c 0,1.108 -0.892,2 -2,2 H 5 C 3.892,45 3,44.108 3,43 V 5 C 3,3.892 3.892,3 5,3 Z"/>
-<path style="fill:#34495e" id="shape0" d="m 20,2.9922 h 8 v 19.6657 h -8 z "/>
+<path style="fill:#c19761" d="m 5,3 h 38 c 1.108,0 2,0.892 2,2 v 38 c 0,1.108 -0.892,2 -2,2 H 5 C 3.892,45 3,44.108 3,43 V 5 C 3,3.892 3.892,3 5,3 Z"/>
+<path style="opacity:.5" d="m 20,2.9922 h 8 v 19.6657 h -8 z"/>
 <g style="fill:#ecf0f1">
-<path id="shape1" d="m 20,2.998 h 4.8 v 1.45576 h -4.8 Z "/>
-<path id="shape2" d="m 23.2,4.4539 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape3" d="m 20,5.9123 h 4.8 v 1.45577 h -4.8 Z "/>
-<path id="shape4" d="m 23.2,7.3682 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape5" d="m 20,8.828 h 4.8 v 1.45577 h -4.8 Z "/>
-<path id="shape6" d="m 23.2,10.2839 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape7" d="m 20,11.7422 h 4.8 v 1.45577 h -4.8 Z "/>
-<path id="shape8" d="m 23.2,13.1982 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape9" d="m 20,14.656679 h 4.8 v 1.45577 H 20 Z"/>
-<path id="shape10" d="m 23.2,16.1125 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape11" d="m 20,17.571 h 4.8 v 1.45577 h -4.8 Z "/>
-<path id="shape12" d="m 23.2,19.0269 h 4.8 v 1.45577 h -4.8 z "/>
-<path id="shape13" d="m 20,20.4867 h 4.8 v 1.45577 h -4.8 Z "/>
+<path d="m 20,2.998 h 4.8 V 4.45376 H 20 Z"/>
+<path d="M 23.2,4.4539 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,5.9123 h 4.8 V 7.36807 H 20 Z"/>
+<path d="M 23.2,7.3682 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,8.828 h 4.8 v 1.45577 H 20 Z"/>
+<path d="M 23.2,10.2839 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,11.7422 h 4.8 v 1.45577 H 20 Z"/>
+<path d="M 23.2,13.1982 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,14.656679 h 4.8 v 1.45577 H 20 Z"/>
+<path d="M 23.2,16.1125 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,17.571 h 4.8 v 1.45577 H 20 Z"/>
+<path d="M 23.2,19.0269 H 28 v 1.45577 h -4.8 z"/>
+<path d="m 20,20.4867 h 4.8 v 1.45577 H 20 Z"/>
 </g>
-<path style="opacity:.05" id="path897" d="M 18,36.5 H 30 L 29.5,21.75 h -11 z"/>
-<path style="opacity:.05" id="path895" d="m 18.25,36 h 11.5 l -.4,-14.25 h -10.7 z "/>
-<path style="opacity:.05" id="rect3014" d="m 18.5,35.5 h 11 L 29.2,21.75 H 18.8 Z"/>
-<path style="fill:#ecf0f1" id="shape17" d="M 19,35 H 29 V 22 H 19 Z"/>
-<path style="fill:#2c3e50" id="shape18" d="m 21,33 h 6 v -3 h -6 z"/>
+<path style="opacity:.05" d="M 18,36.5 H 30 L 29.5,21.75 h -11 z"/>
+<path style="opacity:.07" d="m 18.25,36 h 11.5 l -.4,-14.2 h -10.7 z "/>
+<path style="opacity:.15" d="m 18.5,35.5 h 11 L 29.2,21.85 H 18.8 Z"/>
+<path style="opacity:.25" d="M 18.8,35.2 H 29.2 L 29.1,21.9 H 18.9 Z"/>
+<path style="opacity:.15" d="m 20,33.5 h 8 v -4 h -8 z"/>
+<path style="fill:#ecf0f1" d="m 19,22 v 13 h 10 v -13 h -10 z  m 2,8 h 6 v 3 h -6 v -3 z "/>
 </g>
 </svg>

@@ -252,7 +252,7 @@ static inline QString escapedWildCard(const QString& str)
   return newStr;
 }
 
-void Backend::startAdd(const QStringList& paths,  bool absolutePaths) {
+void Backend::startAdd(const QStringList& paths, bool absolutePaths) {
   keyArgs_.clear();
   QStringList filePaths = paths;
   /* exclude the archive itself */
