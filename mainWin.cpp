@@ -197,6 +197,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   connect(ui->frame, &QWidget::customContextMenuRequested, this, &mainWin::labelContextMenu);
 
   ui->actionUpdate->setEnabled(false);
+  ui->actionUpdate->setVisible(false);
+
   ui->actionAddFile->setEnabled(false);
   ui->actionRemoveFile->setEnabled(false);
   ui->actionExtractAll->setEnabled(false);
@@ -214,7 +216,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     QMessageBox::critical(this, tr("Error"), msg);
   });
   connect(BACKEND, &Backend::fileModified, this, [this](bool modified) {
-    bool reallyModified(modified && !BACKEND->is7z() && canmodify_);
+    bool reallyModified(modified && canmodify_);
     ui->actionUpdate->setEnabled(reallyModified);
     setWindowModified(reallyModified);
   });
@@ -1570,6 +1572,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   else
     iconLabel_->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
 
+  ui->actionUpdate->setVisible(BACKEND->canModify());
   if (updateTree_ && !success) {
     ui->actionAddFile->setEnabled(false);
     ui->actionRemoveFile->setEnabled(false);
@@ -1620,7 +1623,7 @@ void mainWin::openEncryptedList(const QString& path) {
     /* clear contents because nothing is loaded */
     ui->tree_contents->clear();
     ui->tree_contents->header()->setVisible(false);
-    /* also, prevent confusion by disabling actions */
+    /* also, prevent confusion by disabling actions and showing a status message */
     ui->actionAddFile->setEnabled(false);
     ui->actionRemoveFile->setEnabled(false);
     ui->actionExtractAll->setEnabled(false);
@@ -1628,6 +1631,7 @@ void mainWin::openEncryptedList(const QString& path) {
     ui->actionExtractSel->setEnabled(false);
     ui->actionView->setEnabled(false);
     ui->actionPassword->setEnabled(false);
+    textLabel_->setText(tr("Could not read archive"));
     return;
   }
   axFileList_.removeOne(path);

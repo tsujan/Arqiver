@@ -29,7 +29,6 @@
 #include <QMimeDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
-#include <QDirIterator>
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
@@ -265,25 +264,55 @@ static inline QString escapedWildCard(const QString& str)
 }
 
 void Backend::updateArchive() {
-  if (is7z_ // 7z doesn't update files/folders inside the archive
-      || arqiverDir_.isEmpty() || changedFiles_.isEmpty()
+  if (arqiverDir_.isEmpty() || changedFiles_.isEmpty()
       || !QFile::exists(filepath_)) {
     return;
   }
-  if (!QDir(arqiverDir_).exists()) return;
+  QDir dir(arqiverDir_);
+  if (!dir.exists()) return;
 
   emit fileModified(false);
+  keyArgs_.clear();
+  QStringList args;
 
-    // "startAdd" can handle Gzip
+  if (is7z_) {
+    // only add the top files/folders of the temporary directory; 7z takes care of the rest
+    QStringList paths;
+    const QStringList entries = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
+    if (entries.isEmpty()) return;
+    for (const QString &str : entries)
+      paths << arqiverDir_ + "/" + str;
+    if (encryptedList_) {
+      if (pswrd_.isEmpty())
+        return;
+      args << "-mhe=on" << "-p" + pswrd_;
+    }
+    else if (!pswrd_.isEmpty()) {
+      args << "-p" + pswrd_;
+      encrypted_ = true;
+    }
+    args << "a" << fileArgs_ << paths;
+    starting7z_ = true;
+    keyArgs_ << "a";
+    proc_.start ("7z", args);
+    return;
+  }
+
+  emit processStarting();
+
   if (isGzip_) {
-    startAdd(changedFiles_);
+    args << "--to-stdout" << "--force" << changedFiles_.at(0);
+    tmpProc_.setStandardOutputFile(filepath_);
+    tmpProc_.start("gzip", args);
+    if (tmpProc_.waitForStarted()) {
+      while (!tmpProc_.waitForFinished(500))
+        QCoreApplication::processEvents();
+    }
+    emit processFinished(tmpProc_.exitCode() == 0, QString());
     return;
   }
 
   // first remove the files from the archive, waiting until the process is finished...
-  keyArgs_.clear();
-  emit processStarting();
-  QStringList args;
   args << "-c" << "-a";
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
@@ -664,6 +693,8 @@ bool Backend::startViewFile(const QString& path) {
   if (!QFile::exists(filepath_))
     return true; // "false" is reserved for password of 7z
 
+  bool res = true;
+
   /* the path may contain newlines, which have been escaped and are restored here */
   QString realPath(path);
   realPath.replace(newlineExp, "\n").replace(tabExp, "\t");
@@ -703,47 +734,49 @@ bool Backend::startViewFile(const QString& path) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
       }
-      bool res(tmpProc_.exitCode() == 0 || pswrd_.isEmpty());
+      res = tmpProc_.exitCode() == 0 || pswrd_.isEmpty();
       if (!res)
         pswrd_ = QString(); // avoid overwrite prompt if there are more than one password
       emit processFinished(tmpProc_.exitCode() == 0, QString());
-      if (tmpProc_.exitCode() == 0) {
-        if (!QFileInfo::exists(fileName)) { // handle links
-          errorMsg(tr("This file is a link but its target does not exist."));
-        }
-        else if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
-          QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+      if (tmpProc_.exitCode() != 0)
+        return res;
+    }
+    else {
+      QString cmnd;
+      if (isGzip_) {
+        cmnd = "gzip";
+        args << "-d" << "--to-stdout" << filepath_;
+        emit processStarting();
+        tmpProc_.setStandardOutputFile(fileName);
       }
-      return res;
+      else { // bsdtar
+        cmnd = tarCmnd_;
+        // "--fast-read" interferes with extraction of directories
+        if (isDir(path))
+          args << "-x" << "--no-same-owner";
+        else
+          args << "-x" << "--no-same-owner" << "--fast-read";
+        args << "-k" << fileArgs_
+             << "--include" << escapedWildCard(realPath) << "-C" << arqiverDir_;
+        /* NOTE: The following arguments were also possible with "fileName" as the standard output
+                 (as with Gzip) but symlinks couldn't be handled in that way. */
+        //args << "-x" << fileArgs_ << "--include" << escapedWildCard(realPath) << "--to-stdout";
+        emit processStarting();
+        tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+      }
+      tmpProc_.start(cmnd, args);
+      if (tmpProc_.waitForStarted()) {
+        while (!tmpProc_.waitForFinished(500))
+          QCoreApplication::processEvents();
+      }
+      emit processFinished(tmpProc_.exitCode() == 0, QString());
+      if (tmpProc_.exitCode() != 0)
+        return true;
     }
-    QString cmnd;
-    if (isGzip_) {
-      cmnd = "gzip";
-      args << "-d" << "--to-stdout" << filepath_;
-      emit processStarting();
-      tmpProc_.setStandardOutputFile(fileName);
-    }
-    else { // bsdtar
-      cmnd = tarCmnd_;
-      args << "-x" << "--no-same-owner" << "-k" << fileArgs_
-           << "--include" << escapedWildCard(realPath) << "-C" << arqiverDir_;
-      /* NOTE: The following arguments were also possible with "fileName" as the standard output
-               (as with Gzip) but symlinks couldn't be handled in that way. */
-      //args << "-x" << fileArgs_ << "--include" << escapedWildCard(realPath) << "--to-stdout";
-      emit processStarting();
-      tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-    }
-    tmpProc_.start(cmnd, args);
-    if (tmpProc_.waitForStarted()) {
-      while (!tmpProc_.waitForFinished(500))
-        QCoreApplication::processEvents();
-    }
-    emit processFinished(tmpProc_.exitCode() == 0, QString());
-    if (tmpProc_.exitCode() != 0)
-      return true;
-    if (!QFileInfo::exists(fileName)) { // handle links
+    // handle links
+    if (!QFileInfo::exists(fileName)) {
       errorMsg(tr("This file is a link but its target does not exist."));
-      return true;
+      return res;
     }
   }
   else
@@ -760,7 +793,7 @@ bool Backend::startViewFile(const QString& path) {
 
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
-  return true;
+  return res;
 }
 
 void Backend::extractTempFiles(const QStringList& paths) {
@@ -820,7 +853,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
 
   if (!realPaths.isEmpty()) {
     QStringList args;
-    /* Gzip */
+
     if (isGzip_) {
       if (tempFileNames.size() == 1) {
         args << "-d" << "--to-stdout" << filepath_;
@@ -840,7 +873,6 @@ void Backend::extractTempFiles(const QStringList& paths) {
       return;
     }
 
-    /* 7z */
     if (is7z_) {
       args << "-aos"; // skip extraction of existing files
       if (encrypted_ )
@@ -855,29 +887,39 @@ void Backend::extractTempFiles(const QStringList& paths) {
       }
       if (tmpProc_.exitCode() != 0)
         pswrd_ = QString();
-      emit processFinished(tmpProc_.exitCode() == 0, QString());
-      emit tempFilesExtracted(tempFileNames);
-      return;
+    }
+    else {
+      /* bsdtar */
+      bool noDir = true;
+      for (const QString &str : paths) {
+        if (isDir(str)) {
+          noDir = false;
+          break;
+        }
+      }
+      // "--fast-read" interferes with extraction of directories
+      if (noDir)
+        args << "-x" << "--no-same-owner" << "--fast-read" << "-k" << fileArgs_;
+      else
+        args << "-x" << "--no-same-owner" << "-k" << fileArgs_;
+
+      /* If a file comes after its containing folder in the command line,
+         bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
+      realPaths.sort();
+      int N = realPaths.length();
+      for (int i = 0; i < N; i++)
+        args << "--include" << escapedWildCard(realPaths[N - 1 - i]);
+
+      args << "-C" << arqiverDir_;
+      emit processStarting();
+      tmpProc_.setStandardOutputFile(QProcess::nullDevice());
+      tmpProc_.start(tarCmnd_, args);
+      if (tmpProc_.waitForStarted()) {
+        while (!tmpProc_.waitForFinished(500))
+          QCoreApplication::processEvents();
+      }
     }
 
-    /* bsdtar */
-    args << "-x" << "--no-same-owner" << "-k" << fileArgs_;
-
-    /* If a file comes after its containing folder in the command line,
-       bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
-    realPaths.sort();
-    int N = realPaths.length();
-    for (int i = 0; i < N; i++)
-      args << "--include" << escapedWildCard(realPaths[N - 1 - i]);
-
-    args << "-C" << arqiverDir_;
-    emit processStarting();
-    tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-    tmpProc_.start(tarCmnd_, args);
-    if (tmpProc_.waitForStarted()) {
-      while (!tmpProc_.waitForFinished(500))
-        QCoreApplication::processEvents();
-    }
     emit processFinished(tmpProc_.exitCode() == 0, QString());
     emit tempFilesExtracted(tempFileNames);
     if (tmpProc_.exitCode() != 0) return;
