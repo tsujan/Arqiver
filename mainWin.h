@@ -145,7 +145,8 @@ private:
   QString lastPath_, lastFilter_;
   QString lastPswrd_;
   QString lastMsg_;
-  bool canmodify_;
+  bool canModify_;
+  bool canUpdate_;
   bool updateTree_;
   bool scrollToCurrent_;
   bool expandAll_;

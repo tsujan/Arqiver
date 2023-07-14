@@ -37,7 +37,7 @@ public:
 
   QString getMimeType(const QString &fname);
   void loadFile(const QString& path, bool withPassword = false);
-  bool canModify() const;
+  bool canModify(bool *canUpdate) const;
 
   QString currentFile() const;
 

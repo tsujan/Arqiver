@@ -132,7 +132,8 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->setupUi(this);
 
   lastPath_ = QDir::homePath();
-  canmodify_ = true;
+  canModify_ = true;
+  canUpdate_ = true;
   updateTree_ = true; // will be set to false when extracting (or viewing)
   scrollToCurrent_ = true; // will be set to false when adding files/folders
   expandAll_ = false;
@@ -216,7 +217,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
     QMessageBox::critical(this, tr("Error"), msg);
   });
   connect(BACKEND, &Backend::fileModified, this, [this](bool modified) {
-    bool reallyModified(modified && canmodify_);
+    bool reallyModified(modified && canUpdate_);
     ui->actionUpdate->setEnabled(reallyModified);
     setWindowModified(reallyModified);
   });
@@ -1572,7 +1573,9 @@ void mainWin::procFinished(bool success, const QString& msg) {
   else
     iconLabel_->setPixmap(symbolicIcon::icon(":icons/dialog-error.svg").pixmap(16, 16));
 
-  ui->actionUpdate->setVisible(BACKEND->canModify());
+  bool _canUpdate;
+  bool _canModify = BACKEND->canModify(&_canUpdate);
+  ui->actionUpdate->setVisible(_canUpdate);
   if (updateTree_ && !success) {
     ui->actionAddFile->setEnabled(false);
     ui->actionRemoveFile->setEnabled(false);
@@ -1584,18 +1587,19 @@ void mainWin::procFinished(bool success, const QString& msg) {
   }
   else {
     QFileInfo info(BACKEND->currentFile());
-    canmodify_ = info.isWritable();
+    canModify_ = info.isWritable();
     if (!info.exists())
-      canmodify_ = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
-    canmodify_ = canmodify_ && BACKEND->canModify(); // also include the file type limitations
-    ui->actionAddFile->setEnabled(canmodify_ && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
+      canModify_ = QFileInfo(BACKEND->currentFile().section("/", 0, -2)).isWritable();
+    canUpdate_ = canModify_ && _canUpdate;
+    canModify_ = canModify_ && _canModify; // also include the file type limitations
+    ui->actionAddFile->setEnabled(canModify_ && (!BACKEND->isGzip() || ui->tree_contents->topLevelItemCount() == 0));
     ui->actionExtractAll->setEnabled(info.exists() && ui->tree_contents->topLevelItemCount() > 0);
     bool hasSelection = info.exists() && !ui->tree_contents->selectedItems().isEmpty();
     ui->actionExtractSel->setEnabled(hasSelection);
-    ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
+    ui->actionRemoveFile->setEnabled(hasSelection && canModify_ && !BACKEND->isGzip());
     ui->actionView->setEnabled(curSelected && !cur->text(1).isEmpty());
-    ui->actionAddDir->setEnabled(canmodify_ && !BACKEND->isGzip());
-    ui->actionPassword->setEnabled(BACKEND->is7z() && canmodify_);
+    ui->actionAddDir->setEnabled(canModify_ && !BACKEND->isGzip());
+    ui->actionPassword->setEnabled(BACKEND->is7z() && canModify_);
   }
 
   if (!(updateTree_ && success) // otherwise, the cursor will be restored in updateTree()
@@ -1641,7 +1645,7 @@ void mainWin::openEncryptedList(const QString& path) {
 void mainWin::selectionChanged() {
   bool hasSelection = !ui->tree_contents->selectedItems().isEmpty();
   ui->actionExtractSel->setEnabled(hasSelection);
-  ui->actionRemoveFile->setEnabled(hasSelection && canmodify_ && !BACKEND->isGzip());
+  ui->actionRemoveFile->setEnabled(hasSelection && canModify_ && !BACKEND->isGzip());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   if (cur && ui->tree_contents->selectedItems().contains(cur))
   {

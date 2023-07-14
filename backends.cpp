@@ -184,14 +184,20 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   }
 }
 
-bool Backend::canModify() const {
+bool Backend::canModify(bool *canUpdate) const {
   static QStringList validMimeTypes;
   if (validMimeTypes.isEmpty()) {
     validMimeTypes << "application/zip" << "application/x-compressed-tar" << "application/x-gzpdf" << "image/svg+xml-compressed" << "application/x-xz-compressed-tar" << "application/x-bzip-compressed-tar" << "application/x-tar" << "application/x-lzma-compressed-tar" << "application/x-zstd-compressed-tar" << "application/x-cpio" << /*".pax" <<*/ "application/x-archive" << /*".shar" <<*/ "application/gzip" << "application/x-7z-compressed";
   }
+  static QStringList updatedMimeTypes;
+  if (updatedMimeTypes.isEmpty()) {
+    updatedMimeTypes << "application/zstd" << "application/x-bzip" << "application/x-xz" << "application/vnd.debian.binary-package" << "application/x-rpm" << "application/x-source-rpm";
+  }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();
-  return validMimeTypes.contains(mimeTypeName);
+  bool res = validMimeTypes.contains(mimeTypeName);
+  *canUpdate = (res || updatedMimeTypes.contains(mimeTypeName));
+  return res;
 }
 
 QString Backend::currentFile() const {
