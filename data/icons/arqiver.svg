@@ -1,22 +1,14 @@
 <svg width="48" version="1.1" xmlns="http://www.w3.org/2000/svg" height="48" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-<linearGradient id="linearGradient899">
-<stop offset="0" style="stop-opacity:0"/>
-<stop offset="0.97" style="stop-opacity:0"/>
-<stop offset="1"/>
+<linearGradient id="linearGradient1432">
+<stop offset="0"/>
+<stop offset="0.11" style="stop-opacity:.2"/>
+<stop offset="0.9" style="stop-opacity:.2"/>
+<stop offset="1" style="stop-color:#fff;stop-opacity:.5"/>
 </linearGradient>
-<linearGradient id="linearGradient960">
-<stop offset="0" style="stop-color:#c19761"/>
-<stop offset="0.93" style="stop-color:#c29861"/>
-<stop offset="1" style="stop-color:#916d42"/>
-</linearGradient>
-<linearGradient xlink:href="#linearGradient899" id="linearGradient4846" y1="24" x1="3" y2="24" x2="45" gradientUnits="userSpaceOnUse"/>
-<linearGradient gradientTransform="matrix(-1,0,0,1,48,0)" xlink:href="#linearGradient899" id="linearGradient4850" y1="24" x1="3" y2="24" gradientUnits="userSpaceOnUse" x2="45"/>
-<linearGradient xlink:href="#linearGradient960" id="linearGradient4023" y1="3" x1="3" y2="45" x2="3" gradientUnits="userSpaceOnUse"/>
+<linearGradient xlink:href="#linearGradient1432" id="linearGradient1434" y1="45" x1="8.2068243" y2="4.0139256" x2="8.1992188" gradientUnits="userSpaceOnUse"/>
 </defs>
-<path style="fill:url(#linearGradient4023)" d="m 8,3 h 32 c 2.77,0 5,2.23 5,5 v 32 c 0,2.77 -2.23,5 -5,5 H 8 C 5.23,45 3,42.77 3,40 V 8 C 3,5.23 5.23,3 8,3 Z"/>
-<path style="opacity:.17;fill:url(#linearGradient4850)" d="M 40,3 H 8 C 5.23,3 3,5.23 3,8 v 32 c 0,2.77 2.23,5 5,5 h 32 c 2.77,0 5,-2.23 5,-5 V 8 C 45,5.23 42.77,3 40,3 Z"/>
-<path style="opacity:.17;fill:url(#linearGradient4846)" d="m 8,3 h 32 c 2.77,0 5,2.23 5,5 v 32 c 0,2.77 -2.23,5 -5,5 H 8 C 5.23,45 3,42.77 3,40 V 8 C 3,5.23 5.23,3 8,3 Z"/>
+<path style="fill:#c19761" d="m 8,3 h 32 c 2.77,0 5,2.23 5,5 v 32 c 0,2.77 -2.23,5 -5,5 H 8 C 5.23,45 3,42.77 3,40 V 8 C 3,5.23 5.23,3 8,3 Z"/>
 <g style="fill-rule:evenodd">
 <path style="opacity:.5" d="m 20,2.9922 h 8 v 19.6657 h -8 z"/>
 <g style="fill:#ecf0f1">
@@ -41,4 +33,5 @@
 <path style="opacity:.15" d="m 20,33.5 h 8 v -4 h -8 z"/>
 <path style="fill:#ecf0f1" d="M 19,22 V 35 H 29 V 22 Z m 2,8 h 6 v 3 h -6 z"/>
 </g>
+<path style="opacity:.2;fill:url(#linearGradient1434)" d="m 8,3 c -2.77,0 -5,2.23 -5,5 v 32 c 0,2.77 2.23,5 5,5 h 32 c 2.77,0 5,-2.23 5,-5 v -32 c 0,-2.77 -2.23,-5 -5,-5 h -32 z  m .1992,1.5 h 31.6016 c 2.0498,0 3.69922,1.64942 3.69922,3.69922 v 30.9004 c 0,2.0498 -1.64942,3.69922 -3.69922,3.69922 h -31.6016 c -2.0498,0 -3.69922,-1.64942 -3.69922,-3.69922 v -30.9004 c 0,-2.0498 1.64942,-3.69922 3.69922,-3.69922 z "/>
 </svg>
