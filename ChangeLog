@@ -4,6 +4,9 @@ V0.12.0
  * Made sure that "No" is the default button of question dialogs (Qt seems to have a minor problem in this regard).
  * Don't start extraction if the archive is removed.
  * Made viewing/extracting of single files much faster with `bsdtar`.
+ * Consistently prevent the parent extraction folder from being hidden (for it not to be missed by the user).
+ * Fixed a bug in removal of files from archives.
+ * Make sure all special characters are escaped when making patterns with paths.
 
 V0.11.0
 --------

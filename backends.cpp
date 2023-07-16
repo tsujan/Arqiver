@@ -195,8 +195,9 @@ bool Backend::canModify(bool *canUpdate) const {
   }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();
-  bool res = validMimeTypes.contains(mimeTypeName);
-  *canUpdate = (res || updatedMimeTypes.contains(mimeTypeName));
+  bool res = archiveSingleRoot_ != "."  // not like some rpm archives
+             && validMimeTypes.contains(mimeTypeName);
+  *canUpdate = (archiveSingleRoot_ != "." && (res || updatedMimeTypes.contains(mimeTypeName)));
   return res;
 }
 
@@ -262,13 +263,6 @@ static inline void skipExistingFiles(QString& file) {
   file += suffix;
 }
 
-static inline QString escapedWildCard(const QString& str)
-{
-  QString newStr = str;
-  newStr.replace("*", "\\*").replace("[", "\\[");
-  return newStr;
-}
-
 void Backend::updateArchive() {
   if (arqiverDir_.isEmpty() || changedFiles_.isEmpty()
       || !QFile::exists(filepath_)) {
@@ -323,7 +317,7 @@ void Backend::updateArchive() {
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
   for (const QString &str : qAsConst(changedFiles_))
-    args << "--exclude" << escapedWildCard(str.section('/', 3));
+    args << "--exclude" << "^" + QRegularExpression::escape(str.section('/', 3));
   args << "@" + filepath_;
   tmpProc_.start(tarCmnd_, args);
   if (tmpProc_.waitForStarted()) {
@@ -474,7 +468,7 @@ void Backend::startRemove(const QStringList& paths) {
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
   for (int i = 0; i < filePaths.length(); i++) {
-    args << "--exclude" << escapedWildCard(filePaths.at(i));
+    args << "--exclude" << "^" + QRegularExpression::escape(filePaths.at(i));
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
@@ -554,7 +548,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
         for (int i = 0; i < N; i++) {
           if (filesList[N - 1 - i].simplified().isEmpty())
             continue;
-          args << "--include" << escapedWildCard(filesList[N - 1 - i])
+          args << "--include" << QRegularExpression::escape(filesList[N - 1 - i])
                << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
         }
     }
@@ -562,18 +556,20 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
 
   QString xPath = path;
-  bool archiveRootExists(false);
+  bool archiveRootChanged(false);
 
-  /* prevent overwriting by making an appropriate directory and extracting into it
-     if the whole archive is going to be extracted (otherwise, overwriting will be handled by mainWin) */
+  /* Prevent overwriting by making an appropriate directory and extracting into it
+     if the whole archive is going to be extracted (otherwise, overwriting should be handled by GUI) */
   if (filesList.isEmpty()) {
     QString archiveSingleRoot = archiveSingleRoot_;
-    if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith("."))
-      archiveSingleRoot.remove(0, 1); // no hidden extraction folder
+    if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith(".")) {
+      archiveSingleRoot.remove(0, 1); // no hidden extraction folder or single hidden extracted file
+      archiveRootChanged = true;
+    }
     if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives or when an encrypted list isn't known yet
       archiveSingleRoot.replace(newlineExp, "\n").replace(tabExp, "\t");
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
-        archiveRootExists = true;
+        archiveRootChanged = true;
         QDir dir (xPath);
         QString subdirName = archiveSingleRoot;
         xPath += "/" + subdirName;
@@ -589,8 +585,14 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
         dir.mkdir(subdirName);
       }
+      else if (archiveRootChanged) {
+        QDir dir (xPath);
+        xPath += "/" + archiveSingleRoot;
+        dir.mkdir(archiveSingleRoot);
+      }
     }
     else { // the archive doesn't have a parent dir and isn't a single file
+      archiveRootChanged = false;
       QDir dir(xPath);
       QString subdirName = filepath_.section("/", -1);
       if (subdirName.contains(".")) {
@@ -623,7 +625,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
   else {
     args << "-C" << xPath;
-    if (archiveRootExists && contents_.size() > 1)
+    if (archiveRootChanged && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
     proc_.start(tarCmnd_, args); // doesn't create xPath if not existing
@@ -763,10 +765,10 @@ bool Backend::startViewFile(const QString& path) {
         else
           args << "-x" << "--no-same-owner" << "--fast-read";
         args << "-k" << fileArgs_
-             << "--include" << escapedWildCard(realPath) << "-C" << arqiverDir_;
+             << "--include" << QRegularExpression::escape(realPath) << "-C" << arqiverDir_;
         /* NOTE: The following arguments were also possible with "fileName" as the standard output
                  (as with Gzip) but symlinks couldn't be handled in that way. */
-        //args << "-x" << fileArgs_ << "--include" << escapedWildCard(realPath) << "--to-stdout";
+        //args << "-x" << fileArgs_ << "--include" << QRegularExpression::escape(realPath) << "--to-stdout";
         emit processStarting();
         tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       }
@@ -914,7 +916,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       realPaths.sort();
       int N = realPaths.length();
       for (int i = 0; i < N; i++)
-        args << "--include" << escapedWildCard(realPaths[N - 1 - i]);
+        args << "--include" << QRegularExpression::escape(realPaths[N - 1 - i]);
 
       args << "-C" << arqiverDir_;
       emit processStarting();
