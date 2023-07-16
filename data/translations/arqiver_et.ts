@@ -281,7 +281,7 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Uuenda arhiiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -388,13 +388,14 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="430"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mõned failid on muutunud.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="431"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kas sa soovid muutusi eirata?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="592"/>
