@@ -51,21 +51,12 @@ int main(int argc, char **argv) {
             "--sa             Archive file(s): arqiver --sa FILE(S)\n"\
             "--ax             Auto-extract archive(s): arqiver --ax ARCHIVE(S)\n"\
             "--aa             Auto-archive file(s): arqiver --aa ARCHIVE FILE(S)"
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
         << Qt::endl;
-#else
-        << endl;
-#endif
     return 0;
   }
   else if (option == "--version" || option == "-v") {
     QTextStream out (stdout);
-    out << name << " " << version
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
-        << Qt::endl;
-#else
-        << endl;
-#endif
+    out << name << " " << version << Qt::endl;
     return 0;
   }
 

@@ -157,6 +157,8 @@ private:
 
   QFileSystemWatcher *watcher_;
   QStringList changedFiles_;
+
+  bool startBackslash_; // used in a workaround for a bug in bsdtar
 };
 
 }

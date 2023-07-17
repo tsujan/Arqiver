@@ -1229,7 +1229,10 @@ void mainWin::extractSelection() {
     for (const auto &file : qAsConst(selList)) {
         /* the path may contain newlines, which have been escaped and are restored here */
         QString realFile(file);
-        realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n");
+        realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+                .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+        if (!BACKEND->isGzip() && !BACKEND->is7z())
+          realFile.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
         if (QFile::exists(dir + "/" + realFile.section("/",-1))) {
           QMessageBox::StandardButton btn = QMessageBox::question(this,
                                                                   tr("Question"),
@@ -1381,11 +1384,7 @@ void mainWin::updateTree() {
       else {
         /* check the parent paths, create their items if not existing,
            and add children to their parents */
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
         QStringList sections = thisFile.split("/", Qt::SkipEmptyParts);
-#else
-        QStringList sections = thisFile.split("/", QString::SkipEmptyParts);
-#endif
         if (!sections.isEmpty()) { // can be empty in rare cases (with "application/x-archive", for example)
           sections.removeLast();
           QTreeWidgetItem *parentItem = nullptr;
@@ -1683,11 +1682,7 @@ void mainWin::prefDialog() {
 void mainWin::aboutDialog() {
   class AboutDialog : public QDialog {
   public:
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
     explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f)
-#else
-    explicit AboutDialog(QWidget* parent = nullptr, Qt::WindowFlags f = 0) : QDialog(parent, f)
-#endif
     {
       aboutUi.setupUi(this);
       aboutUi.textLabel->setOpenExternalLinks(true);

@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="786"/>
+        <location filename="../../backends.cpp" line="819"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Этот файл является ссылкой, но целевой файл не существует.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1207"/>
-        <location filename="../../backends.cpp" line="1238"/>
-        <location filename="../../backends.cpp" line="1281"/>
+        <location filename="../../backends.cpp" line="1232"/>
+        <location filename="../../backends.cpp" line="1264"/>
+        <location filename="../../backends.cpp" line="1308"/>
         <source>Could not read archive</source>
         <translation>Не удалось прочитать архив</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1241"/>
-        <location filename="../../backends.cpp" line="1286"/>
+        <location filename="../../backends.cpp" line="1267"/>
+        <location filename="../../backends.cpp" line="1313"/>
         <source>Archive Loaded</source>
         <translation>Архив загружен</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1248"/>
-        <location filename="../../backends.cpp" line="1334"/>
+        <location filename="../../backends.cpp" line="1274"/>
+        <location filename="../../backends.cpp" line="1361"/>
         <source>Modification Finished</source>
         <translation>Модификация завершена</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1269"/>
-        <location filename="../../backends.cpp" line="1303"/>
+        <location filename="../../backends.cpp" line="1295"/>
+        <location filename="../../backends.cpp" line="1330"/>
         <source>Extraction Finished</source>
         <translation>Распаковка завершена</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1272"/>
-        <location filename="../../backends.cpp" line="1322"/>
+        <location filename="../../backends.cpp" line="1298"/>
+        <location filename="../../backends.cpp" line="1349"/>
         <source>Extraction Failed</source>
         <translation>Ошибка распаковки</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1431"/>
+        <location filename="../../backends.cpp" line="1446"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 отсутствует в вашей системе.
@@ -324,7 +324,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="429"/>
         <location filename="../../mainWin.cpp" line="751"/>
         <location filename="../../mainWin.cpp" line="948"/>
-        <location filename="../../mainWin.cpp" line="1235"/>
+        <location filename="../../mainWin.cpp" line="1238"/>
         <source>Question</source>
         <translation>Вопрос</translation>
     </message>
@@ -375,8 +375,8 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1153"/>
         <location filename="../../mainWin.cpp" line="1168"/>
-        <location filename="../../mainWin.cpp" line="1250"/>
-        <location filename="../../mainWin.cpp" line="1264"/>
+        <location filename="../../mainWin.cpp" line="1253"/>
+        <location filename="../../mainWin.cpp" line="1267"/>
         <source>Extracting...</source>
         <translation>Распаковка...</translation>
     </message>
@@ -622,7 +622,7 @@ binary does not belong to libarchive.</source>
         <translation>Распаковать в каталог</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1236"/>
+        <location filename="../../mainWin.cpp" line="1239"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -631,43 +631,43 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1365"/>
+        <location filename="../../mainWin.cpp" line="1368"/>
         <source>Link To: %1</source>
         <translation>Ссылка на: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1638"/>
+        <location filename="../../mainWin.cpp" line="1637"/>
         <source>Could not read archive</source>
         <translation>Не удалось прочитать архив</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1718"/>
+        <location filename="../../mainWin.cpp" line="1713"/>
         <source>A simple Qt archive manager</source>
         <translation>Простой менеджер архивов на Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1719"/>
+        <location filename="../../mainWin.cpp" line="1714"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>основанный на libarchive, gzip и 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1720"/>
+        <location filename="../../mainWin.cpp" line="1715"/>
         <source>Author</source>
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1721"/>
+        <location filename="../../mainWin.cpp" line="1716"/>
         <source>aka.</source>
         <translation>aka.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1722"/>
-        <location filename="../../mainWin.cpp" line="1723"/>
+        <location filename="../../mainWin.cpp" line="1717"/>
+        <location filename="../../mainWin.cpp" line="1718"/>
         <source>About Arqiver</source>
         <translation>О Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1722"/>
+        <location filename="../../mainWin.cpp" line="1717"/>
         <source>Translators</source>
         <translation>Переводчики</translation>
     </message>

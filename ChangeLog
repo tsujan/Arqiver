@@ -3,10 +3,11 @@ V0.12.0
  * Made it possible to modify files inside archives.
  * Made sure that "No" is the default button of question dialogs (Qt seems to have a minor problem in this regard).
  * Don't start extraction if the archive is removed.
- * Made viewing/extracting of single files much faster with `bsdtar`.
+ * Made viewing/extracting of single files much faster with bsdtar.
  * Consistently prevent the parent extraction folder from being hidden (for it not to be missed by the user).
  * Fixed a bug in removal of files from archives.
- * Make sure all special characters are escaped when making patterns with paths.
+ * Make sure that ed-like special characters are escaped when making path patterns with bsdtar.
+ * Added a workaround for a nasty bug in bsdtar about start backslashes and the option "--strip-components".
 
 V0.11.0
 --------

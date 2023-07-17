@@ -9,7 +9,7 @@ endif()
 
 option(ENABLE_QT5 "Building Qt5 plugin." ON)
 
-set(QT5_MINIMUM_VERSION "5.12.0")
+set(QT5_MINIMUM_VERSION "5.15.0")
 set(QT6_MINIMUM_VERSION "6.3.0")
 
 if(NOT ENABLE_QT5)

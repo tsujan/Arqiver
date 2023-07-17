@@ -40,6 +40,7 @@ namespace Arqiver {
 
 static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
 static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
+static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startBackslash_
 
 Backend::Backend(QObject *parent) : QObject(parent) {
   tarCmnd_ = TAR_CMD;
@@ -52,6 +53,7 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   LIST = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
+  startBackslash_ = false; // used only with bsdtar in "Backend::startExtract()"
 
   watcher_ = new QFileSystemWatcher(this);
   connect(watcher_, &QFileSystemWatcher::fileChanged, [this](const QString& path) {
@@ -178,6 +180,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
     if (is7z_)
       encryptionQueried_ = true; // an empty archive doesn't have encryption (yet)
     contents_.clear();
+    startBackslash_ = false;
     emit loadingFinished();
     emit loadingSuccessful();
     emit processFinished(true, QString());
@@ -263,6 +266,16 @@ static inline void skipExistingFiles(QString& file) {
   file += suffix;
 }
 
+// This is only for bsdtar, which uses an ed-like pattern substitution.
+// WARNING: Here it is supposed that backslashes are escaped by bsdtar.
+static inline QString escapeSpecialChars(const QString& str)
+{
+  QString newStr = str;
+  newStr.replace("*", "\\*").replace("[", "\\[").replace("^", "\\^")
+        .replace("$", "\\$").replace("?", "\\?");
+  return newStr;
+}
+
 void Backend::updateArchive() {
   if (arqiverDir_.isEmpty() || changedFiles_.isEmpty()
       || !QFile::exists(filepath_)) {
@@ -316,8 +329,11 @@ void Backend::updateArchive() {
   args << "-c" << "-a";
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
-  for (const QString &str : qAsConst(changedFiles_))
-    args << "--exclude" << "^" + QRegularExpression::escape(str.section('/', 3));
+  for (const QString &str : qAsConst(changedFiles_)) {
+    /* WARNING: Since the workaround for bsdtar's escaped backslashes is already applied,
+                they need to be escaped again, before other special characters are escaped. */
+    args << "--exclude" << "^" + escapeSpecialChars(str.section('/', 3).replace("\\", "\\\\"));
+  }
   args << "@" + filepath_;
   tmpProc_.start(tarCmnd_, args);
   if (tmpProc_.waitForStarted()) {
@@ -468,7 +484,7 @@ void Backend::startRemove(const QStringList& paths) {
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
   for (int i = 0; i < filePaths.length(); i++) {
-    args << "--exclude" << "^" + QRegularExpression::escape(filePaths.at(i));
+    args << "--exclude" << "^" + escapeSpecialChars(filePaths.at(i));
   }
   args << "@" + filepath_;
   keyArgs_ << "-c" << "-a" << "--exclude";
@@ -522,8 +538,10 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     filesList.replaceInStrings(newlineExp, "\n").replaceInStrings(tabExp, "\t");
   }
 
+  bool noFileList(filesList.isEmpty());
+
   if (is7z_) {
-    if (filesList.isEmpty())
+    if (noFileList)
       args << "-aou"; // auto-rename: the archive may contain files with identical names
     else if (overwrite)
       args << "-aoa"; // overwrite without prompt
@@ -540,15 +558,19 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!overwrite)
       args << "-k";
     args << fileArgs_;
-    if (!filesList.isEmpty()) {
+    if (!noFileList) {
         /* If a file comes after its containing folder in the command line,
            bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
         filesList.sort();
         int N = filesList.length();
         for (int i = 0; i < N; i++) {
-          if (filesList[N - 1 - i].simplified().isEmpty())
+          if (filesList[N - 1 - i].simplified().isEmpty()
+              // see the end of this function for the reason
+              || (startBackslash_ && filesList[N - 1 - i].contains(startBslashExp))) {
+            filesList.removeAt(N - 1 - i);
             continue;
-          args << "--include" << QRegularExpression::escape(filesList[N - 1 - i])
+          }
+          args << "--include" << escapeSpecialChars(filesList[N - 1 - i])
                << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
         }
     }
@@ -560,7 +582,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
   /* Prevent overwriting by making an appropriate directory and extracting into it
      if the whole archive is going to be extracted (otherwise, overwriting should be handled by GUI) */
-  if (filesList.isEmpty()) {
+  if (noFileList) {
     QString archiveSingleRoot = archiveSingleRoot_;
     if (!archiveSingleRoot.isEmpty() && archiveSingleRoot.startsWith(".")) {
       archiveSingleRoot.remove(0, 1); // no hidden extraction folder or single hidden extracted file
@@ -568,6 +590,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     }
     if (!archiveSingleRoot.isEmpty()) { // is empty with some rpm archives or when an encrypted list isn't known yet
       archiveSingleRoot.replace(newlineExp, "\n").replace(tabExp, "\t");
+      if (!isGzip_ && !is7z_)
+        archiveSingleRoot.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
       if (QFile::exists(xPath + "/" + archiveSingleRoot)) {
         archiveRootChanged = true;
         QDir dir (xPath);
@@ -619,13 +643,17 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
 
   if (is7z_) {
     args << "-o" + xPath;
-    if (!filesList.isEmpty())
+    if (!noFileList)
       args << filesList;
     proc_.start("7z", args);
   }
   else {
+    if (!noFileList && filesList.isEmpty())
+      return; // it was emptied above
     args << "-C" << xPath;
-    if (archiveRootChanged && contents_.size() > 1)
+    /* WARNING: Because of a nasty bug in bsdtar, "--strip-components" removes
+                the start backslash, and so, it can result in a mess. */
+    if (!startBackslash_ && archiveRootChanged && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
     proc_.start(tarCmnd_, args); // doesn't create xPath if not existing
@@ -637,6 +665,7 @@ bool Backend::isEncryptedPath(const QString& path) const {
   return (encryptedList_ || encryptedPaths_.contains(path));
 }
 
+// Used only with encrypted archives
 bool Backend::isSingleExtracted(const QString& archivePath) const {
   if (arqiverDir_.isEmpty()) return false;
   QString str = archivePath;
@@ -655,6 +684,8 @@ bool Backend::allChildrenExyracted(const QString& parent) const {
         QString str = file;
         if (str.startsWith("./")) // as with some rpm archives
           str.remove(0, 2);
+        if (!isGzip_ && !is7z_)
+          str.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
         if (!QFile::exists(arqiverDir_ + "/" + str))
           return false;
       }
@@ -720,6 +751,8 @@ bool Backend::startViewFile(const QString& path) {
   QString fileName = (arqiverDir_.isEmpty() ? QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz")
                                             : parentDir + "/")
                      + realPath.section("/",-1);
+  if (!isGzip_ && !is7z_)
+    fileName.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
   QFile file(fileName);
   bool fileExists(file.exists());
   if (fileExists && file.size() == static_cast<qint64>(0)) {
@@ -765,10 +798,10 @@ bool Backend::startViewFile(const QString& path) {
         else
           args << "-x" << "--no-same-owner" << "--fast-read";
         args << "-k" << fileArgs_
-             << "--include" << QRegularExpression::escape(realPath) << "-C" << arqiverDir_;
+             << "--include" << escapeSpecialChars(realPath) << "-C" << arqiverDir_;
         /* NOTE: The following arguments were also possible with "fileName" as the standard output
                  (as with Gzip) but symlinks couldn't be handled in that way. */
-        //args << "-x" << fileArgs_ << "--include" << QRegularExpression::escape(realPath) << "--to-stdout";
+        //args << "-x" << fileArgs_ << "--include" << escapeSpecialChars(realPath) << "--to-stdout";
         emit processStarting();
         tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       }
@@ -848,6 +881,8 @@ void Backend::extractTempFiles(const QStringList& paths) {
       }
       else
         parentDir = arqiverDir_; // top-level
+      if (!isGzip_ && !is7z_)
+        realPath.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
       QString fileName = parentDir + "/" + realPath.section("/",-1);
       tempFileNames << fileName;
       /* check whether it's already extracted (FIXME: this doesn't cover all symlinks) */
@@ -916,7 +951,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       realPaths.sort();
       int N = realPaths.length();
       for (int i = 0; i < N; i++)
-        args << "--include" << QRegularExpression::escape(realPaths[N - 1 - i]);
+        args << "--include" << escapeSpecialChars(realPaths[N - 1 - i]);
 
       args << "-C" << arqiverDir_;
       emit processStarting();
@@ -974,11 +1009,7 @@ void Backend::parseLines(QStringList& lines) {
         continue;
       if (LIST) {
         QString file;
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
         QStringList info = lines.at(i).split(" ",Qt::SkipEmptyParts);
-#else
-        QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
-#endif
         if (info.size() < 2) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
         if (info.size() >= 6 && info.at(2) == "Attr") { // header
@@ -1009,11 +1040,7 @@ void Backend::parseLines(QStringList& lines) {
                 && lines.at(i+1).startsWith("---") // next line is end of table
                 && attrIndex + 5 < lines.at(i+2).size()
                 && lines.at(i+2).left(attrIndex + 6).simplified().isEmpty()) { // no Attr and nothing before it
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
               QStringList infoNext = lines.at(i+2).split(" ",Qt::SkipEmptyParts);
-#else
-              QStringList infoNext = lines.at(i+2).split(" ",QString::SkipEmptyParts);
-#endif
               // Format of infoNext: [Size(?), Compressed, Number(=1), "files"]
               if (!infoNext.isEmpty()) {
                 if (cSizeIndex < lines.at(i+2).size() && !lines.at(i+2).at(cSizeIndex - 1).isSpace()) {
@@ -1068,11 +1095,7 @@ void Backend::parseLines(QStringList& lines) {
   for (int i = 0; i < lines.length(); i++) {
     if (isGzip_) {
       // lines[i] is:                 <compressed_size>                   <uncompressed_size> -33.3% /x/y/z}
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
       QStringList info = lines.at(i).split(" ",Qt::SkipEmptyParts);
-#else
-      QStringList info = lines.at(i).split(" ",QString::SkipEmptyParts);
-#endif
       if (contents_.isEmpty() && info.size() >= 4) {
         int indx = lines.at(i).indexOf("% ");
         if (indx > -1) {
@@ -1103,6 +1126,8 @@ void Backend::parseLines(QStringList& lines) {
           file.chop(1);
         }
         if (file.isEmpty()) continue; // impossible
+        if (file.contains(startBslashExp))
+          startBackslash_ = true;
         if (hasSingleRoot) {
           if (archiveSingleRoot_.isEmpty()) {
             archiveSingleRoot_ = file.section('/', 0, 0);
@@ -1124,11 +1149,7 @@ void Backend::parseLines(QStringList& lines) {
     if (indx != 0 || match.capturedLength() == lines.at(i).length())
       continue; // invalid line
     QStringList info;
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
     info << lines.at(i).left(match.capturedLength()).split(" ",Qt::SkipEmptyParts);
-#else
-    info << lines.at(i).left(match.capturedLength()).split(" ",QString::SkipEmptyParts); // 8 elements
-#endif
     info << lines.at(i).right(lines.at(i).length() - match.capturedLength());
     // here, info is like ("-rw-r--r--", "1", "0", "0", "645", "Feb", "5", "2016", "x/y -> /a/b")
     QString file = info.at(8);
@@ -1149,6 +1170,8 @@ void Backend::parseLines(QStringList& lines) {
       if (info.at(0).startsWith("-"))
         info[0].replace(0, 1, "l");
     }
+    if (file.contains(startBslashExp))
+      startBackslash_ = true;
     if (hasSingleRoot) {
       if (archiveSingleRoot_.isEmpty()) {
           archiveSingleRoot_ = file.section('/', 0, 0);
@@ -1166,6 +1189,7 @@ void Backend::parseLines(QStringList& lines) {
 
 void Backend::startList(bool withPassword) {
   contents_.clear();
+  startBackslash_ = false;
   keyArgs_.clear();
   LIST = true;
   if (isGzip_) {
@@ -1200,6 +1224,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
       keyArgs_.clear();
       contents_.clear();
+      startBackslash_ = false;
       insertQueue_.clear();
       encryptedPaths_.clear();
       pswrd_ = archiveSingleRoot_ = result_ = data_ = QString();
@@ -1235,6 +1260,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       emit loadingFinished();
       if (retcode != 0) {
         contents_.clear();
+        startBackslash_ = false;
         result_ = tr("Could not read archive");
       }
       else if (result_.isEmpty()) {
@@ -1278,6 +1304,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   if (keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
     if (retcode != 0) {
       contents_.clear();
+      startBackslash_ = false;
       result_ = tr("Could not read archive");
     }
     else if (result_.isEmpty()) {
@@ -1356,19 +1383,11 @@ void Backend::processData() {
         encryptedList_ = encrypted_ = true;
       }
       else {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
         const QStringList& items = read.split("\n\n", Qt::SkipEmptyParts);
-#else
-        const QStringList& items = read.split("\n\n", QString::SkipEmptyParts);
-#endif
         for (const QString& thisItem : items) {
           if (thisItem.contains("\nEncrypted = +")) {
             /* the archive has an encrypted file but its header isn't encrypted */
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
             QStringList lines = thisItem.split("\n", Qt::SkipEmptyParts);
-#else
-            QStringList lines = thisItem.split("\n", QString::SkipEmptyParts);
-#endif
             if (!lines.isEmpty()) {
               QString pathLine;
               if (lines.at(0).startsWith("Path = "))
@@ -1395,11 +1414,7 @@ void Backend::processData() {
 
   /* NOTE: Because 7x doesn't escape newlines in file names, the archives
            that contain such files can't be processed correctly. */
-#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
   QStringList lines = read.split("\n", Qt::SkipEmptyParts);
-#else
-  QStringList lines = read.split("\n", QString::SkipEmptyParts);
-#endif
 
   /* Gzip doesn't escape newlines either but that can be worked around */
   if (isGzip_ && lines.size() >= 2) {

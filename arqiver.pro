@@ -1,10 +1,10 @@
 lessThan(QT_MAJOR_VERSION, 5) {
-  error("Arqiver needs at least Qt 5.12.0")
+  error("Arqiver needs at least Qt 5.15.0")
 }
 else {
   lessThan(QT_MAJOR_VERSION, 6) {
-    lessThan(QT_MINOR_VERSION, 12) {
-      error("Arqiver needs at least Qt 5.12.0")
+    lessThan(QT_MINOR_VERSION, 15) {
+      error("Arqiver needs at least Qt 5.15.0")
     }
   } else {
     equals(QT_MAJOR_VERSION, 6) {
