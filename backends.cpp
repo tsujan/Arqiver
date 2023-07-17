@@ -756,6 +756,7 @@ bool Backend::startViewFile(const QString& path) {
   QFile file(fileName);
   bool fileExists(file.exists());
   if (fileExists && file.size() == static_cast<qint64>(0)) {
+    watcher_->removePath(fileName);
     file.remove();
     fileExists = false;
   }
