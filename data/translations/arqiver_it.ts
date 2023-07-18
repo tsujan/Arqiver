@@ -281,7 +281,7 @@ l&apos;eseguibile non è incluso in libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna archivio</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -388,13 +388,14 @@ l&apos;eseguibile non è incluso in libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="430"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alcuni file sono stati modificati.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="431"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorare i cambiamenti?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="592"/>
