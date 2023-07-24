@@ -107,7 +107,7 @@ plik binarny nie należy do libarchive.</translation>
     <message>
         <location filename="../../pref.ui" line="146"/>
         <source>libarchive binary:</source>
-        <translation>plik binarny libarchive:</translation>
+        <translation>Plik binarny libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -281,7 +281,7 @@ plik binarny nie należy do libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaktualizuj archiwum</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -388,13 +388,14 @@ plik binarny nie należy do libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="430"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektóre pliki zostały zmodyfikowane.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="431"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zignorować zmiany?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="592"/>
@@ -435,7 +436,7 @@ plik binarny nie należy do libarchive.</translation>
         <location filename="../../mainWin.cpp" line="608"/>
         <location filename="../../mainWin.cpp" line="636"/>
         <source>Zstandard Compressed Archive</source>
-        <translation>Archiwum skompresowane Zstandard</translation>
+        <translation>Skompresowane archiwum Zstandard</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="609"/>
@@ -495,7 +496,7 @@ plik binarny nie należy do libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation>Dokument PDF skompresowany przez Gzip</translation>
+        <translation>Dokument PDF skompresowany Gzip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="646"/>
