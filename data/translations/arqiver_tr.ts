@@ -281,7 +281,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşivi Güncelle</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -388,13 +388,14 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="430"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazı dosyalar değiştirildi.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="431"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Değişiklikleri görmezden gelmek ister misiniz?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="592"/>
@@ -521,13 +522,13 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <source>READ-ONLY: Debian Package</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: Debian Paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="652"/>
         <location filename="../../mainWin.cpp" line="653"/>
         <source>READ-ONLY: RedHat Package</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: RedHat Paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="654"/>
@@ -552,12 +553,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="658"/>
         <source>READ-ONLY: Android Package</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: Android Paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="659"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: RAR Arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="660"/>
@@ -567,66 +568,68 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="661"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: VirtualBox Eklenti Paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>All Known Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm Bilinen Türler</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="675"/>
         <source>Show All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm Dosyaları Göster</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1014"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>İçeren Dizini Aç</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli Ögeyi Göster</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1057"/>
         <location filename="../../mainWin.cpp" line="1065"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Parolayı Girin</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1069"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1070"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1074"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya listesini şifrele</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1075"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu, dosyalar/dizinler eklendikten sonra etkili olacaktır.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1146"/>
         <location filename="../../mainWin.cpp" line="1222"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dizine Çıkart</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1239"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Bazı dosyaların üzerine yazılacaktır.
+Devam etmek istiyor musunuz?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1368"/>
@@ -641,7 +644,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1713"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Basit bir Qt arşiv yöneticisi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1714"/>
@@ -651,7 +654,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1715"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1716"/>
@@ -662,12 +665,12 @@ Do you want to continue?
         <location filename="../../mainWin.cpp" line="1717"/>
         <location filename="../../mainWin.cpp" line="1718"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Arqiver Hakkında</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1717"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Çevirmenler</translation>
     </message>
 </context>
 </TS>
