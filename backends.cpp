@@ -57,9 +57,30 @@ Backend::Backend(QObject *parent) : QObject(parent) {
 
   watcher_ = new QFileSystemWatcher(this);
   connect(watcher_, &QFileSystemWatcher::fileChanged, [this](const QString& path) {
-    emit fileModified(true);
-    if (!changedFiles_.contains(path))
-      changedFiles_ << path;
+    /* WARNING: If the parent directory of an extracted file contains unextracted file(s),
+                bsdtar resets the modification time of the file on extracting the parent
+                directory with the "-k" option, and so, the watcher emits "fileChanged()".
+                As a workaround, we keep track of modification times. */
+    if (QFile::exists(path)) {
+      bool emitSignal(isGzip_ || is7z_ || !modTimes_.contains(path));
+      if (!emitSignal) {
+        QDateTime modTime = QFileInfo(path).lastModified();
+        if (modTimes_.value(path) < modTime) {
+          emitSignal = true;
+          modTimes_.insert(path, modTime);
+        }
+      }
+      if (emitSignal) {
+        emit fileModified(true);
+        if (!changedFiles_.contains(path))
+          changedFiles_ << path;
+      }
+      if (!watcher_->files().contains(path)){
+        watcher_->addPath(path); // recommended by Qt doc
+      }
+    }
+    else
+      modTimes_.remove(path);
   });
 }
 
@@ -101,12 +122,13 @@ QString Backend::getMimeType(const QString &fname) {
 }
 
 void Backend::loadFile(const QString& path, bool withPassword) {
-  /* check if the file extraction directory can be made
+  /* check if the file extraction directory can be made,
      but don't create it until a file is viewed */
   const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz");
   if (!arqiverDir_.isEmpty()) {
     watcher_->removePaths(watcher_->files());
     changedFiles_.clear();
+    modTimes_.clear();
     emit fileModified(false);
     QDir(arqiverDir_).removeRecursively();
   }
@@ -120,11 +142,8 @@ void Backend::loadFile(const QString& path, bool withPassword) {
 
   /*
      NOTE: So far, bsdtar, gzip and 7z are supported.
-           Also, password protected 7z archives can be
-           extracted and created.
-
-           7z has two kinds of prompts that we avoid:
-           password and overwrite prompts.
+           Also, password protected 7z archives can be extracted and created.
+           7z has two kinds of prompts that we avoid: password and overwrite prompts.
   */
 
   filepath_ = path;
@@ -152,7 +171,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
     is7z_ = true; isGzip_ = false;
   }
   else if (mt == "application/x-raw-disk-image") {
-    /* 7z can't open compressed disk images and bsdtar can't handle uncompressed ones */
+    /* 7z can't open compressed disk images, and bsdtar can't handle uncompressed ones */
     QMimeDatabase mimeDatabase;
     QString realMt = mimeDatabase.mimeTypeForFile(QFileInfo(path), QMimeDatabase::MatchContent).name();
     if (realMt == "application/gzip" || realMt == "application/x-cpio" || realMt == "application/x-xz") {
@@ -412,7 +431,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
     return;
   }
   /* NOTE: All paths should have the same parent directory.
-           Check that and put the wrong paths into insertQueue_.
+           Check that, and put the wrong paths into insertQueue_.
            (For now, "parentPath" is used only in "updateArchive".) */
   const QString parent = parentPath.isEmpty() ? filePaths.at(0).section("/", 0, -2) : parentPath;
   insertQueue_.clear();
@@ -501,7 +520,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   keyArgs_.clear();
   if (isGzip_) {
     /* if the extraction takes place in the same directory, we could do it
-       in the usual way but the standard output method works in all cases */
+       in the usual way, but the standard output method works in all cases */
     /*if (0 && path == filepath_.section("/", 0, -2)) {
       proc_.start("gzip", QStringList() << "-d" << "-k" << filepath_);
       return;
@@ -757,6 +776,7 @@ bool Backend::startViewFile(const QString& path) {
   bool fileExists(file.exists());
   if (fileExists && file.size() == static_cast<qint64>(0)) {
     watcher_->removePath(fileName);
+    modTimes_.remove(fileName);
     file.remove();
     fileExists = false;
   }
@@ -829,8 +849,11 @@ bool Backend::startViewFile(const QString& path) {
   QFileInfo info(fileName);
   if (!info.isDir()) {
     const QString finalTarget = info.canonicalFilePath();
-    if (finalTarget == fileName || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/')))
+    if (finalTarget == fileName || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/'))) {
       watcher_->addPath(finalTarget);
+      if (!isGzip_ && !is7z_)
+        modTimes_.insert(finalTarget, info.lastModified());
+    }
   }
 
   if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
@@ -978,8 +1001,11 @@ void Backend::extractTempFiles(const QStringList& paths) {
     QFileInfo info(str);
     if (!info.isDir()) {
       const QString finalTarget = info.canonicalFilePath();
-      if (finalTarget == str || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/')))
+      if (finalTarget == str || finalTarget.startsWith(arqiverDir_ + QLatin1Char('/'))) {
         watcher_->addPath(finalTarget);
+        if (!is7z_)
+          modTimes_.insert(finalTarget, info.lastModified());
+      }
     }
   }
 }
@@ -988,7 +1014,7 @@ void Backend::parseLines(QStringList& lines) {
   static bool hasSingleRoot = false;
   if (contents_.isEmpty()) {
     hasSingleRoot = true;
-    archiveSingleRoot_ = QString(); // if existent, may mean a parent dir or single file
+    archiveSingleRoot_ = QString(); // if existing, may mean a parent dir or single file
   }
   if (is7z_) {
     static int attrIndex = 0;

@@ -1,10 +1,6 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.5.0)
 project(arqiver)
-
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
-endif()
-
+set(CMAKE_BUILD_TYPE Release)
 add_definitions(-Wall)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)

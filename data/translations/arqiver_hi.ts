@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="820"/>
+        <location filename="../../backends.cpp" line="840"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>यह फ़ाइल एक लिंक है लेकिन इसका लक्ष्य मौजूद नहीं है.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1233"/>
-        <location filename="../../backends.cpp" line="1265"/>
-        <location filename="../../backends.cpp" line="1309"/>
+        <location filename="../../backends.cpp" line="1259"/>
+        <location filename="../../backends.cpp" line="1291"/>
+        <location filename="../../backends.cpp" line="1335"/>
         <source>Could not read archive</source>
         <translation>पुरालेख नहीं पढ़ सका</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1268"/>
-        <location filename="../../backends.cpp" line="1314"/>
+        <location filename="../../backends.cpp" line="1294"/>
+        <location filename="../../backends.cpp" line="1340"/>
         <source>Archive Loaded</source>
         <translation>पुरालेख लोड किया गया</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1275"/>
-        <location filename="../../backends.cpp" line="1362"/>
+        <location filename="../../backends.cpp" line="1301"/>
+        <location filename="../../backends.cpp" line="1388"/>
         <source>Modification Finished</source>
         <translation>संशोधन संपन्न हुआ</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1296"/>
-        <location filename="../../backends.cpp" line="1331"/>
+        <location filename="../../backends.cpp" line="1322"/>
+        <location filename="../../backends.cpp" line="1357"/>
         <source>Extraction Finished</source>
         <translation>निष्कर्षण संपन्न हुआ</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1299"/>
-        <location filename="../../backends.cpp" line="1350"/>
+        <location filename="../../backends.cpp" line="1325"/>
+        <location filename="../../backends.cpp" line="1376"/>
         <source>Extraction Failed</source>
         <translation>निष्कर्षण विफल</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1447"/>
+        <location filename="../../backends.cpp" line="1473"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>आपके सिस्टम से %1 गायब है.

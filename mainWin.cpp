@@ -468,7 +468,7 @@ void mainWin::changeEvent(QEvent *event) {
 }
 
 void mainWin::loadArguments(const QStringList& args) {
-  /* KDE needs all events to be processed ; otherwise, if a dialog
+  /* KDE needs all events to be processed; otherwise, if a dialog
      is shown before the main window, the application won't exit
      when the main window is closed. This should be a bug in KDE.
      As a workaround, we show the window only when no dialog is

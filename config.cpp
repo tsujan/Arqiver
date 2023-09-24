@@ -50,6 +50,7 @@ void Config::readConfig() {
   if (!startSize_.isValid() || startSize_.isNull())
     startSize_ = QSize(700, 500);
 
+  /* 16-pix icons are too small with emblems */
   iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
 
   removalPrompt_ = settings.value("removalPrompt", true).toBool();

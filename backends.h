@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2023 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -22,6 +22,7 @@
 
 #include <QProcess>
 #include <QHash>
+#include <QDateTime>
 #include <QString>
 #include <QStringList>
 #include <QFileSystemWatcher>
@@ -157,6 +158,7 @@ private:
 
   QFileSystemWatcher *watcher_;
   QStringList changedFiles_;
+  QHash<QString, QDateTime> modTimes_; // used in a workaround for bsdtar
 
   bool startBackslash_; // used in a workaround for a bug in bsdtar
 };
