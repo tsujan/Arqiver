@@ -142,7 +142,7 @@ private:
 
   QStringList insertQueue_;
 
-  bool LIST;
+  bool listing_;
   bool starting7z_; // for 7z
   bool encryptionQueried_, encrypted_, encryptedList_; // for 7z
   QStringList encryptedPaths_; // for 7z

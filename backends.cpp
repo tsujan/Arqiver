@@ -21,7 +21,6 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
-#include <QDateTime>
 #include <QCoreApplication>
 #include <QTimer>
 #include <QStandardPaths>
@@ -49,8 +48,9 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
   connect(&proc_, &QProcess::started, this, &Backend::processStarting);
   connect(&proc_, &QProcess::errorOccurred, this, &Backend::onError);
+
   isKilled_ = false;
-  LIST = false;
+  listing_ = false;
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
   startBackslash_ = false; // used only with bsdtar in "Backend::startExtract()"
@@ -1034,7 +1034,7 @@ void Backend::parseLines(QStringList& lines) {
     for (int i = 0; i < lines.length(); i++) {
       if (lines.at(i).simplified().isEmpty() || lines.at(i).startsWith("----") || lines.at(i).startsWith(" = "))
         continue;
-      if (LIST) {
+      if (listing_) {
         QString file;
         QStringList info = lines.at(i).split(" ",Qt::SkipEmptyParts);
         if (info.size() < 2) continue; // invalid line
@@ -1218,7 +1218,7 @@ void Backend::startList(bool withPassword) {
   contents_.clear();
   startBackslash_ = false;
   keyArgs_.clear();
-  LIST = true;
+  listing_ = true;
   if (isGzip_) {
     keyArgs_ << "-l";
     proc_.start("gzip", QStringList() << "-l" << filepath_);
@@ -1246,7 +1246,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
     isKilled_ = false;
     if (keyArgs_.contains("l") || keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
       /* reset most variables (the rest will be reset with the next loading) */
-      LIST = false;
+      listing_ = false;
       isGzip_ = is7z_ = false;
       starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
       keyArgs_.clear();
@@ -1280,7 +1280,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 
   /* NOTE: processFinished() should be emitted once, in the end */
   processData();
-  LIST = false;
+  listing_ = false;
   if (is7z_) {
     starting7z_ = false;
     if (keyArgs_.contains("l")) { // listing
@@ -1451,7 +1451,7 @@ void Backend::processData() {
     lines << joined;
   }
 
-  if (LIST)
+  if (listing_)
     parseLines(lines);
   if (is7z_) {
     if (read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password?
