@@ -26,6 +26,7 @@ Config::Config() :
   isMaxed_(false),
   removalPrompt_(true),
   expandTopDirs_(false),
+  sysIcons_(false),
   winSize_(QSize(700, 500)),
   startSize_(QSize(700, 500)),
   iconSize_(24) {
@@ -52,6 +53,9 @@ void Config::readConfig() {
 
   /* 16-pix icons are too small with emblems */
   iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
+
+  if (settings.value ("sysIcons").toBool())
+    sysIcons_ = true; // false by default
 
   removalPrompt_ = settings.value("removalPrompt", true).toBool();
 
@@ -83,6 +87,8 @@ void Config::writeConfig() {
   settings.setValue("startSize", startSize_);
 
   settings.setValue("iconSize", iconSize_);
+
+  settings.setValue ("sysIcons", sysIcons_);
 
   settings.setValue("removalPrompt", removalPrompt_);
 

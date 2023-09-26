@@ -110,8 +110,15 @@ public:
     iconSize_ = size;
   }
 
+  bool getSysIcons() const {
+    return sysIcons_;
+  }
+  void setSysIcons(bool sysIcons) {
+    sysIcons_ = sysIcons;
+  }
+
 private:
-  bool remSize_, isMaxed_, removalPrompt_, expandTopDirs_;
+  bool remSize_, isMaxed_, removalPrompt_, expandTopDirs_, sysIcons_;
   QSize winSize_, startSize_;
   int iconSize_;
   QString lastFilter_;

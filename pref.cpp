@@ -34,6 +34,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   bool remSize;
   QSize startSize;
   initialExpandTopDirs_ = false;
+  initialSysIcons_ = false;
   if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
     Config config = win->getConfig();
     initialIconSize_ = config.getIconSize();
@@ -41,6 +42,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
     startSize = config.getStartSize();
     initialTar_ = config.getTarBinary();
     initialExpandTopDirs_ = config.getExpandTopDirs();
+    initialSysIcons_ = config.getSysIcons();
   }
   else {
     initialIconSize_ = 24;
@@ -84,6 +86,15 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   }
   ui->iconSizeCombo->setCurrentIndex(index);
   connect(ui->iconSizeCombo, QOverload<int>::of(&QComboBox::activated), this, &PrefDialog::prefIconSize);
+
+  ui->sysIconsBox->setChecked(initialSysIcons_);
+  connect(ui->sysIconsBox, &QCheckBox::stateChanged, [this] (int state) {
+    if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+      Config& config = win->getConfig();
+      config.setSysIcons(state == Qt::Checked);
+      showPrompt();
+    }
+  });
 
   ui->winSizeBox->setChecked(remSize);
   ui->startSizeLabel->setEnabled(!remSize);
@@ -158,14 +169,19 @@ PrefDialog::~PrefDialog() {
   delete ui; ui = nullptr;;
 }
 
-void PrefDialog::showPrompt(const QString& str) {
-  if (!str.isEmpty()) {
-    ui->promptLabel->setText("<b>" + str + "</b>");
-    ui->promptLabel->show();
-  }
-  else {
-    ui->promptLabel->clear();
-    ui->promptLabel->hide();
+void PrefDialog::showPrompt() {
+  if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
+    Config config = win->getConfig();
+    if (initialIconSize_ != config.getIconSize()
+        || initialTar_ != config.getTarBinary()
+        || initialSysIcons_ != config.getSysIcons()) {
+      ui->promptLabel->setText("<b>" + (tr("Application restart is needed for changes to take effect.") + "</b>"));
+      ui->promptLabel->show();
+    }
+    else {
+      ui->promptLabel->clear();
+      ui->promptLabel->hide();
+    }
   }
 }
 
@@ -204,10 +220,7 @@ void PrefDialog::prefIconSize(int index) {
         config.setIconSize(24);
         break;
     }
-    if (config.getIconSize() != initialIconSize_)
-      showPrompt(tr("Application restart is needed for changes to take effect."));
-    else
-      showPrompt();
+    showPrompt();
   }
 }
 
@@ -229,10 +242,7 @@ void PrefDialog::addTarBinary() {
         }
       }
     }
-    if (initialTar_ != ui->tarLineEdit->text())
-      showPrompt(tr("Application restart is needed for changes to take effect."));
-    else
-      showPrompt();
+    showPrompt();
   }
 }
 

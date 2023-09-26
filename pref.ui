@@ -113,6 +113,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QCheckBox" name="sysIconsBox">
+     <property name="text">
+      <string>Use system icons where possible</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="promptBox">
      <property name="text">
       <string>Show prompt on removing items</string>

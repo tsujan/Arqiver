@@ -168,28 +168,65 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   iconLabel_->setVisible(false);
   statusProgress_->setVisible(false);
 
+  config_.readConfig();
+
   /* icons */
-  QIcon icn = QIcon::fromTheme("arqiver");
-  if (icn.isNull())
-    icn = QIcon(":icons/arqiver.svg");
-  setWindowIcon(icn);
-  ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
-  ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
-  ui->actionQuit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
-  ui->actionUpdate->setIcon(symbolicIcon::icon(":icons/update.svg"));
-  ui->actionAddFile->setIcon(symbolicIcon::icon(":icons/archive-insert.svg"));
-  ui->actionAddDir->setIcon(symbolicIcon::icon(":icons/archive-insert-directory.svg"));
-  ui->actionRemoveFile->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
-  ui->actionExtractAll->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
-  ui->actionExtractSel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
-  ui->actionView->setIcon(symbolicIcon::icon(":icons/view.svg"));
-  ui->actionPassword->setIcon(symbolicIcon::icon(":icons/locked.svg"));
-  ui->actionExpand->setIcon(symbolicIcon::icon(":icons/expand.svg"));
-  ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
-  ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
-  ui->actionCopy->setIcon(symbolicIcon::icon(":icons/edit-copy.svg"));
-  ui->actionPref->setIcon(symbolicIcon::icon(":icons/preferences-system.svg"));
-  ui->actionStop->setIcon(symbolicIcon::icon(":icons/process-stop.svg"));
+  setWindowIcon(QIcon::fromTheme("arqiver", QIcon(":icons/arqiver.svg")));
+  if (config_.getSysIcons()) {
+    ui->actionNew->setIcon(QIcon::fromTheme("document-new",
+                                            symbolicIcon::icon(":icons/document-new.svg")));
+    ui->actionOpen->setIcon(QIcon::fromTheme("document-open",
+                                             symbolicIcon::icon(":icons/document-open.svg")));
+    ui->actionQuit->setIcon(QIcon::fromTheme("application-exit",
+                                             symbolicIcon::icon(":icons/application-exit.svg")));
+    ui->actionUpdate->setIcon(QIcon::fromTheme("software-update-urgent",
+                                               symbolicIcon::icon(":icons/update.svg")));
+    ui->actionAddFile->setIcon(QIcon::fromTheme("archive-insert",
+                                                symbolicIcon::icon(":icons/archive-insert.svg")));
+    ui->actionAddDir->setIcon(QIcon::fromTheme("archive-insert-directory",
+                                               symbolicIcon::icon(":icons/archive-insert-directory.svg")));
+    ui->actionRemoveFile->setIcon(QIcon::fromTheme("archive-remove",
+                                                   symbolicIcon::icon(":icons/archive-remove.svg")));
+    ui->actionExtractAll->setIcon(QIcon::fromTheme("archive-extract",
+                                                   symbolicIcon::icon(":icons/archive-extract.svg")));
+    ui->actionExtractSel->setIcon(QIcon::fromTheme("edit-select-all",
+                                                   symbolicIcon::icon(":icons/edit-select-all.svg")));
+    ui->actionView->setIcon(QIcon::fromTheme("object-visible",
+                                             symbolicIcon::icon(":icons/view.svg")));
+    ui->actionPassword->setIcon(QIcon::fromTheme("object-locked",
+                                                 symbolicIcon::icon(":icons/locked.svg")));
+    ui->actionExpand->setIcon(QIcon::fromTheme("go-down",
+                                               symbolicIcon::icon(":icons/expand.svg")));
+    ui->actionCollapse->setIcon(QIcon::fromTheme("go-up",
+                                                 symbolicIcon::icon(":icons/collapse.svg")));
+    ui->actionAbout->setIcon(QIcon::fromTheme("help-about",
+                                              symbolicIcon::icon(":icons/help-about.svg")));
+    ui->actionCopy->setIcon(QIcon::fromTheme("edit-copy",
+                                             symbolicIcon::icon(":icons/edit-copy.svg")));
+    ui->actionPref->setIcon(QIcon::fromTheme("preferences-system",
+                                             symbolicIcon::icon(":icons/preferences-system.svg")));
+    ui->actionStop->setIcon(QIcon::fromTheme("process-stop",
+                                             symbolicIcon::icon(":icons/process-stop.svg")));
+  }
+  else {
+    ui->actionNew->setIcon(symbolicIcon::icon(":icons/document-new.svg"));
+    ui->actionOpen->setIcon(symbolicIcon::icon(":icons/document-open.svg"));
+    ui->actionQuit->setIcon(symbolicIcon::icon(":icons/application-exit.svg"));
+    ui->actionUpdate->setIcon(symbolicIcon::icon(":icons/update.svg"));
+    ui->actionAddFile->setIcon(symbolicIcon::icon(":icons/archive-insert.svg"));
+    ui->actionAddDir->setIcon(symbolicIcon::icon(":icons/archive-insert-directory.svg"));
+    ui->actionRemoveFile->setIcon(symbolicIcon::icon(":icons/archive-remove.svg"));
+    ui->actionExtractAll->setIcon(symbolicIcon::icon(":icons/archive-extract.svg"));
+    ui->actionExtractSel->setIcon(symbolicIcon::icon(":icons/edit-select-all.svg"));
+    ui->actionView->setIcon(symbolicIcon::icon(":icons/view.svg"));
+    ui->actionPassword->setIcon(symbolicIcon::icon(":icons/locked.svg"));
+    ui->actionExpand->setIcon(symbolicIcon::icon(":icons/expand.svg"));
+    ui->actionCollapse->setIcon(symbolicIcon::icon(":icons/collapse.svg"));
+    ui->actionAbout->setIcon(symbolicIcon::icon(":icons/help-about.svg"));
+    ui->actionCopy->setIcon(symbolicIcon::icon(":icons/edit-copy.svg"));
+    ui->actionPref->setIcon(symbolicIcon::icon(":icons/preferences-system.svg"));
+    ui->actionStop->setIcon(symbolicIcon::icon(":icons/process-stop.svg"));
+  }
 
   ui->label->setVisible(false);
   ui->label_archive->setVisible(false);
@@ -293,7 +330,6 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   setAcceptDrops(true);
 
   /* apply the configuration */
-  config_.readConfig();
   adjustColumnSizes();
   BACKEND->setTarCommand(config_.getTarBinary());
   if (config_.getRemSize()) {
@@ -1005,13 +1041,21 @@ void mainWin::extractDraggedItems() {
 
 void mainWin::labelContextMenu(const QPoint& p) {
   QMenu menu(this); // "this" is for Wayland, when the window isn't active
-  QAction *action = menu.addAction(symbolicIcon::icon(":icons/edit-copy.svg"), tr("Copy Archive Path"));
+  QAction *action = menu.addAction(config_.getSysIcons()
+                                     ? QIcon::fromTheme("edit-copy",
+                                                        symbolicIcon::icon(":icons/edit-copy.svg"))
+                                     : symbolicIcon::icon(":icons/edit-copy.svg"),
+                                   tr("Copy Archive Path"));
   connect(action, &QAction::triggered, [this] {
     QApplication::clipboard()->setText(BACKEND->currentFile());
   });
   if (!isRoot_) {
     menu.addSeparator();
-    action = menu.addAction(symbolicIcon::icon(":icons/document-open.svg"), tr("Open Containing Folder"));
+    action = menu.addAction(config_.getSysIcons()
+                              ? QIcon::fromTheme("document-open",
+                                                 symbolicIcon::icon(":icons/document-open.svg"))
+                              : symbolicIcon::icon(":icons/document-open.svg"),
+                            tr("Open Containing Folder"));
     connect(action, &QAction::triggered, [this] {
       QDBusMessage methodCall =
       QDBusMessage::createMethodCall("org.freedesktop.FileManager1",
@@ -1066,8 +1110,16 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
   connect(lineEdit, &QLineEdit::returnPressed, dialog, &QDialog::accept);
   QSpacerItem *spacer0 = new QSpacerItem(1, 5);
   QSpacerItem *spacer = new QSpacerItem(1, 5);
-  QPushButton *cancelButton = new QPushButton (symbolicIcon::icon(":icons/dialog-error.svg"), tr("Cancel"));
-  QPushButton *okButton = new QPushButton (symbolicIcon::icon(":icons/dialog-ok.svg"), tr("OK"));
+  QPushButton *cancelButton = new QPushButton (config_.getSysIcons()
+                                                 ? QIcon::fromTheme("dialog-error",
+                                                                    symbolicIcon::icon(":icons/dialog-error.svg"))
+                                                 : symbolicIcon::icon(":icons/dialog-error.svg"),
+                                               tr("Cancel"));
+  QPushButton *okButton = new QPushButton (config_.getSysIcons()
+                                             ? QIcon::fromTheme("dialog-ok",
+                                                                symbolicIcon::icon(":icons/dialog-ok.svg"))
+                                             : symbolicIcon::icon(":icons/dialog-ok.svg"),
+                                           tr("OK"));
   okButton->setDefault(true);
   connect(cancelButton, &QAbstractButton::clicked, dialog, &QDialog::reject);
   connect(okButton, &QAbstractButton::clicked, dialog, &QDialog::accept);
@@ -1705,10 +1757,7 @@ void mainWin::aboutDialog() {
   };
 
   AboutDialog dialog (this);
-  QIcon icn = QIcon::fromTheme("arqiver");
-  if (icn.isNull())
-    icn = QIcon(":icons/arqiver.svg");
-  dialog.setMainIcon(icn);
+  dialog.setMainIcon(QIcon::fromTheme("arqiver", QIcon(":icons/arqiver.svg")));
   dialog.settMainTitle (QString("<center><b><big>%1 %2</big></b></center><br>").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
   dialog.setMainText("<center> " + tr("A simple Qt archive manager") + " </center>\n<center> "
                      + tr("based on libarchive, gzip and 7z") + " </center><br><center> "
