@@ -74,7 +74,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pradėti nuo šio dydžio:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -94,7 +94,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Atveriant archyvus, išskleisti visus katalogus</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -108,32 +108,32 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.ui" line="153"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive dvejetainė:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Užveriant programą, įsiminti lango &amp;dydį</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodinio piktogramų dydis:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>piks.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="178"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam, kad įsigaliotų pakeitimai, reikia paleisti programą iš naujo.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="235"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkti libarchive dvejetainę</translation>
     </message>
 </context>
 <context>
@@ -141,72 +141,72 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Archyvas:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruoti failus...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Failas</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Taisa</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="155"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rodinys</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="166"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pagalba</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atverti archyvą</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Naujas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="220"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Išeiti</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="223"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti failą(-us)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="233"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti failą(-us)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
@@ -216,12 +216,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="246"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti katalogą</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
@@ -231,7 +231,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti slaptažodį</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
@@ -256,32 +256,32 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Apie</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopijuoti dabartinį kelią</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nuostatos</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Stabdyti &amp;procesą</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="295"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Atnaujinti archyvą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -387,13 +387,14 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="466"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kai kurie failai buvo modifikuoti.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="467"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ar norite nepaisyti pakeitimų?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
@@ -404,139 +405,139 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="638"/>
         <location filename="../../mainWin.cpp" line="662"/>
         <source>Uncompressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Neglaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="639"/>
         <location filename="../../mainWin.cpp" line="663"/>
         <source>GZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>GZip glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="641"/>
         <location filename="../../mainWin.cpp" line="665"/>
         <source>BZip2 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>BZip2 glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="642"/>
         <location filename="../../mainWin.cpp" line="671"/>
         <source>LMZA Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LMZA glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="643"/>
         <location filename="../../mainWin.cpp" line="668"/>
         <source>XZ Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>XZ glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="672"/>
         <source>Zstandard Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zstandard glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <location filename="../../mainWin.cpp" line="674"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="647"/>
         <location filename="../../mainWin.cpp" line="676"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>AR archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="650"/>
         <location filename="../../mainWin.cpp" line="680"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <location filename="../../mainWin.cpp" line="679"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>7-Zip archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="666"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: BZip2 archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="667"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: BZip2 glaudintas PDF dokumentas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="669"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: XZ archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: XZ glaudintas PDF dokumentas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="673"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: Zstandard archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="681"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip glaudintas PDF dokumentas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="682"/>
         <source>READ-ONLY: Compressed SVG Image</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: Glaudintas SVG paveikslas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="683"/>
         <location filename="../../mainWin.cpp" line="684"/>
         <source>READ-ONLY: ISO Image</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: ISO atvaizdis</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="685"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: XAR archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="686"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: Java archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="687"/>
         <source>READ-ONLY: Debian Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: Debian paketas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="688"/>
         <location filename="../../mainWin.cpp" line="689"/>
         <source>READ-ONLY: RedHat Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: RedHat paketas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="690"/>
         <source>READ-ONLY: MS Windows Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: „MS Windows“ vykdomasis</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="691"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: „MS Windows“ diegimo programos paketas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="692"/>
