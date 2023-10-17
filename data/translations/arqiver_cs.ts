@@ -285,7 +285,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -392,13 +392,14 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="466"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Některé soubory byly změněny.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="467"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změny ignorovat?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
