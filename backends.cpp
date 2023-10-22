@@ -162,15 +162,15 @@ void Backend::loadFile(const QString& path, bool withPassword) {
   else if (mt == "application/x-7z-compressed"
            || mt == "application/x-ms-dos-executable" || mt == "application/x-msi"
            || mt == "application/vnd.ms-cab-compressed" || mt == "application/vnd.rar"
-           || mt == "application/x-cd-image" || mt == "application/vnd.appimage"
+           || mt == "application/x-cd-image" || mt == "application/vnd.efi.iso" || mt == "application/vnd.appimage"
            || mt == "application/x-xz"
            || mt == "application/zstd"
            || mt == "application/x-ace"
-           || mt == "application/x-bzip" || mt == "application/x-bzpdf" || mt == "application/x-xzpdf"
+           || mt == "application/x-bzip" || mt == "application/x-bzip2" || mt == "application/x-bzpdf" || mt == "application/x-xzpdf"
            || mt == "application/x-apple-diskimage") {
     is7z_ = true; isGzip_ = false;
   }
-  else if (mt == "application/x-raw-disk-image") {
+  else if (mt == "application/x-raw-disk-image" || mt == "application/vnd.efi.img") {
     /* 7z can't open compressed disk images, and bsdtar can't handle uncompressed ones */
     QMimeDatabase mimeDatabase;
     QString realMt = mimeDatabase.mimeTypeForFile(QFileInfo(path), QMimeDatabase::MatchContent).name();
@@ -209,11 +209,11 @@ void Backend::loadFile(const QString& path, bool withPassword) {
 bool Backend::canModify(bool *canUpdate) const {
   static QStringList validMimeTypes;
   if (validMimeTypes.isEmpty()) {
-    validMimeTypes << "application/zip" << "application/x-compressed-tar" << "application/x-gzpdf" << "image/svg+xml-compressed" << "application/x-xz-compressed-tar" << "application/x-bzip-compressed-tar" << "application/x-tar" << "application/x-lzma-compressed-tar" << "application/x-zstd-compressed-tar" << "application/x-cpio" << /*".pax" <<*/ "application/x-archive" << /*".shar" <<*/ "application/gzip" << "application/x-7z-compressed";
+    validMimeTypes << "application/zip" << "application/x-compressed-tar" << "application/x-gzpdf" << "image/svg+xml-compressed" << "application/x-xz-compressed-tar" << "application/x-bzip-compressed-tar" << "application/x-bzip2-compressed-tar" << "application/x-tar" << "application/x-lzma-compressed-tar" << "application/x-zstd-compressed-tar" << "application/x-cpio" << /*".pax" <<*/ "application/x-archive" << /*".shar" <<*/ "application/gzip" << "application/x-7z-compressed";
   }
   static QStringList updatedMimeTypes;
   if (updatedMimeTypes.isEmpty()) {
-    updatedMimeTypes << "application/zstd" << "application/x-bzip" << "application/x-xz" << "application/vnd.debian.binary-package" << "application/x-rpm" << "application/x-source-rpm";
+    updatedMimeTypes << "application/zstd" << "application/x-bzip" << "application/x-bzip2" << "application/x-xz" << "application/vnd.debian.binary-package" << "application/x-rpm" << "application/x-source-rpm";
   }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();

@@ -637,8 +637,8 @@ QString mainWin::archivingTypes() {
     QStringList tmp;
     tmp << tr("Uncompressed Archive") + " (*.tar)";
     tmp << tr("GZip Compressed Archive") + " (*.tar.gz *.tgz)";
-    //tmp << tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)";
-    tmp << tr("BZip2 Compressed Archive") + " (*.tar.bz2 *.tbz2 *.tbz)";
+    tmp << tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)";
+    tmp << tr("BZip2 Compressed Archive") + " (*.tar.bz2 *.tbz2)";
     tmp << tr("LMZA Compressed Archive") + " (*.tar.lzma *.tlz)";
     tmp << tr("XZ Compressed Archive") + " (*.tar.xz *.txz)";
     tmp << tr("Zstandard Compressed Archive") + " (*.tar.zst *.tzst)";
@@ -661,9 +661,10 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
   if (supported.isEmpty()) {
     supported.insert ("application/x-tar", tr("Uncompressed Archive") + " (*.tar)");
     supported.insert ("application/x-compressed-tar", tr("GZip Compressed Archive") + " (*.tar.gz *.tgz)");
-    //supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)");
-    supported.insert ("application/x-bzip-compressed-tar", tr("BZip2 Compressed Archive") + " (*.tar.bz2 *.tbz2 *.tbz)");
-    supported.insert ("application/x-bzip", tr("READ-ONLY: BZip2 Archive") + " (*.bz2)");
+    supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)");
+    supported.insert ("application/x-bzip2-compressed-tar", tr("BZip2 Compressed Archive") + " (*.tar.bz2 *.tbz2)");
+    supported.insert ("application/x-bzip", tr("READ-ONLY: BZip Archive") + " (*.bz)");
+    supported.insert ("application/x-bzip2", tr("READ-ONLY: BZip2 Archive") + " (*.bz2)");
     supported.insert ("application/x-bzpdf", tr("READ-ONLY: BZip2 Compressed PDF Document") + " (*.pdf.bz2)");
     supported.insert ("application/x-xz-compressed-tar", tr("XZ Compressed Archive") + " (*.tar.xz *.txz)");
     supported.insert ("application/x-xz", tr("READ-ONLY: XZ archive") + " (*.xz)");
@@ -681,7 +682,9 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-gzpdf", tr("Gzip Compressed PDF Document") + " (*.pdf.gz)");
     supported.insert ("image/svg+xml-compressed", tr("READ-ONLY: Compressed SVG Image") + " (*.svgz)");
     supported.insert ("application/x-cd-image", tr("READ-ONLY: ISO Image") + " (*.iso *.img)");
+    supported.insert ("application/vnd.efi.iso", tr("READ-ONLY: ISO Image") + " (*.iso *.img)");
     supported.insert ("application/x-raw-disk-image", tr("READ-ONLY: ISO Image") + " (*.iso *.img)");
+    supported.insert ("application/vnd.efi.img", tr("READ-ONLY: ISO Image") + " (*.iso *.img)");
     supported.insert ("application/x-xar", tr("READ-ONLY: XAR Archive") + " (*.xar)");
     supported.insert ("application/x-java-archive", tr("READ-ONLY: Java Archive") + " (*.jar)");
     supported.insert ("application/vnd.debian.binary-package", tr("READ-ONLY: Debian Package") + " (*.deb)");
@@ -703,7 +706,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types") + " (*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar *.appimage *.vbox-extpack *.dmg)";
+    types << tr("All Known Types") + " (*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.ace *.apk *.rar *.appimage *.vbox-extpack *.dmg)";
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();

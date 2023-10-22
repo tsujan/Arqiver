@@ -9,6 +9,7 @@ V0.12.0
  * Fixed a bug in removal of files from archives.
  * Make sure that ed-like special characters are escaped when making path patterns with bsdtar.
  * Added a workaround for a nasty bug in bsdtar about start backslashes and the option "--strip-components".
+ * Added the new mimetype names of bz2 and disk/raw image archives.
 
 V0.11.0
 --------
