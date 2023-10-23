@@ -305,7 +305,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="325"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MIME Türü</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="325"/>
@@ -491,32 +491,32 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="668"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: BZip2 Sıkıştırılmış PDF Belgesi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: XZ arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="671"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: XZ Sıkıştırılmış PDF Belgesi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="674"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: Zstandard arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="682"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip Sıkıştırılmış PDF Belgesi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="683"/>
         <source>READ-ONLY: Compressed SVG Image</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: Sıkıştırılmış SVG Resmi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="684"/>
@@ -524,17 +524,17 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="686"/>
         <location filename="../../mainWin.cpp" line="687"/>
         <source>READ-ONLY: ISO Image</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: ISO Görüntüsü</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="688"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: XAR Arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="689"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: Java Arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="690"/>
@@ -550,22 +550,22 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="693"/>
         <source>READ-ONLY: MS Windows Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: MS Windows Çalıştırılabilir</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="694"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: MS Windows Yükleyici Paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: MS Windows Kabin Arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: ACE archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: ACE arşivi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="697"/>
@@ -580,7 +580,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="699"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>SALT-OKUNUR: AppImage uygulama paketi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="700"/>
@@ -651,7 +651,7 @@ Devam etmek istiyor musunuz?
     <message>
         <location filename="../../mainWin.cpp" line="1423"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1692"/>
@@ -666,7 +666,7 @@ Devam etmek istiyor musunuz?
     <message>
         <location filename="../../mainWin.cpp" line="1766"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive, gzip ve 7z tabanlı</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1767"/>
@@ -676,7 +676,7 @@ Devam etmek istiyor musunuz?
     <message>
         <location filename="../../mainWin.cpp" line="1768"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>diğer adıyla.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
