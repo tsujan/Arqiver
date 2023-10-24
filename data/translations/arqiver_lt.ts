@@ -39,13 +39,13 @@
         <location filename="../../backends.cpp" line="1322"/>
         <location filename="../../backends.cpp" line="1357"/>
         <source>Extraction Finished</source>
-        <translation>Išskleidimas baigtas</translation>
+        <translation>Išpakavimas baigtas</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1325"/>
         <location filename="../../backends.cpp" line="1376"/>
         <source>Extraction Failed</source>
-        <translation>Nepavyko išskleisti</translation>
+        <translation>Nepavyko išpakuoti</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1473"/>
@@ -61,7 +61,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Galite rašyti pagrindinio rodinio viduje.
+Išvalykite tekstą naudodami „Escape“ klavišą.</translation>
     </message>
 </context>
 <context>
@@ -84,12 +85,12 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti užklausą šalinant elementus</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jei tai nėra pažymėta, bus išskleisti tik aukščiausiojo lygio katalogai.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
@@ -103,7 +104,10 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palikite tuščią, norėdami naudoti numatytąją reikšmę.
+
+Įspėjimas Arqiver neveiks, jei dvejetainė
+nepriklausys libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="153"/>
@@ -211,7 +215,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>Išpakuoti visus</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
@@ -226,7 +230,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Išpakuoti žymėjimą</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
@@ -236,22 +240,22 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>Išs&amp;kleisti</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Žemyn</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>Susklei&amp;sti</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Aukštyn</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
@@ -286,7 +290,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Šaknis</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="254"/>
@@ -364,7 +368,8 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="988"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ar norite pašalinti pažymėtą elementą(-us)?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1007"/>
@@ -377,7 +382,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1308"/>
         <location filename="../../mainWin.cpp" line="1322"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Išpakuojama...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1051"/>
@@ -555,32 +560,32 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: „MS Windows“ CAB archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: ACE archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: ACE archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="697"/>
         <source>READ-ONLY: Android Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: „Android“ paketas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: RAR archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="699"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: AppImage programų rinkinys</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="700"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
-        <translation type="unfinished"></translation>
+        <translation>TIK SKAITYMUI: VirtualBox plėtinių paketas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="709"/>
@@ -600,13 +605,13 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti dabartinį elementą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1104"/>
         <location filename="../../mainWin.cpp" line="1112"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Įveskite slaptažodį</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1120"/>
@@ -632,7 +637,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1201"/>
         <location filename="../../mainWin.cpp" line="1277"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Išpakuoti į katalogą</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1294"/>
@@ -646,7 +651,7 @@ Ar norite tęsti?
     <message>
         <location filename="../../mainWin.cpp" line="1423"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuoroda į: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1692"/>
@@ -656,12 +661,12 @@ Ar norite tęsti?
     <message>
         <location filename="../../mainWin.cpp" line="1765"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Paprasta Qt archyvų tvarkytuvė</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1766"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>pagrįsta libarchive, gzip ir 7z</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1767"/>
@@ -671,13 +676,13 @@ Ar norite tęsti?
     <message>
         <location filename="../../mainWin.cpp" line="1768"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>dar žinomas kaip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
         <location filename="../../mainWin.cpp" line="1770"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Apie Arqiver</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
