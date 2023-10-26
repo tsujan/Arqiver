@@ -913,7 +913,12 @@ void mainWin::addFiles() {
   int tc = ui->tree_contents->topLevelItemCount();
   for (int i = 0; i < tc; ++i) {
     QTreeWidgetItem *item = ui->tree_contents->topLevelItem(i);
-    for (auto &file : qAsConst(files)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (auto &file : std::as_const(files))
+#else
+    for (auto &file : qAsConst(files))
+#endif
+    {
       if (file.section("/",-1) == item->whatsThis(0)) {
         BACKEND->removeSingleExtracted(item->whatsThis(0)); // the file will be replaced
         if (lastPswrd_.isEmpty() && subTreeIsEncrypted(item)) {
@@ -1281,7 +1286,12 @@ void mainWin::extractSelection() {
   bool overwrite(false);
   if (!selList.isEmpty()) {
     selList.sort();
-    for (const auto &file : qAsConst(selList)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const auto &file : std::as_const(selList))
+#else
+    for (const auto &file : qAsConst(selList))
+#endif
+    {
         /* the path may contain newlines, which have been escaped and are restored here */
         QString realFile(file);
         realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
@@ -1378,7 +1388,12 @@ void mainWin::updateTree() {
   QHash<const QString, QTreeWidgetItem*> dirs;
 #endif
 
-  for (const auto& thisFile : qAsConst(files)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+  for (const auto& thisFile : std::as_const(files))
+#else
+  for (const auto& thisFile : qAsConst(files))
+#endif
+  {
     QTreeWidgetItem *item = allPrevItems.value(thisFile);
     if (item != nullptr) { // already in the tree widget
       if (BACKEND->isDir(thisFile))
@@ -1444,7 +1459,12 @@ void mainWin::updateTree() {
           sections.removeLast();
           QTreeWidgetItem *parentItem = nullptr;
           QString theFile;
-          for (const auto& thisSection : qAsConst(sections)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+          for (const auto& thisSection : std::as_const(sections))
+#else
+          for (const auto& thisSection : qAsConst(sections))
+#endif
+          {
             theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
             QTreeWidgetItem *thisParent = dirs.value(theFile);
             if (!thisParent) {

@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="840"/>
+        <location filename="../../backends.cpp" line="849"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Esse arquivo é um link, mas o caminho apontado não existe.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1259"/>
-        <location filename="../../backends.cpp" line="1291"/>
-        <location filename="../../backends.cpp" line="1335"/>
+        <location filename="../../backends.cpp" line="1273"/>
+        <location filename="../../backends.cpp" line="1305"/>
+        <location filename="../../backends.cpp" line="1349"/>
         <source>Could not read archive</source>
         <translation>Não foi possível ler o arquivo</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1294"/>
-        <location filename="../../backends.cpp" line="1340"/>
+        <location filename="../../backends.cpp" line="1308"/>
+        <location filename="../../backends.cpp" line="1354"/>
         <source>Archive Loaded</source>
         <translation>Arquivo Carregado</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1301"/>
-        <location filename="../../backends.cpp" line="1388"/>
+        <location filename="../../backends.cpp" line="1315"/>
+        <location filename="../../backends.cpp" line="1402"/>
         <source>Modification Finished</source>
         <translation>Modificação Concluída</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1322"/>
-        <location filename="../../backends.cpp" line="1357"/>
+        <location filename="../../backends.cpp" line="1336"/>
+        <location filename="../../backends.cpp" line="1371"/>
         <source>Extraction Finished</source>
         <translation>Extração Concluída</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1325"/>
-        <location filename="../../backends.cpp" line="1376"/>
+        <location filename="../../backends.cpp" line="1339"/>
+        <location filename="../../backends.cpp" line="1390"/>
         <source>Extraction Failed</source>
         <translation>Extração Falhou</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1473"/>
+        <location filename="../../backends.cpp" line="1487"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 está ausente do seu sistema.
@@ -327,8 +327,8 @@ binário não pertencer ao libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="465"/>
         <location filename="../../mainWin.cpp" line="790"/>
-        <location filename="../../mainWin.cpp" line="987"/>
-        <location filename="../../mainWin.cpp" line="1293"/>
+        <location filename="../../mainWin.cpp" line="992"/>
+        <location filename="../../mainWin.cpp" line="1303"/>
         <source>Question</source>
         <translation>Questão</translation>
     </message>
@@ -352,40 +352,40 @@ binário não pertencer ao libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="893"/>
         <location filename="../../mainWin.cpp" line="900"/>
-        <location filename="../../mainWin.cpp" line="936"/>
+        <location filename="../../mainWin.cpp" line="941"/>
         <source>Add to Archive</source>
         <translation>Adicionar ao Arquivo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="931"/>
-        <location filename="../../mainWin.cpp" line="962"/>
-        <location filename="../../mainWin.cpp" line="1245"/>
-        <location filename="../../mainWin.cpp" line="1251"/>
+        <location filename="../../mainWin.cpp" line="936"/>
+        <location filename="../../mainWin.cpp" line="967"/>
+        <location filename="../../mainWin.cpp" line="1250"/>
+        <location filename="../../mainWin.cpp" line="1256"/>
         <source>Adding Items...</source>
         <translation>Adicionando Itens...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="988"/>
+        <location filename="../../mainWin.cpp" line="993"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Deseja remover o(s) item(ns) selecionado(s)?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1007"/>
+        <location filename="../../mainWin.cpp" line="1012"/>
         <source>Removing Items...</source>
         <translation>Removendo Itens...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1208"/>
-        <location filename="../../mainWin.cpp" line="1223"/>
-        <location filename="../../mainWin.cpp" line="1308"/>
-        <location filename="../../mainWin.cpp" line="1322"/>
+        <location filename="../../mainWin.cpp" line="1213"/>
+        <location filename="../../mainWin.cpp" line="1228"/>
+        <location filename="../../mainWin.cpp" line="1318"/>
+        <location filename="../../mainWin.cpp" line="1332"/>
         <source>Extracting...</source>
         <translation>Extraindo...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1051"/>
+        <location filename="../../mainWin.cpp" line="1056"/>
         <source>Copy Archive Path</source>
         <translation>Copiar Caminho do Arquivo</translation>
     </message>
@@ -597,7 +597,7 @@ binário não pertencer ao libarchive.</translation>
         <translation>Exibir Todos os Arquivos</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1061"/>
+        <location filename="../../mainWin.cpp" line="1066"/>
         <source>Open Containing Folder</source>
         <translation>Abrir conteúdo da pasta</translation>
     </message>
@@ -607,39 +607,39 @@ binário não pertencer ao libarchive.</translation>
         <translation>Exibir Item Atual</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1104"/>
-        <location filename="../../mainWin.cpp" line="1112"/>
+        <location filename="../../mainWin.cpp" line="1109"/>
+        <location filename="../../mainWin.cpp" line="1117"/>
         <source>Enter Password</source>
         <translation>Digite a Senha</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1120"/>
+        <location filename="../../mainWin.cpp" line="1125"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1125"/>
+        <location filename="../../mainWin.cpp" line="1130"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1129"/>
+        <location filename="../../mainWin.cpp" line="1134"/>
         <source>Encrypt the file list</source>
         <translation>Criptografar a lista de arquivos</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1130"/>
+        <location filename="../../mainWin.cpp" line="1135"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Isso entrará em vigor depois que os arquivos/pastas forem adicionados.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1201"/>
-        <location filename="../../mainWin.cpp" line="1277"/>
+        <location filename="../../mainWin.cpp" line="1206"/>
+        <location filename="../../mainWin.cpp" line="1282"/>
         <source>Extract Into Directory</source>
         <translation>Extrair no Diretório</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1294"/>
+        <location filename="../../mainWin.cpp" line="1304"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -648,43 +648,43 @@ Deseja continuar?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1423"/>
+        <location filename="../../mainWin.cpp" line="1438"/>
         <source>Link To: %1</source>
         <translation>Link Para: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1692"/>
+        <location filename="../../mainWin.cpp" line="1712"/>
         <source>Could not read archive</source>
         <translation>Não foi possível ler o arquivo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1765"/>
+        <location filename="../../mainWin.cpp" line="1785"/>
         <source>A simple Qt archive manager</source>
         <translation>Um simples gerenciador de arquivos Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1766"/>
+        <location filename="../../mainWin.cpp" line="1786"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>baseado em libarchive, gzip e 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1767"/>
+        <location filename="../../mainWin.cpp" line="1787"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1768"/>
+        <location filename="../../mainWin.cpp" line="1788"/>
         <source>aka.</source>
         <translation>aka.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
-        <location filename="../../mainWin.cpp" line="1770"/>
+        <location filename="../../mainWin.cpp" line="1789"/>
+        <location filename="../../mainWin.cpp" line="1790"/>
         <source>About Arqiver</source>
         <translation>Sobre Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1789"/>
         <source>Translators</source>
         <translation>Tradutores</translation>
     </message>
