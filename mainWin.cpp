@@ -662,8 +662,10 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-tar", tr("Uncompressed Archive") + " (*.tar)");
     supported.insert ("application/x-compressed-tar", tr("GZip Compressed Archive") + " (*.tar.gz *.tgz)");
     supported.insert ("application/x-bzip-compressed-tar", tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)");
+    supported.insert ("application/x-bzip1-compressed-tar", tr("BZip Compressed Archive") + " (*.tar.bz *.tbz)");
     supported.insert ("application/x-bzip2-compressed-tar", tr("BZip2 Compressed Archive") + " (*.tar.bz2 *.tbz2)");
     supported.insert ("application/x-bzip", tr("READ-ONLY: BZip Archive") + " (*.bz)");
+    supported.insert ("application/x-bzip1", tr("READ-ONLY: BZip Archive") + " (*.bz)");
     supported.insert ("application/x-bzip2", tr("READ-ONLY: BZip2 Archive") + " (*.bz2)");
     supported.insert ("application/x-bzpdf", tr("READ-ONLY: BZip2 Compressed PDF Document") + " (*.pdf.bz2)");
     supported.insert ("application/x-xz-compressed-tar", tr("XZ Compressed Archive") + " (*.tar.xz *.txz)");
@@ -691,6 +693,8 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-rpm", tr("READ-ONLY: RedHat Package") + " (*.rpm)");
     supported.insert ("application/x-source-rpm", tr("READ-ONLY: RedHat Package") + " (*.rpm)");
     supported.insert ("application/x-ms-dos-executable", tr("READ-ONLY: MS Windows Executable") + " (*.exe *.com)");
+    supported.insert ("application/vnd.microsoft.portable-executable", tr("READ-ONLY: MS Windows Executable") + " (*.exe *.com)");
+    supported.insert ("application/x-msdownload", tr("READ-ONLY: MS Windows Executable") + " (*.exe *.com)");
     supported.insert ("application/x-msi", tr("READ-ONLY: MS Windows Installer Package") + " (*.msi)");
     supported.insert ("application/vnd.ms-cab-compressed", tr("READ-ONLY: MS Windows Cabinet Archive") + " (*.cab)");
     supported.insert ("application/x-ace", tr("READ-ONLY: ACE archive") + " (*.ace)");
