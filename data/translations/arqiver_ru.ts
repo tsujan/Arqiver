@@ -285,7 +285,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить архив</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="149"/>
@@ -392,13 +392,14 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="466"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоторые файлы были изменены.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="467"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите проигнорировать изменения?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="628"/>
