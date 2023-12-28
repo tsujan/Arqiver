@@ -21,6 +21,7 @@ QT += core gui widgets svg dbus
 
 TEMPLATE = app
 TARGET = arqiver
+VERSION = 0.12.0
 
 HEADERS	+= mainWin.h \
            backends.h \
