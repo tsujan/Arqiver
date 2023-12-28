@@ -75,3 +75,9 @@ unix {
 
   INSTALLS += target desktop iconsvg trans
 }
+
+mac {
+  TARGET = Arqiver
+  ICON = data/arqiver.icns
+  QMAKE_INFO_PLIST = data/Info.plist
+}
