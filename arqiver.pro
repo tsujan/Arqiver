@@ -21,6 +21,7 @@ QT += core gui widgets svg dbus
 
 TEMPLATE = app
 TARGET = arqiver
+VERSION = 0.12.0
 
 HEADERS	+= mainWin.h \
            backends.h \
@@ -74,4 +75,10 @@ unix {
   trans.files += data/translations/translations
 
   INSTALLS += target desktop iconsvg trans
+}
+
+mac {
+  TARGET = Arqiver
+  ICON = data/arqiver.icns
+  QMAKE_INFO_PLIST = data/Info.plist
 }
