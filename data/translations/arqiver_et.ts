@@ -288,321 +288,321 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
         <translation>Uuenda arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="149"/>
+        <location filename="../../mainWin.cpp" line="144"/>
         <source>Root</source>
         <translation>Juurkaust</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="254"/>
+        <location filename="../../mainWin.cpp" line="249"/>
         <source>Error</source>
         <translation>Viga</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="325"/>
+        <location filename="../../mainWin.cpp" line="320"/>
         <source>File</source>
         <translation>Fail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="325"/>
+        <location filename="../../mainWin.cpp" line="320"/>
         <source>MimeType</source>
         <translation>MIME-tüüp</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="325"/>
+        <location filename="../../mainWin.cpp" line="320"/>
         <source>Size</source>
         <translation>Suurus</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="554"/>
-        <location filename="../../mainWin.cpp" line="839"/>
-        <location filename="../../mainWin.cpp" line="882"/>
+        <location filename="../../mainWin.cpp" line="549"/>
+        <location filename="../../mainWin.cpp" line="834"/>
+        <location filename="../../mainWin.cpp" line="877"/>
         <source>Opening Archive...</source>
         <translation>Avan pakitud faili...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="768"/>
+        <location filename="../../mainWin.cpp" line="763"/>
         <source>Create Archive</source>
         <translation>Loo arhiivifail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="465"/>
-        <location filename="../../mainWin.cpp" line="794"/>
-        <location filename="../../mainWin.cpp" line="996"/>
-        <location filename="../../mainWin.cpp" line="1307"/>
+        <location filename="../../mainWin.cpp" line="460"/>
+        <location filename="../../mainWin.cpp" line="789"/>
+        <location filename="../../mainWin.cpp" line="991"/>
+        <location filename="../../mainWin.cpp" line="1302"/>
         <source>Question</source>
         <translation>Küsimus</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="795"/>
+        <location filename="../../mainWin.cpp" line="790"/>
         <source>The following archive already exists:</source>
         <translation>Selline arhiivifail on juba olemas:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="797"/>
+        <location filename="../../mainWin.cpp" line="792"/>
         <source>Do you want to replace it?
 </source>
         <translation>Kas sa soovid ta asendada?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="831"/>
+        <location filename="../../mainWin.cpp" line="826"/>
         <source>Open Archive</source>
         <translation>Ava arhiivifail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="897"/>
-        <location filename="../../mainWin.cpp" line="904"/>
-        <location filename="../../mainWin.cpp" line="945"/>
+        <location filename="../../mainWin.cpp" line="892"/>
+        <location filename="../../mainWin.cpp" line="899"/>
+        <location filename="../../mainWin.cpp" line="940"/>
         <source>Add to Archive</source>
         <translation>Lisa arhiivifaili</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="940"/>
-        <location filename="../../mainWin.cpp" line="971"/>
-        <location filename="../../mainWin.cpp" line="1254"/>
-        <location filename="../../mainWin.cpp" line="1260"/>
+        <location filename="../../mainWin.cpp" line="935"/>
+        <location filename="../../mainWin.cpp" line="966"/>
+        <location filename="../../mainWin.cpp" line="1249"/>
+        <location filename="../../mainWin.cpp" line="1255"/>
         <source>Adding Items...</source>
         <translation>Lisan kirjeid...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="997"/>
+        <location filename="../../mainWin.cpp" line="992"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Kas sa soovid valitud kirje(d) kustutada?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1016"/>
+        <location filename="../../mainWin.cpp" line="1011"/>
         <source>Removing Items...</source>
         <translation>Eemaldan kirjed...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1217"/>
-        <location filename="../../mainWin.cpp" line="1232"/>
-        <location filename="../../mainWin.cpp" line="1322"/>
-        <location filename="../../mainWin.cpp" line="1336"/>
+        <location filename="../../mainWin.cpp" line="1212"/>
+        <location filename="../../mainWin.cpp" line="1227"/>
+        <location filename="../../mainWin.cpp" line="1317"/>
+        <location filename="../../mainWin.cpp" line="1331"/>
         <source>Extracting...</source>
         <translation>Pakin lahti...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1060"/>
+        <location filename="../../mainWin.cpp" line="1055"/>
         <source>Copy Archive Path</source>
         <translation>Kopeeri arhiivifaili asukoht</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="466"/>
+        <location filename="../../mainWin.cpp" line="461"/>
         <source>Some files have been modified.</source>
         <translation>Mõned failid on muutunud.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="467"/>
+        <location filename="../../mainWin.cpp" line="462"/>
         <source>Do you want to ignore the changes?
 </source>
         <translation>Kas sa soovid muutusi eirata?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="628"/>
+        <location filename="../../mainWin.cpp" line="623"/>
         <source>All Types</source>
         <translation>Kõik failitüübid</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="638"/>
-        <location filename="../../mainWin.cpp" line="662"/>
+        <location filename="../../mainWin.cpp" line="633"/>
+        <location filename="../../mainWin.cpp" line="657"/>
         <source>Uncompressed Archive</source>
         <translation>Pakkimata arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="639"/>
-        <location filename="../../mainWin.cpp" line="663"/>
+        <location filename="../../mainWin.cpp" line="634"/>
+        <location filename="../../mainWin.cpp" line="658"/>
         <source>GZip Compressed Archive</source>
         <translation>GZip-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <location filename="../../mainWin.cpp" line="664"/>
-        <location filename="../../mainWin.cpp" line="665"/>
+        <location filename="../../mainWin.cpp" line="635"/>
+        <location filename="../../mainWin.cpp" line="659"/>
+        <location filename="../../mainWin.cpp" line="660"/>
         <source>BZip Compressed Archive</source>
         <translation>BZip-ga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="641"/>
-        <location filename="../../mainWin.cpp" line="666"/>
+        <location filename="../../mainWin.cpp" line="636"/>
+        <location filename="../../mainWin.cpp" line="661"/>
         <source>BZip2 Compressed Archive</source>
         <translation>BZip2-ga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="642"/>
-        <location filename="../../mainWin.cpp" line="674"/>
+        <location filename="../../mainWin.cpp" line="637"/>
+        <location filename="../../mainWin.cpp" line="669"/>
         <source>LMZA Compressed Archive</source>
         <translation>LMZA-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="643"/>
-        <location filename="../../mainWin.cpp" line="671"/>
+        <location filename="../../mainWin.cpp" line="638"/>
+        <location filename="../../mainWin.cpp" line="666"/>
         <source>XZ Compressed Archive</source>
         <translation>XZ-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="644"/>
-        <location filename="../../mainWin.cpp" line="675"/>
+        <location filename="../../mainWin.cpp" line="639"/>
+        <location filename="../../mainWin.cpp" line="670"/>
         <source>Zstandard Compressed Archive</source>
         <translation>Zstandard-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="645"/>
-        <location filename="../../mainWin.cpp" line="677"/>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <location filename="../../mainWin.cpp" line="672"/>
         <source>CPIO Archive</source>
         <translation>CPIO pakkimata arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="647"/>
-        <location filename="../../mainWin.cpp" line="679"/>
+        <location filename="../../mainWin.cpp" line="642"/>
+        <location filename="../../mainWin.cpp" line="674"/>
         <source>AR Archive</source>
         <translation>AR pakkimata arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="649"/>
-        <location filename="../../mainWin.cpp" line="681"/>
+        <location filename="../../mainWin.cpp" line="644"/>
+        <location filename="../../mainWin.cpp" line="676"/>
         <source>Zip Archive</source>
         <translation>Zip-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="650"/>
-        <location filename="../../mainWin.cpp" line="683"/>
+        <location filename="../../mainWin.cpp" line="645"/>
+        <location filename="../../mainWin.cpp" line="678"/>
         <source>Gzip Archive</source>
         <translation>Gzip-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="651"/>
-        <location filename="../../mainWin.cpp" line="682"/>
+        <location filename="../../mainWin.cpp" line="646"/>
+        <location filename="../../mainWin.cpp" line="677"/>
         <source>7-Zip Archive</source>
         <translation>7-Zip-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="667"/>
-        <location filename="../../mainWin.cpp" line="668"/>
+        <location filename="../../mainWin.cpp" line="662"/>
+        <location filename="../../mainWin.cpp" line="663"/>
         <source>READ-ONLY: BZip Archive</source>
         <translation>AINULT AVAMISEKS: BZip-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="669"/>
+        <location filename="../../mainWin.cpp" line="664"/>
         <source>READ-ONLY: BZip2 Archive</source>
         <translation>AINULT AVAMISEKS: BZip2-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="670"/>
+        <location filename="../../mainWin.cpp" line="665"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
         <translation>AINULT AVAMISEKS: BZip2-iga pakitud PDF-fail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="672"/>
+        <location filename="../../mainWin.cpp" line="667"/>
         <source>READ-ONLY: XZ archive</source>
         <translation>AINULT AVAMISEKS: XZ-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="673"/>
+        <location filename="../../mainWin.cpp" line="668"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
         <translation>AINULT AVAMISEKS: XZ-iga pakitud pdf-fail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="676"/>
+        <location filename="../../mainWin.cpp" line="671"/>
         <source>READ-ONLY: Zstandard archive</source>
         <translation>AINULT AVAMISEKS: Zstandard-iga pakitud arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="684"/>
+        <location filename="../../mainWin.cpp" line="679"/>
         <source>Gzip Compressed PDF Document</source>
         <translation>Gzip-iga pakitud pdf-fail</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="685"/>
+        <location filename="../../mainWin.cpp" line="680"/>
         <source>READ-ONLY: Compressed SVG Image</source>
         <translation>AINULT AVAMISEKS: Pakitud svg-graafika</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="686"/>
-        <location filename="../../mainWin.cpp" line="687"/>
-        <location filename="../../mainWin.cpp" line="688"/>
-        <location filename="../../mainWin.cpp" line="689"/>
+        <location filename="../../mainWin.cpp" line="681"/>
+        <location filename="../../mainWin.cpp" line="682"/>
+        <location filename="../../mainWin.cpp" line="683"/>
+        <location filename="../../mainWin.cpp" line="684"/>
         <source>READ-ONLY: ISO Image</source>
         <translation>AINULT AVAMISEKS: ISO tõmmis</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="690"/>
+        <location filename="../../mainWin.cpp" line="685"/>
         <source>READ-ONLY: XAR Archive</source>
         <translation>AINULT AVAMISEKS: XAR arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="691"/>
+        <location filename="../../mainWin.cpp" line="686"/>
         <source>READ-ONLY: Java Archive</source>
         <translation>AINULT AVAMISEKS: Java arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="692"/>
+        <location filename="../../mainWin.cpp" line="687"/>
         <source>READ-ONLY: Debian Package</source>
         <translation>AINULT AVAMISEKS: Debiani paigalduspakk</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="693"/>
-        <location filename="../../mainWin.cpp" line="694"/>
+        <location filename="../../mainWin.cpp" line="688"/>
+        <location filename="../../mainWin.cpp" line="689"/>
         <source>READ-ONLY: RedHat Package</source>
         <translation>AINULT AVAMISEKS: RedHati paigalduspakk</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="695"/>
-        <location filename="../../mainWin.cpp" line="696"/>
-        <location filename="../../mainWin.cpp" line="697"/>
+        <location filename="../../mainWin.cpp" line="690"/>
+        <location filename="../../mainWin.cpp" line="691"/>
+        <location filename="../../mainWin.cpp" line="692"/>
         <source>READ-ONLY: MS Windows Executable</source>
         <translation>AINULT AVAMISEKS: MS Windows rakendus</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="698"/>
+        <location filename="../../mainWin.cpp" line="693"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
         <translation>AINULT AVAMISEKS: MS Windows Installer paigalduspakk</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="699"/>
+        <location filename="../../mainWin.cpp" line="694"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>AINULT AVAMISEKS: MS Windows Cabinet arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="700"/>
+        <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: ACE archive</source>
         <translation>AINULT AVAMISEKS: ACE arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="701"/>
+        <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: Android Package</source>
         <translation>AINULT AVAMISEKS: Androidi paigalduspakk</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="702"/>
+        <location filename="../../mainWin.cpp" line="697"/>
         <source>READ-ONLY: RAR Archive</source>
         <translation>AINULT AVAMISEKS: RAR arhiiv</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="703"/>
+        <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: AppImage application bundle</source>
         <translation>AINULT AVAMISEKS: AppImage rakenduse konteiner</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="704"/>
+        <location filename="../../mainWin.cpp" line="699"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
         <translation>AINULT-LUGEMISEKS: VirtualBox Extension Pack</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="713"/>
+        <location filename="../../mainWin.cpp" line="708"/>
         <source>All Known Types</source>
         <translation>Kõik teadaolevad failitüübid</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="718"/>
+        <location filename="../../mainWin.cpp" line="713"/>
         <source>Show All Files</source>
         <translation>Näita kõiki faile</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1070"/>
+        <location filename="../../mainWin.cpp" line="1065"/>
         <source>Open Containing Folder</source>
         <translation>Ava asukoha kaust failihalduris</translation>
     </message>
@@ -612,39 +612,39 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
         <translation>Vaata seda kirjet</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1113"/>
-        <location filename="../../mainWin.cpp" line="1121"/>
+        <location filename="../../mainWin.cpp" line="1108"/>
+        <location filename="../../mainWin.cpp" line="1116"/>
         <source>Enter Password</source>
         <translation>Sisesta salasõna</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1129"/>
+        <location filename="../../mainWin.cpp" line="1124"/>
         <source>Cancel</source>
         <translation>Katkesta</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1134"/>
+        <location filename="../../mainWin.cpp" line="1129"/>
         <source>OK</source>
         <translation>Sobib</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1138"/>
+        <location filename="../../mainWin.cpp" line="1133"/>
         <source>Encrypt the file list</source>
         <translation>Krüpti failide loend</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1139"/>
+        <location filename="../../mainWin.cpp" line="1134"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Muudatus jõustub peale failide või kaustade lisamist.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1210"/>
-        <location filename="../../mainWin.cpp" line="1286"/>
+        <location filename="../../mainWin.cpp" line="1205"/>
+        <location filename="../../mainWin.cpp" line="1281"/>
         <source>Extract Into Directory</source>
         <translation>Paki lahti kausta</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1308"/>
+        <location filename="../../mainWin.cpp" line="1303"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -653,43 +653,43 @@ Kas sa soovid jätkata?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1442"/>
+        <location filename="../../mainWin.cpp" line="1433"/>
         <source>Link To: %1</source>
         <translation>Viide failile: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1716"/>
+        <location filename="../../mainWin.cpp" line="1707"/>
         <source>Could not read archive</source>
         <translation>Arhiivi lugemine ei õnnestu</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1789"/>
+        <location filename="../../mainWin.cpp" line="1780"/>
         <source>A simple Qt archive manager</source>
         <translation>Lihtne Qt-põhine arhiivide ja pakitud failide haldur</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1790"/>
+        <location filename="../../mainWin.cpp" line="1781"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>põhineb libarchive, gzip ja 7z teekidel</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1791"/>
+        <location filename="../../mainWin.cpp" line="1782"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1792"/>
+        <location filename="../../mainWin.cpp" line="1783"/>
         <source>aka.</source>
         <translation>tuntud ka kui</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1793"/>
-        <location filename="../../mainWin.cpp" line="1794"/>
+        <location filename="../../mainWin.cpp" line="1784"/>
+        <location filename="../../mainWin.cpp" line="1785"/>
         <source>About Arqiver</source>
         <translation>Rakenduse teave</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1793"/>
+        <location filename="../../mainWin.cpp" line="1784"/>
         <source>Translators</source>
         <translation>Tõlkijad</translation>
     </message>

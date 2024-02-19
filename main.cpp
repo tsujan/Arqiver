@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2024 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -37,11 +37,11 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "0.12.0";
+  const QString version = "1.0.0";
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);
-    out << "Arqiver - Simple Qt5 archive manager\n"\
+    out << "Arqiver - Simple Qt archive manager\n"\
            "          based on libarchive, gzip and 7z\n\n"\
             "Usage:\n	arqiver [option] [ARCHIVE] [FILES]\n\n"\
             "Options:\n\n"\
@@ -65,29 +65,17 @@ int main(int argc, char **argv) {
   a.setApplicationVersion(version);
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-  a.setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
-
   QStringList langs(QLocale::system().uiLanguages());
   QString lang;
   if (!langs.isEmpty())
     lang = langs.first().replace('-', '_');
 
   QTranslator qtTranslator;
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-  if (qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-#else
   if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-#endif
     a.installTranslator(&qtTranslator);
   else if (!langs.isEmpty()) {
     lang = langs.first().split(QLatin1Char('_')).first();
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    if (qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-#else
     if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-#endif
       a.installTranslator(&qtTranslator);
   }
 

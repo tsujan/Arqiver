@@ -4,48 +4,37 @@
 
 First install build dependencies. In Debian-based systems, they are:
 
- * g++ >= 5
- * qtbase5-dev
- * libqt5svg5-dev (for hard-coded SVG icons)
- * qttools5-dev-tools (for localization -- optional)
+ * g++ >= 12
+ * qt6-base-dev (for Qt6)
+ * qt6-svg-dev (for hard-coded SVG icons)
+ * qt6-base-dev-tools (for localization -- optional)
 
 In Arch-based systems, the required package are:
 
  * gcc (or gcc-multilib for multilib systems)
- * qt5-base and qt5-x11extras (for Qt5)
- * qt5-svg (for hard-coded SVG icons)
- * qt5-tools (for localization -- optional)
+ * qt6-base (for Qt6)
+ * qt6-svg (for hard-coded SVG icons)
+ * qt6-tools (for localization -- optional)
 
 In Red Hat based systems like Fedora:
 
  * gcc-c++
- * qt5-qtbase-devel
- * qt5-qtsvg-devel
- * qt5-qttools-devel
+ * qt6-qtbase-devel
+ * qt6-qtsvg-devel
+ * qt6-qttools-devel
 
 And, finally, in OpenSUSE:
 
  * gcc-c++
- * libqt5-qtbase-devel
- * libqt5-qtsvg-devel
- * libqt5-qttools-devel
+ * libqt6-qtbase-devel
+ * libqt6-qtsvg-devel
+ * libqt6-qttools-devel
 
-In addition, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them but they are not build dependencies.
-
-With qmake
-==========
-Then, if you prefer qmake, open a terminal inside this folder and issue the following commands:
-
-	qmake && make
-	sudo make install
-
-Afterward, you could use this command to clean the source directory:
-
-	make distclean
+In addition, you need to have libarchive (bsdtar), gzip and 7z installed because Arqiver is a front-end for them, but they are not build dependencies.
 
 With cmake
 ==========
-With cmake, use these commands instead:
+Then, open a terminal inside this folder and issue the following commands:
 
 	mkdir build && cd build
 	cmake ..
@@ -54,7 +43,16 @@ With cmake, use these commands instead:
 
 In some distros, you may need to be more explicit and use `cmake .. -DCMAKE_INSTALL_PREFIX=/usr` for installing Arqiver under `/usr`, in contrast to `/usr/local`. The latter place may not be good in Linux distros and could cause troubles later.
 
-NOTE: Experimental compilation against Qt6 can be done with `cmake .. -DENABLE_QT5=OFF`. When Qt6 becomes the default version of Qt in some distros, that compilation option will be set to `OFF` by default.
+With qmake
+==========
+If you prefer qmake, use these commands instead:
+
+	qmake && make
+	sudo make install
+
+Afterward, you could use this command to clean the source directory:
+
+	make distclean
 
 **********************************
 *   Translation (Localization)   *
