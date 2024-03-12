@@ -132,7 +132,7 @@ plik binarny nie należy do libarchive.</translation>
     <message>
         <location filename="../../pref.cpp" line="178"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>Restart aplikacji jest wymagany, aby uzyskać efekt.</translation>
+        <translation>Konieczne jest ponowne uruchomienie programu, aby zmiany zaczęły obowiązywać.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="235"/>
