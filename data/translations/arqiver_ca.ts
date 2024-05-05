@@ -285,7 +285,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualitza l&apos;arxiu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="144"/>
@@ -305,7 +305,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="320"/>
         <source>MimeType</source>
-        <translation>MimeType</translation>
+        <translation>Tipus MIME</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="320"/>
@@ -392,13 +392,14 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="461"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alguns fitxers s&apos;han modificat.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="462"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Voleu ignorar els canvis?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
@@ -629,7 +630,7 @@ el binari no pertany a la libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1133"/>
         <source>Encrypt the file list</source>
-        <translation>Encripta la llista de fitxers</translation>
+        <translation>Xifra la llista de fitxers</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
@@ -647,7 +648,7 @@ el binari no pertany a la libarchive.</translation>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation>Es sobreesciuran alguns fitxers.
+        <translation>Es sobreescriuran alguns fitxers.
 Voleu continuar?
 </translation>
     </message>

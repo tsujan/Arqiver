@@ -14,20 +14,20 @@
     <message>
         <location filename="../../backends.cpp" line="849"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este archivo es un enlace pero su destino no existe.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1273"/>
         <location filename="../../backends.cpp" line="1305"/>
         <location filename="../../backends.cpp" line="1349"/>
         <source>Could not read archive</source>
-        <translation>No fue posible leer el archivo</translation>
+        <translation>No se pudo leer el archivador</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1308"/>
         <location filename="../../backends.cpp" line="1354"/>
         <source>Archive Loaded</source>
-        <translation>El archivo ha sido cargado</translation>
+        <translation>Se cargó el archivador</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1315"/>
@@ -51,8 +51,8 @@
         <location filename="../../backends.cpp" line="1487"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation>%1 no está presente en tu sistema.
-Por favor instala este tipo de archivo!</translation>
+        <translation>%1 no está presente en el sistema.
+Instálelo para acceder a este tipo de archivadores.</translation>
     </message>
 </context>
 <context>
@@ -61,8 +61,8 @@ Por favor instala este tipo de archivo!</translation>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation>Puedes escribir dentro de la vista principal.
-Pulsa ESC para borrar el texto.</translation>
+        <translation>Puede escribir dentro de la vista principal.
+Presione Esc para borrar el texto.</translation>
     </message>
 </context>
 <context>
@@ -70,12 +70,12 @@ Pulsa ESC para borrar el texto.</translation>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar por este tamaño:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
@@ -85,17 +85,17 @@ Pulsa ESC para borrar el texto.</translation>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar aviso al eliminar elementos</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si se desmarca, solo los directorios de nivel superior se expandirán.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation>Expandir todos los directorios al abrir archivos</translation>
+        <translation>Expandir todos los directorios al abrir archivadores</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -117,12 +117,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Recordar &amp;tamaño de ventana al cerrar</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño de iconos en la vista:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="56"/>
@@ -132,12 +132,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../pref.cpp" line="178"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>Es necesario reiniciar la aplicación para que los cambios surjan efecto.</translation>
+        <translation>Es necesario reiniciar la aplicación para que los cambios surtan efecto.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="235"/>
         <source>Select libarchive binary</source>
-        <translation>Seleccionar el binario de libarchive</translation>
+        <translation>Seleccionar binario de libarchive</translation>
     </message>
 </context>
 <context>
@@ -145,7 +145,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation>Archivo:</translation>
+        <translation>Archivador:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
@@ -155,7 +155,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Archivo</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
@@ -170,12 +170,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="166"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ay&amp;uda</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abrir archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
@@ -185,7 +185,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
         <source>&amp;New Archive</source>
-        <translation>&amp;Nuevo Archivo</translation>
+        <translation>Archivador &amp;nuevo</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
@@ -195,7 +195,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="220"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="223"/>
@@ -255,7 +255,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished">Ctrl+Shift+Up</translation>
+        <translation>Ctrl+Mayús+Arriba</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
@@ -265,7 +265,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
         <source>&amp;Copy Current Path</source>
-        <translation>&amp;Copiar el directorio actual</translation>
+        <translation>&amp;Copiar ruta actual</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
@@ -275,7 +275,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Detener &amp;proceso</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="295"/>
@@ -285,12 +285,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation>Actualizar Archivo</translation>
+        <translation>Actualizar archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="144"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Raíz</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="249"/>
@@ -305,7 +305,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="320"/>
         <source>MimeType</source>
-        <translation type="unfinished">MimeType</translation>
+        <translation>Tipo MIME</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="320"/>
@@ -317,12 +317,12 @@ el binario no pertenece a libarchive.</translation>
         <location filename="../../mainWin.cpp" line="834"/>
         <location filename="../../mainWin.cpp" line="877"/>
         <source>Opening Archive...</source>
-        <translation>Abriendo Archivo...</translation>
+        <translation>Abriendo archivador...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="763"/>
         <source>Create Archive</source>
-        <translation>Crear Archivo</translation>
+        <translation>Crear archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="460"/>
@@ -330,31 +330,31 @@ el binario no pertenece a libarchive.</translation>
         <location filename="../../mainWin.cpp" line="991"/>
         <location filename="../../mainWin.cpp" line="1302"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregunta</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="790"/>
         <source>The following archive already exists:</source>
-        <translation>El siguiente archivo ya existe:</translation>
+        <translation>El siguiente archivador ya existe:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="792"/>
         <source>Do you want to replace it?
 </source>
-        <translation>¿Quieres reemplazarlo?
+        <translation>¿Quiere reemplazarlo?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="826"/>
         <source>Open Archive</source>
-        <translation>Abrir Archivo</translation>
+        <translation>Abrir archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="892"/>
         <location filename="../../mainWin.cpp" line="899"/>
         <location filename="../../mainWin.cpp" line="940"/>
         <source>Add to Archive</source>
-        <translation>Añadir al Archivo</translation>
+        <translation>Añadir al archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="935"/>
@@ -362,19 +362,19 @@ el binario no pertenece a libarchive.</translation>
         <location filename="../../mainWin.cpp" line="1249"/>
         <location filename="../../mainWin.cpp" line="1255"/>
         <source>Adding Items...</source>
-        <translation>Añadiendo Items...</translation>
+        <translation>Añadiendo elementos...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="992"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>¿Quieres remover los items seleccionados?
+        <translation>¿Quiere quitar los elementos seleccionados?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1011"/>
         <source>Removing Items...</source>
-        <translation>Removiendo Items...</translation>
+        <translation>Quitando elementos...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1212"/>
@@ -387,7 +387,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1055"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar ruta de archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="461"/>
@@ -398,107 +398,107 @@ el binario no pertenece a libarchive.</translation>
         <location filename="../../mainWin.cpp" line="462"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation>¿Quieres ignorar los cambios?
+        <translation>¿Quiere ignorar los cambios?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="623"/>
         <source>All Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los tipos</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="633"/>
         <location filename="../../mainWin.cpp" line="657"/>
         <source>Uncompressed Archive</source>
-        <translation>Archivo Descomprimido</translation>
+        <translation>Archivador descomprimido</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="634"/>
         <location filename="../../mainWin.cpp" line="658"/>
         <source>GZip Compressed Archive</source>
-        <translation>Archivo Comprimido GZip</translation>
+        <translation>Archivador comprimido GZip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="635"/>
         <location filename="../../mainWin.cpp" line="659"/>
         <location filename="../../mainWin.cpp" line="660"/>
         <source>BZip Compressed Archive</source>
-        <translation>Archivo Comprimido BZip</translation>
+        <translation>Archivador comprimido BZip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="636"/>
         <location filename="../../mainWin.cpp" line="661"/>
         <source>BZip2 Compressed Archive</source>
-        <translation>Archivo Comprimido BZip2</translation>
+        <translation>Archivador comprimido BZip2</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="637"/>
         <location filename="../../mainWin.cpp" line="669"/>
         <source>LMZA Compressed Archive</source>
-        <translation>Archivo Comprimido LZMA</translation>
+        <translation>Archivador comprimido LZMA</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="638"/>
         <location filename="../../mainWin.cpp" line="666"/>
         <source>XZ Compressed Archive</source>
-        <translation>Archivo Comprimido XZ</translation>
+        <translation>Archivador comprimido XZ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="639"/>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>Zstandard Compressed Archive</source>
-        <translation>Archivo Comprimido Zstandard</translation>
+        <translation>Archivador comprimido Zstandard</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
         <location filename="../../mainWin.cpp" line="672"/>
         <source>CPIO Archive</source>
-        <translation>Archivo CPIO</translation>
+        <translation>Archivador CPIO</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="642"/>
         <location filename="../../mainWin.cpp" line="674"/>
         <source>AR Archive</source>
-        <translation>Archivo AR</translation>
+        <translation>Archivador AR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="676"/>
         <source>Zip Archive</source>
-        <translation>Archivo Zip</translation>
+        <translation>Archivador Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>Gzip Archive</source>
-        <translation>Archivo GZip</translation>
+        <translation>Archivador GZip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="646"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>7-Zip Archive</source>
-        <translation>Archivo 7-Zip</translation>
+        <translation>Archivador 7-Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="662"/>
         <location filename="../../mainWin.cpp" line="663"/>
         <source>READ-ONLY: BZip Archive</source>
-        <translation>SOLO LECTURA: Archivo BZip</translation>
+        <translation>SOLO LECTURA: archivador BZip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="664"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation>SOLO LECTURA: Archivo BZip2</translation>
+        <translation>SOLO LECTURA: archivador BZip2</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="665"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>SOLO LECTURA: documento PDF comprimido con BZip2</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="667"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation>SOLO LECTURA: Archivo XZ</translation>
+        <translation>SOLO LECTURA: archivador XZ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="668"/>
@@ -508,7 +508,7 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="671"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation>SOLO LECTURA: Archivo Zstandard</translation>
+        <translation>SOLO LECTURA: archivador Zstandard</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="679"/>
@@ -531,12 +531,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="685"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation>SOLO LECTURA: Archivo XAR</translation>
+        <translation>SOLO LECTURA: archivador XAR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="686"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation>SOLO LECTURA: Archivo Java</translation>
+        <translation>SOLO LECTURA: archivador Java</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="687"/>
@@ -564,12 +564,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="694"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>SOLO LECTURA: archivador Cabinet de MS Windows</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: ACE archive</source>
-        <translation>SOLO LECTURA: Archivo ACE</translation>
+        <translation>SOLO LECTURA: archivador ACE</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="696"/>
@@ -579,12 +579,12 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="697"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation>SOLO LECTURA: Archivo RAR</translation>
+        <translation>SOLO LECTURA: archivador RAR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>SOLO LECTURA: paquete de aplicación AppImage</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="699"/>
@@ -604,18 +604,18 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1065"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir carpeta contenedora</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation>Ver el item actual</translation>
+        <translation>Ver elemento actual</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1108"/>
         <location filename="../../mainWin.cpp" line="1116"/>
         <source>Enter Password</source>
-        <translation>Ingrese una Contraseña</translation>
+        <translation>Introduzca la contraseña</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1124"/>
@@ -625,52 +625,52 @@ el binario no pertenece a libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1129"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1133"/>
         <source>Encrypt the file list</source>
-        <translation>Encriptar la lista de archivos</translation>
+        <translation>Cifrar lista de archivos</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Surtirá efecto tras añadir los archivos o carpetas.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1205"/>
         <location filename="../../mainWin.cpp" line="1281"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer en directorio</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1303"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation>Algunos archivos serán sobreescritos
-¿Desea Continuar?
+        <translation>Se sobrescribirán determinados archivos.
+¿Quiere continuar?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1433"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlazar a: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1707"/>
         <source>Could not read archive</source>
-        <translation>No se pudo leer el archivo</translation>
+        <translation>No se pudo leer el archivador</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1780"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Un sencillo gestor de archivadores en Qt</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1781"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation>basado en libarchive,gzip y 7z</translation>
+        <translation>basado en libarchive, gzip y 7z</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1782"/>
