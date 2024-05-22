@@ -1,6 +1,7 @@
 V1.0.0
 --------
  * Removed Qt5 support.
+ * Added unadvertised support for 'application/vnd.snap'.
 
 V0.12.0
 --------

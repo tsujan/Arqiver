@@ -170,7 +170,8 @@ void Backend::loadFile(const QString& path, bool withPassword) {
            || mt == "application/x-apple-diskimage") {
     is7z_ = true; isGzip_ = false;
   }
-  else if (mt == "application/x-raw-disk-image" || mt == "application/vnd.efi.img") {
+  else if (mt == "application/x-raw-disk-image" || mt == "application/vnd.efi.img"
+           || mt == "application/vnd.snap") {
     /* 7z can't open compressed disk images, and bsdtar can't handle uncompressed ones */
     QMimeDatabase mimeDatabase;
     QString realMt = mimeDatabase.mimeTypeForFile(QFileInfo(path), QMimeDatabase::MatchContent).name();

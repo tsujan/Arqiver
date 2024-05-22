@@ -363,6 +363,7 @@ mainWin::~mainWin() {
     filterTimer_->stop();
     delete filterTimer_;
   }
+  delete ui;
 }
 
 bool mainWin::eventFilter(QObject *watched, QEvent *event) {
@@ -844,7 +845,8 @@ void mainWin::dragEnterEvent(QDragEnterEvent *event) {
     event->ignore();
     return;
   }
-  static const QStringList unadvertisedMimeTypes = {"application/x-apple-diskimage"};
+  static const QStringList unadvertisedMimeTypes = {"application/x-apple-diskimage",
+                                                    "application/vnd.snap"};
   if (event->mimeData()->hasUrls()) {
     const QList<QUrl> urlList = event->mimeData()->urls();
     if (!urlList.isEmpty()) {
