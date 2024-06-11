@@ -1071,7 +1071,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
                                      "/org/freedesktop/FileManager1",
                                      "",
                                      "ShowItems");
-      methodCall.setAutoStartService (false); // needed for switching to QProcess
+      methodCall.setAutoStartService (false); // needed for switching to URL opening
       QList<QVariant> args;
       args.append(QStringList() << BACKEND->currentFile());
       args.append("0");
@@ -1079,7 +1079,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
       QDBusMessage response = QDBusConnection::sessionBus().call(methodCall, QDBus::Block, 1000);
       if (response.type() == QDBusMessage::ErrorMessage) {
         QString folder = BACKEND->currentFile().section("/", 0, -2);
-        if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
+        //if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
           QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
       }
     });

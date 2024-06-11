@@ -2,6 +2,7 @@ V1.0.0
 --------
  * Removed Qt5 support.
  * Added unadvertised support for 'application/vnd.snap'.
+ * Dropped using of "gio" for opening URLs.
 
 V0.12.0
 --------

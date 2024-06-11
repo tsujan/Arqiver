@@ -866,7 +866,7 @@ bool Backend::startViewFile(const QString& path) {
     }
   }
 
-  if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
+  //if (!QProcess::startDetached("gio", QStringList() << "open" << fileName)) // "gio" is more reliable
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
   return res;
 }
