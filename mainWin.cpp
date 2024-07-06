@@ -41,6 +41,7 @@
 #include <QDrag>
 #include <QDBusConnection>
 #include <QDBusMessage>
+#include <QStandardPaths>
 
 #include <unistd.h> // getuid
 
@@ -1079,8 +1080,10 @@ void mainWin::labelContextMenu(const QPoint& p) {
       QDBusMessage response = QDBusConnection::sessionBus().call(methodCall, QDBus::Block, 1000);
       if (response.type() == QDBusMessage::ErrorMessage) {
         QString folder = BACKEND->currentFile().section("/", 0, -2);
-        //if (!QProcess::startDetached("gio", QStringList() << "open" << folder))
+        if (QStandardPaths::findExecutable("gio").isEmpty()
+            || !QProcess::startDetached("gio", QStringList() << "open" << folder)) {
           QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
+        }
       }
     });
   }
