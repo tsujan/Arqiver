@@ -398,7 +398,7 @@ ohjelma ei kuulu libarchive-kirjastoon.</translation>
         <location filename="../../mainWin.cpp" line="464"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished">Haluatko jättää muutokset huomioimatta?
+        <translation>Haluatko jättää muutokset huomioimatta?
 </translation>
     </message>
     <message>
