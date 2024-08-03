@@ -644,7 +644,9 @@ binary does not belong to libarchive.</source>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Κάποια αρχεία θα αντικατασταθούν.
+Θέλετε να συνεχίσετε;
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1438"/>
@@ -674,7 +676,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1788"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>επίσης γνωστό ως</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1789"/>
