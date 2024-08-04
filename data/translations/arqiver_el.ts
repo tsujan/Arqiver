@@ -600,7 +600,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1068"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Άνοιγμα περιέχοντος φακέλου</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
