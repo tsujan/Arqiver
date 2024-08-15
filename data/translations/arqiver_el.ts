@@ -61,7 +61,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Θα μπορούσατε να πληκτρολογήσετε εντός της κύριας προβολής.
+Εκκαθάριση κειμένου με το πλήκτρο Escape.</translation>
     </message>
 </context>
 <context>
