@@ -90,12 +90,12 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αν αυτό αποεπιλεγεί, οι κατάλογοι μόνο του ανωτάτου επιπέδου θα αναπτυχθούν.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανάπτυξη όλων των καταλόγων κατά το άνοιγμα αρχείων</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -104,12 +104,15 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφήστε κενό για την προεπιλογή.
+
+Προειδοποίηση: Το Arqiver δε θα λειτουργήσει αν
+το δυαδικό δεν ανήκει στο libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="153"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>δυαδικό libarchive:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
@@ -134,7 +137,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="235"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλογή δυαδικού libarchive</translation>
     </message>
 </context>
 <context>
@@ -237,7 +240,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>Α&amp;νάπτυξη</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
@@ -247,7 +250,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>Σύμπτ&amp;υξη</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
