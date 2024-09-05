@@ -305,7 +305,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="321"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>Τύπος mime</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="321"/>
