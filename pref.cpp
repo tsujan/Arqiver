@@ -26,6 +26,12 @@
 #include <QWindow>
 #include <QScreen>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,7,0))
+#define CHECKBOX_CHANGED QCheckBox::checkStateChanged
+#else
+#define CHECKBOX_CHANGED QCheckBox::stateChanged
+#endif
+
 namespace Arqiver {
 
 PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog) {
@@ -88,7 +94,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   connect(ui->iconSizeCombo, QOverload<int>::of(&QComboBox::activated), this, &PrefDialog::prefIconSize);
 
   ui->sysIconsBox->setChecked(initialSysIcons_);
-  connect(ui->sysIconsBox, &QCheckBox::stateChanged, [this] (int state) {
+  connect(ui->sysIconsBox, &CHECKBOX_CHANGED, [this] (int state) {
     if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
       Config& config = win->getConfig();
       config.setSysIcons(state == Qt::Checked);
@@ -116,7 +122,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   ui->spinX->setValue(startSize.width());
   ui->spinY->setValue(startSize.height());
 
-  connect(ui->winSizeBox, &QCheckBox::stateChanged, [this] (int state) {
+  connect(ui->winSizeBox, &CHECKBOX_CHANGED, [this] (int state) {
     bool checked(state == Qt::Checked);
     ui->startSizeLabel->setEnabled(!checked);
     ui->spinX->setEnabled(!checked);
@@ -133,7 +139,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
 
   if (mainWin *win = qobject_cast<mainWin*>(parent_))
     ui->promptBox->setChecked(win->getConfig().getRemovalPrompt());
-  connect(ui->promptBox, &QCheckBox::stateChanged, [this] (int state) {
+  connect(ui->promptBox, &CHECKBOX_CHANGED, [this] (int state) {
     if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
       Config& config = win->getConfig();
       config.setRemovalPrompt(state == Qt::Checked);
@@ -141,7 +147,7 @@ PrefDialog::PrefDialog(QWidget *parent) : QDialog(parent), ui(new Ui::PrefDialog
   });
 
   ui->expandAllBox->setChecked(!initialExpandTopDirs_);
-  connect(ui->expandAllBox, &QCheckBox::stateChanged, [this] (int state) {
+  connect(ui->expandAllBox, &CHECKBOX_CHANGED, [this] (int state) {
     if (mainWin *win = qobject_cast<mainWin*>(parent_)) {
       Config& config = win->getConfig();
       config.setExpandTopDirs(state != Qt::Checked);

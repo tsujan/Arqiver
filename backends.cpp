@@ -349,11 +349,7 @@ void Backend::updateArchive() {
   args << "-c" << "-a";
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
-#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
   for (const QString &str : std::as_const(changedFiles_))
-#else
-  for (const QString &str : qAsConst(changedFiles_))
-#endif
   {
     /* WARNING: Since the workaround for bsdtar's escaped backslashes is already applied,
                 they need to be escaped again, before other special characters are escaped. */
@@ -489,11 +485,7 @@ void Backend::startRemove(const QStringList& paths) {
 
   // a modified file may be removed
   if (!changedFiles_.isEmpty()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
     for (const QString &str : std::as_const(filePaths))
-#else
-    for (const QString &str : qAsConst(filePaths))
-#endif
       changedFiles_.removeOne(arqiverDir_ + "/" + str);
     if (changedFiles_.isEmpty())
       emit fileModified(false);
@@ -1009,11 +1001,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
   }
 
   // files may be edited also by drag-and-drop
-#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
   for (const QString &str : std::as_const(tempFileNames))
-#else
-  for (const QString &str : qAsConst(tempFileNames))
-#endif
   {
     QFileInfo info(str);
     if (!info.isDir()) {

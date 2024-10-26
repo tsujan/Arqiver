@@ -1,9 +1,9 @@
 lessThan(QT_MAJOR_VERSION, 6) {
-  error("Arqiver needs at least Qt 6.3.0.")
+  error("Arqiver needs at least Qt 6.6.0.")
 } else {
   equals(QT_MAJOR_VERSION, 6) {
-    lessThan(QT_MINOR_VERSION, 3) {
-      error("Arqiver needs at least Qt 6.3.0.")
+    lessThan(QT_MINOR_VERSION, 6) {
+      error("Arqiver needs at least Qt 6.6.0.")
     }
   } else {
     error("Arqiver cannot be compiled against this version of Qt.")

@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="154"/>
+        <location filename="../../about.ui" line="156"/>
         <source>License</source>
         <translation>Licence</translation>
     </message>
@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="850"/>
+        <location filename="../../backends.cpp" line="842"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Tento soubor je odkaz, ale jeho cíl neexistuje.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1276"/>
-        <location filename="../../backends.cpp" line="1308"/>
-        <location filename="../../backends.cpp" line="1352"/>
+        <location filename="../../backends.cpp" line="1264"/>
+        <location filename="../../backends.cpp" line="1296"/>
+        <location filename="../../backends.cpp" line="1340"/>
         <source>Could not read archive</source>
         <translation>Archiv se nedaří číst</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1311"/>
-        <location filename="../../backends.cpp" line="1357"/>
+        <location filename="../../backends.cpp" line="1299"/>
+        <location filename="../../backends.cpp" line="1345"/>
         <source>Archive Loaded</source>
         <translation>Archiv načten</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1318"/>
-        <location filename="../../backends.cpp" line="1405"/>
+        <location filename="../../backends.cpp" line="1306"/>
+        <location filename="../../backends.cpp" line="1393"/>
         <source>Modification Finished</source>
         <translation>Změny dokončeny</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1339"/>
-        <location filename="../../backends.cpp" line="1374"/>
+        <location filename="../../backends.cpp" line="1327"/>
+        <location filename="../../backends.cpp" line="1362"/>
         <source>Extraction Finished</source>
         <translation>Rozbalení dokončeno</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1342"/>
-        <location filename="../../backends.cpp" line="1393"/>
+        <location filename="../../backends.cpp" line="1330"/>
+        <location filename="../../backends.cpp" line="1381"/>
         <source>Extraction Failed</source>
         <translation>Rozbalení se nezdařilo</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1490"/>
+        <location filename="../../backends.cpp" line="1478"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>Na vámi využívaném systému chybí %1.
@@ -125,17 +125,17 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Velikost ikon zobrazení:</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="56"/>
+        <location filename="../../pref.cpp" line="62"/>
         <source>px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="178"/>
+        <location filename="../../pref.cpp" line="184"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Aby se změny projevily, je třeba aplikaci zrestartovat.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="235"/>
+        <location filename="../../pref.cpp" line="241"/>
         <source>Select libarchive binary</source>
         <translation>Vyberte spustitelný soubor s libarchive</translation>
     </message>
@@ -327,8 +327,8 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="462"/>
         <location filename="../../mainWin.cpp" line="791"/>
-        <location filename="../../mainWin.cpp" line="994"/>
-        <location filename="../../mainWin.cpp" line="1307"/>
+        <location filename="../../mainWin.cpp" line="990"/>
+        <location filename="../../mainWin.cpp" line="1299"/>
         <source>Question</source>
         <translation>Dotaz</translation>
     </message>
@@ -352,40 +352,40 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="895"/>
         <location filename="../../mainWin.cpp" line="902"/>
-        <location filename="../../mainWin.cpp" line="943"/>
+        <location filename="../../mainWin.cpp" line="939"/>
         <source>Add to Archive</source>
         <translation>Přidat do archivu</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="938"/>
-        <location filename="../../mainWin.cpp" line="969"/>
-        <location filename="../../mainWin.cpp" line="1254"/>
-        <location filename="../../mainWin.cpp" line="1260"/>
+        <location filename="../../mainWin.cpp" line="934"/>
+        <location filename="../../mainWin.cpp" line="965"/>
+        <location filename="../../mainWin.cpp" line="1250"/>
+        <location filename="../../mainWin.cpp" line="1256"/>
         <source>Adding Items...</source>
         <translation>Přidávání položek…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="995"/>
+        <location filename="../../mainWin.cpp" line="991"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Chcete vybrané položky smazat?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1014"/>
+        <location filename="../../mainWin.cpp" line="1010"/>
         <source>Removing Items...</source>
         <translation>Odebírání položek…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1217"/>
-        <location filename="../../mainWin.cpp" line="1232"/>
-        <location filename="../../mainWin.cpp" line="1322"/>
-        <location filename="../../mainWin.cpp" line="1336"/>
+        <location filename="../../mainWin.cpp" line="1213"/>
+        <location filename="../../mainWin.cpp" line="1228"/>
+        <location filename="../../mainWin.cpp" line="1314"/>
+        <location filename="../../mainWin.cpp" line="1328"/>
         <source>Extracting...</source>
         <translation>Rozbalování…</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1058"/>
+        <location filename="../../mainWin.cpp" line="1054"/>
         <source>Copy Archive Path</source>
         <translation>Zkopírovat popis umístění archivu</translation>
     </message>
@@ -602,7 +602,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Zobrazit všechny soubory</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1068"/>
+        <location filename="../../mainWin.cpp" line="1064"/>
         <source>Open Containing Folder</source>
         <translation>Otevřít složku, ve které se nachází</translation>
     </message>
@@ -612,39 +612,39 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Zobrazit stávající položku</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1113"/>
-        <location filename="../../mainWin.cpp" line="1121"/>
+        <location filename="../../mainWin.cpp" line="1109"/>
+        <location filename="../../mainWin.cpp" line="1117"/>
         <source>Enter Password</source>
         <translation>Zadejte heslo</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1129"/>
+        <location filename="../../mainWin.cpp" line="1125"/>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1134"/>
+        <location filename="../../mainWin.cpp" line="1130"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1138"/>
+        <location filename="../../mainWin.cpp" line="1134"/>
         <source>Encrypt the file list</source>
         <translation>Zašifrovat seznam souborů</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1139"/>
+        <location filename="../../mainWin.cpp" line="1135"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Toto se projeví po přidání souborů/složek.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1210"/>
-        <location filename="../../mainWin.cpp" line="1286"/>
+        <location filename="../../mainWin.cpp" line="1206"/>
+        <location filename="../../mainWin.cpp" line="1282"/>
         <source>Extract Into Directory</source>
         <translation>Rozbalit do složky</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1308"/>
+        <location filename="../../mainWin.cpp" line="1300"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -653,43 +653,43 @@ Chcete pokračovat?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1438"/>
+        <location filename="../../mainWin.cpp" line="1426"/>
         <source>Link To: %1</source>
         <translation>Odkaz na: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1712"/>
+        <location filename="../../mainWin.cpp" line="1696"/>
         <source>Could not read archive</source>
         <translation>Archiv se nedaří číst</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1785"/>
+        <location filename="../../mainWin.cpp" line="1769"/>
         <source>A simple Qt archive manager</source>
         <translation>Jednoduchý správce archivů, založený na Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1786"/>
+        <location filename="../../mainWin.cpp" line="1770"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>založeno na libarchive, gzip a 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1787"/>
+        <location filename="../../mainWin.cpp" line="1771"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1788"/>
+        <location filename="../../mainWin.cpp" line="1772"/>
         <source>aka.</source>
         <translation>alias</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1789"/>
-        <location filename="../../mainWin.cpp" line="1790"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
+        <location filename="../../mainWin.cpp" line="1774"/>
         <source>About Arqiver</source>
         <translation>O Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1789"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
         <source>Translators</source>
         <translation>Překladatelé</translation>
     </message>
