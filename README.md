@@ -8,7 +8,7 @@ Arqiver (by Pedram Pourang, a.k.a. Tsu Jan <tsujan2000@gmail.com>) is a simple a
  * Always extracts an archive containing multiple files into a separate folder and never overwrites existing files without the user's permission;
  * Can open archives also by drag-and-drop;
  * Enables users to view its listed items separately or drag and drop them into appropriate applications;
- * Allows updating of archives which are not opened as "read-only" after their individual files are viewed and modified;
+ * Allows updating of archives, which meet certain conditions, after their individual files are viewed and modified;
  * Supports password protection with 7z; and
  * Has other features which can be found easily when it is actually used.
 
