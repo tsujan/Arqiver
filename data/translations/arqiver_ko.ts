@@ -90,12 +90,12 @@ Esc 키를 사용하여 텍스트를 지우십시오.</translation>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation>선택하지 않으면, 최상위 디렉토리만 펼쳐집니다.</translation>
+        <translation>이 옵션을 선택하지 않으면, 최상위 디렉터리만 펼쳐집니다.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation>압축파일을 열 때 모든 디렉토리 펼치기</translation>
+        <translation>압축파일을 열 때 모든 디렉터리 펼치기</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
