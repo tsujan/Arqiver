@@ -72,8 +72,8 @@ void TreeWidget::scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHin
 /*************************/
 void TreeWidget::mousePressEvent(QMouseEvent *event) {
   QTreeWidget::mousePressEvent(event);
-  if (event->button() == Qt::LeftButton && indexAt(event->pos()).isValid())
-    dragStartPosition_ = event->pos();
+  if (event->button() == Qt::LeftButton && indexAt(event->position().toPoint()).isValid())
+    dragStartPosition_ = event->position().toPoint();
   else
     dragStartPosition_ = QPoint();
   dragStarted_ = false;
@@ -87,7 +87,7 @@ void TreeWidget::mouseMoveEvent(QMouseEvent *event) {
 
   if (!dragStarted_
       && (event->buttons() & Qt::LeftButton)
-      && (event->pos() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance())) {
+      && (event->position().toPoint() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance())) {
     dragStarted_ = true;
     if (!selectedItems().isEmpty())
       emit dragStarted();

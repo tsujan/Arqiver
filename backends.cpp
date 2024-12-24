@@ -212,15 +212,15 @@ bool Backend::canModify(bool *canUpdate) const {
   if (validMimeTypes.isEmpty()) {
     validMimeTypes << "application/zip" << "application/x-compressed-tar" << "application/x-gzpdf" << "image/svg+xml-compressed" << "application/x-xz-compressed-tar" << "application/x-bzip-compressed-tar" << "application/x-bzip1-compressed-tar" << "application/x-bzip2-compressed-tar" << "application/x-tar" << "application/x-lzma-compressed-tar" << "application/x-zstd-compressed-tar" << "application/x-cpio" << /*".pax" <<*/ "application/x-archive" << /*".shar" <<*/ "application/gzip" << "application/x-7z-compressed";
   }
-  static QStringList updatedMimeTypes;
-  if (updatedMimeTypes.isEmpty()) {
-    updatedMimeTypes << "application/zstd" << "application/x-bzip" << "application/x-bzip1" << "application/x-bzip2" << "application/x-xz" << "application/vnd.debian.binary-package" << "application/x-rpm" << "application/x-source-rpm";
+  static QStringList updatableMimeTypes;
+  if (updatableMimeTypes.isEmpty()) {
+    updatableMimeTypes << /*"application/zstd" << */"application/x-bzip" << "application/x-bzip1" << "application/x-bzip2" << "application/x-xz" << "application/vnd.debian.binary-package" << "application/x-rpm" << "application/x-source-rpm";
   }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();
   bool res = archiveSingleRoot_ != "."  // not like some rpm archives
              && validMimeTypes.contains(mimeTypeName);
-  *canUpdate = (archiveSingleRoot_ != "." && (res || updatedMimeTypes.contains(mimeTypeName)));
+  *canUpdate = (archiveSingleRoot_ != "." && (res || updatableMimeTypes.contains(mimeTypeName)));
   return res;
 }
 

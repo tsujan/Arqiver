@@ -1,3 +1,7 @@
+V1.0.1
+--------
+ * Replaced the deprecated method QMouseEvent::pos().
+
 V1.0.0
 --------
  * Removed Qt5 support and bumped the minimum required version of Qt to 6.6.
