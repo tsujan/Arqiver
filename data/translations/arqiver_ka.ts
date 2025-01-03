@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="156"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>ლიცენზია</translation>
     </message>
 </context>
 <context>
@@ -68,7 +68,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>მორგება</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
@@ -122,7 +122,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="62"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="184"/>
@@ -140,7 +140,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>დაარქივება:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
@@ -150,22 +150,22 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ფაილი</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ჩასწორება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="155"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ნახვა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="166"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;დახმარება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
@@ -175,7 +175,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
@@ -185,17 +185,17 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="220"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>გამოსვლა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="223"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
@@ -215,12 +215,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="246"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>საქაღალდის დამატება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
@@ -230,7 +230,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>პაროლის დაყენება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
@@ -240,7 +240,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
@@ -250,12 +250,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;შესახებ</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
@@ -265,7 +265,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;გამართვა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
@@ -275,7 +275,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="295"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
@@ -285,27 +285,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="145"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Root</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="250"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="321"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="321"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>Mime ტიპი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="321"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>ზომა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="551"/>
@@ -317,7 +317,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="765"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის შექმნა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="462"/>
@@ -325,7 +325,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="990"/>
         <location filename="../../mainWin.cpp" line="1299"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>კითხვა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="792"/>
@@ -341,7 +341,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="828"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის გახსნა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="895"/>
@@ -375,7 +375,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1314"/>
         <location filename="../../mainWin.cpp" line="1328"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>გაშლა...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1054"/>
@@ -596,7 +596,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1064"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>შემცველი საქაღალდის გახსნა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
@@ -607,17 +607,17 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1109"/>
         <location filename="../../mainWin.cpp" line="1117"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>შეიყვანეთ პაროლი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1125"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1130"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>დიახ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
@@ -665,7 +665,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1771"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>ავტორი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1772"/>
@@ -681,7 +681,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1773"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>მთარგმნელები</translation>
     </message>
 </context>
 </TS>
