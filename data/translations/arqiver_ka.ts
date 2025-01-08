@@ -14,44 +14,45 @@
     <message>
         <location filename="../../backends.cpp" line="842"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>ეს ფაილი ბმულია, მაგრამ სამიზნე არ არსებობს.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1264"/>
         <location filename="../../backends.cpp" line="1296"/>
         <location filename="../../backends.cpp" line="1340"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის წაკითხვა შეუძლებელია</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1299"/>
         <location filename="../../backends.cpp" line="1345"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივი ჩაიტვირთა</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1306"/>
         <location filename="../../backends.cpp" line="1393"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>ცვლილება დასრულდა</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1327"/>
         <location filename="../../backends.cpp" line="1362"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>გაშლა დასრულდა</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1330"/>
         <location filename="../../backends.cpp" line="1381"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>გაშლა ჩავარდა</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1478"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 თქვენს სისტემაში აღმოჩენილი არაა.
+დააყენეთ ის ამ ტიპის არქივისთვის!</translation>
     </message>
 </context>
 <context>
@@ -60,7 +61,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>აკრეფა მთავარი ხედის შიგნითაც შეგიძლიათ.
+გაასუფთავეთ ტექსტი ღილაკით Escape.</translation>
     </message>
 </context>
 <context>
@@ -73,27 +75,27 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>დაწყება ამ ზომით:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
         <source>Use system icons where possible</source>
-        <translation type="unfinished"></translation>
+        <translation>სისტემური ხატულების გამოყენება, სადაც ეს შესაძლებელია</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>კითხვა ელემენტების წაშლისას</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>თუ ეს გამორთულია, ჩამოიშლება, მხოლოდ, ყველაზე ზედა საქაღალდეები.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველა საქაღალდის გაშლა არქივების გახსნისას</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -102,22 +104,25 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>დატოვეთ ცარიელი ნაგულისხმევისთვის.
+
+გაფრთხილება: Arqiver არ იმუშავებს, თუ გამშვები ფაილი
+libarchive-ს არ ეკუთვნის.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="153"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive-ის გამშვები ფაილი:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>ფანჯრის ზომების დამახსოვრება დახურვისა&amp;ს</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>ხედის ხატულების ზომა:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="62"/>
@@ -127,12 +132,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="184"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>ცვლილებების ძალაში შესასვლელად საჭიროა აპლიკაციის გადატვირთვა.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="241"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>აირჩიეთ libarchive-ის გამშვები ფაილი</translation>
     </message>
 </context>
 <context>
@@ -145,7 +150,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების ფილტრი...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -170,7 +175,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის &amp;გახსნა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
@@ -180,7 +185,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ახალი არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
@@ -200,17 +205,17 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების დამატება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="233"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების წაშლა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველას გაშლა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
@@ -225,7 +230,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>მონიშნულის გაშლა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
@@ -235,7 +240,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>გ&amp;აშლა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
@@ -245,7 +250,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;აკეცვა</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
@@ -260,7 +265,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>მიმდინარე ბილიკის &amp;კოპირება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
@@ -270,7 +275,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;პროცესის გაჩერება</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="295"/>
@@ -280,7 +285,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის განახლება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="145"/>
@@ -312,7 +317,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="836"/>
         <location filename="../../mainWin.cpp" line="880"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>მიმდინარეობს არქივის გაშლა...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="765"/>
@@ -330,13 +335,14 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="792"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>შემდეგი არქივი უკვე არსებობს:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="794"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>მართლა გნებავთ, ჩაანაცვლოთ ის?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="828"/>
@@ -348,7 +354,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="902"/>
         <location filename="../../mainWin.cpp" line="939"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივში ჩამატება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="934"/>
@@ -356,18 +362,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1250"/>
         <location filename="../../mainWin.cpp" line="1256"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>ელემენტების დამატება...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="991"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>მართლა გნებავთ მონიშნული ელემენტების წაშლა?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1010"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>მიმდინარეობს ელემენტების წაშლა...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1213"/>
@@ -380,137 +387,138 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1054"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის ბილიკის კოპირება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="463"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>ზოგიერთი ფაილი შეიცვალა.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="464"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>გნებავთ, გამოტოვოთ ცვლილება?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="625"/>
         <source>All Types</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველა ტიპი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="635"/>
         <location filename="../../mainWin.cpp" line="659"/>
         <source>Uncompressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>შეუკუმშავი არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="636"/>
         <location filename="../../mainWin.cpp" line="660"/>
         <source>GZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>GZip-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="637"/>
         <location filename="../../mainWin.cpp" line="661"/>
         <location filename="../../mainWin.cpp" line="662"/>
         <source>BZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>BZip-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="638"/>
         <location filename="../../mainWin.cpp" line="663"/>
         <source>BZip2 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>BZip2-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="639"/>
         <location filename="../../mainWin.cpp" line="671"/>
         <source>LMZA Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LMZA-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
         <location filename="../../mainWin.cpp" line="668"/>
         <source>XZ Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>XZ-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="641"/>
         <location filename="../../mainWin.cpp" line="672"/>
         <source>Zstandard Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zstandard-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="642"/>
         <location filename="../../mainWin.cpp" line="674"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="676"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივი AR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="646"/>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივი Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="647"/>
         <location filename="../../mainWin.cpp" line="680"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივი Gzip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="648"/>
         <location filename="../../mainWin.cpp" line="679"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივი 7-Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="664"/>
         <location filename="../../mainWin.cpp" line="665"/>
         <source>READ-ONLY: BZip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: BZip-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="666"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკთხვადი: BZip2-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="667"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: BZip2-ით შეკუმშული PDF დოკუმენტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="669"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: XZ-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: XZ-ით შეკუმშული PDF დოკუმენტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="673"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: Zstandard-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="681"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip-ით შეკუმშული PDF დოკუმენტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="682"/>
         <source>READ-ONLY: Compressed SVG Image</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: შეკუმშული SVG გამოსახულება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="683"/>
@@ -518,80 +526,80 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="685"/>
         <location filename="../../mainWin.cpp" line="686"/>
         <source>READ-ONLY: ISO Image</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: ISO დისკის ასლის ფაილი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="687"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი XAR-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="688"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: Java-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="689"/>
         <source>READ-ONLY: Debian Package</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: Debian-ის პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="690"/>
         <location filename="../../mainWin.cpp" line="691"/>
         <source>READ-ONLY: RedHat Package</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკიხვადი: RedHat-ის პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="692"/>
         <location filename="../../mainWin.cpp" line="693"/>
         <location filename="../../mainWin.cpp" line="694"/>
         <source>READ-ONLY: MS Windows Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: MS Windows-ის გაშვებადი ფაილი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ შეკუმშვადი: MS Windows-ის დაყენების პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: MS Windows-ის კაბინეტის ტიპის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="697"/>
         <source>READ-ONLY: ACE archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკიხვადი: ACE-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: Android Package</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: Android-ის პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="699"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: RAR-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="700"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: AppImage-ის აპლიკაციის პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="701"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
-        <translation type="unfinished"></translation>
+        <translation>მხოლოდ წაკითხვადი: VirtualBox-ის გაფართოების პაკეტი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="710"/>
         <source>All Known Types</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველა ცნობილი ტიპი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="715"/>
         <source>Show All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>ყველა ფაილის ჩვენება</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1064"/>
@@ -601,7 +609,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>მიმდინარე ელემენტის ნახვა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1109"/>
@@ -622,45 +630,47 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>ფაილების სიის დაშიფვრა</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1135"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>ეს ძალაში ფაილების/საქაღალდეების დამატების შემდეგ შევა.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1206"/>
         <location filename="../../mainWin.cpp" line="1282"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>გაშლა საქაღალდეში</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1300"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>ზოგიერთი ფაილი ჩანაცვლდება.
+გნებავთ, გააგრძელოთ?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1426"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ბმული სადამდე: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1696"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>არქივის წაკითხვა შეუძლებელია</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>მარტივი Qt-ის არქივების მმართველი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1770"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>ეყრდნობა libarchive-ს, gzip-ს და 7z-ს</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1771"/>
@@ -670,13 +680,13 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1772"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>ცნობილი, როგორც.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1773"/>
         <location filename="../../mainWin.cpp" line="1774"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Arqiver-ის შესახებ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1773"/>
