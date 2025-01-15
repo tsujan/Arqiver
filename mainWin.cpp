@@ -1356,15 +1356,15 @@ void mainWin::onEnterPressed(QTreeWidgetItem *it) {
   else viewFile(it);
 }
 
-static inline QString displaySize(const qint64 size) {
-  static const QStringList labels = {"B", "K", "M", "G", "T"};
+static inline QString displaySize(const qint64 size, const QLocale &l) {
+  static const QStringList labels = {" B", " K", " M", " G", " T"};
   int i = 0;
   qreal displaySize = size;
   while (displaySize > static_cast<qreal>(1024) && i < 4) {
     displaySize /= static_cast<qreal>(1024);
     ++i;
   }
-  return (QString::number(qRound(displaySize)) + labels.at(i));
+  return (l.toString(qRound(displaySize)) + labels.at(i));
 }
 
 void mainWin::updateTree() {
@@ -1410,12 +1410,12 @@ void mainWin::updateTree() {
         if (s <= static_cast<double>(0) && files.size() == 1) { // as with "application/x-bzip"
           auto cs = BACKEND->csize(thisFile);
           if (cs > static_cast<double>(0))
-            it->setText(2, "≥ " + displaySize(cs));
+            it->setText(2, "≥ " + displaySize(cs, locale()));
           else
-            it->setText(2, displaySize(s));
+            it->setText(2, displaySize(s, locale()));
         }
         else
-          it->setText(2, displaySize(s));
+          it->setText(2, displaySize(s, locale()));
 
         if (icnSize.width() > 16 && BACKEND->isEncryptedPath(thisFile))
           it->setData(3, Qt::UserRole, "lock"); // to be used in TreeWidgetItem::data() and cleanTree()
