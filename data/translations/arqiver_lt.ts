@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="156"/>
+        <location filename="../../about.ui" line="158"/>
         <source>License</source>
         <translation>Licencija</translation>
     </message>
@@ -565,11 +565,6 @@ nepriklausys libarchive.</translation>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>TIK SKAITYMUI: „MS Windows“ CAB archyvas</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="697"/>
-        <source>READ-ONLY: ACE archive</source>
-        <translation>TIK SKAITYMUI: ACE archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>

@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="156"/>
+        <location filename="../../about.ui" line="158"/>
         <source>License</source>
         <translation>ლიცენზია</translation>
     </message>
@@ -565,11 +565,6 @@ libarchive-ს არ ეკუთვნის.</translation>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>მხოლოდ წაკითხვადი: MS Windows-ის კაბინეტის ტიპის არქივი</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="697"/>
-        <source>READ-ONLY: ACE archive</source>
-        <translation>მხოლოდ წაკიხვადი: ACE-ის არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>

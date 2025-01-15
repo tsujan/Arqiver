@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="156"/>
+        <location filename="../../about.ui" line="158"/>
         <source>License</source>
         <translation>Лиценз</translation>
     </message>
@@ -565,11 +565,6 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>САМО ЗА ЧЕТЕНЕ: MS Windows Cabinet архив</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="697"/>
-        <source>READ-ONLY: ACE archive</source>
-        <translation>САМО ЗА ЧЕТЕНЕ: ACE архив</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>

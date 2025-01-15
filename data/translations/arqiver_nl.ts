@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="156"/>
+        <location filename="../../about.ui" line="158"/>
         <source>License</source>
         <translation>Licentie</translation>
     </message>
@@ -565,11 +565,6 @@ bestand niet van libarchive is.</translation>
         <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>ALLEEN-LEZEN: MS Windows-cabinetarchief</translation>
-    </message>
-    <message>
-        <location filename="../../mainWin.cpp" line="697"/>
-        <source>READ-ONLY: ACE archive</source>
-        <translation>ALLEEN-LEZEN: ACE-archief</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="698"/>

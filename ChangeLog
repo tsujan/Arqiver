@@ -1,6 +1,7 @@
 V1.0.1
 --------
  * Replaced the deprecated method QMouseEvent::pos().
+ * Removed 'application/x-ace' from the supported archives (it was never really supported).
 
 V1.0.0
 --------

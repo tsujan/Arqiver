@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2025 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -165,7 +165,7 @@ void Backend::loadFile(const QString& path, bool withPassword) {
            || mt == "application/x-cd-image" || mt == "application/vnd.efi.iso" || mt == "application/vnd.appimage"
            || mt == "application/x-xz"
            || mt == "application/zstd"
-           || mt == "application/x-ace"
+           //|| mt == "application/x-ace"
            || mt == "application/x-bzip" || mt == "application/x-bzip1" || mt == "application/x-bzip2" || mt == "application/x-bzpdf" || mt == "application/x-xzpdf"
            || mt == "application/x-apple-diskimage") {
     is7z_ = true; isGzip_ = false;
