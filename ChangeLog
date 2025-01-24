@@ -3,6 +3,7 @@ V1.0.1
  * Replaced the deprecated method QMouseEvent::pos().
  * Removed 'application/x-ace' from the supported archives (it was never really supported).
  * Localized sizes.
+ * Show sizes with one decimal, if needed.
 
 V1.0.0
 --------

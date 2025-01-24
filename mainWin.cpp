@@ -1364,7 +1364,7 @@ static inline QString displaySize(const qint64 size, const QLocale &l) {
     displaySize /= static_cast<qreal>(1024);
     ++i;
   }
-  return (l.toString(qRound(displaySize)) + labels.at(i));
+  return (l.toString(static_cast<qreal>(qRound(displaySize * 10)) / 10) + labels.at(i));
 }
 
 void mainWin::updateTree() {
