@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de_DE">
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="156"/>
+        <location filename="../../about.ui" line="158"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
@@ -51,7 +51,7 @@
         <location filename="../../backends.cpp" line="1478"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation>%l fehlt im System. Für dieses Format installieren!</translation>
+        <translation>%1 fehlt im System. Für dieses Format installieren!</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-		<translation>In Hauptansicht Text eingeben.
+        <translation>In Hauptansicht Text eingeben.
 mit ESC löschen.</translation>
     </message>
 </context>
@@ -89,7 +89,7 @@ mit ESC löschen.</translation>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation>bei Abwahl dieses Punktes wird nur der oberste Ordner ausgeklappt.</translation>
+        <translation>Bei Abwahl dieses Punktes wird nur der oberste Ordner ausgeklappt.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
@@ -103,11 +103,11 @@ mit ESC löschen.</translation>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-		<translation>Für Standardeinstellungen freilassen.
+        <translation>Für Standardeinstellungen freilassen.
 
 Warnung: Arqiver funktioniert nur, wenn die
 ausführbare Datei zu libarchive gehört.</translation>
-</message>
+    </message>
     <message>
         <location filename="../../pref.ui" line="153"/>
         <source>libarchive binary:</source>
@@ -366,7 +366,7 @@ ausführbare Datei zu libarchive gehört.</translation>
         <location filename="../../mainWin.cpp" line="991"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>ausgewählte Dateien löschen?</translation>
+        <translation>Ausgewählte Dateien löschen?</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1010"/>
@@ -563,11 +563,6 @@ ausführbare Datei zu libarchive gehört.</translation>
         <translation>MS Windows CAB-Archiv (nur lesbar) </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="697"/>
-        <source>READ-ONLY: ACE archive</source>
-        <translation>ACE-Archiv (nur lesbar)</translation>
-    </message>
-    <message>
         <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: Android Package</source>
         <translation>Android-Paket (nur lesbar)</translation>
@@ -605,7 +600,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation>ausgewählte Datei öffnen</translation>
+        <translation>Ausgewählte Datei öffnen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1109"/>
@@ -616,7 +611,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1125"/>
         <source>Cancel</source>
-        <translation>abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1130"/>
@@ -637,21 +632,21 @@ ausführbare Datei zu libarchive gehört.</translation>
         <location filename="../../mainWin.cpp" line="1206"/>
         <location filename="../../mainWin.cpp" line="1282"/>
         <source>Extract Into Directory</source>
-        <translation>in Ordner entpacken</translation>
+        <translation>In Ordner entpacken</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1300"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-<translation>Dateien werden überschrieben.
+        <translation>Dateien werden überschrieben.
 Fortsetzen?
 </translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1426"/>
         <source>Link To: %1</source>
-        <translation>Verweis auf: %l</translation>
+        <translation>Verweis auf: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1696"/>
@@ -661,7 +656,7 @@ Fortsetzen?
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
         <source>A simple Qt archive manager</source>
-        <translation>ein einfaches QT-Packprogramm</translation>
+        <translation>Ein einfaches QT-Packprogramm</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1770"/>
