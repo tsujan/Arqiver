@@ -4,7 +4,7 @@
 <context>
     <name>Arqiver::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="158"/>
+        <location filename="../../about.ui" line="160"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
@@ -61,7 +61,7 @@ Please install it for this kind of archive!</source>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
         <translation>In Hauptansicht Text eingeben.
-mit ESC löschen.</translation>
+Mit ESC löschen.</translation>
     </message>
 </context>
 <context>
@@ -131,7 +131,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../pref.cpp" line="184"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>zum Übernehmen Programm neustarten.</translation>
+        <translation>Zum Übernehmen Programm neustarten.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="241"/>
@@ -239,7 +239,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
         <source>E&amp;xpand</source>
-        <translation>&amp;ausklappen</translation>
+        <translation>&amp;Ausklappen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
@@ -249,7 +249,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
         <source>Collap&amp;se</source>
-        <translation>einklappen</translation>
+        <translation>Einklappen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
@@ -352,7 +352,7 @@ ausführbare Datei zu libarchive gehört.</translation>
         <location filename="../../mainWin.cpp" line="902"/>
         <location filename="../../mainWin.cpp" line="939"/>
         <source>Add to Archive</source>
-        <translation>zu Archiv hinzufügen</translation>
+        <translation>Zu Archiv hinzufügen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="934"/>
@@ -360,7 +360,7 @@ ausführbare Datei zu libarchive gehört.</translation>
         <location filename="../../mainWin.cpp" line="1250"/>
         <location filename="../../mainWin.cpp" line="1256"/>
         <source>Adding Items...</source>
-        <translation>füge Dateien hinzu …</translation>
+        <translation>Füge Dateien hinzu …</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="991"/>
@@ -371,7 +371,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1010"/>
         <source>Removing Items...</source>
-        <translation>lösche Dateien …</translation>
+        <translation>Lösche Dateien …</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1213"/>
@@ -400,13 +400,13 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="625"/>
         <source>All Types</source>
-        <translation>alle Dateien</translation>
+        <translation>Alle Dateien</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="635"/>
         <location filename="../../mainWin.cpp" line="659"/>
         <source>Uncompressed Archive</source>
-        <translation>unkomprimiertes Archiv</translation>
+        <translation>Unkomprimiertes Archiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="636"/>
@@ -585,7 +585,7 @@ ausführbare Datei zu libarchive gehört.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="710"/>
         <source>All Known Types</source>
-        <translation>alle bekannte Dateitypen</translation>
+        <translation>Alle bekannte Dateitypen</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="715"/>
