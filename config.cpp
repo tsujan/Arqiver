@@ -19,6 +19,8 @@
 
 #include "config.h"
 
+#include <algorithm>
+
 namespace Arqiver {
 
 Config::Config() :
@@ -52,7 +54,7 @@ void Config::readConfig() {
     startSize_ = QSize(700, 500);
 
   /* 16-pix icons are too small with emblems */
-  iconSize_ = qMin(qMax(settings.value("iconSize", 24).toInt(), 22), 64);
+  iconSize_ = std::clamp(settings.value("iconSize", 24).toInt(), 22, 64);
 
   if (settings.value ("sysIcons").toBool())
     sysIcons_ = true; // false by default

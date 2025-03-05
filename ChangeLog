@@ -4,6 +4,7 @@ V1.0.1
  * Removed 'application/x-ace' from the supported archives (it was never really supported).
  * Localized sizes.
  * Show sizes with one decimal, if needed.
+ * Replaced `QtGlobal` methods and types (like `qMax`, `qMin`, `qreal`, …) with those of C++.
 
 V1.0.0
 --------

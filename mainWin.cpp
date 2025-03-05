@@ -44,6 +44,8 @@
 #include <QStandardPaths>
 
 #include <unistd.h> // getuid
+#include <algorithm>
+#include <cmath>
 
 namespace Arqiver {
 
@@ -112,7 +114,7 @@ QPixmap TreeWidgetItem::emblemizedPixmap(const QString iconName, const QSize& ic
     }
     else
       emblem = QIcon(":icons/emblem-symbolic-link.svg").pixmap(emblemSize, emblemSize);
-    qreal pixelRatio = icn.devicePixelRatio();
+    double pixelRatio = icn.devicePixelRatio();
     pix = QPixmap((QSizeF(icnSize) * pixelRatio).toSize());
     pix.fill(Qt::transparent);
     pix.setDevicePixelRatio(pixelRatio);
@@ -155,7 +157,7 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   textLabel_->setFocusPolicy(Qt::NoFocus);
   statusProgress_ = new QProgressBar();
   statusProgress_->setTextVisible(false);
-  statusProgress_->setMaximumHeight(qMax(QFontMetrics(font()).height(), 16));
+  statusProgress_->setMaximumHeight(std::max(QFontMetrics(font()).height(), 16));
   statusProgress_->setFocusPolicy(Qt::NoFocus);
   statusProgress_->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
   ui->statusbar->addWidget(iconLabel_);
@@ -1359,12 +1361,12 @@ void mainWin::onEnterPressed(QTreeWidgetItem *it) {
 static inline QString displaySize(const qint64 size, const QLocale &l) {
   static const QStringList labels = {" B", " K", " M", " G", " T"};
   int i = 0;
-  qreal displaySize = size;
-  while (displaySize > static_cast<qreal>(1024) && i < 4) {
-    displaySize /= static_cast<qreal>(1024);
+  double displaySize = size;
+  while (displaySize > static_cast<double>(1024) && i < 4) {
+    displaySize /= 1024;
     ++i;
   }
-  return (l.toString(static_cast<qreal>(qRound(displaySize * 10)) / 10) + labels.at(i));
+  return (l.toString(std::round(displaySize * 10) / 10) + labels.at(i));
 }
 
 void mainWin::updateTree() {
@@ -1726,10 +1728,10 @@ void mainWin::adjustColumnSizes() {
     ui->tree_contents->resizeColumnToContents(1);
   });
   QTimer::singleShot(0, this, [this]() {
-    ui->tree_contents->setColumnWidth(0, qMax(ui->tree_contents->getSizeHintForColumn(0),
-                                              ui->tree_contents->viewport()->width()
-                                                - ui->tree_contents->columnWidth(1)
-                                                - ui->tree_contents->columnWidth(2)));
+    ui->tree_contents->setColumnWidth(0, std::max(ui->tree_contents->getSizeHintForColumn(0),
+                                                  ui->tree_contents->viewport()->width()
+                                                    - ui->tree_contents->columnWidth(1)
+                                                    - ui->tree_contents->columnWidth(2)));
   });
 }
 

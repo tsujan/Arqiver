@@ -24,6 +24,9 @@
 #include <QIcon>
 #include <QApplication>
 
+#include <algorithm>
+#include <cmath>
+
 #define SCROLL_FRAMES_PER_SEC 50
 #define SCROLL_DURATION 300 // in ms
 static const int scrollAnimFrames = SCROLL_FRAMES_PER_SEC * SCROLL_DURATION / 1000;
@@ -87,7 +90,7 @@ void TreeWidget::mouseMoveEvent(QMouseEvent *event) {
 
   if (!dragStarted_
       && (event->buttons() & Qt::LeftButton)
-      && (event->position().toPoint() - dragStartPosition_).manhattanLength() >= qMax(22, QApplication::startDragDistance())) {
+      && (event->position().toPoint() - dragStartPosition_).manhattanLength() >= std::max(22, QApplication::startDragDistance())) {
     dragStarted_ = true;
     if (!selectedItems().isEmpty())
       emit dragStarted();
@@ -129,7 +132,7 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
   if (event->spontaneous()
       && event->source() == Qt::MouseEventNotSynthesized) {
     QPoint deltaPoint = event->angleDelta();
-    bool horizontal(qAbs(deltaPoint.x()) > qAbs(deltaPoint.y()));
+    bool horizontal(std::abs(deltaPoint.x()) > std::abs(deltaPoint.y()));
     QScrollBar *sbar = horizontal ? horizontalScrollBar()
                                   : verticalScrollBar();
     if (sbar && sbar->isVisible()) {
@@ -143,13 +146,13 @@ void TreeWidget::wheelEvent(QWheelEvent *event) {
       if (QApplication::wheelScrollLines() > 1) {
         if (horizontal
             || (event->modifiers() & Qt::ShiftModifier)
-            || qAbs(delta) < 120) { // touchpad
-          if (qAbs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
+            || std::abs(delta) < 120) { // touchpad
+          if (std::abs(delta) >= scrollAnimFrames * QApplication::wheelScrollLines())
             delta /= QApplication::wheelScrollLines(); // scrolling with minimum speed
         }
         else if (QApplication::wheelScrollLines() > 2
                  && iconSize().height() >= 48
-                 && qAbs(delta * 2) >= scrollAnimFrames * QApplication::wheelScrollLines()) {
+                 && std::abs(delta * 2) >= scrollAnimFrames * QApplication::wheelScrollLines()) {
           /* 2 rows per wheel turn with large icons */
           delta = delta * 2 / QApplication::wheelScrollLines();
         }
@@ -186,11 +189,11 @@ void TreeWidget::scrollSmoothly() {
   int totalDeltaH = 0, totalDeltaV = 0;
   QList<scrollData>::iterator it = queuedScrollSteps_.begin();
   while (it != queuedScrollSteps_.end()) {
-    int delta = qRound(static_cast<qreal>(it->delta) / static_cast<qreal>(scrollAnimFrames));
+    int delta = std::round(static_cast<double>(it->delta) / scrollAnimFrames);
     int remainingDelta = it->delta - (scrollAnimFrames - it->leftFrames) * delta;
     if ((delta >= 0 && remainingDelta < 0) || (delta < 0 && remainingDelta >= 0))
       remainingDelta = 0;
-    if (qAbs(delta) >= qAbs(remainingDelta)) {
+    if (std::abs(delta) >= std::abs(remainingDelta)) {
       /* this is the last frame or, due to rounding, there can be no more frame */
       if (it->vertical)
         totalDeltaV += remainingDelta;

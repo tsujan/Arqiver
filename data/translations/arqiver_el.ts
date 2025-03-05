@@ -288,316 +288,316 @@ binary does not belong to libarchive.</source>
         <translation>Ενημέρωση αρχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="145"/>
+        <location filename="../../mainWin.cpp" line="147"/>
         <source>Root</source>
         <translation>Ρίζα</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="250"/>
+        <location filename="../../mainWin.cpp" line="252"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="321"/>
+        <location filename="../../mainWin.cpp" line="323"/>
         <source>File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="321"/>
+        <location filename="../../mainWin.cpp" line="323"/>
         <source>MimeType</source>
         <translation>Τύπος mime</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="321"/>
+        <location filename="../../mainWin.cpp" line="323"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="551"/>
-        <location filename="../../mainWin.cpp" line="836"/>
-        <location filename="../../mainWin.cpp" line="880"/>
+        <location filename="../../mainWin.cpp" line="553"/>
+        <location filename="../../mainWin.cpp" line="838"/>
+        <location filename="../../mainWin.cpp" line="882"/>
         <source>Opening Archive...</source>
         <translation>Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="765"/>
+        <location filename="../../mainWin.cpp" line="767"/>
         <source>Create Archive</source>
         <translation>Δημιουργία αρχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="462"/>
-        <location filename="../../mainWin.cpp" line="791"/>
-        <location filename="../../mainWin.cpp" line="990"/>
-        <location filename="../../mainWin.cpp" line="1299"/>
+        <location filename="../../mainWin.cpp" line="464"/>
+        <location filename="../../mainWin.cpp" line="793"/>
+        <location filename="../../mainWin.cpp" line="992"/>
+        <location filename="../../mainWin.cpp" line="1301"/>
         <source>Question</source>
         <translation>Ερώτηση</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="792"/>
+        <location filename="../../mainWin.cpp" line="794"/>
         <source>The following archive already exists:</source>
         <translation>Το ακόλουθο αρχείο υπάρχει ήδη:</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="794"/>
+        <location filename="../../mainWin.cpp" line="796"/>
         <source>Do you want to replace it?
 </source>
         <translation>Θέλετε να το αντικαταστήσετε;
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="828"/>
+        <location filename="../../mainWin.cpp" line="830"/>
         <source>Open Archive</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="895"/>
-        <location filename="../../mainWin.cpp" line="902"/>
-        <location filename="../../mainWin.cpp" line="939"/>
+        <location filename="../../mainWin.cpp" line="897"/>
+        <location filename="../../mainWin.cpp" line="904"/>
+        <location filename="../../mainWin.cpp" line="941"/>
         <source>Add to Archive</source>
         <translation>Προσθήκη σε αρχείο</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="934"/>
-        <location filename="../../mainWin.cpp" line="965"/>
-        <location filename="../../mainWin.cpp" line="1250"/>
-        <location filename="../../mainWin.cpp" line="1256"/>
+        <location filename="../../mainWin.cpp" line="936"/>
+        <location filename="../../mainWin.cpp" line="967"/>
+        <location filename="../../mainWin.cpp" line="1252"/>
+        <location filename="../../mainWin.cpp" line="1258"/>
         <source>Adding Items...</source>
         <translation>Προσθήκη στοιχείων...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="991"/>
+        <location filename="../../mainWin.cpp" line="993"/>
         <source>Do you want to remove the selected item(s)?
 </source>
         <translation>Θέλετε να αφαιρέσετε το(α) επιλεγμένο(α) στοιχείο(α);
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1010"/>
+        <location filename="../../mainWin.cpp" line="1012"/>
         <source>Removing Items...</source>
         <translation>Αφαίρεση στοιχείων...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1213"/>
-        <location filename="../../mainWin.cpp" line="1228"/>
-        <location filename="../../mainWin.cpp" line="1314"/>
-        <location filename="../../mainWin.cpp" line="1328"/>
+        <location filename="../../mainWin.cpp" line="1215"/>
+        <location filename="../../mainWin.cpp" line="1230"/>
+        <location filename="../../mainWin.cpp" line="1316"/>
+        <location filename="../../mainWin.cpp" line="1330"/>
         <source>Extracting...</source>
         <translation>Εξαγωγή...</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1054"/>
+        <location filename="../../mainWin.cpp" line="1056"/>
         <source>Copy Archive Path</source>
         <translation>Αντιγραφή διαδρομής αρχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="463"/>
+        <location filename="../../mainWin.cpp" line="465"/>
         <source>Some files have been modified.</source>
         <translation>Κάποια αρχεία έχουν τροποποιηθεί.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="464"/>
+        <location filename="../../mainWin.cpp" line="466"/>
         <source>Do you want to ignore the changes?
 </source>
         <translation>Θέλετε να αγνοήσετε τις αλλαγές;
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="625"/>
+        <location filename="../../mainWin.cpp" line="627"/>
         <source>All Types</source>
         <translation>Όλοι οι τύποι</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="635"/>
-        <location filename="../../mainWin.cpp" line="659"/>
+        <location filename="../../mainWin.cpp" line="637"/>
+        <location filename="../../mainWin.cpp" line="661"/>
         <source>Uncompressed Archive</source>
         <translation>Μη συμπιεσμένο αρχείο</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="636"/>
-        <location filename="../../mainWin.cpp" line="660"/>
+        <location filename="../../mainWin.cpp" line="638"/>
+        <location filename="../../mainWin.cpp" line="662"/>
         <source>GZip Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο GZip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="637"/>
-        <location filename="../../mainWin.cpp" line="661"/>
-        <location filename="../../mainWin.cpp" line="662"/>
+        <location filename="../../mainWin.cpp" line="639"/>
+        <location filename="../../mainWin.cpp" line="663"/>
+        <location filename="../../mainWin.cpp" line="664"/>
         <source>BZip Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο BZip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="638"/>
-        <location filename="../../mainWin.cpp" line="663"/>
+        <location filename="../../mainWin.cpp" line="640"/>
+        <location filename="../../mainWin.cpp" line="665"/>
         <source>BZip2 Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο BZip2</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="639"/>
-        <location filename="../../mainWin.cpp" line="671"/>
+        <location filename="../../mainWin.cpp" line="641"/>
+        <location filename="../../mainWin.cpp" line="673"/>
         <source>LMZA Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο LMZA</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="640"/>
-        <location filename="../../mainWin.cpp" line="668"/>
+        <location filename="../../mainWin.cpp" line="642"/>
+        <location filename="../../mainWin.cpp" line="670"/>
         <source>XZ Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο XZ</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="641"/>
-        <location filename="../../mainWin.cpp" line="672"/>
+        <location filename="../../mainWin.cpp" line="643"/>
+        <location filename="../../mainWin.cpp" line="674"/>
         <source>Zstandard Compressed Archive</source>
         <translation>Συμπιεσμένο αρχείο Zstandard</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="642"/>
-        <location filename="../../mainWin.cpp" line="674"/>
+        <location filename="../../mainWin.cpp" line="644"/>
+        <location filename="../../mainWin.cpp" line="676"/>
         <source>CPIO Archive</source>
         <translation>Αρχείο CPIO</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="644"/>
-        <location filename="../../mainWin.cpp" line="676"/>
+        <location filename="../../mainWin.cpp" line="646"/>
+        <location filename="../../mainWin.cpp" line="678"/>
         <source>AR Archive</source>
         <translation>Αρχείο AR</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="646"/>
-        <location filename="../../mainWin.cpp" line="678"/>
+        <location filename="../../mainWin.cpp" line="648"/>
+        <location filename="../../mainWin.cpp" line="680"/>
         <source>Zip Archive</source>
         <translation>Αρχείο Zip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="647"/>
-        <location filename="../../mainWin.cpp" line="680"/>
+        <location filename="../../mainWin.cpp" line="649"/>
+        <location filename="../../mainWin.cpp" line="682"/>
         <source>Gzip Archive</source>
         <translation>Αρχείο Gzip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="648"/>
-        <location filename="../../mainWin.cpp" line="679"/>
+        <location filename="../../mainWin.cpp" line="650"/>
+        <location filename="../../mainWin.cpp" line="681"/>
         <source>7-Zip Archive</source>
         <translation>Αρχείο 7-Zip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="664"/>
-        <location filename="../../mainWin.cpp" line="665"/>
+        <location filename="../../mainWin.cpp" line="666"/>
+        <location filename="../../mainWin.cpp" line="667"/>
         <source>READ-ONLY: BZip Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο BZip</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="666"/>
+        <location filename="../../mainWin.cpp" line="668"/>
         <source>READ-ONLY: BZip2 Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο BZip2</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="667"/>
+        <location filename="../../mainWin.cpp" line="669"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Συμπιεσμένο BZip2 έγγραφο PDF</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="669"/>
+        <location filename="../../mainWin.cpp" line="671"/>
         <source>READ-ONLY: XZ archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο XZ</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="670"/>
+        <location filename="../../mainWin.cpp" line="672"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Συμπιεσμένο XZ έγγραφο PDF</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="673"/>
+        <location filename="../../mainWin.cpp" line="675"/>
         <source>READ-ONLY: Zstandard archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο Zstandard</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="681"/>
+        <location filename="../../mainWin.cpp" line="683"/>
         <source>Gzip Compressed PDF Document</source>
         <translation>Συμπιεσμένο Gzip έγγραφο PDF</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="682"/>
+        <location filename="../../mainWin.cpp" line="684"/>
         <source>READ-ONLY: Compressed SVG Image</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Συμπιεσμένη εικόνα SVG</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="683"/>
-        <location filename="../../mainWin.cpp" line="684"/>
         <location filename="../../mainWin.cpp" line="685"/>
         <location filename="../../mainWin.cpp" line="686"/>
+        <location filename="../../mainWin.cpp" line="687"/>
+        <location filename="../../mainWin.cpp" line="688"/>
         <source>READ-ONLY: ISO Image</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Είδωλο ISO</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="687"/>
+        <location filename="../../mainWin.cpp" line="689"/>
         <source>READ-ONLY: XAR Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο XAR</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="688"/>
+        <location filename="../../mainWin.cpp" line="690"/>
         <source>READ-ONLY: Java Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο Java</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="689"/>
+        <location filename="../../mainWin.cpp" line="691"/>
         <source>READ-ONLY: Debian Package</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο Debian</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="690"/>
-        <location filename="../../mainWin.cpp" line="691"/>
+        <location filename="../../mainWin.cpp" line="692"/>
+        <location filename="../../mainWin.cpp" line="693"/>
         <source>READ-ONLY: RedHat Package</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο RedHat</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="692"/>
-        <location filename="../../mainWin.cpp" line="693"/>
         <location filename="../../mainWin.cpp" line="694"/>
+        <location filename="../../mainWin.cpp" line="695"/>
+        <location filename="../../mainWin.cpp" line="696"/>
         <source>READ-ONLY: MS Windows Executable</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Εκτελέσιμο MS Windows</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="695"/>
+        <location filename="../../mainWin.cpp" line="697"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο εγκατάστασης MS Windows</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="696"/>
+        <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο αρχειοθήκης MS Windows</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="698"/>
+        <location filename="../../mainWin.cpp" line="700"/>
         <source>READ-ONLY: Android Package</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο Android</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="699"/>
+        <location filename="../../mainWin.cpp" line="701"/>
         <source>READ-ONLY: RAR Archive</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Αρχείο RAR</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="700"/>
+        <location filename="../../mainWin.cpp" line="702"/>
         <source>READ-ONLY: AppImage application bundle</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο εφαρμογής AppImage</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="701"/>
+        <location filename="../../mainWin.cpp" line="703"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
         <translation>ΑΝΑΓΝΩΣΗ-ΜΟΝΟ: Πακέτο επεκτάσεων VirtualBox</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="710"/>
+        <location filename="../../mainWin.cpp" line="712"/>
         <source>All Known Types</source>
         <translation>Όλοι οι γνωστοί τύποι</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="715"/>
+        <location filename="../../mainWin.cpp" line="717"/>
         <source>Show All Files</source>
         <translation>Εμφάνιση όλων των αρχείων</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1064"/>
+        <location filename="../../mainWin.cpp" line="1066"/>
         <source>Open Containing Folder</source>
         <translation>Άνοιγμα περιέχοντος φακέλου</translation>
     </message>
@@ -607,39 +607,39 @@ binary does not belong to libarchive.</source>
         <translation>Προβολή τρέχοντος στοιχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1109"/>
-        <location filename="../../mainWin.cpp" line="1117"/>
+        <location filename="../../mainWin.cpp" line="1111"/>
+        <location filename="../../mainWin.cpp" line="1119"/>
         <source>Enter Password</source>
         <translation>Εισαγωγή κωδικού πρόσβασης</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1125"/>
+        <location filename="../../mainWin.cpp" line="1127"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1130"/>
+        <location filename="../../mainWin.cpp" line="1132"/>
         <source>OK</source>
         <translation>Εντάξει</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1134"/>
+        <location filename="../../mainWin.cpp" line="1136"/>
         <source>Encrypt the file list</source>
         <translation>Κρυπτογράφηση της λίστας αρχείων</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1135"/>
+        <location filename="../../mainWin.cpp" line="1137"/>
         <source>This will take effect after files/folders are added.</source>
         <translation>Αυτό θα τεθεί σε ισχύ αφότου προστεθούν αρχεία/φάκελοι.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1206"/>
-        <location filename="../../mainWin.cpp" line="1282"/>
+        <location filename="../../mainWin.cpp" line="1208"/>
+        <location filename="../../mainWin.cpp" line="1284"/>
         <source>Extract Into Directory</source>
         <translation>Εξαγωγή σε κατάλογο</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1300"/>
+        <location filename="../../mainWin.cpp" line="1302"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -648,43 +648,43 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1426"/>
+        <location filename="../../mainWin.cpp" line="1428"/>
         <source>Link To: %1</source>
         <translation>Σύνδεσμος σε: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1696"/>
+        <location filename="../../mainWin.cpp" line="1698"/>
         <source>Could not read archive</source>
         <translation>Αδυναμία ανάγνωσης αρχείου</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1771"/>
         <source>A simple Qt archive manager</source>
         <translation>Ένας απλός διαχειριστής αρχείων Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1770"/>
+        <location filename="../../mainWin.cpp" line="1772"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>βασισμένο σε libarchive, gzip και 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
         <source>Author</source>
         <translation>Συντάκτης</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1774"/>
         <source>aka.</source>
         <translation>επίσης γνωστό ως</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1773"/>
-        <location filename="../../mainWin.cpp" line="1774"/>
+        <location filename="../../mainWin.cpp" line="1775"/>
+        <location filename="../../mainWin.cpp" line="1776"/>
         <source>About Arqiver</source>
         <translation>Σχετικά με το Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1773"/>
+        <location filename="../../mainWin.cpp" line="1775"/>
         <source>Translators</source>
         <translation>Μεταφραστές</translation>
     </message>
