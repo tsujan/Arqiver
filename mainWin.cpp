@@ -1165,23 +1165,23 @@ bool mainWin::pswrdDialog(bool listEncryptionBox, bool forceListEncryption) {
 
   bool res = true;
   switch (dialog->exec()) {
-  case QDialog::Accepted:
-    if (lineEdit->text().isEmpty())
+    case QDialog::Accepted:
+      if (lineEdit->text().isEmpty())
+        res = false;
+      else {
+        BACKEND->setPswrd(lineEdit->text());
+        if (box->isChecked())
+          BACKEND->encryptFileList();
+        if (listEncryptionBox)
+          lastPswrd_ = lineEdit->text();
+      }
+      delete dialog;
+      break;
+    case QDialog::Rejected:
+    default:
+      delete dialog;
       res = false;
-    else {
-      BACKEND->setPswrd(lineEdit->text());
-      if (box->isChecked())
-        BACKEND->encryptFileList();
-      if (listEncryptionBox)
-        lastPswrd_ = lineEdit->text();
-    }
-    delete dialog;
-    break;
-  case QDialog::Rejected:
-  default:
-    delete dialog;
-    res = false;
-    break;
+      break;
   }
 
   if (!res) { // don't proceed with autoextraction
@@ -1288,8 +1288,7 @@ void mainWin::extractSelection() {
   bool overwrite(false);
   if (!selList.isEmpty()) {
     selList.sort();
-    for (const auto &file : std::as_const(selList))
-    {
+    for (const auto &file : std::as_const(selList)) {
         /* the path may contain newlines, which have been escaped and are restored here */
         QString realFile(file);
         realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
@@ -1359,14 +1358,14 @@ void mainWin::onEnterPressed(QTreeWidgetItem *it) {
 }
 
 static inline QString displaySize(const qint64 size, const QLocale &l) {
-  static const QStringList labels = {" B", " K", " M", " G", " T"};
+  static const QStringList sizeUnits = {" B", " K", " M", " G", " T"};
   int i = 0;
   double displaySize = size;
   while (displaySize > static_cast<double>(1024) && i < 4) {
     displaySize /= 1024;
     ++i;
   }
-  return (l.toString(std::round(displaySize * 10) / 10) + labels.at(i));
+  return (l.toString(std::round(displaySize * 10) / 10) + sizeUnits.at(i));
 }
 
 void mainWin::updateTree() {
@@ -1379,11 +1378,11 @@ void mainWin::updateTree() {
 
   /* NOTE: With big archives, QHash is much faster than finding items. */
   /* remove items that aren't in the archive and get the remaining items */
-  QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files.size() > 10000 ? QStringList() : files);
+  QHash<QString, QTreeWidgetItem*> allPrevItems = cleanTree(files.size() > 10000 ? QStringList()
+                                                                                 : files);
   QHash<const QString, QTreeWidgetItem*> dirs; // keep track of directory items
 
-  for (const auto& thisFile : std::as_const(files))
-  {
+  for (const auto& thisFile : std::as_const(files)) {
     QTreeWidgetItem *item = allPrevItems.value(thisFile);
     if (item != nullptr) { // already in the tree widget
       if (BACKEND->isDir(thisFile))
@@ -1449,8 +1448,7 @@ void mainWin::updateTree() {
           sections.removeLast();
           QTreeWidgetItem *parentItem = nullptr;
           QString theFile;
-          for (const auto& thisSection : std::as_const(sections))
-          {
+          for (const auto& thisSection : std::as_const(sections)) {
             theFile += (theFile.isEmpty() ? QString() : "/") + thisSection;
             QTreeWidgetItem *thisParent = dirs.value(theFile);
             if (!thisParent) {
@@ -1611,8 +1609,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
 
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
   bool curSelected = false;
-  if (cur && ui->tree_contents->selectedItems().contains(cur))
-  {
+  if (cur && ui->tree_contents->selectedItems().contains(cur)) {
     curSelected = true;
     textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
   }
@@ -1663,8 +1660,7 @@ void mainWin::procFinished(bool success, const QString& msg) {
   }
 
   if (!(updateTree_ && success) // otherwise, the cursor will be restored in updateTree()
-      && QGuiApplication::overrideCursor() != nullptr)
-  {
+      && QGuiApplication::overrideCursor() != nullptr) {
     QGuiApplication::restoreOverrideCursor();
   }
 
@@ -1707,13 +1703,11 @@ void mainWin::selectionChanged() {
   ui->actionExtractSel->setEnabled(hasSelection);
   ui->actionRemoveFile->setEnabled(hasSelection && canModify_ && !BACKEND->isGzip());
   QTreeWidgetItem *cur = ui->tree_contents->currentItem();
-  if (cur && ui->tree_contents->selectedItems().contains(cur))
-  {
+  if (cur && ui->tree_contents->selectedItems().contains(cur)) {
     ui->actionView->setEnabled(!cur->text(1).isEmpty());
     textLabel_->setText(cur->whatsThis(0).replace('\n', ' ').replace('\t', ' '));
   }
-  else
-  {
+  else {
     ui->actionView->setEnabled(false);
     textLabel_->setText(lastMsg_);
   }

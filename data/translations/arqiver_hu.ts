@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="842"/>
+        <location filename="../../backends.cpp" line="840"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Ez a fájl egy link, de a célfájlja nem létezik.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1264"/>
-        <location filename="../../backends.cpp" line="1296"/>
-        <location filename="../../backends.cpp" line="1340"/>
+        <location filename="../../backends.cpp" line="1261"/>
+        <location filename="../../backends.cpp" line="1293"/>
+        <location filename="../../backends.cpp" line="1337"/>
         <source>Could not read archive</source>
         <translation>Nem sikerült olvasni az archívumot</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1299"/>
-        <location filename="../../backends.cpp" line="1345"/>
+        <location filename="../../backends.cpp" line="1296"/>
+        <location filename="../../backends.cpp" line="1342"/>
         <source>Archive Loaded</source>
         <translation>Archívum betöltve</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1306"/>
-        <location filename="../../backends.cpp" line="1393"/>
+        <location filename="../../backends.cpp" line="1303"/>
+        <location filename="../../backends.cpp" line="1390"/>
         <source>Modification Finished</source>
         <translation>A módosítás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1327"/>
-        <location filename="../../backends.cpp" line="1362"/>
+        <location filename="../../backends.cpp" line="1324"/>
+        <location filename="../../backends.cpp" line="1359"/>
         <source>Extraction Finished</source>
         <translation>A kibontás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1330"/>
-        <location filename="../../backends.cpp" line="1381"/>
+        <location filename="../../backends.cpp" line="1327"/>
+        <location filename="../../backends.cpp" line="1378"/>
         <source>Extraction Failed</source>
         <translation>A kibontás sikertelen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1478"/>
+        <location filename="../../backends.cpp" line="1475"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 hiányzik a rendszeréből.
@@ -328,7 +328,7 @@ Figyelmeztetés: Az Arqiver nem fog működni,
         <location filename="../../mainWin.cpp" line="464"/>
         <location filename="../../mainWin.cpp" line="793"/>
         <location filename="../../mainWin.cpp" line="992"/>
-        <location filename="../../mainWin.cpp" line="1301"/>
+        <location filename="../../mainWin.cpp" line="1300"/>
         <source>Question</source>
         <translation>Kérdés</translation>
     </message>
@@ -379,8 +379,8 @@ Figyelmeztetés: Az Arqiver nem fog működni,
     <message>
         <location filename="../../mainWin.cpp" line="1215"/>
         <location filename="../../mainWin.cpp" line="1230"/>
-        <location filename="../../mainWin.cpp" line="1316"/>
-        <location filename="../../mainWin.cpp" line="1330"/>
+        <location filename="../../mainWin.cpp" line="1315"/>
+        <location filename="../../mainWin.cpp" line="1329"/>
         <source>Extracting...</source>
         <translation>Kibontás...</translation>
     </message>
@@ -638,7 +638,7 @@ Figyelmeztetés: Az Arqiver nem fog működni,
         <translation>Kibontás könyvtárba</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1302"/>
+        <location filename="../../mainWin.cpp" line="1301"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -647,43 +647,43 @@ Folytatja?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1428"/>
+        <location filename="../../mainWin.cpp" line="1427"/>
         <source>Link To: %1</source>
         <translation>Link ide: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1698"/>
+        <location filename="../../mainWin.cpp" line="1694"/>
         <source>Could not read archive</source>
         <translation>Nem sikerült olvasni az archívumot</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1765"/>
         <source>A simple Qt archive manager</source>
         <translation>Egy egyszerű Qt archívumkezelő</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1766"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>amely a libarchive-on a gzipen és a 7z-n alapul</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1773"/>
+        <location filename="../../mainWin.cpp" line="1767"/>
         <source>Author</source>
         <translation>Szerző</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1774"/>
+        <location filename="../../mainWin.cpp" line="1768"/>
         <source>aka.</source>
         <translation>más néven</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1775"/>
-        <location filename="../../mainWin.cpp" line="1776"/>
+        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1770"/>
         <source>About Arqiver</source>
         <translation>Arqiver névjegye</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1775"/>
+        <location filename="../../mainWin.cpp" line="1769"/>
         <source>Translators</source>
         <translation>Fordítók</translation>
     </message>

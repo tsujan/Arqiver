@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2024 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2025 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -27,7 +27,7 @@
 
 void handleQuitSignals(const std::vector<int>& quitSignals) {
   auto handler = [](int sig) ->void {
-    Q_UNUSED(sig);
+    Q_UNUSED(sig)
     QCoreApplication::quit();
   };
 
@@ -93,5 +93,5 @@ int main(int argc, char **argv) {
     W.show();
   else
     W.loadArguments(args);
-  return  a.exec();
+  return a.exec();
 }

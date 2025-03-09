@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="842"/>
+        <location filename="../../backends.cpp" line="840"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>ეს ფაილი ბმულია, მაგრამ სამიზნე არ არსებობს.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1264"/>
-        <location filename="../../backends.cpp" line="1296"/>
-        <location filename="../../backends.cpp" line="1340"/>
+        <location filename="../../backends.cpp" line="1261"/>
+        <location filename="../../backends.cpp" line="1293"/>
+        <location filename="../../backends.cpp" line="1337"/>
         <source>Could not read archive</source>
         <translation>არქივის წაკითხვა შეუძლებელია</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1299"/>
-        <location filename="../../backends.cpp" line="1345"/>
+        <location filename="../../backends.cpp" line="1296"/>
+        <location filename="../../backends.cpp" line="1342"/>
         <source>Archive Loaded</source>
         <translation>არქივი ჩაიტვირთა</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1306"/>
-        <location filename="../../backends.cpp" line="1393"/>
+        <location filename="../../backends.cpp" line="1303"/>
+        <location filename="../../backends.cpp" line="1390"/>
         <source>Modification Finished</source>
         <translation>ცვლილება დასრულდა</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1327"/>
-        <location filename="../../backends.cpp" line="1362"/>
+        <location filename="../../backends.cpp" line="1324"/>
+        <location filename="../../backends.cpp" line="1359"/>
         <source>Extraction Finished</source>
         <translation>გაშლა დასრულდა</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1330"/>
-        <location filename="../../backends.cpp" line="1381"/>
+        <location filename="../../backends.cpp" line="1327"/>
+        <location filename="../../backends.cpp" line="1378"/>
         <source>Extraction Failed</source>
         <translation>გაშლა ჩავარდა</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1478"/>
+        <location filename="../../backends.cpp" line="1475"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 თქვენს სისტემაში აღმოჩენილი არაა.
@@ -328,7 +328,7 @@ libarchive-ს არ ეკუთვნის.</translation>
         <location filename="../../mainWin.cpp" line="464"/>
         <location filename="../../mainWin.cpp" line="793"/>
         <location filename="../../mainWin.cpp" line="992"/>
-        <location filename="../../mainWin.cpp" line="1301"/>
+        <location filename="../../mainWin.cpp" line="1300"/>
         <source>Question</source>
         <translation>კითხვა</translation>
     </message>
@@ -379,8 +379,8 @@ libarchive-ს არ ეკუთვნის.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1215"/>
         <location filename="../../mainWin.cpp" line="1230"/>
-        <location filename="../../mainWin.cpp" line="1316"/>
-        <location filename="../../mainWin.cpp" line="1330"/>
+        <location filename="../../mainWin.cpp" line="1315"/>
+        <location filename="../../mainWin.cpp" line="1329"/>
         <source>Extracting...</source>
         <translation>გაშლა...</translation>
     </message>
@@ -639,7 +639,7 @@ libarchive-ს არ ეკუთვნის.</translation>
         <translation>გაშლა საქაღალდეში</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1302"/>
+        <location filename="../../mainWin.cpp" line="1301"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -648,43 +648,43 @@ Do you want to continue?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1428"/>
+        <location filename="../../mainWin.cpp" line="1427"/>
         <source>Link To: %1</source>
         <translation>ბმული სადამდე: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1698"/>
+        <location filename="../../mainWin.cpp" line="1694"/>
         <source>Could not read archive</source>
         <translation>არქივის წაკითხვა შეუძლებელია</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1765"/>
         <source>A simple Qt archive manager</source>
         <translation>მარტივი Qt-ის არქივების მმართველი</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1766"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>ეყრდნობა libarchive-ს, gzip-ს და 7z-ს</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1773"/>
+        <location filename="../../mainWin.cpp" line="1767"/>
         <source>Author</source>
         <translation>ავტორი</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1774"/>
+        <location filename="../../mainWin.cpp" line="1768"/>
         <source>aka.</source>
         <translation>ცნობილი, როგორც.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1775"/>
-        <location filename="../../mainWin.cpp" line="1776"/>
+        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1770"/>
         <source>About Arqiver</source>
         <translation>Arqiver-ის შესახებ</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1775"/>
+        <location filename="../../mainWin.cpp" line="1769"/>
         <source>Translators</source>
         <translation>მთარგმნელები</translation>
     </message>

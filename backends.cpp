@@ -91,7 +91,7 @@ Backend::~Backend() {
 
 void Backend::setTarCommand(const QString& cmnd) {
 #ifdef Q_OS_LINUX
-  Q_UNUSED(cmnd);
+  Q_UNUSED(cmnd)
   tarCmnd_ = TAR_CMD;
 #else
   if (cmnd.isEmpty())
@@ -288,8 +288,7 @@ static inline void skipExistingFiles(QString& file) {
 
 // This is only for bsdtar, which uses an ed-like pattern substitution.
 // WARNING: Here it is supposed that backslashes are escaped by bsdtar.
-static inline QString escapeSpecialChars(const QString& str)
-{
+static inline QString escapeSpecialChars(const QString& str) {
   QString newStr = str;
   newStr.replace("*", "\\*").replace("[", "\\[").replace("^", "\\^")
         .replace("$", "\\$").replace("?", "\\?");
@@ -349,8 +348,7 @@ void Backend::updateArchive() {
   args << "-c" << "-a";
   skipExistingFiles(tmpfilepath_); // practically not required
   args << "-f" << tmpfilepath_;
-  for (const QString &str : std::as_const(changedFiles_))
-  {
+  for (const QString &str : std::as_const(changedFiles_)) {
     /* WARNING: Since the workaround for bsdtar's escaped backslashes is already applied,
                 they need to be escaped again, before other special characters are escaped. */
     args << "--exclude" << "^" + escapeSpecialChars(str.section('/', 3).replace("\\", "\\\\"));
@@ -1001,8 +999,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
   }
 
   // files may be edited also by drag-and-drop
-  for (const QString &str : std::as_const(tempFileNames))
-  {
+  for (const QString &str : std::as_const(tempFileNames)) {
     QFileInfo info(str);
     if (!info.isDir()) {
       const QString finalTarget = info.canonicalFilePath();
