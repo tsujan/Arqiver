@@ -37,7 +37,7 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "1.0.1";
+  const QString version = "1.0.2";
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);
@@ -65,22 +65,12 @@ int main(int argc, char **argv) {
   a.setApplicationVersion(version);
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
 
-  QStringList langs(QLocale::system().uiLanguages());
-  QString lang;
-  if (!langs.isEmpty())
-    lang = langs.first().replace('-', '_');
-
   QTranslator qtTranslator;
-  if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+  if (qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
     a.installTranslator(&qtTranslator);
-  else if (!langs.isEmpty()) {
-    lang = langs.first().split(QLatin1Char('_')).first();
-    if (qtTranslator.load("qt_" + lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-      a.installTranslator(&qtTranslator);
-  }
 
   QTranslator ArqTranslator;
-  if (ArqTranslator.load("arqiver_" + lang, DATADIR "/arqiver/translations"))
+  if (ArqTranslator.load("arqiver_" + QLocale::system().name(), DATADIR "/arqiver/translations"))
     a.installTranslator(&ArqTranslator);
 
   QStringList args;
