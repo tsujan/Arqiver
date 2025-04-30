@@ -1036,7 +1036,7 @@ void mainWin::extractDraggedItems() {
       urlList << QUrl::fromLocalFile(file);
     }
     drag->mimeData()->setUrls(urlList);
-    if (drag && drag->exec(Qt::CopyAction) == Qt::IgnoreAction)
+    if (drag->exec(Qt::CopyAction) == Qt::IgnoreAction && drag)
       drag->deleteLater();
   });
 

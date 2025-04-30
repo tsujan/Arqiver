@@ -1,6 +1,7 @@
 V1.0.2
 --------
  * Removed an old workaround about translations, which prevented some languages from being loaded due to a recent change in Qt.
+ * Check for nullity of `QDrag` before calling `deleteLater()` on it.
 
 V1.0.1
 --------
