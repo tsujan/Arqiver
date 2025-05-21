@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="160"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>许可证</translation>
     </message>
 </context>
 <context>
@@ -14,44 +14,45 @@
     <message>
         <location filename="../../backends.cpp" line="840"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该文件是一个链接，但其目标不存在。</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1261"/>
         <location filename="../../backends.cpp" line="1293"/>
         <location filename="../../backends.cpp" line="1337"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>无法读取档案</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1296"/>
         <location filename="../../backends.cpp" line="1342"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>档案已加载</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1303"/>
         <location filename="../../backends.cpp" line="1390"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>修改完成</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1324"/>
         <location filename="../../backends.cpp" line="1359"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>解压完成</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1327"/>
         <location filename="../../backends.cpp" line="1378"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>提取失败</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1475"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>系统缺少 %1
+安装以处理此类归档！</translation>
     </message>
 </context>
 <context>
@@ -60,7 +61,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>您可以在主视图中输入
+使用 ESC 键清空。</translation>
     </message>
 </context>
 <context>
@@ -68,7 +70,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>首选项</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
