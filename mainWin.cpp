@@ -49,7 +49,7 @@
 
 namespace Arqiver {
 
-static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar|zip|tgz|txz|tzst|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
+static const QRegularExpression archivingExt("\\.(tar\\.gz|tar\\.xz|tar\\.bz|tar\\.bz2|tar\\.lzma|tar\\.zst|tar\\.lz4|tar|zip|tgz|txz|tzst|tlz4|tbz|tbz2|tlz|cpio|ar|7z|gz)$");
 /*************************/
 QVariant TreeWidgetItem::data(int column, int role) const {
   if (backend_ != nullptr
@@ -624,7 +624,7 @@ QHash<QString, QTreeWidgetItem*> mainWin::cleanTree(const QStringList& list) {
 }
 
 QString mainWin::allArchivingTypes() {
-  static const QString allTypes = tr("All Types") + " (*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)";
+  static const QString allTypes = tr("All Types") + " (*.tar.gz *.tar.xz *.tar.bz *.tar.bz2 *.tar.lzma *.tar.zst *.tar.lz4 *.tar *.zip *.tgz *.txz *.tzst *.tlz4 *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz)";
   return allTypes;
 }
 
@@ -641,6 +641,7 @@ QString mainWin::archivingTypes() {
     tmp << tr("LMZA Compressed Archive") + " (*.tar.lzma *.tlz)";
     tmp << tr("XZ Compressed Archive") + " (*.tar.xz *.txz)";
     tmp << tr("Zstandard Compressed Archive") + " (*.tar.zst *.tzst)";
+    tmp << tr("LZ4 Compressed Archive") + " (*.tar.lz4 *.tlz4)";
     tmp << tr("CPIO Archive") + " (*.cpio)";
     //types << tr("PAX Archive") + " (*.pax)";
     tmp << tr("AR Archive") + " (*.ar)";
@@ -673,6 +674,7 @@ QHash<QString, QString> mainWin::supportedMimeTypes() {
     supported.insert ("application/x-lzma-compressed-tar", tr("LMZA Compressed Archive") + " (*.tar.lzma *.tlz)");
     supported.insert ("application/x-zstd-compressed-tar", tr("Zstandard Compressed Archive") + " (*.tar.zst *.tzst)");
     supported.insert ("application/zstd", tr("READ-ONLY: Zstandard archive") + " (*.zst)");
+    supported.insert ("application/x-lz4-compressed-tar", tr("LZ4 Compressed Archive") + " (*.tar.lz4 *.tlz4)");
     supported.insert ("application/x-cpio", tr("CPIO Archive") + " (*.cpio)");
     //supported.insert ("?", tr("PAX Archive") + " (*.pax)");
     supported.insert ("application/x-archive", tr("AR Archive") + " (*.ar)");
@@ -709,7 +711,7 @@ QString mainWin::openingTypes() {
   static QString fileTypes;
   if (fileTypes.isEmpty()) {
     QStringList types;
-    types << tr("All Known Types") + " (*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz *.bz2 *.tar.lzma *.tar.zst *.zst *.tar *.zip *.tgz *.txz *.tzst *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.apk *.rar *.appimage *.vbox-extpack *.dmg)";
+    types << tr("All Known Types") + " (*.tar.gz *.tar.xz *.xz *.tar.bz *.tar.bz2 *.bz *.bz2 *.tar.lzma *.tar.zst *.zst *.tar.lz4 *.tar *.zip *.tgz *.txz *.tzst *.tlz4 *.tbz *.tbz2 *.tlz *.cpio *.ar *.7z *.gz *.svgz *.iso *.img *.xar *.jar *.deb *.rpm *.exe *.com *.msi *.cab *.apk *.rar *.appimage *.vbox-extpack *.dmg)";
     QStringList l = supportedMimeTypes().values();
     l.removeDuplicates();
     l.sort();
