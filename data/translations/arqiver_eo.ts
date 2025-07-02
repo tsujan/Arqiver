@@ -453,7 +453,7 @@ duumaĵo ne apartenus al libarchive.</translation>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompaktigita Arkivo de LZ4</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
