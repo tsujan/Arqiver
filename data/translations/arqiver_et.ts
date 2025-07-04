@@ -453,7 +453,7 @@ rakenduse fail ei kuulu libarchive&apos;le.</translation>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LZ4-ga pakitud arhiiv</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>

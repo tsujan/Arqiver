@@ -51,7 +51,7 @@
         <location filename="../../backends.cpp" line="1475"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation>%1 is niet geïnstalleerd.
+        <translation>‘%1’ is niet geïnstalleerd.
 Installeer dit pakket om dit soort archieven te kunnen beheren!</translation>
     </message>
 </context>
@@ -453,7 +453,7 @@ bestand niet van libarchive is.</translation>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LZ4-archief met compressie</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
