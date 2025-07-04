@@ -453,7 +453,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LZ4 壓縮的封存檔案</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
