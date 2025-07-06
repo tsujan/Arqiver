@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="164"/>
         <source>License</source>
-        <translation>Άδεια</translation>
+        <translation>Άδεια χρήσης</translation>
     </message>
 </context>
 <context>
@@ -21,13 +21,13 @@
         <location filename="../../backends.cpp" line="1293"/>
         <location filename="../../backends.cpp" line="1337"/>
         <source>Could not read archive</source>
-        <translation>Αδυναμία ανάγνωσης αρχείου</translation>
+        <translation>Αδυναμία ανάγνωσης της αρχειοθήκης</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1296"/>
         <location filename="../../backends.cpp" line="1342"/>
         <source>Archive Loaded</source>
-        <translation>Το αρχείο φορτώθηκε</translation>
+        <translation>Η αρχειοθήκη φορτώθηκε</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1303"/>
@@ -52,7 +52,7 @@
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>Το %1 λείπει από το σύστημά σας.
-Παρακαλούμε εγκαταστήστε το για αυτό το είδος αρχείου!</translation>
+Παρακαλούμε εγκαταστήστε το για αυτό το είδος αρχειοθήκης!</translation>
     </message>
 </context>
 <context>
@@ -90,12 +90,12 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation>Αν αυτό αποεπιλεγεί, οι κατάλογοι μόνο του ανωτάτου επιπέδου θα αναπτυχθούν.</translation>
+        <translation>Αν αποεπιλεγεί, οι κατάλογοι μόνο του ανωτάτου επιπέδου θα αναπτυχθούν.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation>Ανάπτυξη όλων των καταλόγων κατά το άνοιγμα αρχείων</translation>
+        <translation>Ανάπτυξη όλων των καταλόγων κατά το άνοιγμα των αρχειοθηκών</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -453,7 +453,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Συμπιεσμένο αρχείο LZ4</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
