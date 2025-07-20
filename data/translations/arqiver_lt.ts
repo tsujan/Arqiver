@@ -62,7 +62,7 @@ Please install it for this kind of archive!</source>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
         <translation>Galite rašyti pagrindinio rodinio viduje.
-Išvalykite tekstą naudodami „Escape“ klavišą.</translation>
+Išvalykite tekstą naudodami Grįžimo (Escape) klavišą.</translation>
     </message>
 </context>
 <context>
@@ -453,7 +453,7 @@ nepriklausys libarchive.</translation>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LZ4 glaudintas archyvas</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
