@@ -453,7 +453,7 @@ libarchive-ს არ ეკუთვნის.</translation>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>LZ4-ით შეკუმშული არქივი</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
