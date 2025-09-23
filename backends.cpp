@@ -526,14 +526,14 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       return;
     }*/
     emit processStarting();
-    QString extName = filepath_.section("/", -1);
-    if (extName.contains(".")) {
-      extName = extName.section(".", 0, -2);
-    }
+    QString extName = archiveSingleRoot_;
+    /*QString extName = filepath_.section("/", -1);
+    if (extName.contains("."))
+      extName = extName.section(".", 0, -2);*/
     if (extName.isEmpty())
       extName = "arqiver-extracted";
-    if (filepath_.endsWith(".svgz") && !extName.endsWith(".svg"))
-      extName += ".svg";
+    /*if (filepath_.endsWith(".svgz") && !extName.endsWith(".svg"))
+      extName += ".svg";*/
     extName = path + "/" + extName;
     skipExistingFiles(extName);
     tmpProc_.setStandardOutputFile(extName);
@@ -1129,11 +1129,11 @@ void Backend::parseLines(QStringList& lines) {
         int indx = lines.at(i).indexOf("% ");
         if (indx > -1) {
           QString file = lines.at(i).mid(indx + 2).section('/', -1);
-          if (filepath_.endsWith(".svgz") && file.endsWith(".svgz")) {
-            /* WARNING: gzip lists the file as svgz again */
-            file.remove(QRegularExpression("svgz$"));
-            file += "svg";
-          }
+          //if (filepath_.endsWith(".svgz") && file.endsWith(".svgz")) {
+          //  /* WARNING: gzip lists the file as svgz again when the option "-N" is not used. */
+          //  file.remove(QRegularExpression("svgz$"));
+          //  file += "svg";
+          //}
           archiveSingleRoot_ = file.section('/', 0, 0);
           contents_.insert(file,
                            QStringList() << "-rw-r--r--" << info.at(1) << QString()); // [perms, size, linkto]
@@ -1223,7 +1223,7 @@ void Backend::startList(bool withPassword) {
   listing_ = true;
   if (isGzip_) {
     keyArgs_ << "-l";
-    proc_.start("gzip", QStringList() << "-l" << filepath_);
+    proc_.start("gzip", QStringList() << "-l" << "-N" << filepath_);
   }
   else if (is7z_) {
     QStringList args;
