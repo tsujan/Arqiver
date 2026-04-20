@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2025 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2026 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -261,6 +261,13 @@ bool Backend::isDir(const QString& file) const {
     return false;
   if (is7z_)
     return contents_.value(file).at(0).startsWith("D");
+  return contents_.value(file).at(0).startsWith("d");
+}
+
+bool Backend::noFastRead(const QString& file) const {
+  // "--fast-read" interferes with extraction of directories
+  if (isGzip_ || is7z_ || !contents_.contains(file))
+    return true;
   return contents_.value(file).at(0).startsWith("d");
 }
 
@@ -813,8 +820,7 @@ bool Backend::startViewFile(const QString& path) {
       }
       else { // bsdtar
         cmnd = tarCmnd_;
-        // "--fast-read" interferes with extraction of directories
-        if (isDir(path))
+        if (noFastRead(path))
           args << "-x" << "--no-same-owner";
         else
           args << "-x" << "--no-same-owner" << "--fast-read";
@@ -959,15 +965,14 @@ void Backend::extractTempFiles(const QStringList& paths) {
     }
     else {
       /* bsdtar */
-      bool noDir = true;
+      bool useFastRead = true;
       for (const QString &str : paths) {
-        if (isDir(str)) {
-          noDir = false;
+        if (noFastRead(str)) {
+          useFastRead = false;
           break;
         }
       }
-      // "--fast-read" interferes with extraction of directories
-      if (noDir)
+      if (useFastRead)
         args << "-x" << "--no-same-owner" << "--fast-read" << "-k" << fileArgs_;
       else
         args << "-x" << "--no-same-owner" << "-k" << fileArgs_;

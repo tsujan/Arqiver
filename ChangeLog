@@ -4,6 +4,7 @@ V1.0.2
  * Check for nullity of `QDrag` before calling `deleteLater()` on it.
  * Added LZ4 support.
  * Used the original file name with Gzip ("-N" option).
+ * Corrected the usage of `--fast-read` with bsdtar.
 
 V1.0.1
 --------

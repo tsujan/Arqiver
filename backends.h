@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2026 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -122,6 +122,7 @@ private slots:
   void onError(QProcess::ProcessError error);
 
 private:
+  bool noFastRead(const QString& file) const;
   bool allChildrenExyracted(const QString& parent) const;
   void parseLines(QStringList& lines);
 
