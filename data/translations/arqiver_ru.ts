@@ -132,7 +132,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../pref.cpp" line="184"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation>Для вступления изменений в силу, необходим перезапуск приложения.</translation>
+        <translation>Для вступления изменений в силу необходим перезапуск приложения.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="241"/>
@@ -150,7 +150,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation>Фильтр файлов...</translation>
+        <translation>Фильтр файлов…</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -205,12 +205,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
         <source>Add File(s)</source>
-        <translation>Добавить файл (-ы)</translation>
+        <translation>Добавить файл(ы)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="233"/>
         <source>Remove File(s)</source>
-        <translation>Удалить файл (-ы)</translation>
+        <translation>Удалить файл(ы)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
@@ -341,7 +341,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="798"/>
         <source>Do you want to replace it?
 </source>
-        <translation>Вы хотите заменить это?
+        <translation>Хотите заменить его?
 </translation>
     </message>
     <message>
@@ -368,7 +368,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="995"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation>Вы хотите удалить выбранные элементы?
+        <translation>Хотите удалить выбранные элементы?
 </translation>
     </message>
     <message>
@@ -453,7 +453,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation>Архив с сжатием LZ4</translation>
+        <translation>Архив со сжатием LZ4</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
@@ -650,7 +650,7 @@ binary does not belong to libarchive.</source>
 Do you want to continue?
 </source>
         <translation>Некоторые файлы будут перезаписаны.
-Вы хотите продолжить?
+Хотите продолжить?
 </translation>
     </message>
     <message>
