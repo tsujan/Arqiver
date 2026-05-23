@@ -1,2 +1,12 @@
 /*build*
 *.user
+.qmake.stash
+Makefile
+*.app
+**/.DS_Store
+**/qrc_*.cpp
+**/moc_*.cpp
+**/moc_*.h
+**/ui_*.h
+**/*.qm
+**/*.o
