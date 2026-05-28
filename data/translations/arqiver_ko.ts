@@ -70,7 +70,7 @@ Esc 키를 사용하여 텍스트를 지우십시오.</translation>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation>기본 설정</translation>
+        <translation>환경설정</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
@@ -270,7 +270,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
         <source>&amp;Preferences</source>
-        <translation>기본 설정(&amp;P)</translation>
+        <translation>환경설정(&amp;P)</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
