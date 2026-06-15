@@ -68,7 +68,7 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Imenyafen</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
@@ -140,12 +140,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbaṛ:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sizdeg ifuyla...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
@@ -155,42 +155,42 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ẓ&amp;reg</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="155"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sken</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="166"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tallelt</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ldi aɣbar</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbaṛ amay&amp;nut</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="220"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ffeɣ</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="223"/>
@@ -200,17 +200,17 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rnu (i)afaylu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="233"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kkes (i)afaylu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>Sefsu-ten akk</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
@@ -220,17 +220,17 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="246"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rnu akaram</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ssefsu tafrant</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Sbadu awal n uεeddi</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
@@ -255,7 +255,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>Ɣ&amp;ef</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
@@ -265,7 +265,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime&amp;nyafen</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
@@ -285,27 +285,27 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="147"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Aẓar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="252"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuccḍa</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Afaylu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MimeType</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiddi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
@@ -317,7 +317,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="769"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Snulfu-d Aɣbaṛ</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="464"/>
@@ -325,7 +325,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="994"/>
         <location filename="../../mainWin.cpp" line="1302"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Asteqsi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="796"/>
@@ -341,14 +341,14 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="832"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ldi aɣbar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <location filename="../../mainWin.cpp" line="906"/>
         <location filename="../../mainWin.cpp" line="943"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Rnu ɣer uɣbar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="938"/>
@@ -356,7 +356,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1254"/>
         <location filename="../../mainWin.cpp" line="1260"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Timerna n iferdisen...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="995"/>
@@ -375,7 +375,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1317"/>
         <location filename="../../mainWin.cpp" line="1331"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Asefsu...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1058"/>
@@ -396,7 +396,7 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
         <source>All Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Anawen akk</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="637"/>
@@ -451,31 +451,31 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="645"/>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbar CPIO</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="647"/>
         <location filename="../../mainWin.cpp" line="680"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbar AR</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <location filename="../../mainWin.cpp" line="682"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbar Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="650"/>
         <location filename="../../mainWin.cpp" line="684"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbar Gzip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <location filename="../../mainWin.cpp" line="683"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Aɣbar 7-Zip</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="667"/>
@@ -592,12 +592,12 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="719"/>
         <source>Show All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sken-d akk ifuyla</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1068"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ldi akaram amagbar</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
@@ -608,22 +608,22 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1113"/>
         <location filename="../../mainWin.cpp" line="1121"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekcem awal n uɛeddi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1129"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Semmet</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Ih</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1138"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Wgelhen tabdart n yifuyla</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1139"/>
@@ -634,7 +634,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1210"/>
         <location filename="../../mainWin.cpp" line="1286"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Ssefsu ar ukaram</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1303"/>
@@ -666,7 +666,7 @@ Do you want to continue?
     <message>
         <location filename="../../mainWin.cpp" line="1769"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Ameskar</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1770"/>
@@ -677,12 +677,12 @@ Do you want to continue?
         <location filename="../../mainWin.cpp" line="1771"/>
         <location filename="../../mainWin.cpp" line="1772"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>ɣef Arqiver</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1771"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Imsuqlen</translation>
     </message>
 </context>
 </TS>
