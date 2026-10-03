@@ -593,6 +593,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
         int N = filesList.length();
         int strip = filesList[0].count("/");
         for (int i = 0; i < N; i++) {
+          strip = std::min(strip, static_cast<int>(filesList[N - 1 - i].count("/")));
           if (filesList[N - 1 - i].simplified().isEmpty()
               // see the end of this function for the reason
               || (startBackslash_ && filesList[N - 1 - i].contains(startBslashExp))) {
@@ -600,7 +601,6 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
             continue;
           }
           args << "--include" << escapeSpecialChars(filesList[N - 1 - i]);
-          strip = std::min(strip, static_cast<int>(filesList[N - 1 - i].count("/")));
         }
         /* It's a shame that only the last occurrence of  "--strip-components" is used.
            Grouping and doing separate extractions would complicate the situation. */

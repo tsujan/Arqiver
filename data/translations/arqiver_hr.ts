@@ -323,7 +323,7 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="464"/>
         <location filename="../../mainWin.cpp" line="795"/>
         <location filename="../../mainWin.cpp" line="994"/>
-        <location filename="../../mainWin.cpp" line="1302"/>
+        <location filename="../../mainWin.cpp" line="1308"/>
         <source>Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -372,8 +372,8 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.cpp" line="1217"/>
         <location filename="../../mainWin.cpp" line="1232"/>
-        <location filename="../../mainWin.cpp" line="1317"/>
-        <location filename="../../mainWin.cpp" line="1331"/>
+        <location filename="../../mainWin.cpp" line="1323"/>
+        <location filename="../../mainWin.cpp" line="1337"/>
         <source>Extracting...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,50 +637,50 @@ binary does not belong to libarchive.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1303"/>
+        <location filename="../../mainWin.cpp" line="1309"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1429"/>
+        <location filename="../../mainWin.cpp" line="1435"/>
         <source>Link To: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1696"/>
+        <location filename="../../mainWin.cpp" line="1702"/>
         <source>Could not read archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1767"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
         <source>A simple Qt archive manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1768"/>
+        <location filename="../../mainWin.cpp" line="1774"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1775"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1770"/>
+        <location filename="../../mainWin.cpp" line="1776"/>
         <source>aka.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
+        <location filename="../../mainWin.cpp" line="1778"/>
         <source>About Arqiver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
         <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>

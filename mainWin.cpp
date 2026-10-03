@@ -1290,24 +1290,30 @@ void mainWin::extractSelection() {
   bool overwrite(false);
   if (!selList.isEmpty()) {
     selList.sort();
+    int strip = 0; // see "Backend::startExtract"
+    if (!BACKEND->isGzip() && !BACKEND->is7z()) {
+      strip = selList[0].count("/");
+      for (const auto &file : std::as_const(selList))
+        strip = std::min(strip, static_cast<int>(file.count("/")));
+    }
     for (const auto &file : std::as_const(selList)) {
-        /* the path may contain newlines, which have been escaped and are restored here */
-        QString realFile(file);
-        realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
-                .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
-        if (!BACKEND->isGzip() && !BACKEND->is7z())
-          realFile.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
-        if (QFile::exists(dir + "/" + realFile.section("/",-1))) {
-          QMessageBox::StandardButton btn = QMessageBox::question(this,
-                                                                  tr("Question"),
-                                                                  tr("Some files will be overwritten.\nDo you want to continue?\n"),
-                                                                  QMessageBox::Yes | QMessageBox::No,
-                                                                  QMessageBox::No);
-          if (btn == QMessageBox::No)
-            return;
-          overwrite = true;
-          break;
-        }
+      /* the path may contain newlines, which have been escaped and are restored here */
+      QString realFile(file);
+      realFile.replace(QRegularExpression("(?<!\\\\)\\\\n"), "\n")
+              .replace(QRegularExpression("(?<!\\\\)\\\\t"), "\t");
+      if (!BACKEND->isGzip() && !BACKEND->is7z())
+        realFile.replace("\\\\", "\\"); // WARNING: bsdtar escapes backslashes.
+      if (QFile::exists(dir + "/" + realFile.section("/", strip))) {
+        QMessageBox::StandardButton btn = QMessageBox::question(this,
+                                                                tr("Question"),
+                                                                tr("Some files will be overwritten.\nDo you want to continue?\n"),
+                                                                QMessageBox::Yes | QMessageBox::No,
+                                                                QMessageBox::No);
+        if (btn == QMessageBox::No)
+          return;
+        overwrite = true;
+        break;
+      }
     }
   }
 

@@ -2,6 +2,7 @@ V1.0.3
 --------
  * With bsdtar, check the first info before checking "link to" or "->".
  * Fixed the selective extraction of multiple items with bsdtar (unfortunately, bsdtar takes only the last occurrence of "--strip-components" into account).
+ * Fixed the warning about overwriting.
 
 V1.0.2
 --------

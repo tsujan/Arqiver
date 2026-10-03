@@ -328,7 +328,7 @@ aid deyilsə Arqiver işləməyəcək.</translation>
         <location filename="../../mainWin.cpp" line="464"/>
         <location filename="../../mainWin.cpp" line="795"/>
         <location filename="../../mainWin.cpp" line="994"/>
-        <location filename="../../mainWin.cpp" line="1302"/>
+        <location filename="../../mainWin.cpp" line="1308"/>
         <source>Question</source>
         <translation>Sual</translation>
     </message>
@@ -379,8 +379,8 @@ aid deyilsə Arqiver işləməyəcək.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1217"/>
         <location filename="../../mainWin.cpp" line="1232"/>
-        <location filename="../../mainWin.cpp" line="1317"/>
-        <location filename="../../mainWin.cpp" line="1331"/>
+        <location filename="../../mainWin.cpp" line="1323"/>
+        <location filename="../../mainWin.cpp" line="1337"/>
         <source>Extracting...</source>
         <translation>Çıxarılır...</translation>
     </message>
@@ -645,7 +645,7 @@ aid deyilsə Arqiver işləməyəcək.</translation>
         <translation>Qovluğa çıxarın</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1303"/>
+        <location filename="../../mainWin.cpp" line="1309"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -654,43 +654,43 @@ Davam etmək sitəyirsiniz?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1429"/>
+        <location filename="../../mainWin.cpp" line="1435"/>
         <source>Link To: %1</source>
         <translation>Keçid: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1696"/>
+        <location filename="../../mainWin.cpp" line="1702"/>
         <source>Could not read archive</source>
         <translation>Arxivi oxumaq mümkün olmadı</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1767"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
         <source>A simple Qt archive manager</source>
         <translation>Sadə Qt arxiv meneceri</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1768"/>
+        <location filename="../../mainWin.cpp" line="1774"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>libarchive, gzip və 7z-ə əsaslanan</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1775"/>
         <source>Author</source>
         <translation>Müəllif</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1770"/>
+        <location filename="../../mainWin.cpp" line="1776"/>
         <source>aka.</source>
         <translation>digər adı.</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
+        <location filename="../../mainWin.cpp" line="1778"/>
         <source>About Arqiver</source>
         <translation>Arqiver haqqında</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
         <source>Translators</source>
         <translation>Tərcüməçilər</translation>
     </message>

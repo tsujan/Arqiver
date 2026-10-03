@@ -328,7 +328,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <location filename="../../mainWin.cpp" line="464"/>
         <location filename="../../mainWin.cpp" line="795"/>
         <location filename="../../mainWin.cpp" line="994"/>
-        <location filename="../../mainWin.cpp" line="1302"/>
+        <location filename="../../mainWin.cpp" line="1308"/>
         <source>Question</source>
         <translation>Dotaz</translation>
     </message>
@@ -379,8 +379,8 @@ spustitelný soubor nenáleží k libarchive.</translation>
     <message>
         <location filename="../../mainWin.cpp" line="1217"/>
         <location filename="../../mainWin.cpp" line="1232"/>
-        <location filename="../../mainWin.cpp" line="1317"/>
-        <location filename="../../mainWin.cpp" line="1331"/>
+        <location filename="../../mainWin.cpp" line="1323"/>
+        <location filename="../../mainWin.cpp" line="1337"/>
         <source>Extracting...</source>
         <translation>Rozbalování…</translation>
     </message>
@@ -645,7 +645,7 @@ spustitelný soubor nenáleží k libarchive.</translation>
         <translation>Rozbalit do složky</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1303"/>
+        <location filename="../../mainWin.cpp" line="1309"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
@@ -654,43 +654,43 @@ Chcete pokračovat?
 </translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1429"/>
+        <location filename="../../mainWin.cpp" line="1435"/>
         <source>Link To: %1</source>
         <translation>Odkaz na: %1</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1696"/>
+        <location filename="../../mainWin.cpp" line="1702"/>
         <source>Could not read archive</source>
         <translation>Archiv se nedaří číst</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1767"/>
+        <location filename="../../mainWin.cpp" line="1773"/>
         <source>A simple Qt archive manager</source>
         <translation>Jednoduchý správce archivů, založený na Qt</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1768"/>
+        <location filename="../../mainWin.cpp" line="1774"/>
         <source>based on libarchive, gzip and 7z</source>
         <translation>založeno na libarchive, gzip a 7z</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1769"/>
+        <location filename="../../mainWin.cpp" line="1775"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1770"/>
+        <location filename="../../mainWin.cpp" line="1776"/>
         <source>aka.</source>
         <translation>alias</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
-        <location filename="../../mainWin.cpp" line="1772"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
+        <location filename="../../mainWin.cpp" line="1778"/>
         <source>About Arqiver</source>
         <translation>O Arqiver</translation>
     </message>
     <message>
-        <location filename="../../mainWin.cpp" line="1771"/>
+        <location filename="../../mainWin.cpp" line="1777"/>
         <source>Translators</source>
         <translation>Překladatelé</translation>
     </message>
