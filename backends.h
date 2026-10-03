@@ -142,6 +142,7 @@ private:
   QHash<QString, QStringList> contents_; // {filepath, (attributes, size, compressed size)}
 
   QStringList insertQueue_;
+  QList<QStringList> extractQueue_;
 
   bool listing_;
   bool starting7z_; // for 7z

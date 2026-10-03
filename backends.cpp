@@ -28,6 +28,7 @@
 #include <QMimeDatabase>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QMap>
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
@@ -122,6 +123,7 @@ QString Backend::getMimeType(const QString &fname) {
 }
 
 void Backend::loadFile(const QString& path, bool withPassword) {
+  extractQueue_.clear();
   /* check if the file extraction directory can be made,
      but don't create it until a file is viewed */
   const QString curTime = QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz");
@@ -524,6 +526,7 @@ void Backend::startExtract(const QString& path, const QString& file, bool overwr
 void Backend::startExtract(const QString& path, const QStringList& files, bool overwrite, bool preservePaths) {
   if (!QFile::exists(filepath_)) return;
 
+  extractQueue_.clear();
   keyArgs_.clear();
   if (isGzip_) {
     /* if the extraction takes place in the same directory, we could do it
@@ -556,6 +559,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   }
 
   QStringList args;
+  QMap<int, QStringList> extractionGroups;
   QStringList filesList = files;
   filesList.removeAll(QString());
   if (!filesList.isEmpty()) {
@@ -596,8 +600,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
             filesList.removeAt(N - 1 - i);
             continue;
           }
-          args << "--include" << escapeSpecialChars(filesList[N - 1 - i])
-               << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
+          extractionGroups[filesList[N - 1 - i].count("/")]
+            << "--include" << escapeSpecialChars(filesList[N - 1 - i]);
         }
     }
     keyArgs_ << "-x";
@@ -682,7 +686,16 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     if (!startBackslash_ && archiveRootChanged && contents_.size() > 1)
       args << "--strip-components" << "1"; // the parent name is changed
     keyArgs_ << "-C";
-    proc_.start(tarCmnd_, args); // doesn't create xPath if not existing
+    if (!extractionGroups.isEmpty()) {
+      auto it = extractionGroups.cend();
+      while (it != extractionGroups.cbegin()) {
+        --it;
+        extractQueue_ << (QStringList(args) << "--strip-components" << QString::number(it.key()) << it.value());
+      }
+      proc_.start(tarCmnd_, extractQueue_.takeFirst());
+    }
+    else
+      proc_.start(tarCmnd_, args); // doesn't create xPath if not existing
   }
 }
 
@@ -1250,7 +1263,7 @@ void Backend::startList(bool withPassword) {
   }
 }
 
-void Backend::procFinished(int retcode, QProcess::ExitStatus) {
+void Backend::procFinished(int retcode, QProcess::ExitStatus exitStatus) {
   if (isKilled_) {
     isKilled_ = false;
     if (keyArgs_.contains("l") || keyArgs_.contains("-tv") || keyArgs_.contains("-l")) { // listing
@@ -1359,6 +1372,13 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   {
     bool updateList = true;
     if (keyArgs_.contains("-x")) { // extraction
+      if (exitStatus != QProcess::NormalExit)
+        retcode = -1;
+      if (retcode == 0 && !extractQueue_.isEmpty()) {
+        proc_.start(tarCmnd_, extractQueue_.takeFirst());
+        return;
+      }
+      extractQueue_.clear();
       updateList = false;
       emit extractionFinished();
       if (retcode == 0)
@@ -1478,9 +1498,15 @@ void Backend::processData() {
 }
 
 void Backend::onError(QProcess::ProcessError error) {
-  if (error == QProcess::FailedToStart)
+  if (error == QProcess::FailedToStart) {
     emit errorMsg(tr("%1 is missing from your system.\nPlease install it for this kind of archive!")
                   .arg(proc_.program()));
+    if (!is7z_ && keyArgs_.contains("-x")) {
+      extractQueue_.clear();
+      emit extractionFinished();
+      emit processFinished(false, tr("Extraction Failed"));
+    }
+  }
 }
 
 bool Backend::isWorking() { // used only with DND
@@ -1489,6 +1515,7 @@ bool Backend::isWorking() { // used only with DND
 }
 
 void Backend::killProc() {
+  extractQueue_.clear();
   if (proc_.state() == QProcess::Running) {
     isKilled_ = true;
     proc_.kill();
