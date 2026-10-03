@@ -1193,7 +1193,7 @@ void Backend::parseLines(QStringList& lines) {
       continue;
     QString linkto;
     /* see if this file has the "link to" or "->" notation */
-    if (info.at(4) == "0") { // the size should be zero
+    if (info.at(0).startsWith("l")) {
       if (file.contains(" -> ")) {
         linkto = file.section(" -> ", 1, -1);
         file = file.section(" -> ", 0, 0);

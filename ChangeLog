@@ -1,6 +1,6 @@
 V1.0.3
 --------
- * With bsdtar, check the size before checking "link to" or "->".
+ * With bsdtar, check the first info before checking "link to" or "->".
 
 V1.0.2
 --------
