@@ -330,7 +330,7 @@ void Backend::updateArchive() {
       args << "-p" + pswrd_;
       encrypted_ = true;
     }
-    args << "a" << fileArgs_ << paths;
+    args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
     proc_.start ("7z", args);
@@ -431,7 +431,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
       args << "-p" + pswrd_;
       encrypted_ = true;
     }
-    args << "a" << fileArgs_ << filePaths;
+    args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
     proc_.start ("7z", args);
@@ -500,7 +500,7 @@ void Backend::startRemove(const QStringList& paths) {
   if (is7z_) {
     if (encrypted_)
       args << "-p" + pswrd_;
-    args << "d" << fileArgs_ << filePaths;
+    args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
     proc_.start("7z", args);
@@ -575,7 +575,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       args << "-aos"; // skip extraction of existing files
     if (encrypted_)
       args << "-p" + pswrd_;
-    args << (preservePaths ? "x" : "e") << fileArgs_;
+    args << (preservePaths ? "x" : "e") << "-spd" << fileArgs_;
     keyArgs_ << "x" << "e";
     starting7z_ = true;
   }
@@ -670,7 +670,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (is7z_) {
     args << "-o" + xPath;
     if (!noFileList)
-      args << filesList;
+      args << "--" << filesList;
     proc_.start("7z", args);
   }
   else {
@@ -793,9 +793,9 @@ bool Backend::startViewFile(const QString& path) {
       args << "-aou"; // the archive may contain files with identical names
       if (encrypted_)
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_;
+      args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_;
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
-      args << realPath;
+      args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
@@ -952,7 +952,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "-aos"; // skip extraction of existing files
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << realPaths;
+      args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
       tmpProc_.start("7z", args);
