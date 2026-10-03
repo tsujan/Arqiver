@@ -29,6 +29,8 @@
 #include <QMimeData>
 #include <QRegularExpression>
 
+#include <algorithm>
+
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
 #else
@@ -589,6 +591,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
            bsdtar doesn't extract the folder. So, we sort the list and read it inversely. */
         filesList.sort();
         int N = filesList.length();
+        int strip = filesList[0].count("/");
         for (int i = 0; i < N; i++) {
           if (filesList[N - 1 - i].simplified().isEmpty()
               // see the end of this function for the reason
@@ -596,9 +599,12 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
             filesList.removeAt(N - 1 - i);
             continue;
           }
-          args << "--include" << escapeSpecialChars(filesList[N - 1 - i])
-               << "--strip-components" << QString::number(filesList[N - 1 - i].count("/"));
+          args << "--include" << escapeSpecialChars(filesList[N - 1 - i]);
+          strip = std::min(strip, static_cast<int>(filesList[N - 1 - i].count("/")));
         }
+        /* It's a shame that only the last occurrence of  "--strip-components" is used.
+           Grouping and doing separate extractions would complicate the situation. */
+        args << "--strip-components" <<  QString::number(strip);
     }
     keyArgs_ << "-x";
   }
