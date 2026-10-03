@@ -1199,11 +1199,11 @@ void Backend::parseLines(QStringList& lines) {
         file = file.section(" -> ", 0, 0);
       }
       else if (file.contains(" link to ")) {
-        /* alternate form of a link within a tar archive (not reflected in perms) */
+        /* alternate form of a link within a tar archive (not reflected in perms?!) */
         linkto = file.section(" link to ", 1, -1);
         file = file.section(" link to ", 0, 0);
-        if (info.at(0).startsWith("-"))
-          info[0].replace(0, 1, "l");
+        /*if (info.at(0).startsWith("-"))
+          info[0].replace(0, 1, "l");*/
       }
     }
     if (file.contains(startBslashExp))
