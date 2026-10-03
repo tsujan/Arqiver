@@ -37,6 +37,20 @@
 
 namespace Arqiver {
 
+static QStringList literal7zArguments(QStringList args) {
+  const int separator = args.indexOf("--");
+  if (separator >= 0) {
+    QStringList includes;
+    for (int i = args.size() - 1; i > separator; --i) {
+      if (args.at(i).startsWith('@'))
+        includes.prepend("-i!" + args.takeAt(i));
+    }
+    for (int i = 0; i < includes.size(); ++i)
+      args.insert(separator + i, includes.at(i));
+  }
+  return args;
+}
+
 static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
 static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
 static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startBackslash_
@@ -333,7 +347,7 @@ void Backend::updateArchive() {
     args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", args);
+    proc_.start ("7z", literal7zArguments(args));
     return;
   }
 
@@ -434,7 +448,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
     args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", args);
+    proc_.start ("7z", literal7zArguments(args));
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -503,7 +517,7 @@ void Backend::startRemove(const QStringList& paths) {
     args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
-    proc_.start("7z", args);
+    proc_.start("7z", literal7zArguments(args));
     return;
   }
   args << "-c" << "-a";
@@ -671,7 +685,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     args << "-o" + xPath;
     if (!noFileList)
       args << "--" << filesList;
-    proc_.start("7z", args);
+    proc_.start("7z", literal7zArguments(args));
   }
   else {
     if (!noFileList && filesList.isEmpty())
@@ -798,7 +812,7 @@ bool Backend::startViewFile(const QString& path) {
       args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", args);
+      tmpProc_.start("7z", literal7zArguments(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -955,7 +969,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", args);
+      tmpProc_.start("7z", literal7zArguments(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
