@@ -20,6 +20,7 @@
 #ifndef BACKENDS_H
 #define BACKENDS_H
 
+#include <QByteArray>
 #include <QProcess>
 #include <QHash>
 #include <QDateTime>
@@ -125,6 +126,7 @@ private:
   bool noFastRead(const QString& file) const;
   bool allChildrenExyracted(const QString& parent) const;
   void parseLines(QStringList& lines);
+  void processOutput(bool finished);
 
   QString tarCmnd_;
 
@@ -153,7 +155,10 @@ private:
 
   QString result_; // the message sent by procFinished()
 
-  QString data_; // used when processing data
+  QByteArray data_; // incomplete process output
+  bool hasSingleRoot_;
+  int attrIndex_, cSizeIndex_, nameIndex_; // 7z listing columns
+  QString single7zFile_; // a compressed file whose sizes are in the table footer
 
   bool isKilled_;
 
