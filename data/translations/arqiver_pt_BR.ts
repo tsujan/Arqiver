@@ -17,38 +17,38 @@
         <translation>Esse arquivo é um link, mas o caminho apontado não existe.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1266"/>
-        <location filename="../../backends.cpp" line="1298"/>
-        <location filename="../../backends.cpp" line="1342"/>
+        <location filename="../../backends.cpp" line="1268"/>
+        <location filename="../../backends.cpp" line="1300"/>
+        <location filename="../../backends.cpp" line="1344"/>
         <source>Could not read archive</source>
         <translation>Não foi possível ler o arquivo</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1301"/>
-        <location filename="../../backends.cpp" line="1347"/>
+        <location filename="../../backends.cpp" line="1303"/>
+        <location filename="../../backends.cpp" line="1349"/>
         <source>Archive Loaded</source>
         <translation>Arquivo Carregado</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1308"/>
-        <location filename="../../backends.cpp" line="1395"/>
+        <location filename="../../backends.cpp" line="1310"/>
+        <location filename="../../backends.cpp" line="1397"/>
         <source>Modification Finished</source>
         <translation>Modificação Concluída</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1329"/>
-        <location filename="../../backends.cpp" line="1364"/>
+        <location filename="../../backends.cpp" line="1331"/>
+        <location filename="../../backends.cpp" line="1366"/>
         <source>Extraction Finished</source>
         <translation>Extração Concluída</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1332"/>
-        <location filename="../../backends.cpp" line="1383"/>
+        <location filename="../../backends.cpp" line="1334"/>
+        <location filename="../../backends.cpp" line="1385"/>
         <source>Extraction Failed</source>
         <translation>Extração Falhou</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1480"/>
+        <location filename="../../backends.cpp" line="1482"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 está ausente do seu sistema.

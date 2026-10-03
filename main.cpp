@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2025 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2018-2026 <tsujan2000@gmail.com>
  *
  * Arqiver is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -37,7 +37,7 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "1.0.2";
+  const QString version = "1.0.3";
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);
