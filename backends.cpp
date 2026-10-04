@@ -48,6 +48,10 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   proc_.setProcessChannelMode(QProcess::MergedChannels);
   connect(&proc_, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
+  connect(&proc_, &QProcess::stateChanged, this, [this](QProcess::ProcessState state) {
+    if (state == QProcess::Starting)
+      data_.clear();
+  });
   connect(&proc_, &QProcess::started, this, &Backend::processStarting);
   connect(&proc_, &QProcess::errorOccurred, this, &Backend::onError);
 
@@ -56,6 +60,8 @@ Backend::Backend(QObject *parent) : QObject(parent) {
   isGzip_ = is7z_ = false;
   starting7z_ = encryptionQueried_ = encrypted_ = encryptedList_ = false;
   startBackslash_ = false; // used only with bsdtar in "Backend::startExtract()"
+  hasSingleRoot_ = true;
+  attrIndex_ = cSizeIndex_ = nameIndex_ = 0;
 
   watcher_ = new QFileSystemWatcher(this);
   connect(watcher_, &QFileSystemWatcher::fileChanged, [this](const QString& path) {
@@ -1024,18 +1030,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
 }
 
 void Backend::parseLines(QStringList& lines) {
-  static bool hasSingleRoot = false;
-  if (contents_.isEmpty()) {
-    hasSingleRoot = true;
-    archiveSingleRoot_ = QString(); // if existing, may mean a parent dir or single file
-  }
   if (is7z_) {
-    static int attrIndex = 0;
-    static int cSizeIndex = 0; // end of the compressed size column
-    static int nameIndex = 0;
-    if (contents_.isEmpty()) {
-      attrIndex = cSizeIndex = nameIndex = 0;
-    }
     if (starting7z_) {
       /* ignore all p7zip header info */
       while (starting7z_ && !lines.isEmpty()) {
@@ -1045,6 +1040,26 @@ void Backend::parseLines(QStringList& lines) {
       }
     }
     for (int i = 0; i < lines.length(); i++) {
+      if (!single7zFile_.isEmpty()
+          && attrIndex_ + 5 < lines.at(i).size()
+          && lines.at(i).left(attrIndex_ + 6).simplified().isEmpty()) {
+        const QStringList info = lines.at(i).split(" ", Qt::SkipEmptyParts);
+        if (!info.isEmpty()) {
+          QString s = info.at(0), cs = QString::number(0);
+          if (cSizeIndex_ < lines.at(i).size() && !lines.at(i).at(cSizeIndex_ - 1).isSpace()) {
+            if (info.size() == 3) {
+              cs = info.at(0);
+              s = QString::number(0); // size is missing
+            }
+            else if (info.size() == 4)
+              cs = info.at(1);
+          }
+          contents_[single7zFile_][1] = s;
+          contents_[single7zFile_][2] = cs;
+          single7zFile_.clear();
+        }
+        continue;
+      }
       if (lines.at(i).simplified().isEmpty() || lines.at(i).startsWith("----") || lines.at(i).startsWith(" = "))
         continue;
       if (listing_) {
@@ -1053,58 +1068,38 @@ void Backend::parseLines(QStringList& lines) {
         if (info.size() < 2) continue; // invalid line
         // Format: [Date, Time, Attr, Size, Compressed, Name]
         if (info.size() >= 6 && info.at(2) == "Attr") { // header
-          attrIndex = lines.at(i).indexOf(info.at(2));
-          cSizeIndex = lines.at(i).indexOf(info.at(4)) + info.at(4).size();
-          nameIndex = lines.at(i).indexOf(info.at(5));
+          attrIndex_ = lines.at(i).indexOf(info.at(2));
+          cSizeIndex_ = lines.at(i).indexOf(info.at(4)) + info.at(4).size();
+          nameIndex_ = lines.at(i).indexOf(info.at(5));
           continue;
         }
         const int lineSize = lines.at(i).size();
-        if (attrIndex <= 0 || cSizeIndex <= 0 || nameIndex < 3
-            || attrIndex >= lineSize || cSizeIndex >= lineSize || nameIndex >= lineSize) {
+        if (attrIndex_ <= 0 || cSizeIndex_ <= 0 || nameIndex_ < 3
+            || attrIndex_ >= lineSize || cSizeIndex_ >= lineSize || nameIndex_ >= lineSize) {
           continue; // the header should be read first
         }
         /* we suppose that the row starts either with Date or with Attr (Date and Time are empty) */
-        QString attrStr = lines.at(i).mid(attrIndex - 1, 5); // the Attr column has 5 characters (like "....A")
+        QString attrStr = lines.at(i).mid(attrIndex_ - 1, 5); // the Attr column has 5 characters (like "....A")
         if (!attrStr.contains("."))
           continue; // a row that isn't related to a file
-        bool hasCSize = !lines.at(i).at(cSizeIndex - 1).isSpace();
+        bool hasCSize = !lines.at(i).at(cSizeIndex_ - 1).isSpace();
         if (info.size() < 5) {
           if (!info.at(0).contains(".")) continue; // should start with Attr (no Date and Time)
-          file = lines.at(i).right(lineSize - nameIndex);
+          file = lines.at(i).right(lineSize - nameIndex_);
           if (file.isEmpty()) continue;
           if (info.size() == 2) { // only Attr and name (as with "application/x-bzip")
             if (!contents_.isEmpty()) continue; // invalid line
             archiveSingleRoot_ = file.section('/', 0, 0);
-            QString s, cs;
-            if (i < lines.length() - 2
-                && lines.at(i+1).startsWith("---") // next line is end of table
-                && attrIndex + 5 < lines.at(i+2).size()
-                && lines.at(i+2).left(attrIndex + 6).simplified().isEmpty()) { // no Attr and nothing before it
-              QStringList infoNext = lines.at(i+2).split(" ",Qt::SkipEmptyParts);
-              // Format of infoNext: [Size(?), Compressed, Number(=1), "files"]
-              if (!infoNext.isEmpty()) {
-                if (cSizeIndex < lines.at(i+2).size() && !lines.at(i+2).at(cSizeIndex - 1).isSpace()) {
-                  if (infoNext.size() == 3) {
-                    cs = infoNext.at(0);
-                    s = QString::number(0); // size is missing
-                  }
-                  else if (infoNext.size() == 4)
-                    cs = infoNext.at(1);
-                }
-                if (s.isEmpty()) s = infoNext.at(0);
-              }
-            }
-            if (s.isEmpty()) s = QString::number(0);
-            if (cs.isEmpty()) cs = QString::number(0);
-            contents_.insert(file, QStringList() << attrStr << s << cs);
-            return;
+            single7zFile_ = file;
+            contents_.insert(file, QStringList() << attrStr << "0" << "0");
+            continue;
           }
           contents_.insert(file,
                            QStringList() << attrStr << info.at(1)
                                          << (hasCSize ? info.at(2) : QString::number(0)));
         }
         else {
-          file = lines.at(i).right(lineSize - nameIndex);
+          file = lines.at(i).right(lineSize - nameIndex_);
           if (file.isEmpty()) continue;
           if (info.at(0).contains(".")) { // starts with Attr (no Date and Time)
             contents_.insert(file,
@@ -1117,14 +1112,14 @@ void Backend::parseLines(QStringList& lines) {
                                            << (hasCSize ? info.at(4) : QString::number(0)));
           }
         }
-        if (hasSingleRoot) {
+        if (hasSingleRoot_) {
           if (archiveSingleRoot_.isEmpty()) {
             archiveSingleRoot_ = file.section('/', 0, 0);
             if (archiveSingleRoot_.isEmpty())
-              hasSingleRoot = false;
+              hasSingleRoot_ = false;
           }
           else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
-            hasSingleRoot = false;
+            hasSingleRoot_ = false;
             archiveSingleRoot_ = QString();
           }
         }
@@ -1168,14 +1163,14 @@ void Backend::parseLines(QStringList& lines) {
         if (file.isEmpty()) continue; // impossible
         if (file.contains(startBslashExp))
           startBackslash_ = true;
-        if (hasSingleRoot) {
+        if (hasSingleRoot_) {
           if (archiveSingleRoot_.isEmpty()) {
             archiveSingleRoot_ = file.section('/', 0, 0);
             if (archiveSingleRoot_.isEmpty())
-              hasSingleRoot = false;
+              hasSingleRoot_ = false;
           }
           else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
-            hasSingleRoot = false;
+            hasSingleRoot_ = false;
             archiveSingleRoot_ = QString();
           }
         }
@@ -1214,14 +1209,14 @@ void Backend::parseLines(QStringList& lines) {
     }
     if (file.contains(startBslashExp))
       startBackslash_ = true;
-    if (hasSingleRoot) {
+    if (hasSingleRoot_) {
       if (archiveSingleRoot_.isEmpty()) {
           archiveSingleRoot_ = file.section('/', 0, 0);
           if (archiveSingleRoot_.isEmpty())
-            hasSingleRoot = false;
+            hasSingleRoot_ = false;
       }
       else if (archiveSingleRoot_ != file.section('/', 0, 0)) {
-          hasSingleRoot = false;
+          hasSingleRoot_ = false;
           archiveSingleRoot_ = QString();
       }
     }
@@ -1231,6 +1226,10 @@ void Backend::parseLines(QStringList& lines) {
 
 void Backend::startList(bool withPassword) {
   contents_.clear();
+  archiveSingleRoot_.clear();
+  hasSingleRoot_ = true;
+  attrIndex_ = cSizeIndex_ = nameIndex_ = 0;
+  single7zFile_.clear();
   startBackslash_ = false;
   keyArgs_.clear();
   listing_ = true;
@@ -1269,13 +1268,16 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       startBackslash_ = false;
       insertQueue_.clear();
       encryptedPaths_.clear();
-      pswrd_ = archiveSingleRoot_ = result_ = data_ = QString();
+      pswrd_ = archiveSingleRoot_ = result_ = QString();
+      data_.clear();
 
       emit processFinished(false, tr("Could not read archive"));
       return;
     }
   }
 
+  /* Drain the final record before changing the parser or starting another process. */
+  processOutput(true);
   if (is7z_ && !encryptionQueried_ && keyArgs_.contains("l")) {
     encryptionQueried_ = true;
     if (encryptedList_)
@@ -1294,7 +1296,6 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
   }
 
   /* NOTE: processFinished() should be emitted once, in the end */
-  processData();
   listing_ = false;
   if (is7z_) {
     starting7z_ = false;
@@ -1418,40 +1419,54 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
 }
 
 void Backend::processData() {
-  if (is7z_ && !encryptionQueried_) {
+  processOutput(false);
+}
+
+void Backend::processOutput(bool finished) {
+  data_ += proc_.readAllStandardOutput();
+  if (!isGzip_)
+    data_.replace("\r\n", "\n");
+  const bool encryptionQuery = is7z_ && !encryptionQueried_;
+  if (listing_ && isGzip_ && !finished)
+    return; // gzip file names may contain newlines
+
+  qsizetype length = data_.size();
+  if (!finished) {
+    if (encryptionQuery) {
+      const qsizetype separator = data_.lastIndexOf("\n\n");
+      length = separator < 0 ? 0 : separator + 2;
+    }
+    else
+      length = data_.lastIndexOf('\n') + 1;
+  }
+  if (length == 0)
+    return;
+  const QString read = QString::fromUtf8(data_.constData(), length);
+  data_.remove(0, length);
+
+  if (encryptionQuery) {
     if (!encryptedList_) {
-      QString read = proc_.readAllStandardOutput();
-      if (read.contains("\nERROR: ") && read.contains("encrypted")) { // ERROR: FILE_PATH : Can not open encrypted archive. Wrong password?
-        encryptedList_ = encrypted_ = true;
-      }
-      else {
-        const QStringList& items = read.split("\n\n", Qt::SkipEmptyParts);
-        for (const QString& thisItem : items) {
-          if (thisItem.contains("\nEncrypted = +")) {
-            /* the archive has an encrypted file but its header isn't encrypted */
-            QStringList lines = thisItem.split("\n", Qt::SkipEmptyParts);
-            if (!lines.isEmpty()) {
-              QString pathLine;
-              if (lines.at(0).startsWith("Path = "))
-                pathLine = lines.at(0);
-              else if (lines.at(1).startsWith("Path = ")) // the first line consists of dashes
-                pathLine = lines.at(1);
-              if (!pathLine.isEmpty())
-                encryptedPaths_ << pathLine.remove(0, 7);
-            }
-            encrypted_ = true;
-          }
+      const QStringList items = read.split("\n\n", Qt::SkipEmptyParts);
+      for (const QString& item : items) {
+        QString path;
+        bool encrypted = false;
+        const QStringList lines = item.split('\n', Qt::SkipEmptyParts);
+        for (const QString& line : lines) {
+          if (line.startsWith("ERROR: ") && line.contains("encrypted"))
+            encryptedList_ = encrypted_ = true;
+          else if (line.startsWith("Path = "))
+            path = line.mid(7);
+          else if (line == "Encrypted = +")
+            encrypted = true;
+        }
+        if (encrypted) {
+          encrypted_ = true;
+          if (!path.isEmpty())
+            encryptedPaths_ << path;
         }
       }
     }
     return; // no listing here
-  }
-  QString read = data_ + proc_.readAllStandardOutput();
-  if (read.endsWith("\n"))
-    data_.clear();
-  else {
-    data_ = read.section("\n", -1);
-    read = read.section("\n", 0, -2);
   }
 
   /* NOTE: Because 7x doesn't escape newlines in file names, the archives
@@ -1469,7 +1484,7 @@ void Backend::processData() {
   if (listing_)
     parseLines(lines);
   if (is7z_) {
-    if (read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password?
+    if (read.startsWith("ERROR") || read.contains("\nERROR")) { // ERROR: Data Error in encrypted file. Wrong password?
       /* while extracting the archive, another file in it had another password */
       pswrd_ = QString();
     }
