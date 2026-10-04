@@ -735,7 +735,7 @@ static inline bool removeDir(const QString &dirName)
                                                        | QDir::NoDotAndDotDot | QDir::System | QDir::Hidden,
                                                        QDir::DirsFirst);
       for (const QFileInfo& info : infoList) {
-        if (info.isDir())
+        if (info.isDir() && !info.isSymLink()) // a symlink target may be a dir outside the archive
           res = removeDir(info.absoluteFilePath());
         else
           res = QFile::remove(info.absoluteFilePath());
@@ -751,7 +751,7 @@ void Backend::removeSingleExtracted(const QString& archivePath) const {
     const QString filePath = arqiverDir_ + "/" + archivePath;
     if (QFile::exists(filePath)) {
       QFileInfo info(filePath);
-      if (info.isDir())
+      if (info.isDir() && !info.isSymLink())
         removeDir(filePath);
       else
         QFile::remove(filePath);
