@@ -39,12 +39,15 @@
 
 namespace Arqiver {
 
-static QStringList literal7zArguments(QStringList args) {
+// FIXME: This is only for compatibility with p7zip and should be removed later.
+static QStringList p7zipCompat(QStringList args) {
+  /* use "-i!" before filenames starting with "@" and put them before "--".
+     p7zip sees filenames after "--" and disables wildcard matching with "-spd". */
   const int separator = args.indexOf("--");
   if (separator >= 0) {
     QStringList includes;
     for (int i = args.size() - 1; i > separator; --i) {
-      if (args.at(i).startsWith('@'))
+      if (args.at(i).startsWith("@"))
         includes.prepend("-i!" + args.takeAt(i));
     }
     for (int i = 0; i < includes.size(); ++i)
@@ -355,7 +358,7 @@ void Backend::updateArchive() {
     args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", literal7zArguments(args));
+    proc_.start ("7z", p7zipCompat(args));
     return;
   }
 
@@ -456,7 +459,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
     args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", literal7zArguments(args));
+    proc_.start ("7z", p7zipCompat(args));
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -525,7 +528,7 @@ void Backend::startRemove(const QStringList& paths) {
     args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
-    proc_.start("7z", literal7zArguments(args));
+    proc_.start("7z", p7zipCompat(args));
     return;
   }
   args << "-c" << "-a";
@@ -697,7 +700,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     args << "-o" + xPath;
     if (!noFileList)
       args << "--" << filesList;
-    proc_.start("7z", literal7zArguments(args));
+    proc_.start("7z", p7zipCompat(args));
   }
   else {
     if (!noFileList && filesList.isEmpty())
@@ -824,7 +827,7 @@ bool Backend::startViewFile(const QString& path) {
       args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", literal7zArguments(args));
+      tmpProc_.start("7z", p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -981,7 +984,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", literal7zArguments(args));
+      tmpProc_.start("7z", p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -1440,10 +1443,10 @@ void Backend::processOutput(bool finished) {
   data_ += proc_.readAllStandardOutput();
   if (!isGzip_)
     data_.replace("\r\n", "\n");
-  const bool encryptionQuery = is7z_ && !encryptionQueried_;
   if (listing_ && isGzip_ && !finished)
     return; // gzip file names may contain newlines
 
+  const bool encryptionQuery = is7z_ && !encryptionQueried_;
   qsizetype length = data_.size();
   if (!finished) {
     if (encryptionQuery) {
@@ -1451,7 +1454,7 @@ void Backend::processOutput(bool finished) {
       length = separator < 0 ? 0 : separator + 2;
     }
     else
-      length = data_.lastIndexOf('\n') + 1;
+      length = data_.lastIndexOf("\n") + 1;
   }
   if (length == 0)
     return;
@@ -1464,7 +1467,7 @@ void Backend::processOutput(bool finished) {
       for (const QString& item : items) {
         QString path;
         bool encrypted = false;
-        const QStringList lines = item.split('\n', Qt::SkipEmptyParts);
+        const QStringList lines = item.split("\n", Qt::SkipEmptyParts);
         for (const QString& line : lines) {
           if (line.startsWith("ERROR: ") && line.contains("encrypted"))
             encryptedList_ = encrypted_ = true;

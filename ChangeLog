@@ -3,6 +3,8 @@ V1.0.3
  * With bsdtar, check if an item is really a symlink before handling "->" or "link to" (because these strings can be in item names).
  * Fixed the selective extraction of multiple items with bsdtar (unfortunately, bsdtar takes only the last occurrence of `--strip-components` into account).
  * Fixed the warning about overwriting.
+ * Interpret 7z paths literally (no wildcard) on extracting, adding and removing items.
+ * Handle fragmented output of archive listing, especially with 7z.
  * Fixed an edge case, where the target of a symlink was a directory outside a tar archive and its contents were removed on replacing that symlink.
 
 V1.0.2

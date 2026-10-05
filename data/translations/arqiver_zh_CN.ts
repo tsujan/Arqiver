@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="852"/>
+        <location filename="../../backends.cpp" line="875"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>该文件是一个链接，但其目标不存在。</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1274"/>
-        <location filename="../../backends.cpp" line="1306"/>
-        <location filename="../../backends.cpp" line="1350"/>
+        <location filename="../../backends.cpp" line="1291"/>
+        <location filename="../../backends.cpp" line="1324"/>
+        <location filename="../../backends.cpp" line="1368"/>
         <source>Could not read archive</source>
         <translation>无法读取档案</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1309"/>
-        <location filename="../../backends.cpp" line="1355"/>
+        <location filename="../../backends.cpp" line="1327"/>
+        <location filename="../../backends.cpp" line="1373"/>
         <source>Archive Loaded</source>
         <translation>档案已加载</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1316"/>
-        <location filename="../../backends.cpp" line="1403"/>
+        <location filename="../../backends.cpp" line="1334"/>
+        <location filename="../../backends.cpp" line="1421"/>
         <source>Modification Finished</source>
         <translation>修改完成</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1337"/>
-        <location filename="../../backends.cpp" line="1372"/>
+        <location filename="../../backends.cpp" line="1355"/>
+        <location filename="../../backends.cpp" line="1390"/>
         <source>Extraction Finished</source>
         <translation>解压完成</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1340"/>
-        <location filename="../../backends.cpp" line="1391"/>
+        <location filename="../../backends.cpp" line="1358"/>
+        <location filename="../../backends.cpp" line="1409"/>
         <source>Extraction Failed</source>
         <translation>提取失败</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1488"/>
+        <location filename="../../backends.cpp" line="1520"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>系统缺少 %1

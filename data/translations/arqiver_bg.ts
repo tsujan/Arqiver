@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="852"/>
+        <location filename="../../backends.cpp" line="875"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Този файл е връзка, но целта му не съществува.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1274"/>
-        <location filename="../../backends.cpp" line="1306"/>
-        <location filename="../../backends.cpp" line="1350"/>
+        <location filename="../../backends.cpp" line="1291"/>
+        <location filename="../../backends.cpp" line="1324"/>
+        <location filename="../../backends.cpp" line="1368"/>
         <source>Could not read archive</source>
         <translation>Архивът не може да се чете</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1309"/>
-        <location filename="../../backends.cpp" line="1355"/>
+        <location filename="../../backends.cpp" line="1327"/>
+        <location filename="../../backends.cpp" line="1373"/>
         <source>Archive Loaded</source>
         <translation>Архивът е зареден</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1316"/>
-        <location filename="../../backends.cpp" line="1403"/>
+        <location filename="../../backends.cpp" line="1334"/>
+        <location filename="../../backends.cpp" line="1421"/>
         <source>Modification Finished</source>
         <translation>Промените са завършени</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1337"/>
-        <location filename="../../backends.cpp" line="1372"/>
+        <location filename="../../backends.cpp" line="1355"/>
+        <location filename="../../backends.cpp" line="1390"/>
         <source>Extraction Finished</source>
         <translation>Извличането е завършено</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1340"/>
-        <location filename="../../backends.cpp" line="1391"/>
+        <location filename="../../backends.cpp" line="1358"/>
+        <location filename="../../backends.cpp" line="1409"/>
         <source>Extraction Failed</source>
         <translation>Извличането е неуспешно</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1488"/>
+        <location filename="../../backends.cpp" line="1520"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 липсва във вашата система.
