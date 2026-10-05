@@ -39,6 +39,20 @@
 
 namespace Arqiver {
 
+static QStringList literal7zArguments(QStringList args) {
+  const int separator = args.indexOf("--");
+  if (separator >= 0) {
+    QStringList includes;
+    for (int i = args.size() - 1; i > separator; --i) {
+      if (args.at(i).startsWith('@'))
+        includes.prepend("-i!" + args.takeAt(i));
+    }
+    for (int i = 0; i < includes.size(); ++i)
+      args.insert(separator + i, includes.at(i));
+  }
+  return args;
+}
+
 static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
 static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
 static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startBackslash_
@@ -338,10 +352,10 @@ void Backend::updateArchive() {
       args << "-p" + pswrd_;
       encrypted_ = true;
     }
-    args << "a" << fileArgs_ << paths;
+    args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", args);
+    proc_.start ("7z", literal7zArguments(args));
     return;
   }
 
@@ -439,10 +453,10 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
       args << "-p" + pswrd_;
       encrypted_ = true;
     }
-    args << "a" << fileArgs_ << filePaths;
+    args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", args);
+    proc_.start ("7z", literal7zArguments(args));
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -508,10 +522,10 @@ void Backend::startRemove(const QStringList& paths) {
   if (is7z_) {
     if (encrypted_)
       args << "-p" + pswrd_;
-    args << "d" << fileArgs_ << filePaths;
+    args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
-    proc_.start("7z", args);
+    proc_.start("7z", literal7zArguments(args));
     return;
   }
   args << "-c" << "-a";
@@ -583,7 +597,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
       args << "-aos"; // skip extraction of existing files
     if (encrypted_)
       args << "-p" + pswrd_;
-    args << (preservePaths ? "x" : "e") << fileArgs_;
+    args << (preservePaths ? "x" : "e") << "-spd" << fileArgs_;
     keyArgs_ << "x" << "e";
     starting7z_ = true;
   }
@@ -682,8 +696,8 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
   if (is7z_) {
     args << "-o" + xPath;
     if (!noFileList)
-      args << filesList;
-    proc_.start("7z", args);
+      args << "--" << filesList;
+    proc_.start("7z", literal7zArguments(args));
   }
   else {
     if (!noFileList && filesList.isEmpty())
@@ -805,12 +819,12 @@ bool Backend::startViewFile(const QString& path) {
       args << "-aou"; // the archive may contain files with identical names
       if (encrypted_)
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_;
+      args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_;
       args << "-y"; // required with multiple passwords (says yes to the overwrite prompt)
-      args << realPath;
+      args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", args);
+      tmpProc_.start("7z", literal7zArguments(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -964,10 +978,10 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "-aos"; // skip extraction of existing files
       if (encrypted_ )
         args << "-p" + pswrd_;
-      args << "x" << fileArgs_ << "-o" + arqiverDir_ << "-y" << realPaths;
+      args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", args);
+      tmpProc_.start("7z", literal7zArguments(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
