@@ -5,6 +5,7 @@ V1.0.3
  * Fixed the warning about overwriting.
  * Interpret 7z paths literally (no wildcard) on extracting, adding and removing items.
  * Handle fragmented output of archive listing, especially with 7z.
+ * Handle file names sarting with "@" or "-" on adding files with bsdtar (→ bsdtar's manual → BUGS).
  * Fixed an edge case, where the target of a symlink was a directory outside a tar archive and its contents were removed on replacing that symlink.
 
 V1.0.2

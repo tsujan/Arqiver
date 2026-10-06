@@ -41,7 +41,7 @@ namespace Arqiver {
 
 // FIXME: This is only for compatibility with p7zip and should be removed later.
 static QStringList p7zipCompat(QStringList args) {
-  /* use "-i!" before filenames starting with "@" and put them before "--".
+  /* Use "-i!" before filenames starting with "@" and put them before "--".
      p7zip sees filenames after "--" and disables wildcard matching with "-spd". */
   const int separator = args.indexOf("--");
   if (separator >= 0) {
@@ -489,6 +489,10 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
       filePaths[i] = filePaths[i].section(parent, 1, -1);
       if (filePaths[i].startsWith("/"))
         filePaths[i].remove(0, 1);
+      /* WARNING: bsdtar's manual says in it BUGS section, "To archive a file called @foo or foo
+                  you must specify it as ./@foo or ./-foo, respectively." */
+      if (filePaths[i].startsWith("@") || filePaths[i].startsWith("-"))
+        filePaths[i].prepend("./");
     }
     args << "-C" << parent;
   }

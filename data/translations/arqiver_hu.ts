@@ -12,43 +12,43 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="875"/>
+        <location filename="../../backends.cpp" line="879"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Ez a fájl egy link, de a célfájlja nem létezik.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1291"/>
-        <location filename="../../backends.cpp" line="1324"/>
-        <location filename="../../backends.cpp" line="1368"/>
+        <location filename="../../backends.cpp" line="1295"/>
+        <location filename="../../backends.cpp" line="1328"/>
+        <location filename="../../backends.cpp" line="1372"/>
         <source>Could not read archive</source>
         <translation>Nem sikerült olvasni az archívumot</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1327"/>
-        <location filename="../../backends.cpp" line="1373"/>
+        <location filename="../../backends.cpp" line="1331"/>
+        <location filename="../../backends.cpp" line="1377"/>
         <source>Archive Loaded</source>
         <translation>Archívum betöltve</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1334"/>
-        <location filename="../../backends.cpp" line="1421"/>
+        <location filename="../../backends.cpp" line="1338"/>
+        <location filename="../../backends.cpp" line="1425"/>
         <source>Modification Finished</source>
         <translation>A módosítás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1355"/>
-        <location filename="../../backends.cpp" line="1390"/>
+        <location filename="../../backends.cpp" line="1359"/>
+        <location filename="../../backends.cpp" line="1394"/>
         <source>Extraction Finished</source>
         <translation>A kibontás kész</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1358"/>
-        <location filename="../../backends.cpp" line="1409"/>
+        <location filename="../../backends.cpp" line="1362"/>
+        <location filename="../../backends.cpp" line="1413"/>
         <source>Extraction Failed</source>
         <translation>A kibontás sikertelen</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1520"/>
+        <location filename="../../backends.cpp" line="1524"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 hiányzik a rendszeréből.
