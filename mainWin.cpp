@@ -39,8 +39,10 @@
 #include <QResizeEvent>
 #include <QPointer>
 #include <QDrag>
+#ifndef Q_OS_MACOS
 #include <QDBusConnection>
 #include <QDBusMessage>
+#endif
 #include <QStandardPaths>
 
 #include <unistd.h> // getuid
@@ -1067,6 +1069,9 @@ void mainWin::labelContextMenu(const QPoint& p) {
                               : symbolicIcon::icon(":icons/document-open.svg"),
                             tr("Open Containing Folder"));
     connect(action, &QAction::triggered, [this] {
+#ifdef Q_OS_MACOS
+      QProcess::startDetached("/usr/bin/open", QStringList() << "-R" << BACKEND->currentFile());
+#else
       QDBusMessage methodCall =
       QDBusMessage::createMethodCall("org.freedesktop.FileManager1",
                                      "/org/freedesktop/FileManager1",
@@ -1085,6 +1090,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
           QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
         }
       }
+#endif
     });
   }
   menu.exec(ui->frame->mapToGlobal(p));

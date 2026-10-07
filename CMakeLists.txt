@@ -13,7 +13,10 @@ endif()
 
 set(QT6_MINIMUM_VERSION "6.6.0")
 
-find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS Core Gui Widgets Svg DBus)
+find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS Core Gui Widgets Svg)
+if(NOT APPLE)
+  find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS DBus)
+endif()
 
 # optional localization
 find_package(Qt6 QUIET COMPONENTS LinguistTools)
@@ -60,8 +63,10 @@ endif(Qt6LinguistTools_FOUND)
 target_link_libraries(arqiver ${Qt6Core_LIBRARIES}
                               ${Qt6Gui_LIBRARIES}
                               ${Qt6Widgets_LIBRARIES}
-                              ${Qt6Svg_LIBRARIES}
-                              ${Qt6DBus_LIBRARIES})
+                              ${Qt6Svg_LIBRARIES})
+if(NOT APPLE)
+  target_link_libraries(arqiver ${Qt6DBus_LIBRARIES})
+endif()
 
 # installation
 install(TARGETS arqiver RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)

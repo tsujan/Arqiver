@@ -895,10 +895,14 @@ bool Backend::startViewFile(const QString& path) {
     }
   }
 
+#ifndef Q_OS_MACOS
   if (QStandardPaths::findExecutable("gio").isEmpty()
       || !QProcess::startDetached("gio", QStringList() << "open" << fileName)) { // "gio" is more reliable
+#endif
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+#ifndef Q_OS_MACOS
   }
+#endif
   return res;
 }
 

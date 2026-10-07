@@ -10,7 +10,8 @@ lessThan(QT_MAJOR_VERSION, 6) {
   }
 }
 
-QT += core gui widgets svg dbus
+QT += core gui widgets svg
+!macx: QT += dbus
 
 TEMPLATE = app
 TARGET = arqiver
