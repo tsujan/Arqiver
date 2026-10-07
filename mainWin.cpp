@@ -473,7 +473,7 @@ bool mainWin::ignoreChanges() {
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {
-  if (processIsRunning_)
+  if (processIsRunning_ || BACKEND->isWorking())
     event->ignore();
   else {
     if (ui->actionUpdate->isEnabled()) {

@@ -1525,9 +1525,9 @@ void Backend::onError(QProcess::ProcessError error) {
                   .arg(proc_.program()));
 }
 
-bool Backend::isWorking() { // used only with DND
-  return (proc_.state() == QProcess::Running
-          || tmpProc_.state() == QProcess::Running);
+bool Backend::isWorking() {
+  return (proc_.state() != QProcess::NotRunning
+          || tmpProc_.state() != QProcess::NotRunning);
 }
 
 void Backend::killProc() {
