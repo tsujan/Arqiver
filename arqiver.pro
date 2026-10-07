@@ -16,7 +16,8 @@ QT += core gui widgets svg
 TEMPLATE = app
 TARGET = arqiver
 
-HEADERS	+= mainWin.h \
+HEADERS	+= version.h \
+           mainWin.h \
            backends.h \
            label.h \
            treeWidget.h \

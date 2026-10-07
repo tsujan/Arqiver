@@ -24,6 +24,7 @@
 #include <QTextStream>
 
 #include "mainWin.h"
+#include "version.h"
 
 void handleQuitSignals(const std::vector<int>& quitSignals) {
   auto handler = [](int sig) ->void {
@@ -37,7 +38,7 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "1.0.3";
+  const QString version = QStringLiteral(ARQIVER_VERSION);
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);
