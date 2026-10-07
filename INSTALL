@@ -61,3 +61,25 @@ Afterward, you could use this command to clean the source directory:
 The file 'data/translations/arqiver.ts' can serve as the basis for translation. The translated file should be saved in the same directory as "arqiver_LN.ts", where "LN" is the abbreviation for the target language, like "de", "fr", etc.
 
 If you have translated Arqiver's GUI into your language, please make a "Pull Request" (PR) at https://github.com/tsujan/Arqiver for your work to be merged into Arqiver!
+
+*******************
+*   macOS Build   *
+*******************
+
+Use Qt 6.6 or newer for your target architecture and macOS version. CMake builds
+arqiver.app with its icon and translations. With Homebrew and Apple's Command
+Line Tools installed:
+
+    brew install qt cmake ninja sevenzip libarchive
+    cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
+    cmake --install build
+
+The default installation prefix is /Applications. Set CMAKE_INSTALL_PREFIX
+when configuring to install elsewhere.
+
+Arqiver uses macOS's built-in gzip and libarchive-based tar. Its Preferences
+allow selecting another bsdtar executable, such as Homebrew's libarchive for
+additional compression formats. Do not select GNU tar. For 7z-based formats,
+install sevenzip (7zz) or p7zip (7z). Arqiver also searches /opt/homebrew/bin and
+/usr/local/bin when launched from Finder.

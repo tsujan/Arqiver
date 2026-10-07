@@ -77,7 +77,12 @@ int main(int argc, char **argv) {
     a.installTranslator(&qtTranslator);
 
   QTranslator ArqTranslator;
-  if (ArqTranslator.load("arqiver_" + QLocale::system().name(), DATADIR "/arqiver/translations"))
+#ifdef Q_OS_MACOS
+  const QString translationDir = a.applicationDirPath() + "/../Resources/translations";
+#else
+  const QString translationDir = DATADIR "/arqiver/translations";
+#endif
+  if (ArqTranslator.load("arqiver_" + QLocale::system().name(), translationDir))
     a.installTranslator(&ArqTranslator);
 
   QStringList args;
