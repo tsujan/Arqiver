@@ -71,10 +71,25 @@ static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
 static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
 static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startBackslash_
 
-Backend::Backend(QObject *parent) : QObject(parent) {
-  tarCmnd_ = TAR_CMD;
+static QString defaultTarCommand() {
 #ifdef Q_OS_MACOS
-  sevenZipCmnd_ = QStandardPaths::findExecutable("7zz");
+  const QString command = QStandardPaths::findExecutable("bsdtar",
+    {QCoreApplication::applicationDirPath(), "/opt/homebrew/opt/libarchive/bin", "/usr/local/opt/libarchive/bin"});
+  if (!command.isEmpty())
+    return command;
+#endif
+  return TAR_CMD;
+}
+
+Backend::Backend(QObject *parent) : QObject(parent) {
+  tarCmnd_ = defaultTarCommand();
+#ifdef Q_OS_MACOS
+  const QStringList bundledPath = {QCoreApplication::applicationDirPath()};
+  sevenZipCmnd_ = QStandardPaths::findExecutable("7zz", bundledPath);
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7z", bundledPath);
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7zz");
   if (sevenZipCmnd_.isEmpty())
     sevenZipCmnd_ = QStandardPaths::findExecutable("7z");
   if (sevenZipCmnd_.isEmpty())
@@ -138,7 +153,7 @@ void Backend::setTarCommand(const QString& cmnd) {
   tarCmnd_ = TAR_CMD;
 #else
   if (cmnd.isEmpty())
-    tarCmnd_ = TAR_CMD;
+    tarCmnd_ = defaultTarCommand();
   else
     tarCmnd_ = cmnd;
 #endif

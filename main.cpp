@@ -67,6 +67,7 @@ int main(int argc, char **argv) {
 #ifdef Q_OS_MACOS
   Arqiver::Application a(argc, argv);
   QStringList executablePaths = qEnvironmentVariable("PATH").split(':', Qt::SkipEmptyParts);
+  executablePaths.prepend(QCoreApplication::applicationDirPath());
   executablePaths << "/opt/homebrew/bin" << "/usr/local/bin" << "/usr/bin" << "/bin";
   executablePaths.removeDuplicates();
   qputenv("PATH", executablePaths.join(':').toLocal8Bit());

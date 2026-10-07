@@ -66,25 +66,18 @@ If you have translated Arqiver's GUI into your language, please make a "Pull Req
 *   macOS Build   *
 *******************
 
-Use Qt 6.6 or newer for your target architecture and macOS version. CMake builds
-arqiver.app with its icon and translations. With Homebrew and Apple's Command
-Line Tools installed:
+Use a Qt 6.6 or newer installation for your target architecture and macOS
+version. Both CMake and qmake create arqiver.app with its icon, archive file
+associations and translations. The default installation prefix is /Applications.
+
+For example, with Homebrew and Apple's Command Line Tools installed:
 
     brew install qt cmake ninja sevenzip libarchive
     cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
     cmake --build build
     cmake --install build
 
-The default installation prefix is /Applications. Set CMAKE_INSTALL_PREFIX
-when configuring to install elsewhere.
-
-Arqiver uses macOS's built-in gzip and libarchive-based tar. Its Preferences
-allow selecting another bsdtar executable, such as Homebrew's libarchive for
-additional compression formats. Do not select GNU tar. For 7z-based formats,
-install sevenzip (7zz) or p7zip (7z). Arqiver also searches /opt/homebrew/bin and
-/usr/local/bin when launched from Finder.
-
-Alternatively, build and install the same app bundle with qmake:
+To install elsewhere, set CMAKE_INSTALL_PREFIX when configuring. Alternatively:
 
     mkdir build && cd build
     qmake ../arqiver.pro
@@ -92,7 +85,25 @@ Alternatively, build and install the same app bundle with qmake:
     make install
 
 If qmake is not on PATH, use the qmake executable from your Qt installation.
-For a custom installation directory, pass PREFIX=/your/directory to qmake.
+For a custom qmake installation directory, pass PREFIX=/your/directory.
+
+Arqiver uses macOS's built-in gzip. It prefers a bundled bsdtar or Homebrew's
+libarchive and falls back to macOS's built-in libarchive-based tar. Homebrew's
+libarchive supports additional compression formats such as Zstandard and LZ4.
+Its Preferences allow selecting another bsdtar executable. Do not select GNU tar.
+For 7z-based formats, install sevenzip (7zz) or p7zip (7z). Arqiver also searches
+/opt/homebrew/bin and /usr/local/bin when launched from Finder.
+
+For distribution to a machine without Qt, run your Qt installation's
+macdeployqt on the completed app bundle before copying it. For Homebrew Qt:
+
+    macdeployqt build/arqiver.app -libpath="$(brew --prefix)/lib"
+
+A standalone 7zz (or 7z) executable can optionally be included in
+arqiver.app/Contents/MacOS; it takes priority over installed executables.
+Include the helper's required libraries and license notices when distributing
+it. Sign the final bundle after deploying Qt and any helpers. Signing identity
+and notarization are handled by the distributor.
 
 Finder's Open With menu and dropping archives onto the Dock icon open archive
 windows. Additional documents open in separate windows, so opening one archive
