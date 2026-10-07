@@ -41,6 +41,15 @@
 
 namespace Arqiver {
 
+#ifdef Q_OS_MACOS
+static bool isCompressedTar(const QString& path) {
+  static const QRegularExpression extension(
+    "\\.(tar\\.(gz|xz|bz|bz2|lzma|zst|lz4)|tgz|txz|tbz|tbz2|tlz|tzst|tlz4)$",
+    QRegularExpression::CaseInsensitiveOption);
+  return extension.match(path).hasMatch();
+}
+#endif
+
 // FIXME: This is only for compatibility with p7zip and should be removed later.
 static QStringList p7zipCompat(QStringList args) {
   /* Use "-i!" before filenames starting with "@" and put them before "--".
@@ -136,6 +145,10 @@ void Backend::setTarCommand(const QString& cmnd) {
 }
 
 QString Backend::getMimeType(const QString &fname) {
+#ifdef Q_OS_MACOS
+  if (isCompressedTar(fname))
+    return "application/x-compressed-tar";
+#endif
   QString mimeType, suffix;
   int left = fname.indexOf(QLatin1Char('.'));
   if (left != -1) {
@@ -252,6 +265,10 @@ bool Backend::canModify(bool *canUpdate) const {
   }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();
+#ifdef Q_OS_MACOS
+  if (isCompressedTar(filepath_))
+    mimeTypeName = "application/x-compressed-tar";
+#endif
   bool res = archiveSingleRoot_ != "."  // not like some rpm archives
              && validMimeTypes.contains(mimeTypeName);
   *canUpdate = (archiveSingleRoot_ != "." && (res || updatableMimeTypes.contains(mimeTypeName)));
