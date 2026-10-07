@@ -74,6 +74,11 @@ public:
   ~mainWin();
 
   void loadArguments(const QStringList& args);
+#ifdef Q_OS_MACOS
+  QString currentArchive() const {
+    return pendingArchive_.isEmpty() ? BACKEND->currentFile() : pendingArchive_;
+  }
+#endif
 
   Config& getConfig() {
     return config_;
@@ -141,6 +146,9 @@ private:
 
   Ui::mainWin *ui;
   Backend *BACKEND;
+#ifdef Q_OS_MACOS
+  QString pendingArchive_;
+#endif
   QStringList axFileList_, aaFileList_, saFileList_;
   QString lastPath_, lastFilter_;
   QString lastPswrd_;

@@ -33,11 +33,22 @@
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
+#elif defined(Q_OS_MACOS)
+#define TAR_CMD "/usr/bin/tar"
 #else
 #define TAR_CMD "tar"
 #endif
 
 namespace Arqiver {
+
+#ifdef Q_OS_MACOS
+static bool isCompressedTar(const QString& path) {
+  static const QRegularExpression extension(
+    "\\.(tar\\.(gz|xz|bz|bz2|lzma|zst|lz4)|tgz|txz|tbz|tbz2|tlz|tzst|tlz4)$",
+    QRegularExpression::CaseInsensitiveOption);
+  return extension.match(path).hasMatch();
+}
+#endif
 
 // FIXME: This is only for compatibility with p7zip and should be removed later.
 static QStringList p7zipCompat(QStringList args) {
@@ -60,8 +71,30 @@ static const QRegularExpression newlineExp("(?<!\\\\)\\\\n");
 static const QRegularExpression tabExp("(?<!\\\\)\\\\t");
 static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startBackslash_
 
+static QString defaultTarCommand() {
+#ifdef Q_OS_MACOS
+  const QString command = QStandardPaths::findExecutable("bsdtar",
+    {QCoreApplication::applicationDirPath(), "/opt/homebrew/opt/libarchive/bin", "/usr/local/opt/libarchive/bin"});
+  if (!command.isEmpty())
+    return command;
+#endif
+  return TAR_CMD;
+}
+
 Backend::Backend(QObject *parent) : QObject(parent) {
-  tarCmnd_ = TAR_CMD;
+  tarCmnd_ = defaultTarCommand();
+#ifdef Q_OS_MACOS
+  const QStringList bundledPath = {QCoreApplication::applicationDirPath()};
+  sevenZipCmnd_ = QStandardPaths::findExecutable("7zz", bundledPath);
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7z", bundledPath);
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7zz");
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7z");
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = "7zz";
+#endif
   proc_.setProcessChannelMode(QProcess::MergedChannels);
   connect(&proc_, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
@@ -120,13 +153,17 @@ void Backend::setTarCommand(const QString& cmnd) {
   tarCmnd_ = TAR_CMD;
 #else
   if (cmnd.isEmpty())
-    tarCmnd_ = TAR_CMD;
+    tarCmnd_ = defaultTarCommand();
   else
     tarCmnd_ = cmnd;
 #endif
 }
 
 QString Backend::getMimeType(const QString &fname) {
+#ifdef Q_OS_MACOS
+  if (isCompressedTar(fname))
+    return "application/x-compressed-tar";
+#endif
   QString mimeType, suffix;
   int left = fname.indexOf(QLatin1Char('.'));
   if (left != -1) {
@@ -243,6 +280,10 @@ bool Backend::canModify(bool *canUpdate) const {
   }
   QMimeDatabase mimeDatabase;
   QString mimeTypeName = mimeDatabase.mimeTypeForFile(QFileInfo(filepath_)).name();
+#ifdef Q_OS_MACOS
+  if (isCompressedTar(filepath_))
+    mimeTypeName = "application/x-compressed-tar";
+#endif
   bool res = archiveSingleRoot_ != "."  // not like some rpm archives
              && validMimeTypes.contains(mimeTypeName);
   *canUpdate = (archiveSingleRoot_ != "." && (res || updatableMimeTypes.contains(mimeTypeName)));
@@ -358,7 +399,7 @@ void Backend::updateArchive() {
     args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", p7zipCompat(args));
+    proc_.start (sevenZipCmnd_, p7zipCompat(args));
     return;
   }
 
@@ -383,7 +424,7 @@ void Backend::updateArchive() {
   for (const QString &str : std::as_const(changedFiles_)) {
     /* WARNING: Since the workaround for bsdtar's escaped backslashes is already applied,
                 they need to be escaped again, before other special characters are escaped. */
-    args << "--exclude" << "^" + escapeSpecialChars(str.section('/', 3).replace("\\", "\\\\"));
+    args << "--exclude" << "^" + escapeSpecialChars(QDir(arqiverDir_).relativeFilePath(str).replace("\\", "\\\\"));
   }
   args << "@" + filepath_;
   tmpProc_.start(tarCmnd_, args);
@@ -459,7 +500,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
     args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", p7zipCompat(args));
+    proc_.start (sevenZipCmnd_, p7zipCompat(args));
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -532,7 +573,7 @@ void Backend::startRemove(const QStringList& paths) {
     args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
-    proc_.start("7z", p7zipCompat(args));
+    proc_.start(sevenZipCmnd_, p7zipCompat(args));
     return;
   }
   args << "-c" << "-a";
@@ -704,7 +745,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     args << "-o" + xPath;
     if (!noFileList)
       args << "--" << filesList;
-    proc_.start("7z", p7zipCompat(args));
+    proc_.start(sevenZipCmnd_, p7zipCompat(args));
   }
   else {
     if (!noFileList && filesList.isEmpty())
@@ -831,7 +872,7 @@ bool Backend::startViewFile(const QString& path) {
       args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", p7zipCompat(args));
+      tmpProc_.start(sevenZipCmnd_, p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -895,10 +936,14 @@ bool Backend::startViewFile(const QString& path) {
     }
   }
 
+#ifndef Q_OS_MACOS
   if (QStandardPaths::findExecutable("gio").isEmpty()
       || !QProcess::startDetached("gio", QStringList() << "open" << fileName)) { // "gio" is more reliable
+#endif
     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+#ifndef Q_OS_MACOS
   }
+#endif
   return res;
 }
 
@@ -988,7 +1033,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", p7zipCompat(args));
+      tmpProc_.start(sevenZipCmnd_, p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -1266,7 +1311,7 @@ void Backend::startList(bool withPassword) {
     args << "l";
     starting7z_ = true;
     keyArgs_ << "l";
-    proc_.start("7z", QStringList() << args << fileArgs_);
+    proc_.start(sevenZipCmnd_, QStringList() << args << fileArgs_);
   }
   else {
     QStringList args;
@@ -1311,7 +1356,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       args << "l";
       starting7z_ = true;
       keyArgs_.clear(); keyArgs_ << "l";
-      proc_.start("7z", QStringList() << args << fileArgs_);
+      proc_.start(sevenZipCmnd_, QStringList() << args << fileArgs_);
     }
     return;
   }
@@ -1525,9 +1570,9 @@ void Backend::onError(QProcess::ProcessError error) {
                   .arg(proc_.program()));
 }
 
-bool Backend::isWorking() { // used only with DND
-  return (proc_.state() == QProcess::Running
-          || tmpProc_.state() == QProcess::Running);
+bool Backend::isWorking() {
+  return (proc_.state() != QProcess::NotRunning
+          || tmpProc_.state() != QProcess::NotRunning);
 }
 
 void Backend::killProc() {

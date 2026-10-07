@@ -24,6 +24,10 @@
 #include <QTextStream>
 
 #include "mainWin.h"
+#include "version.h"
+#ifdef Q_OS_MACOS
+#include "application.h"
+#endif
 
 void handleQuitSignals(const std::vector<int>& quitSignals) {
   auto handler = [](int sig) ->void {
@@ -37,7 +41,7 @@ void handleQuitSignals(const std::vector<int>& quitSignals) {
 
 int main(int argc, char **argv) {
   const QString name = "Arqiver";
-  const QString version = "1.0.3";
+  const QString version = QStringLiteral(ARQIVER_VERSION);
   const QString option = QString::fromUtf8(argv[1]);
   if (option == "--help" || option == "-h") {
     QTextStream out (stdout);
@@ -60,7 +64,16 @@ int main(int argc, char **argv) {
     return 0;
   }
 
+#ifdef Q_OS_MACOS
+  Arqiver::Application a(argc, argv);
+  QStringList executablePaths = qEnvironmentVariable("PATH").split(':', Qt::SkipEmptyParts);
+  executablePaths.prepend(QCoreApplication::applicationDirPath());
+  executablePaths << "/opt/homebrew/bin" << "/usr/local/bin" << "/usr/bin" << "/bin";
+  executablePaths.removeDuplicates();
+  qputenv("PATH", executablePaths.join(':').toLocal8Bit());
+#else
   QApplication a(argc, argv);
+#endif
   a.setApplicationName(name);
   a.setApplicationVersion(version);
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});
@@ -70,18 +83,30 @@ int main(int argc, char **argv) {
     a.installTranslator(&qtTranslator);
 
   QTranslator ArqTranslator;
-  if (ArqTranslator.load("arqiver_" + QLocale::system().name(), DATADIR "/arqiver/translations"))
+#ifdef Q_OS_MACOS
+  const QString translationDir = a.applicationDirPath() + "/../Resources/translations";
+#else
+  const QString translationDir = DATADIR "/arqiver/translations";
+#endif
+  if (ArqTranslator.load("arqiver_" + QLocale::system().name(), translationDir))
     a.installTranslator(&ArqTranslator);
 
   QStringList args;
   for (int i = 1; i < argc; i++)
     args << QString::fromUtf8(argv[i]);
 
+#ifdef Q_OS_MACOS
+  auto *window = new Arqiver::mainWin;
+  window->setAttribute(Qt::WA_DeleteOnClose);
+  a.setInitialWindow(args.isEmpty() ? window : nullptr);
+#else
   Arqiver::mainWin W;
+  auto *window = &W;
+#endif
   // see mainWin::loadArguments() for an explanation
   if (args.isEmpty())
-    W.show();
+    window->show();
   else
-    W.loadArguments(args);
+    window->loadArguments(args);
   return a.exec();
 }
