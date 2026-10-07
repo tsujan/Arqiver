@@ -383,7 +383,7 @@ void Backend::updateArchive() {
   for (const QString &str : std::as_const(changedFiles_)) {
     /* WARNING: Since the workaround for bsdtar's escaped backslashes is already applied,
                 they need to be escaped again, before other special characters are escaped. */
-    args << "--exclude" << "^" + escapeSpecialChars(str.section('/', 3).replace("\\", "\\\\"));
+    args << "--exclude" << "^" + escapeSpecialChars(QDir(arqiverDir_).relativeFilePath(str).replace("\\", "\\\\"));
   }
   args << "@" + filepath_;
   tmpProc_.start(tarCmnd_, args);
