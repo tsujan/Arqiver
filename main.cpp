@@ -61,6 +61,12 @@ int main(int argc, char **argv) {
   }
 
   QApplication a(argc, argv);
+#ifdef Q_OS_MACOS
+  QStringList executablePaths = qEnvironmentVariable("PATH").split(':', Qt::SkipEmptyParts);
+  executablePaths << "/opt/homebrew/bin" << "/usr/local/bin" << "/usr/bin" << "/bin";
+  executablePaths.removeDuplicates();
+  qputenv("PATH", executablePaths.join(':').toLocal8Bit());
+#endif
   a.setApplicationName(name);
   a.setApplicationVersion(version);
   handleQuitSignals({SIGQUIT, SIGINT, SIGTERM, SIGHUP});

@@ -33,6 +33,8 @@
 
 #ifdef Q_OS_LINUX
 #define TAR_CMD "bsdtar"
+#elif defined(Q_OS_MACOS)
+#define TAR_CMD "/usr/bin/tar"
 #else
 #define TAR_CMD "tar"
 #endif
@@ -62,6 +64,13 @@ static const QRegularExpression startBslashExp("(^|/)\\\\"); // used with startB
 
 Backend::Backend(QObject *parent) : QObject(parent) {
   tarCmnd_ = TAR_CMD;
+#ifdef Q_OS_MACOS
+  sevenZipCmnd_ = QStandardPaths::findExecutable("7zz");
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = QStandardPaths::findExecutable("7z");
+  if (sevenZipCmnd_.isEmpty())
+    sevenZipCmnd_ = "7zz";
+#endif
   proc_.setProcessChannelMode(QProcess::MergedChannels);
   connect(&proc_, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Backend::procFinished);
   connect(&proc_, &QProcess::readyReadStandardOutput, this, &Backend::processData);
@@ -358,7 +367,7 @@ void Backend::updateArchive() {
     args << "a" << "-spd" << fileArgs_ << "--" << paths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", p7zipCompat(args));
+    proc_.start (sevenZipCmnd_, p7zipCompat(args));
     return;
   }
 
@@ -459,7 +468,7 @@ void Backend::startAdd(const QStringList& paths, const QString& parentPath, bool
     args << "a" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "a";
-    proc_.start ("7z", p7zipCompat(args));
+    proc_.start (sevenZipCmnd_, p7zipCompat(args));
     return;
   }
   /* NOTE: All paths should have the same parent directory.
@@ -532,7 +541,7 @@ void Backend::startRemove(const QStringList& paths) {
     args << "d" << "-spd" << fileArgs_ << "--" << filePaths;
     starting7z_ = true;
     keyArgs_ << "d";
-    proc_.start("7z", p7zipCompat(args));
+    proc_.start(sevenZipCmnd_, p7zipCompat(args));
     return;
   }
   args << "-c" << "-a";
@@ -704,7 +713,7 @@ void Backend::startExtract(const QString& path, const QStringList& files, bool o
     args << "-o" + xPath;
     if (!noFileList)
       args << "--" << filesList;
-    proc_.start("7z", p7zipCompat(args));
+    proc_.start(sevenZipCmnd_, p7zipCompat(args));
   }
   else {
     if (!noFileList && filesList.isEmpty())
@@ -831,7 +840,7 @@ bool Backend::startViewFile(const QString& path) {
       args << "--" << realPath;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", p7zipCompat(args));
+      tmpProc_.start(sevenZipCmnd_, p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -992,7 +1001,7 @@ void Backend::extractTempFiles(const QStringList& paths) {
       args << "x" << "-spd" << fileArgs_ << "-o" + arqiverDir_ << "-y" << "--" << realPaths;
       emit processStarting();
       tmpProc_.setStandardOutputFile(QProcess::nullDevice());
-      tmpProc_.start("7z", p7zipCompat(args));
+      tmpProc_.start(sevenZipCmnd_, p7zipCompat(args));
       if (tmpProc_.waitForStarted()) {
         while (!tmpProc_.waitForFinished(500))
           QCoreApplication::processEvents();
@@ -1270,7 +1279,7 @@ void Backend::startList(bool withPassword) {
     args << "l";
     starting7z_ = true;
     keyArgs_ << "l";
-    proc_.start("7z", QStringList() << args << fileArgs_);
+    proc_.start(sevenZipCmnd_, QStringList() << args << fileArgs_);
   }
   else {
     QStringList args;
@@ -1315,7 +1324,7 @@ void Backend::procFinished(int retcode, QProcess::ExitStatus) {
       args << "l";
       starting7z_ = true;
       keyArgs_.clear(); keyArgs_ << "l";
-      proc_.start("7z", QStringList() << args << fileArgs_);
+      proc_.start(sevenZipCmnd_, QStringList() << args << fileArgs_);
     }
     return;
   }
