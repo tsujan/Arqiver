@@ -266,6 +266,12 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   connect(ui->actionNew, &QAction::triggered, this, &mainWin::newArchive);
   connect(ui->actionOpen, &QAction::triggered, this, &mainWin::openArchive);
+#ifdef Q_OS_MACOS
+  ui->actionAbout->setMenuRole(QAction::AboutRole);
+  ui->actionPref->setMenuRole(QAction::PreferencesRole);
+  ui->actionPref->setShortcut(QKeySequence::Preferences);
+  ui->actionQuit->setMenuRole(QAction::QuitRole);
+#endif
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
   connect(ui->actionUpdate, &QAction::triggered, BACKEND, &Backend::updateArchive);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
