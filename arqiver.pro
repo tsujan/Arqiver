@@ -38,7 +38,7 @@ FORMS += mainWin.ui about.ui pref.ui
 
 RESOURCES += data/arq.qrc
 
-unix {
+unix:!macx {
   #TRANSLATIONS
   exists($$[QT_INSTALL_BINS]/lrelease) {
     TRANSLATIONS = $$system("find data/translations/ -name 'arqiver_*.ts'")
@@ -69,4 +69,35 @@ unix {
   trans.files += data/translations/translations
 
   INSTALLS += target desktop iconsvg trans
+}
+
+macx {
+  CONFIG += app_bundle
+  versionHeader = $$cat($$PWD/version.h, lines)
+  versionLine = $$find(versionHeader, ARQIVER_VERSION)
+  VERSION = $$replace(versionLine, [^0-9.], )
+  ICON = data/arqiver.icns
+  QMAKE_TARGET_BUNDLE_PREFIX = org.tsujan
+  QMAKE_INFO_PLIST = data/Info.plist
+  bundleInfo.target = $${TARGET}.app/Contents/Info.plist
+  !isEmpty(DESTDIR): bundleInfo.target = $${DESTDIR}/$${bundleInfo.target}
+  bundleInfo.depends = $$PWD/data/Info.plist $$PWD/version.h
+  versionDependency.target = Makefile
+  versionDependency.depends = $$PWD/version.h
+  QMAKE_EXTRA_TARGETS += bundleInfo versionDependency
+
+  qtPrepareTool(QMAKE_LRELEASE, lrelease)
+  exists($$QMAKE_LRELEASE_EXE) {
+    TRANSLATIONS = $$files($$PWD/data/translations/arqiver_*.ts)
+    LRELEASE_DIR = translations
+    load(lrelease)
+    bundleTranslations.files = $$QM_FILES
+    bundleTranslations.path = Contents/Resources/translations
+    bundleTranslations.CONFIG += no_check_exist
+    QMAKE_BUNDLE_DATA += bundleTranslations
+  }
+
+  isEmpty(PREFIX): PREFIX = /Applications
+  target.path = $$PREFIX
+  INSTALLS += target
 }

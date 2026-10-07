@@ -83,3 +83,13 @@ allow selecting another bsdtar executable, such as Homebrew's libarchive for
 additional compression formats. Do not select GNU tar. For 7z-based formats,
 install sevenzip (7zz) or p7zip (7z). Arqiver also searches /opt/homebrew/bin and
 /usr/local/bin when launched from Finder.
+
+Alternatively, build and install the same app bundle with qmake:
+
+    mkdir build && cd build
+    qmake ../arqiver.pro
+    make
+    make install
+
+If qmake is not on PATH, use the qmake executable from your Qt installation.
+For a custom installation directory, pass PREFIX=/your/directory to qmake.
