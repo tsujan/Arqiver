@@ -85,6 +85,8 @@ macx {
   versionDependency.target = Makefile
   versionDependency.depends = $$PWD/version.h
   QMAKE_EXTRA_TARGETS += bundleInfo versionDependency
+  HEADERS += application.h
+  SOURCES += application.cpp
 
   qtPrepareTool(QMAKE_LRELEASE, lrelease)
   exists($$QMAKE_LRELEASE_EXE) {

@@ -271,8 +271,10 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
   ui->actionPref->setMenuRole(QAction::PreferencesRole);
   ui->actionPref->setShortcut(QKeySequence::Preferences);
   ui->actionQuit->setMenuRole(QAction::QuitRole);
-#endif
+  connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::closeAllWindows);
+#else
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
+#endif
   connect(ui->actionUpdate, &QAction::triggered, BACKEND, &Backend::updateArchive);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
   connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
@@ -511,12 +513,23 @@ void mainWin::changeEvent(QEvent *event) {
 }
 
 void mainWin::loadArguments(const QStringList& args) {
+#ifdef Q_OS_MACOS
+  if (!args.isEmpty() && !args.first().startsWith("--")) {
+    QString file = args.first();
+    if (file.startsWith("file://"))
+      file = QUrl(file).toLocalFile();
+    pendingArchive_ = QDir::cleanPath(QDir::current().absoluteFilePath(file));
+  }
+#endif
   /* KDE needs all events to be processed; otherwise, if a dialog
      is shown before the main window, the application won't exit
      when the main window is closed. This should be a bug in KDE.
      As a workaround, we show the window only when no dialog is
      going to be shown before it. */
   QTimer::singleShot(0, this, [this, args]() {
+#ifdef Q_OS_MACOS
+    pendingArchive_.clear();
+#endif
     int action = -1; // load archive
     /*
       0: auto extracting   -> arqiver --ax Archive(s)

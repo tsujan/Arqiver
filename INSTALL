@@ -93,3 +93,7 @@ Alternatively, build and install the same app bundle with qmake:
 
 If qmake is not on PATH, use the qmake executable from your Qt installation.
 For a custom installation directory, pass PREFIX=/your/directory to qmake.
+
+Finder's Open With menu and dropping archives onto the Dock icon open archive
+windows. Additional documents open in separate windows, so opening one archive
+does not discard edits or interrupt a process in another window.

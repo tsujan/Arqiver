@@ -54,7 +54,8 @@ set(ICON_FILE data/icons/arqiver.svg)
 
 set(EXTRA_HEADERS label.h lineedit.h)
 if(APPLE)
-  list(APPEND EXTRA_HEADERS data/arqiver.icns)
+  list(APPEND arqiver_SRCS application.cpp)
+  list(APPEND EXTRA_HEADERS application.h data/arqiver.icns)
   set_source_files_properties(data/arqiver.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 endif()
 
