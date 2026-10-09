@@ -17,38 +17,38 @@
         <translation>El fitxer és un enllaç però el destí no existeix.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1295"/>
-        <location filename="../../backends.cpp" line="1328"/>
-        <location filename="../../backends.cpp" line="1372"/>
+        <location filename="../../backends.cpp" line="1301"/>
+        <location filename="../../backends.cpp" line="1334"/>
+        <location filename="../../backends.cpp" line="1378"/>
         <source>Could not read archive</source>
         <translation>No s&apos;ha pogut llegit l&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1331"/>
-        <location filename="../../backends.cpp" line="1377"/>
+        <location filename="../../backends.cpp" line="1337"/>
+        <location filename="../../backends.cpp" line="1383"/>
         <source>Archive Loaded</source>
         <translation>S&apos;ha carregat l&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1338"/>
-        <location filename="../../backends.cpp" line="1425"/>
+        <location filename="../../backends.cpp" line="1344"/>
+        <location filename="../../backends.cpp" line="1431"/>
         <source>Modification Finished</source>
         <translation>Modificació finalitzada</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1359"/>
-        <location filename="../../backends.cpp" line="1394"/>
+        <location filename="../../backends.cpp" line="1365"/>
+        <location filename="../../backends.cpp" line="1400"/>
         <source>Extraction Finished</source>
         <translation>Extracció completada</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1362"/>
-        <location filename="../../backends.cpp" line="1413"/>
+        <location filename="../../backends.cpp" line="1368"/>
+        <location filename="../../backends.cpp" line="1419"/>
         <source>Extraction Failed</source>
         <translation>L&apos;extracció ha fallat</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1524"/>
+        <location filename="../../backends.cpp" line="1530"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>%1 no està instal·lat en el sistema.

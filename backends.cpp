@@ -1214,18 +1214,24 @@ void Backend::parseLines(QStringList& lines) {
     if (file.isEmpty()) // possible in rare cases (with "application/x-archive", for example)
       continue;
     QString linkto;
-    /* see if this file has the "link to" or "->" notation */
-    if (info.at(0).startsWith("l")) {
+    /* see if this file has the "->" or "link to" notation */
+    if (info.at(0).startsWith("l")
+        /* NOTE: This may happen rarely with rpm archives,
+                 where no one expects to see a link notation inside a filename. */
+        || (file.startsWith("./") && info.at(0).startsWith("-"))) {
       if (file.contains(" -> ")) {
         linkto = file.section(" -> ", 1, -1);
         file = file.section(" -> ", 0, 0);
+        if (file.isEmpty()) continue;
+        if (!info.at(0).startsWith("l")) // a link whose existence is not reflected by perms
+          info[0].replace(0, 1, "l");
       }
       else if (file.contains(" link to ")) {
-        /* alternate form of a link within a tar archive (not reflected in perms?!) */
         linkto = file.section(" link to ", 1, -1);
         file = file.section(" link to ", 0, 0);
-        /*if (info.at(0).startsWith("-"))
-          info[0].replace(0, 1, "l");*/
+        if (file.isEmpty()) continue;
+        if (!info.at(0).startsWith("l"))
+          info[0].replace(0, 1, "l");
       }
     }
     if (file.contains(startBslashExp))
