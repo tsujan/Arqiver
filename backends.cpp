@@ -297,13 +297,13 @@ bool Backend::noFastRead(const QString& file) const {
 }
 
 bool Backend::isLink(const QString& file) const {
-  if (!contents_.contains(file))
+  if (isGzip_ || is7z_ || !contents_.contains(file))
     return false;
   return contents_.value(file).at(0).startsWith("l");
 }
 
 QString Backend::linkTo(const QString& file) const {
-  if (!contents_.contains(file))
+  if (isGzip_ || is7z_ || !contents_.contains(file))
     return QString();
   return contents_.value(file).at(2);
 }
@@ -871,8 +871,11 @@ bool Backend::startViewFile(const QString& path) {
           QCoreApplication::processEvents();
       }
       emit processFinished(tmpProc_.exitCode() == 0, QString());
-      if (tmpProc_.exitCode() != 0)
+      if (tmpProc_.exitCode() != 0) {
+        if (isLink(path)) // hard link
+          errorMsg(tr("This file is a link but its target does not exist."));
         return true;
+      }
     }
     // handle links
     if (!QFileInfo::exists(fileName)) {
@@ -1127,7 +1130,7 @@ void Backend::parseLines(QStringList& lines) {
                              QStringList() << attrStr << info.at(1)
                                            << (hasCSize ? info.at(2) : QString::number(0)));
           }
-          else {
+          else { // [Attr, Size, Compressed]
             contents_.insert(file,
                              QStringList() << attrStr << info.at(3)
                                            << (hasCSize ? info.at(4) : QString::number(0)));
@@ -1214,24 +1217,22 @@ void Backend::parseLines(QStringList& lines) {
     if (file.isEmpty()) // possible in rare cases (with "application/x-archive", for example)
       continue;
     QString linkto;
-    /* see if this file has the "->" or "link to" notation */
-    if (info.at(0).startsWith("l")
-        /* NOTE: This may happen rarely with rpm archives,
-                 where no one expects to see a link notation inside a filename. */
-        || (file.startsWith("./") && info.at(0).startsWith("-"))) {
+    /* See if this file has the "->" or "link to" notation.
+       NOTE: Unfortunately, the listing becomes a mess with more than one link notation in
+             a filename, and there's no workaround for that, but the total extraction is OK. */
+    if (info.at(0).startsWith("l")) { // symlink
       if (file.contains(" -> ")) {
         linkto = file.section(" -> ", 1, -1);
         file = file.section(" -> ", 0, 0);
         if (file.isEmpty()) continue;
-        if (!info.at(0).startsWith("l")) // a link whose existence is not reflected by perms
-          info[0].replace(0, 1, "l");
       }
-      else if (file.contains(" link to ")) {
+    }
+    else if (info.at(0).startsWith("h")) { // hard link
+      if (file.contains(" link to ")) {
         linkto = file.section(" link to ", 1, -1);
         file = file.section(" link to ", 0, 0);
         if (file.isEmpty()) continue;
-        if (!info.at(0).startsWith("l"))
-          info[0].replace(0, 1, "l");
+        info[0].replace(0, 1, "l"); // simply show it as a link
       }
     }
     if (file.contains(startBslashExp))
@@ -1247,7 +1248,7 @@ void Backend::parseLines(QStringList& lines) {
           archiveSingleRoot_ = QString();
       }
     }
-    contents_.insert(file, QStringList() << info.at(0) << info.at(4) << linkto); // [perms, size, linkto ]
+    contents_.insert(file, QStringList() << info.at(0) << info.at(4) << linkto); // [perms, size, linkto]
   }
 }
 

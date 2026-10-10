@@ -12,43 +12,44 @@
 <context>
     <name>Arqiver::Backend</name>
     <message>
-        <location filename="../../backends.cpp" line="879"/>
+        <location filename="../../backends.cpp" line="876"/>
+        <location filename="../../backends.cpp" line="882"/>
         <source>This file is a link but its target does not exist.</source>
         <translation>Ten plik jest łączem, ale jego element docelowy nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1301"/>
-        <location filename="../../backends.cpp" line="1334"/>
-        <location filename="../../backends.cpp" line="1378"/>
+        <location filename="../../backends.cpp" line="1302"/>
+        <location filename="../../backends.cpp" line="1335"/>
+        <location filename="../../backends.cpp" line="1379"/>
         <source>Could not read archive</source>
         <translation>Nie udało się odczytać archiwum</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1337"/>
-        <location filename="../../backends.cpp" line="1383"/>
+        <location filename="../../backends.cpp" line="1338"/>
+        <location filename="../../backends.cpp" line="1384"/>
         <source>Archive Loaded</source>
         <translation>Załadowano archiwum</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1344"/>
-        <location filename="../../backends.cpp" line="1431"/>
+        <location filename="../../backends.cpp" line="1345"/>
+        <location filename="../../backends.cpp" line="1432"/>
         <source>Modification Finished</source>
         <translation>Zakończono modyfikowanie</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1365"/>
-        <location filename="../../backends.cpp" line="1400"/>
+        <location filename="../../backends.cpp" line="1366"/>
+        <location filename="../../backends.cpp" line="1401"/>
         <source>Extraction Finished</source>
         <translation>Zakończono rozpakowywanie</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1368"/>
-        <location filename="../../backends.cpp" line="1419"/>
+        <location filename="../../backends.cpp" line="1369"/>
+        <location filename="../../backends.cpp" line="1420"/>
         <source>Extraction Failed</source>
         <translation>Błąd przy rozpakowywaniu</translation>
     </message>
     <message>
-        <location filename="../../backends.cpp" line="1530"/>
+        <location filename="../../backends.cpp" line="1531"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
         <translation>W Twoim systemie brakuje %1.
