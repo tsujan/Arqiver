@@ -39,8 +39,10 @@
 #include <QResizeEvent>
 #include <QPointer>
 #include <QDrag>
+#ifndef Q_OS_MACOS
 #include <QDBusConnection>
 #include <QDBusMessage>
+#endif
 #include <QStandardPaths>
 
 #include <unistd.h> // getuid
@@ -264,7 +266,15 @@ mainWin::mainWin() : QMainWindow(), ui(new Ui::mainWin) {
 
   connect(ui->actionNew, &QAction::triggered, this, &mainWin::newArchive);
   connect(ui->actionOpen, &QAction::triggered, this, &mainWin::openArchive);
+#ifdef Q_OS_MACOS
+  ui->actionAbout->setMenuRole(QAction::AboutRole);
+  ui->actionPref->setMenuRole(QAction::PreferencesRole);
+  ui->actionPref->setShortcut(QKeySequence::Preferences);
+  ui->actionQuit->setMenuRole(QAction::QuitRole);
+  connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::closeAllWindows);
+#else
   connect(ui->actionQuit, &QAction::triggered, this, &mainWin::close);
+#endif
   connect(ui->actionUpdate, &QAction::triggered, BACKEND, &Backend::updateArchive);
   connect(ui->actionAddFile, &QAction::triggered, this, &mainWin::addFiles);
   connect(ui->actionRemoveFile, &QAction::triggered, this, &mainWin::removeFiles);
@@ -473,7 +483,7 @@ bool mainWin::ignoreChanges() {
 }
 
 void mainWin::closeEvent(QCloseEvent *event) {
-  if (processIsRunning_)
+  if (processIsRunning_ || BACKEND->isWorking())
     event->ignore();
   else {
     if (ui->actionUpdate->isEnabled()) {
@@ -503,12 +513,23 @@ void mainWin::changeEvent(QEvent *event) {
 }
 
 void mainWin::loadArguments(const QStringList& args) {
+#ifdef Q_OS_MACOS
+  if (!args.isEmpty() && !args.first().startsWith("--")) {
+    QString file = args.first();
+    if (file.startsWith("file://"))
+      file = QUrl(file).toLocalFile();
+    pendingArchive_ = QDir::cleanPath(QDir::current().absoluteFilePath(file));
+  }
+#endif
   /* KDE needs all events to be processed; otherwise, if a dialog
      is shown before the main window, the application won't exit
      when the main window is closed. This should be a bug in KDE.
      As a workaround, we show the window only when no dialog is
      going to be shown before it. */
   QTimer::singleShot(0, this, [this, args]() {
+#ifdef Q_OS_MACOS
+    pendingArchive_.clear();
+#endif
     int action = -1; // load archive
     /*
       0: auto extracting   -> arqiver --ax Archive(s)
@@ -1067,6 +1088,9 @@ void mainWin::labelContextMenu(const QPoint& p) {
                               : symbolicIcon::icon(":icons/document-open.svg"),
                             tr("Open Containing Folder"));
     connect(action, &QAction::triggered, [this] {
+#ifdef Q_OS_MACOS
+      QProcess::startDetached("/usr/bin/open", QStringList() << "-R" << BACKEND->currentFile());
+#else
       QDBusMessage methodCall =
       QDBusMessage::createMethodCall("org.freedesktop.FileManager1",
                                      "/org/freedesktop/FileManager1",
@@ -1085,6 +1109,7 @@ void mainWin::labelContextMenu(const QPoint& p) {
           QDesktopServices::openUrl(QUrl::fromLocalFile(folder));
         }
       }
+#endif
     });
   }
   menu.exec(ui->frame->mapToGlobal(p));

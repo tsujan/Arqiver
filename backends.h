@@ -129,6 +129,7 @@ private:
   void processOutput(bool finished);
 
   QString tarCmnd_;
+  QString sevenZipCmnd_ = "7z";
 
   QProcess proc_;
   QProcess tmpProc_; // for secondary jobs

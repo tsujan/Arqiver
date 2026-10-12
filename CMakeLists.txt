@@ -8,12 +8,19 @@ endif()
 add_definitions(-Wall)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX "/usr")
+  if(APPLE)
+    set(CMAKE_INSTALL_PREFIX "/Applications" CACHE PATH "Installation prefix" FORCE)
+  else()
+    set(CMAKE_INSTALL_PREFIX "/usr")
+  endif()
 endif()
 
 set(QT6_MINIMUM_VERSION "6.6.0")
 
-find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS Core Gui Widgets Svg DBus)
+find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS Core Gui Widgets Svg)
+if(NOT APPLE)
+  find_package(Qt6 "${QT6_MINIMUM_VERSION}" REQUIRED COMPONENTS DBus)
+endif()
 
 # optional localization
 find_package(Qt6 QUIET COMPONENTS LinguistTools)
@@ -46,13 +53,22 @@ set(DESKTOP_FILE data/arqiver.desktop)
 set(ICON_FILE data/icons/arqiver.svg)
 
 set(EXTRA_HEADERS label.h lineedit.h)
+if(APPLE)
+  list(APPEND arqiver_SRCS application.cpp)
+  list(APPEND EXTRA_HEADERS application.h data/arqiver.icns)
+  set_source_files_properties(data/arqiver.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+endif()
 
 # translations
 if(Qt6LinguistTools_FOUND)
   file(GLOB TS_FILES data/translations/arqiver_*.ts)
   qt6_add_translation(QM_FILES ${TS_FILES})
   add_executable(arqiver ${arqiver_SRCS} ${arqiver_RESOURCES} ${EXTRA_HEADERS} ${DESKTOP_FILE} ${QM_FILES})
-  install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/arqiver/translations")
+  if(APPLE)
+    set_source_files_properties(${QM_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/translations)
+  else()
+    install(FILES ${QM_FILES} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/arqiver/translations")
+  endif()
 else(Qt6LinguistTools_FOUND)
   add_executable(arqiver ${arqiver_SRCS} ${arqiver_RESOURCES} ${EXTRA_HEADERS} ${DESKTOP_FILE})
 endif(Qt6LinguistTools_FOUND)
@@ -60,10 +76,26 @@ endif(Qt6LinguistTools_FOUND)
 target_link_libraries(arqiver ${Qt6Core_LIBRARIES}
                               ${Qt6Gui_LIBRARIES}
                               ${Qt6Widgets_LIBRARIES}
-                              ${Qt6Svg_LIBRARIES}
-                              ${Qt6DBus_LIBRARIES})
+                              ${Qt6Svg_LIBRARIES})
+if(NOT APPLE)
+  target_link_libraries(arqiver ${Qt6DBus_LIBRARIES})
+endif()
 
 # installation
-install(TARGETS arqiver RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
-install(FILES ${DESKTOP_FILE} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/applications")
-install(FILES ${ICON_FILE} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps")
+if(APPLE)
+  set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS version.h)
+  file(STRINGS version.h VERSION_LINE REGEX "^#define ARQIVER_VERSION")
+  string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" FULL_VERSION "${VERSION_LINE}")
+  set(EXECUTABLE arqiver)
+  set(ICON arqiver.icns)
+  set(BUNDLEIDENTIFIER org.tsujan.arqiver)
+  configure_file(data/Info.plist ${CMAKE_CURRENT_BINARY_DIR}/Info.plist @ONLY)
+  set_target_properties(arqiver PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
+  install(TARGETS arqiver BUNDLE DESTINATION .)
+else()
+  install(TARGETS arqiver RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+  install(FILES ${DESKTOP_FILE} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/applications")
+  install(FILES ${ICON_FILE} DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps")
+endif()
