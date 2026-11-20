@@ -6,7 +6,7 @@
     <message>
         <location filename="../../about.ui" line="164"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
 </context>
 <context>
@@ -15,44 +15,45 @@
         <location filename="../../backends.cpp" line="876"/>
         <location filename="../../backends.cpp" line="882"/>
         <source>This file is a link but its target does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis fails ir saite, bet tās mērķis nepastāv.</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1302"/>
         <location filename="../../backends.cpp" line="1335"/>
         <location filename="../../backends.cpp" line="1379"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās nolasīt arhīvu</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1338"/>
         <location filename="../../backends.cpp" line="1384"/>
         <source>Archive Loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Arhīvs ielādēts</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1345"/>
         <location filename="../../backends.cpp" line="1432"/>
         <source>Modification Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Mainīšana pabeigta</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1366"/>
         <location filename="../../backends.cpp" line="1401"/>
         <source>Extraction Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiešana pabeigta</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1369"/>
         <location filename="../../backends.cpp" line="1420"/>
         <source>Extraction Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiešana neizdevās</translation>
     </message>
     <message>
         <location filename="../../backends.cpp" line="1531"/>
         <source>%1 is missing from your system.
 Please install it for this kind of archive!</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūsu sistēmā trūkst %1.
+Lūdzu, instalējiet to šāda veida arhīviem!</translation>
     </message>
 </context>
 <context>
@@ -61,7 +62,8 @@ Please install it for this kind of archive!</source>
         <location filename="../../lineedit.h" line="33"/>
         <source>You could type inside the main view.
 Clear text with the Escape key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Varat rakstīt galvenajā skatā.
+Tekstu notīra ar taustiņu Escape.</translation>
     </message>
 </context>
 <context>
@@ -69,32 +71,32 @@ Clear text with the Escape key.</source>
     <message>
         <location filename="../../pref.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Iestatījumi</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="50"/>
         <source>Start with this size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sākt ar šo izmēru:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="118"/>
         <source>Use system icons where possible</source>
-        <translation type="unfinished"></translation>
+        <translation>Izmantot sistēmas ikonas, kur iespējams</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="125"/>
         <source>Show prompt on removing items</source>
-        <translation type="unfinished"></translation>
+        <translation>Rādīt uzvedni, noņemot vienumus</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="132"/>
         <source>If this is unchecked, only the top level directories will be expanded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja izvēles rūtiņa nav atzīmēta, tiks izvērstas tikai augšējā līmeņa mapes.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="135"/>
         <source>Expand all directories when opening archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverot arhīvus, izvērst visas mapes</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="147"/>
@@ -103,37 +105,40 @@ Clear text with the Escape key.</source>
 
 Warning: Arqiver will not work if the
 binary does not belong to libarchive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstājiet tukšu, lai izmantotu noklusējumu.
+
+Brīdinājums: Arqiver nedarbosies, ja
+bināro failu nav veidojusi libarchive.</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="153"/>
         <source>libarchive binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>libarchive binārais fails:</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="38"/>
         <source>Remember window &amp;size on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Aizverot atcerēties loga &amp;izmēru</translation>
     </message>
     <message>
         <location filename="../../pref.ui" line="93"/>
         <source>Size of view icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skata ikonu izmērs:</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="62"/>
         <source>px</source>
-        <translation type="unfinished"></translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="184"/>
         <source>Application restart is needed for changes to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lai izmaiņas stātos spēkā, jāpārstartē lietotne.</translation>
     </message>
     <message>
         <location filename="../../pref.cpp" line="241"/>
         <source>Select libarchive binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties libarchive bināro failu</translation>
     </message>
 </context>
 <context>
@@ -141,184 +146,184 @@ binary does not belong to libarchive.</source>
     <message>
         <location filename="../../mainWin.ui" line="53"/>
         <source>Archive:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arhīvs:</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="106"/>
         <source>Filter Files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrēt failus...</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="129"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fails</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="140"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rediģēt</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="155"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Skats</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="166"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Palīdzība</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="204"/>
         <source>&amp;Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atvērt arhīvu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="207"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="212"/>
         <source>&amp;New Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Jauns arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="215"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="220"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iziet</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="223"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="228"/>
         <source>Add File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot failus</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="233"/>
         <source>Remove File(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt failus</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="238"/>
         <source>Extract All</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiest visu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="241"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="246"/>
         <source>Add Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot mapi</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="251"/>
         <source>Extract Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiest atlasi</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="256"/>
         <source>Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Iestatīt paroli</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="261"/>
         <source>E&amp;xpand</source>
-        <translation type="unfinished"></translation>
+        <translation>Iz&amp;vērst</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="264"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="269"/>
         <source>Collap&amp;se</source>
-        <translation type="unfinished"></translation>
+        <translation>Sa&amp;kļaut</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="272"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="277"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Par</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="282"/>
         <source>&amp;Copy Current Path</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopēt pašreizējo ceļu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="287"/>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Ie&amp;statījumi</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="292"/>
         <source>Stop &amp;Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Apturēt &amp;procesu</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="295"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="305"/>
         <source>Update Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Atjaunināt arhīvu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="147"/>
         <source>Root</source>
-        <translation type="unfinished"></translation>
+        <translation>Sakne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="252"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Kļūda</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fails</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>MimeType</source>
-        <translation type="unfinished"></translation>
+        <translation>MimeType</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="323"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Izmērs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="553"/>
         <location filename="../../mainWin.cpp" line="840"/>
         <location filename="../../mainWin.cpp" line="884"/>
         <source>Opening Archive...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atver arhīvu...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="769"/>
         <source>Create Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Izveidot arhīvu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="464"/>
@@ -326,30 +331,31 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="994"/>
         <location filename="../../mainWin.cpp" line="1308"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Jautājums</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="796"/>
         <source>The following archive already exists:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šāds arhīvs jau pastāv:</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="798"/>
         <source>Do you want to replace it?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties to aizstāt?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="832"/>
         <source>Open Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvērt arhīvu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="899"/>
         <location filename="../../mainWin.cpp" line="906"/>
         <location filename="../../mainWin.cpp" line="943"/>
         <source>Add to Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot arhīvam</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="938"/>
@@ -357,18 +363,19 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1254"/>
         <location filename="../../mainWin.cpp" line="1260"/>
         <source>Adding Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievieno vienumus...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="995"/>
         <source>Do you want to remove the selected item(s)?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties noņemt atlasītos vienumus?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1014"/>
         <source>Removing Items...</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņem vienumus...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1217"/>
@@ -376,148 +383,149 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="1323"/>
         <location filename="../../mainWin.cpp" line="1337"/>
         <source>Extracting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiež...</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1058"/>
         <source>Copy Archive Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopēt arhīva ceļu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="465"/>
         <source>Some files have been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daži faili ir mainīti.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="466"/>
         <source>Do you want to ignore the changes?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties ignorēt izmaiņas?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="627"/>
         <source>All Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi tipi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="637"/>
         <location filename="../../mainWin.cpp" line="662"/>
         <source>Uncompressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesaspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="638"/>
         <location filename="../../mainWin.cpp" line="663"/>
         <source>GZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar GZip saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="639"/>
         <location filename="../../mainWin.cpp" line="664"/>
         <location filename="../../mainWin.cpp" line="665"/>
         <source>BZip Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar BZip saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="640"/>
         <location filename="../../mainWin.cpp" line="666"/>
         <source>BZip2 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar BZip2 saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="641"/>
         <location filename="../../mainWin.cpp" line="674"/>
         <source>LMZA Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar LMZA saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="642"/>
         <location filename="../../mainWin.cpp" line="671"/>
         <source>XZ Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar XZ saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="643"/>
         <location filename="../../mainWin.cpp" line="675"/>
         <source>Zstandard Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar Zstandard saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="644"/>
         <location filename="../../mainWin.cpp" line="677"/>
         <source>LZ4 Compressed Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar LZ4 saspiests arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="645"/>
         <location filename="../../mainWin.cpp" line="678"/>
         <source>CPIO Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>CPIO arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="647"/>
         <location filename="../../mainWin.cpp" line="680"/>
         <source>AR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>AR arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="649"/>
         <location filename="../../mainWin.cpp" line="682"/>
         <source>Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="650"/>
         <location filename="../../mainWin.cpp" line="684"/>
         <source>Gzip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Gzip arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="651"/>
         <location filename="../../mainWin.cpp" line="683"/>
         <source>7-Zip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>7-Zip arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="667"/>
         <location filename="../../mainWin.cpp" line="668"/>
         <source>READ-ONLY: BZip Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: BZip arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="669"/>
         <source>READ-ONLY: BZip2 Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: BZip2 arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="670"/>
         <source>READ-ONLY: BZip2 Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: ar BZip2 saspiests PDF dokuments</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="672"/>
         <source>READ-ONLY: XZ archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: XZ arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="673"/>
         <source>READ-ONLY: XZ Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: ar XZ saspiests PDF dokuments</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="676"/>
         <source>READ-ONLY: Zstandard archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: Zstandard arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="685"/>
         <source>Gzip Compressed PDF Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar Gzip saspiests PDF dokuments</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="686"/>
         <source>READ-ONLY: Compressed SVG Image</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: saspiests SVG attēls</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="687"/>
@@ -525,165 +533,167 @@ binary does not belong to libarchive.</source>
         <location filename="../../mainWin.cpp" line="689"/>
         <location filename="../../mainWin.cpp" line="690"/>
         <source>READ-ONLY: ISO Image</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: ISO attēls</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="691"/>
         <source>READ-ONLY: XAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: XAR arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="692"/>
         <source>READ-ONLY: Java Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: Java arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="693"/>
         <source>READ-ONLY: Debian Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: Debian pakotne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="694"/>
         <location filename="../../mainWin.cpp" line="695"/>
         <source>READ-ONLY: RedHat Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: RedHat pakotne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="696"/>
         <location filename="../../mainWin.cpp" line="697"/>
         <location filename="../../mainWin.cpp" line="698"/>
         <source>READ-ONLY: MS Windows Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: MS Windows izpildāmais fails</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="699"/>
         <source>READ-ONLY: MS Windows Installer Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: MS Windows instalētāja pakotne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="700"/>
         <source>READ-ONLY: MS Windows Cabinet Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: MS Windows Cabinet arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="702"/>
         <source>READ-ONLY: Android Package</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: Android pakotne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="703"/>
         <source>READ-ONLY: RAR Archive</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: RAR arhīvs</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="704"/>
         <source>READ-ONLY: AppImage application bundle</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: AppImage lietotnes pakete</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="705"/>
         <source>READ-ONLY: VirtualBox Extension Pack</source>
-        <translation type="unfinished"></translation>
+        <translation>TIKAI LASĀMS: VirtualBox paplašinājumu pakotne</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="714"/>
         <source>All Known Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi zināmie tipi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="719"/>
         <source>Show All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Rādīt visus failus</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1068"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvērt saturošo mapi</translation>
     </message>
     <message>
         <location filename="../../mainWin.ui" line="300"/>
         <source>View Current Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Skatīt pašreizējo vienumu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1113"/>
         <location filename="../../mainWin.cpp" line="1121"/>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ievadiet paroli</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1129"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Atcelt</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1134"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Labi</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1138"/>
         <source>Encrypt the file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Šifrēt failu sarakstu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1139"/>
         <source>This will take effect after files/folders are added.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tas stāsies spēkā pēc failu/mapju pievienošanas.</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1210"/>
         <location filename="../../mainWin.cpp" line="1286"/>
         <source>Extract Into Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Atspiest mapē</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1309"/>
         <source>Some files will be overwritten.
 Do you want to continue?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Daži faili tiks pārrakstīti.
+Vai vēlaties turpināt?
+</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1435"/>
         <source>Link To: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Saite uz: %1</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1702"/>
         <source>Could not read archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās nolasīt arhīvu</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1773"/>
         <source>A simple Qt archive manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Vienkāršs Qt arhīvu pārvaldnieks</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1774"/>
         <source>based on libarchive, gzip and 7z</source>
-        <translation type="unfinished"></translation>
+        <translation>balstīts uz libarchive, gzip un 7z</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1775"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autors</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1776"/>
         <source>aka.</source>
-        <translation type="unfinished"></translation>
+        <translation>jeb</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1777"/>
         <location filename="../../mainWin.cpp" line="1778"/>
         <source>About Arqiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Par Arqiver</translation>
     </message>
     <message>
         <location filename="../../mainWin.cpp" line="1777"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Tulkotāji</translation>
     </message>
 </context>
 </TS>
